@@ -131,7 +131,7 @@
             		<div class="container" style="display: flex; flex-direction: column; height: 30px; font-size: 10px; width: 100%; align-items: center;">
 					  <div class="box" style="flex: 1; font-weight: bold;">난이도</div>
 					  <div class="box" style="flex: 2;">
-						  <img class="circle" alt="fullcircle" src="../image/fullcircle.png">
+						  <img class="circle" alt="fullcircle" src="../image/fullcircle.png"> 
 						  <img class="circle" alt="fullcircle" src="../image/fullcircle.png">
 						  <img class="circle" alt="fullcircle" src="../image/fullcircle.png">
 						  <img class="circle" alt="emptycircle" src="../image/emptycircle.png">
