@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
     font-size: 14px;
     line-height: 1.6;
     font-size: 17px; 
-    white-space: nowrap;
+    white-space: nowrap; 
   } 
 </style>
 <body>
