@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
     margin: 0;
     font-size: 14px;
     line-height: 1.6;
-    font-size: 17px;
+    font-size: 17px; 
     white-space: nowrap;
   }
 </style>
