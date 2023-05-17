@@ -9,22 +9,17 @@ public class LoginController {
 	@RequestMapping("/test")
 	public String test() {
 		System.out.println("/test");
-		return "test";
+		return "Dongmin/test";
 	}
 	@RequestMapping("/reply")
 	public String reply() {
 		System.out.println("/reply");
-		return "reply";
+		return "Dongmin/reply";
 	}
 	@RequestMapping("/recipe")
 	public String recipe() {
 		System.out.println("/recipe");
-		return "recipe";
-	}
-	@RequestMapping("/NewFile")
-	public String NewFile() {
-		System.out.println("/NewFile");
-		return "NewFile";
+		return "Dongmin/recipe";
 	}
 	
 	
