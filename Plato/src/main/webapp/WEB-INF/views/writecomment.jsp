@@ -8,7 +8,7 @@
 <div class="container">
 	    <form action="submitComment.jsp" method="post">
         <textarea id="comment-box" name="comment" oninput="updateCharCount()" maxlength="3000" required></textarea>
-       	<div class="box2">
+       	<div class="box">
         	<div id="char-count">0/3000</div>
         	<p class="bar">|</p>
         	<button type="submit" class="btn">등록</button>

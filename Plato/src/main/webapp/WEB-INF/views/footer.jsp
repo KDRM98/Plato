@@ -8,9 +8,9 @@ pageEncoding="UTF-8"%>
     margin: 0;
     font-size: 14px;
     line-height: 1.6;
-    font-size: 17px;
-    white-space: nowrap;
-  }
+    font-size: 17px; 
+    white-space: nowrap; 
+  } 
 </style>
 <body>
   <div style="height: 300px; background-color: black;padding: 10px; display: flex; justify-content: flex-start; align-items: center;">
