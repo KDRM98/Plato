@@ -29,10 +29,14 @@
 			</div>
 		</form>
 		<script>
-        function updateCharCount() {
-            var comment = document.getElementById("comment-box");
-            var charCount = document.getElementById("char-count");
-            charCount.textContent = comment.value.length + "/3000";
-        }
+	    function updateCharCount() {
+	        var comment = document.getElementById("comment-box");
+	        var charCount = document.getElementById("char-count");
+	        var text = comment.value.trim();
+	        var words = text.split(/\s+/).filter(function(word) {
+	            return word.length > 0;
+	        });
+	        charCount.textContent = words.length + " words";
+	    }
     </script>
 	</div>

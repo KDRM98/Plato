@@ -7,7 +7,7 @@
 
 <div class="container">
 	    <form action="submitComment.jsp" method="post">
-        <textarea id="comment-box" name="comment" oninput="updateCharCount()" maxlength="3000" required></textarea>
+        <textarea id="comment-box" name="comment" oninput="updateCharCount(event)" maxlength="3000" required></textarea>
        	<div class="box">
         	<div id="char-count">0/3000</div>
         	<p class="bar">|</p>
@@ -17,7 +17,7 @@
 
     <script>
         function updateCharCount() {
-            var comment = document.getElementById("comment-box");
+            var comment = document.getElementById(event.target);
             var charCount = document.getElementById("char-count");
             charCount.textContent = comment.value.length + "/3000";
         }

@@ -3,7 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.util.Date"%>
-
+<style>
+#comment-box {
+	padding: 10px;
+}
+</style>
 <%
 	String leftMargin = request.getParameter("paddingLeft");
 	int leftMarginValue = 0;
@@ -14,7 +18,8 @@
 %>
 
 <body>
-	<div class="comment" style="padding-left: <%= leftMultipliedMargin %>px;">
+	<div class="comment"
+		style="padding-left: <%= leftMultipliedMargin %>px;">
 		<img src=<%= request.getParameter("img")%> alt="Profile Picture"
 			class="profile-picture">
 		<div class="nickname"><%= request.getParameter("nickname")%></div>
@@ -33,33 +38,34 @@
 		String writerID = request.getParameter("writerID");
 		if(serverID != null && writerID != null && serverID.equals(writerID)){
 		%>
-			<div class="box1">
-				<img src="image/pencil.png" alt="Edit" class="edit-picture"> <input
-					type="button" value="수정" class="edit">
-				<p class="bar">|</p>
-				<img src="image/trashcan.png" alt="Delete" class="delete-picture">
-				<input type="button" value="삭제" class="delete">
-			</div>
+		<div class="box1">
+			<img src="image/pencil.png" alt="Edit" class="edit-picture"> <input
+				type="button" value="수정" class="edit">
+			<p class="bar">|</p>
+			<img src="image/trashcan.png" alt="Delete" class="delete-picture">
+			<input type="button" value="삭제" class="delete">
 		</div>
-		<div class="fix" style="display:none;">
-			<div class="container" style="padding-left: <%= leftMultipliedMargin %>px;">
-				<img src=<%= request.getParameter("img")%> alt="Profile Picture"
-					class="profile-picture">
-				<div class="nickname"><%= request.getParameter("nickname")%></div>
-				<br>
-				<form action="submitComment.jsp" method="post">
-					<textarea id="comment-box" name="comment" oninput="updateCharCount()"
-						maxlength="3000" required><%= request.getParameter("content") %></textarea>
-					<div class="box2">
-						<div id="char-count">0/3000</div>
-						<p class="bar">|</p>
-						<button type="button" class="btn">저장</button>
-						<button type="button" class="btn1">취소</button>
-					</div>
-				</form>
-			</div>
+	</div>
+	<div class="fix" style="display: none;">
+		<div class="container"
+			style="padding-left: <%= leftMultipliedMargin %>px;">
+			<img src=<%= request.getParameter("img")%> alt="Profile Picture"
+				class="profile-picture">
+			<div class="nickname"><%= request.getParameter("nickname")%></div>
+			<br>
+			<form action="submitComment.jsp" method="post">
+				<textarea id="comment-box" name="comment"
+					oninput="updateCharCount(event)" maxlength="3000" required><%= request.getParameter("content") %></textarea>
+				<div class="box2">
+					<div id="char-count">0/3000</div>
+					<p class="bar">|</p>
+					<button type="button" class="btn">저장</button>
+					<button type="button" class="btn1">취소</button>
+				</div>
+			</form>
 		</div>
-		<script>
+	</div>
+	<script>
 			var box1 = document.querySelector('.box1');
 			var comment = document.querySelector('.comment');
 			var fix = document.querySelector('.fix');
@@ -101,13 +107,11 @@
 			}
 			deleteButton.addEventListener('click', showConfirmation);
 			function updateCharCount() {
-	            var comment = document.getElementById("comment-box");
-	            var charCount = document.getElementById("char-count");
+			    var comment = event.target;
+			    var charCount = event.target.parentNode.querySelector("#char-count");
 	            charCount.textContent = comment.value.length + "/3000";
 	        }
 		</script>
-		<%} else{%>
-			</div>
-		<%} %>
-
-	
+	<%} else{%>
+	</div>
+	<%} %>
