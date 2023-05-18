@@ -14,8 +14,7 @@
 %>
 
 <body>
-	<div class="comment"
-		style="padding-left: <%= leftMultipliedMargin %>px;">
+	<div class="comment" style="padding-left: <%= leftMultipliedMargin %>px;">
 		<img src=<%= request.getParameter("img")%> alt="Profile Picture"
 			class="profile-picture">
 		<div class="nickname"><%= request.getParameter("nickname")%></div>
@@ -34,18 +33,54 @@
 		String writerID = request.getParameter("writerID");
 		if(serverID != null && writerID != null && serverID.equals(writerID)){
 		%>
-		<div class="box1">
-			<img src="image/pencil.png" alt="Edit" class="edit-picture"> <input
-				type="button" value="수정" class="edit">
-			<p class="bar">|</p>
-			<img src="image/trashcan.png" alt="Delete" class="delete-picture">
-			<input type="button" value="삭제" class="delete">
+			<div class="box1">
+				<img src="image/pencil.png" alt="Edit" class="edit-picture"> <input
+					type="button" value="수정" class="edit">
+				<p class="bar">|</p>
+				<img src="image/trashcan.png" alt="Delete" class="delete-picture">
+				<input type="button" value="삭제" class="delete">
+			</div>
+		</div>
+		<div class="fix" style="display:none;">
+			<div class="container" style="padding-left: <%= leftMultipliedMargin %>px;">
+				<img src=<%= request.getParameter("img")%> alt="Profile Picture"
+					class="profile-picture">
+				<div class="nickname"><%= request.getParameter("nickname")%></div>
+				<br>
+				<form action="submitComment.jsp" method="post">
+					<textarea id="comment-box" name="comment" oninput="updateCharCount()"
+						maxlength="3000" required><%= request.getParameter("content") %></textarea>
+					<div class="box2">
+						<div id="char-count">0/3000</div>
+						<p class="bar">|</p>
+						<button type="button" class="btn">저장</button>
+						<button type="button" class="btn1">취소</button>
+					</div>
+				</form>
+			</div>
 		</div>
 		<script>
 			var box1 = document.querySelector('.box1');
+			var comment = document.querySelector('.comment');
+			var fix = document.querySelector('.fix');
 			var deleteButton = box1.querySelector('.delete');
+			var editButton = box1.querySelector('.edit');
+			var returnButton = fix.querySelector('.btn1');
 			var originalContent = box1.innerHTML;
 			
+			function turntoedit(){
+				comment.style.display='none';
+				fix.style.display='block';
+				/* editButton.addEventListener('click', turntoedit); 다시 수정버튼 눌렀을때 이상생기면 여기 주석해제, 확인해보기 */
+			}
+			editButton.addEventListener('click', turntoedit);
+			function turnfromedit(){
+				comment.style.display='block';
+				fix.style.display='none';
+				/* returnButton.addEventListener('click', turnfromedit); */
+			}
+			returnButton.addEventListener('click', turnfromedit);
+						
 			function showConfirmation() {
 			    box1.innerHTML = `
 			        <img src="img/trashcan.png" alt="Delete" class="delete-picture">
@@ -63,8 +98,14 @@
 			    });
 			}
 			deleteButton.addEventListener('click', showConfirmation);
+			function updateCharCount() {
+	            var comment = document.getElementById("comment-box");
+	            var charCount = document.getElementById("char-count");
+	            charCount.textContent = comment.value.length + "/3000";
+	        }
 		</script>
-		<%}
-		%>
+		<%} else{%>
+			</div>
+		<%} %>
 
-	</div>
+	
