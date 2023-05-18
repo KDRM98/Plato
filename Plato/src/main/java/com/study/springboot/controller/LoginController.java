@@ -28,5 +28,9 @@ public class LoginController {
 		return "Yuchan/mainpage";
 	}
 	
+	
+
+	
+	
 
 }
