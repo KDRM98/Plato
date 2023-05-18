@@ -83,7 +83,7 @@
 						
 			function showConfirmation() {
 			    box1.innerHTML = `
-			        <img src="img/trashcan.png" alt="Delete" class="delete-picture">
+			        <img src="image/trashcan.png" alt="Delete" class="delete-picture">
 			        <p class="text">진짜 삭제하시겠습니까?</p>
 			        <p class="bar">|</p>
 			        <input type="button" value="확인" class="confirm">
@@ -94,7 +94,9 @@
 			    cancelButton.addEventListener('click', function() {
 			        box1.innerHTML = originalContent;
 			        deleteButton = box1.querySelector('.delete');
+			        editButton = box1.querySelector('.edit');
 			        deleteButton.addEventListener('click', showConfirmation);
+					editButton.addEventListener('click', turntoedit);
 			    });
 			}
 			deleteButton.addEventListener('click', showConfirmation);
