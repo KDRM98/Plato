@@ -285,7 +285,7 @@
 			</div>
 			<div class="data">
 				<span class="ltitle">조회수 데이터</span><br>
-				<img alt="data" src="../image/data.png" style="width: 80%; height: auto; margin-top: 10px;">
+				<img alt="data" src="../image/data.png" style="width: 1000px; height: auto; margin-top: 10px; margin: 0 auto;">
 			</div>
 		</div>		
 	</div><!-- 소개글부터 조리방법, 데이터분석까지 -->
