@@ -213,13 +213,13 @@ header {
 	position: absolute;
 	z-index: 100;
 	border-radius: 15px;
-	height: 592px;
+	height: 634px;
 	width: auto;
 	top: 110px;
 }
 
 .Yuchan1 .signup-container {
-	top: 326px;
+	top: 348px;
 	width: 400px;
 	height: 592px;
 	margin: 0 auto;
@@ -233,7 +233,7 @@ header {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	right: 243px;
+	right: 255px;
 }
 
 .Yuchan1 .logo {
@@ -327,7 +327,7 @@ header {
 <body>
 <header>
   <div class="logo">
-    <img src="./img/logo1.png" alt="Logo">
+    <img src="../image/logo1.png" alt="Logo">
   </div>
   <div style="position: absolute; right: 0;">
     <button class="right-loginbtn">로그인</button>
@@ -338,7 +338,7 @@ header {
   <div class="white-back">  <div class="final-touch">
     <div class="box">
       <div class="login-container">
-        <img src="./img/logo2.png" class="logo">
+        <img src="../image/logo2.png" class="logo">
         <form method="POST" action="/login">
           <div class="container">
             <a class="id-text">아이디</a> <br> <input type="text" id="id"
@@ -363,7 +363,7 @@ header {
         </form>
       </div>
     </div>
-    <img src="./img/login-image.png" alt="Login Image" class="login-image">
+    <img src="../image/login-image.png" alt="Login Image" class="login-image">
   </div></div>
   <div class="overlay"></div>
 </div>
@@ -371,7 +371,7 @@ header {
 	<div class="final-touch1">
 		<div class="box">
 			<div class="signup-container">
-				<img src="./img/logo2.png" class="logo">
+				<img src="../image/logo2.png" class="logo">
 				<form method="POST" action="/signup">
 					<div class="container">
 						<a class="id-text">아이디</a> <br> <input type="text" id="id"
@@ -414,7 +414,7 @@ header {
 				</form>
 			</div>
 		</div>
-		<img src="./img/signup-image.jpg" alt="Signup Image" class="signup-image"></img>
+		<img src="../image/signup-image.jpg" alt="Signup Image" class="signup-image"></img>
 	</div>
 	<div class="overlay"></div>
 </div>

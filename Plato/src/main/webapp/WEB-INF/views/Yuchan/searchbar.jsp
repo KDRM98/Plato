@@ -82,7 +82,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-image: url('./img/mainpage-background.jpg');
+	background-image: url('../image/mainpage-background.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	width: 100%;
