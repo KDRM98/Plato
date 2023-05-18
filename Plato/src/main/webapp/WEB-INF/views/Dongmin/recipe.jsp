@@ -23,20 +23,18 @@
 		display: flex;
 	}
 	.rinfo{
-		flex: 1;
-		min-width: 600px;
-		position: relative;
+		width: 800px;
 	}
 	.fimg{
-		flex: 1;
 	}
 	.fimg img{
-		min-width: 100%;
+		width: 750px;
 		height: 100%;
 		object-fit: cover;
 	}
 	.subinfo{
 		height: 70px;
+		width: 600px;
 		font-size: 30px;
 		font-weight: bold;
 		align-items: center;
