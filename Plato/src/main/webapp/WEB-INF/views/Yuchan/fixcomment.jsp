@@ -12,8 +12,6 @@
   }
   int leftMultipliedMargins = leftMarginsValue * 70;
 %>
-
-<body>
 	<div class="container"
 		style="padding-left: <%= leftMultipliedMargins %>px;">
 		<img src=<%= request.getParameter("img")%> alt="Profile Picture"

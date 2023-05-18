@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <style>
-	.reply{
+	.Dongmin .reply{
 		display:flex;  
 		border: 1px solid black;
 		margin-left: 80px;
@@ -15,15 +15,15 @@
 		height: 250px;
         align-items: center;
 	}
-	.food{
+	.Dongmin .food{
 		padding-left: 10px;
 		width: 80%;
 		height: 220px;
 	}
-	header{
+	.Dongmin header{
 		display: block;
 	}
-	.ingredient button{
+	.Dongmin .ingredient button{
 		border: 0;
 		outline: none;
 		font-size: 15px;
@@ -33,13 +33,13 @@
 		cursor: pointer;
 		border-radius: 1em;
 	}
-	.like img{
+	.Dongmin .like img{
         width: 20px;
         height: 20px;
         vertical-align: middle;
         margin-right: 5px;
     }
-    .like {
+    .Dongmin .like {
 	    position: relative;
 	    border: none;
 	    min-width: 60px;
@@ -50,11 +50,11 @@
 	    font-weight: 700;
 	    transition: 0.3s;
 	}
-	.like:hover {
+	.Dongmin .like:hover {
     	transform: scale(1.2);
 	}
 
-	.like:hover::after{
+	.Dongmin .like:hover::after{
 		content: "";
 	    width: 30px;
 	    height: 30px;
@@ -79,20 +79,21 @@
 	        opacity: 0;
 	    }
 	}
-	.info{
+	.Dongmin .info{
 		height: 70px;
 		font-size: 30px;
 		display: flex; 
 		flex-direction: row; 
 		align-items: center;
 	}
-	.circle{
+	.Dongmin .circle{
 		width: 20px;
 		height: 20px;
 	}
 	
 </style>
 <body>
+	<div class="Dongmin">
     <div class="reply" style="display:flex;  border: 1px solid black;">
         <div class="first"style="flex: 2;">
             <img class="food" src=<%= request.getParameter("img")%>>
@@ -141,6 +142,7 @@
             	</div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>
