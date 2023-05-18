@@ -106,6 +106,7 @@
 		border-bottom: solid 2px black; 
 		font-size: 20px;
 		align-items: center;
+		margin-left: 30px;
 	}
 	.eat{
 		display: inline-block;
@@ -154,18 +155,17 @@
 		height: 215px;
 		object-fit: cover;
 	}
-	.column {
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 20px;
-    margin-top: 20px;
-  }
-    #ingredient-container {
+  	.column{
+  		margin-top: 30px;
+  	}
+  	#ingredient-container {
     display: flex;
     flex-wrap: wrap;
-    min-width: 100%; /* 컨테이너의 최대 너비 설정 */
-    margin: 0 auto; /* 가운데 정렬을 위해 필요한 스타일 */
+    min-width: 100%;
+    margin: 0 auto;
+    margin-top: -30px;
   }
+
 </style>
 <body>
 <%
@@ -322,20 +322,38 @@
         document.getElementById("likeCount").textContent = likeCount;
     }
 	
-	  var ingredients = ["재료1", "재료2", "재료3", "재료4", "재료5", "재료6", "재료7", "재료8", "재료9", "재료10", "재료11", "재료12", "재료13", "재료14", "재료15", "재료16", "재료17", "재료18", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19"]; // 임의의 재료 배열 (실제로는 서버에서 받아올 수 있습니다)
+	var ingredients = [
+	    { name: "우동면", quantity: "1인분", link: "https://www.coupang.com/np/search?component=&q=우동면&channel=user" },
+	    { name: "명란젓", quantity: "1개(30g)", link: "https://www.coupang.com/np/search?component=&q=명란젓&channel=user" },
+	    { name: "쪽파", quantity: "1줄(10g)", link: "https://www.coupang.com/np/search?component=&q=쪽파&channel=user" },
+	    { name: "버터", quantity: "1조각(10g)", link: "https://www.coupang.com/np/search?component=&q=버터&channel=user" },
+	    { name: "달걀", quantity: "1개", link: "https://www.coupang.com/np/search?component=&q=달걀&channel=user" },
+	    { name: "김가루", quantity: "약간", link: "https://www.coupang.com/np/search?component=&q=김가루&channel=user" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
+	  ];
+	
 	  var container = document.getElementById("ingredient-container");
 	  
 	  for (var i = 0; i < ingredients.length; i++) {
 	    var ingredient = ingredients[i];
 	    
 	    // 칸과 행 계산
-	    var column = Math.floor(i / 5);
+	    var column = Math.floor(i / 5) % 4;
 	    var row = i % 5;
 	    
 	    // 칸이 없을 경우 생성
 	    if (!container.children[column]) {
 	      var columnDiv = document.createElement("div");
-	      columnDiv.className = "column";
+	      columnDiv.className="column";
 	      container.appendChild(columnDiv);
 	    }
 	    
@@ -343,10 +361,10 @@
 	    var ingredientDiv = document.createElement("div");
 	    ingredientDiv.className = "ingredientlist";
 	    ingredientDiv.innerHTML = `
-		      <div>{ingredient}</div>
-		      <div style="padding-right: 15px;">{ingredient.quantity}</div>
-		      <div><a class="eat" href="{ingredient.link}">구매</a></div>
-		    `;
+	      <div>`+ingredient.name+`</div>
+	      <div style="margin-right: 15px;">`+ingredient.quantity+`</div>
+	      <div><a class="eat" href=`+ingredient.link+`>구매</a></div>
+	    `;
 	    container.children[column].appendChild(ingredientDiv);
 	  }
 	
