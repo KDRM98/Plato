@@ -213,15 +213,12 @@
 	<div class="intro" style="margin-left:150px; margin-bottom: 50px;">
 		<div class="introelement">
 			<span class="ltitle">소개글</span>
-			<br>
-			<div style="margin-top: 50px; font-size: 22px;">
-				<a>
+			<div style="margin-top: 50px; font-size: 22px; width: 800px;">
 					요즘 일교차가 너무 커서 옷을 어떻게 입어야 할지 모르겠어요.<br>
 					따뜻한 메뉴를 먹기에 덥고, 차가운 메뉴를 먹자니 춥고!<br>
 					입맛도 돌게하고 뜨겁지도 차갑지도 않은 적당한 메뉴를 찾다가 만들어본 → <br>
 					명란버터우동!<br>
 					쫄깃쫄깃 우동 안좋아하시는 분들 없으시죠?<br>
-				</a>
 			</div>
 		</div>
 		<div class="introelement">
