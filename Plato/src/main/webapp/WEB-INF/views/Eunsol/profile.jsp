@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <head>
     <meta charset="UTF-8">
@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로필 수정</title>
     <!-- css -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/Eunsol/css/reset.css">
+    <link rel="stylesheet" href="/Eunsol/css/common.css">
+    <link rel="stylesheet" href="/Eunsol/css/style.css">
 
     <!-- js -->
-    <script src="js/common.js"></script>
-    <script src="js/script.js"></script>
+    <script src="/Eunsol/js/common.js"></script>
+    <script src="/Eunsol/js/script.js"></script>
 </head>
 
 <body>
@@ -52,28 +52,30 @@
                 <input type="email" id="email" class="input email" name="email" required>
             </div>
 
-            <div class="gender-box">
-                <div class="text gender"><span>성별</span></div>
-                <select id="gender" name="gender">
-                    <option value="">성별</option>
-                    <option value="male">여성</option>
-                    <option value="female">남성</option>
-                </select>
-            </div>
+            <div class = "box">
+                <div class="gender-box">
+                    <div class="text gender"><span>성별</span></div>
+                    <select id="gender" name="gender">
+                        <option value="">성별</option>
+                        <option value="male">여성</option>
+                        <option value="female">남성</option>
+                    </select>
+                </div>
 
-            <div class="age-box">
-                <div class="text age"><span>연령대</span></div>
-                <select id="age" name="age">
-                    <option value="">연령대</option>
-                    <option value="10s">10대</option>
-                    <option value="20s">20대</option>
-                    <option value="30s">30대</option>
-                    <option value="40s">40대</option>
-                    <option value="50s">50대</option>
-                    <option value="60s">60대 이상</option>
-                </select>
+                <div class="age-box">
+                    <div class="text age"><span>연령대</span></div>
+                    <select id="age" name="age">
+                        <option value="">연령대</option>
+                        <option value="10s">10대</option>
+                        <option value="20s">20대</option>
+                        <option value="30s">30대</option>
+                        <option value="40s">40대</option>
+                        <option value="50s">50대</option>
+                        <option value="60s">60대 이상</option>
+                    </select>
+                </div>
             </div>
-
+            
             <div>
                 <button type="submit" class="signup-button">저장하기</button>
             </div>
@@ -90,7 +92,7 @@
                 회원 탈퇴를 진행했을 경우, 30일 이후에 자동으로 <span class="highlight">삭제</span>됩니다. <br>
                 삭제를 취소하고 싶을 경우 저희 고객센터(biz@plato.co.kr)을 통해 연락주시기 바랍니다.<br>
             </p>
-            <div class = "agreement">
+            <div class="agreement">
                 <input type="checkbox" id="agreement" name="agreement">
                 <label for="agreement"><span>회원 탈퇴에 동의합니다.</span></label>
             </div>

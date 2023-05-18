@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PlatoApplication<Plato>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.study.springboot.PlatoApplication",
+            "projectName": "Plato",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

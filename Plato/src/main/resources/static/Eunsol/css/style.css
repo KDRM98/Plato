@@ -15,17 +15,14 @@ h1{
 }
 
 
-
 main .modified-item{
     font-size: 15px;
-    padding: 10px 20px 0px 20px;
+    padding: 10px 305px 0px 305px;
     width: 100%;
-    /* display: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; */
-
-
+    justify-content: center;
 }
 
 main .modified-item .text {
@@ -35,18 +32,18 @@ main .modified-item .text {
 
 main .modified-item .input{
     height: 35px;
-    width: 300px;
+    width: 100%;
     border-radius: 0.5rem;
     border: 1px solid gray;
     
 }
 main .modified-item .input.nickname{
-    width: 200px;
+    width: 80%;
 }
 
 main .modified-item .duplicate-check-button {
     height: 35px;
-    width: 85px;
+    width: 18%;
     margin-left: 10px;
     border: 1px solid black;
     background-color: black;
@@ -66,6 +63,10 @@ margin-top: 10px;
 margin-bottom: 5px;
 }
 
+main .modified-item .age-box{
+    width: 100%;
+}
+
 main .modified-item .gender-box, .age-box{
     display: inline-block;
     margin-right: 15px;
@@ -80,7 +81,7 @@ main .modified-item select{
 main .modified-item .signup-button{
     margin : 20px 0px 20px;
     height: 35px;
-    width: 300px;
+    width: 100%;
     border-radius: 0.5rem;
     background-color: black;
     color: white;
