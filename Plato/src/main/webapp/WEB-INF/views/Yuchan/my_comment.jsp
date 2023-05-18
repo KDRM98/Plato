@@ -94,7 +94,9 @@
 			    cancelButton.addEventListener('click', function() {
 			        box1.innerHTML = originalContent;
 			        deleteButton = box1.querySelector('.delete');
+			        editButton = box1.querySelector('.edit');
 			        deleteButton.addEventListener('click', showConfirmation);
+					editButton.addEventListener('click', turntoedit);
 			    });
 			}
 			deleteButton.addEventListener('click', showConfirmation);
