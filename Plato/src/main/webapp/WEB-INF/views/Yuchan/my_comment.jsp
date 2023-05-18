@@ -31,10 +31,10 @@
 		<input type="button" value="답글" class="btn">
 
 		<div class="box1">
-			<img src="img/pencil.png" alt="Edit" class="edit-picture"> <input
+			<img src="image/pencil.png" alt="Edit" class="edit-picture"> <input
 				type="button" value="수정" class="edit">
 			<p class="bar">|</p>
-			<img src="img/trashcan.png" alt="Delete" class="delete-picture">
+			<img src="image/trashcan.png" alt="Delete" class="delete-picture">
 			<input type="button" value="삭제" class="delete">
 		</div>
 
@@ -60,6 +60,6 @@
 			    });
 			}
 			deleteButton.addEventListener('click', showConfirmation);
-			</script>
+		</script>
 
 	</div>

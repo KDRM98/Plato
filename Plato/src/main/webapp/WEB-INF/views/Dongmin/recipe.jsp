@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.util.List, java.util.ArrayList, java.util.Map, java.util.HashMap" %>
+    <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,7 +136,7 @@
 		margin-top: 30px;
 		display: flex;
 		height: 300px;
-		width: 90%;
+		width: 1000px;
 		flex-direction: row;
 		overflow: hidden;
         text-overflow: ellipsis;
@@ -147,28 +149,36 @@
         text-overflow: ellipsis;
         -webkit-line-clamp: 9;
         height: 215px;
+        width: 1500px;
 	}
 	.how img{
-		min-width: 90%;
-		height: 100%;
+		width: 315px;
+		height: 215px;
 		object-fit: cover;
 	}
+	.column {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
+    #ingredient-container {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 100%; /* 컨테이너의 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬을 위해 필요한 스타일 */
+  }
 </style>
-<script>
-	var likeCount = 0;
-	function clickLike() {
-        likeCount++;
-        document.getElementById("likeCount").textContent = likeCount;
-    }
-</script>
 <body>
 <%
     int likeCount = 0;
+
+
 %>
 	<div class="info">
 		<div class="rinfo">
 			<div style="margin-top: 100px; text-align:center;">			
-				<p style="font-size: 40px; color: black; display: block;">
+				<p style="font-size: 40px; color: black;">
 	           		명란버터우동
 	      		</p>
 	      		<p style="color: purple;">작성자 : 김동민</p>
@@ -222,42 +232,8 @@
 		</div>
 		<div class="introelement">
 			<span class="ltitle">재료</span><br>
-			<div class="ingredient" style="margin-top: 50px;">
-				<div class="ingredientlist">
-					<div>우동면</div>
-					<div style="padding-right: 15px;">1인분</div>
-					<div><a class="eat" href = 'https://www.coupang.com/np/search?component=&q=우동면&channel=user'>구매</a></div>
-				</div>
-				<div class="ingredientlist">
-					<div>명란젓</div>
-					<div style="padding-right: 15px;">1개(30g)</div>
-					<div><a class="eat" href = 'https://www.coupang.com/np/search?component=&q=명란젓&channel=user'>구매</a></div>
-				</div>
-				<div class="ingredientlist">
-					<div>쪽파</div>
-					<div style="padding-right: 15px;">1줄(10g)</div>
-					<div><a class="eat" href = 'https://www.coupang.com/np/search?component=&q=쪽파&channel=user'>구매</a></div>
-				</div>
-				<div class="ingredientlist">
-					<div>버터</div>
-					<div style="padding-right: 15px;">1조각(10g)</div>
-					<div><a class="eat" href = 'https://www.coupang.com/np/search?component=&q=버터&channel=user'>구매</a></div>
-				</div>
-				<div class="ingredientlist">
-					<div>달걀</div>
-					<div style="padding-right: 15px;">1개</div>
-					<div><a class="eat" href = 'https://www.coupang.com/np/search?component=&q=달걀&channel=user'>구매</a></div>
-				</div>
-				<div class="ingredientlist">
-					<div>김가루</div>
-					<div style="padding-right: 15px;">약간</div>
-					<div><a class="eat" href = 'https://www.coupang.com/np/search?component=&q=김가루&channel=user'>구매</a></div>
-				</div>
-				<div class="ingredientlist">
-					<div>쯔유</div>
-					<div style="padding-right: 15px;">1숟가락(8g)</div>
-					<div><a class="eat" href = 'https://www.coupang.com/np/search?component=&q=쯔유&channel=user'>구매</a></div>
-				</div>
+			<div class="ingredient" style="margin-top: 50px; display: flex; flex-wrap: wrap; width: 1300px;">
+				<div id="ingredient-container"></div>
 			</div>
 			<div class="introelement">
 				<span class="ltitle">조리방법</span><br>
@@ -341,4 +317,41 @@
 	
 	<jsp:include page="/WEB-INF/views/Hyunyoung/footer.jsp"></jsp:include>
 </body>
+<script>
+	var likeCount = 0;
+	function clickLike() {
+        likeCount++;
+        document.getElementById("likeCount").textContent = likeCount;
+    }
+	
+	  var ingredients = ["재료1", "재료2", "재료3", "재료4", "재료5", "재료6", "재료7", "재료8", "재료9", "재료10", "재료11", "재료12", "재료13", "재료14", "재료15", "재료16", "재료17", "재료18", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19", "재료19"]; // 임의의 재료 배열 (실제로는 서버에서 받아올 수 있습니다)
+	  var container = document.getElementById("ingredient-container");
+	  
+	  for (var i = 0; i < ingredients.length; i++) {
+	    var ingredient = ingredients[i];
+	    
+	    // 칸과 행 계산
+	    var column = Math.floor(i / 5);
+	    var row = i % 5;
+	    
+	    // 칸이 없을 경우 생성
+	    if (!container.children[column]) {
+	      var columnDiv = document.createElement("div");
+	      columnDiv.className = "column";
+	      container.appendChild(columnDiv);
+	    }
+	    
+	    // 재료 추가
+	    var ingredientDiv = document.createElement("div");
+	    ingredientDiv.className = "ingredientlist";
+	    ingredientDiv.innerHTML = `
+		      <div>{ingredient}</div>
+		      <div style="padding-right: 15px;">{ingredient.quantity}</div>
+		      <div><a class="eat" href="{ingredient.link}">구매</a></div>
+		    `;
+	    container.children[column].appendChild(ingredientDiv);
+	  }
+	
+
+</script>
 </html>
