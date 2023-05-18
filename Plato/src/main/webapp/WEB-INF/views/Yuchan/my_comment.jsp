@@ -5,12 +5,12 @@
 <%@ page import="java.util.Date"%>
 
 <%
-  String leftMargin = request.getParameter("paddingLeft");
-  int leftMarginValue = 0;
-  if (leftMargin != null && leftMargin.matches("\\d+")) {
-    leftMarginValue = Integer.parseInt(leftMargin);
-  }
-  int leftMultipliedMargin = leftMarginValue * 70;
+	String leftMargin = request.getParameter("paddingLeft");
+	int leftMarginValue = 0;
+	if (leftMargin != null && leftMargin.matches("\\d+")) {
+		leftMarginValue = Integer.parseInt(leftMargin);
+	}
+	int leftMultipliedMargin = leftMarginValue * 70;
 %>
 
 <body>
@@ -29,7 +29,11 @@
 			<%= currentTimeDate %>
 		</div>
 		<input type="button" value="답글" class="btn">
-
+		<%
+		String serverID = request.getParameter("serverID");
+		String writerID = request.getParameter("writerID");
+		if(serverID != null && writerID != null && serverID.equals(writerID)){
+		%>
 		<div class="box1">
 			<img src="image/pencil.png" alt="Edit" class="edit-picture"> <input
 				type="button" value="수정" class="edit">
@@ -37,7 +41,6 @@
 			<img src="image/trashcan.png" alt="Delete" class="delete-picture">
 			<input type="button" value="삭제" class="delete">
 		</div>
-
 		<script>
 			var box1 = document.querySelector('.box1');
 			var deleteButton = box1.querySelector('.delete');
@@ -61,5 +64,7 @@
 			}
 			deleteButton.addEventListener('click', showConfirmation);
 		</script>
+		<%}
+		%>
 
 	</div>
