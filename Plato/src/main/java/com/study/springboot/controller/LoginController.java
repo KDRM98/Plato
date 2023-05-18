@@ -22,5 +22,11 @@ public class LoginController {
 		return "Dongmin/recipe";
 	}
 	
+	@RequestMapping("/main")
+	public String main() {
+		System.out.println("/main");
+		return "Yuchan/mainpage";
+	}
+	
 	
 }

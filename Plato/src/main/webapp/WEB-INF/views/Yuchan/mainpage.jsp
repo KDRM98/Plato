@@ -33,6 +33,6 @@
 </c:forEach>
 
 	
-	<%@ include file="footer.jsp" %>
+	<%@ include file="../Hyunyoung/footer.jsp" %>
 </body>
 </html>

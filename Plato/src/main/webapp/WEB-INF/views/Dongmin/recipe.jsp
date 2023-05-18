@@ -313,6 +313,9 @@
 <script>
 	var likeCount = document.getElementById("likeCount").textContent;
 	function clickLike() {
+		// ajax > java >  html
+		
+		
         likeCount++;
         document.getElementById("likeCount").textContent = likeCount;
     }
