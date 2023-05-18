@@ -7,13 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로필 수정</title>
     <!-- css -->
-    <link rel="stylesheet" href="/Eunsol/css/reset.css">
-    <link rel="stylesheet" href="/Eunsol/css/common.css">
-    <link rel="stylesheet" href="/Eunsol/css/style.css">
+    <link rel="stylesheet" href="Eunsol/css/reset.css">
+    <link rel="stylesheet" href="Eunsol/css/style.css">
 
-    <!-- js -->
-    <script src="/Eunsol/js/common.js"></script>
-    <script src="/Eunsol/js/script.js"></script>
+
 </head>
 
 <body>
@@ -28,58 +25,59 @@
         <h1 class="title">프로필 수정</h1>
 
         <section class="modified-item">
-
-            <div>
-                <div class="text nickname"><span>별명</span></div>
-                <input type="text" id="nickname" class="input nickname" name="nickname" required>
-                <button type="button" class="duplicate-check-button"><span class="jungbok">중복확인</span></button>
-                <div class="error nickname_error"><span>이미 사용중인 별명입니다.</span></div>
-            </div>
-
-            <div>
-                <div class="text password"><span>비밀번호</span></div>
-                <input type="password" id="password" class="input password" name="password" required>
-            </div>
-
-            <div>
-                <div class="password check"><span class="text_name_1">비밀번호 확인</span></div>
-                <input type="password" id="password-check" class="input password-check" name="password-check" required>
-                <div class="error nickname_error"><span>비밀번호가 일치하지 않습니다.</span></div>
-            </div>
-
-            <div>
-                <div class="text email"><span class="text_name_1">이메일</span></div>
-                <input type="email" id="email" class="input email" name="email" required>
-            </div>
-
-            <div class = "box">
-                <div class="gender-box">
-                    <div class="text gender"><span>성별</span></div>
-                    <select id="gender" name="gender">
-                        <option value="">성별</option>
-                        <option value="male">여성</option>
-                        <option value="female">남성</option>
-                    </select>
+            <div class="item">
+                <div>
+                    <div class="text nickname"><span>별명</span></div>
+                    <input type="text" id="nickname" class="input nickname" name="nickname" required>
+                    <button type="button" class="duplicate-check-button"><span class="jungbok">중복확인</span></button>
+                    <div class="error nickname_error"><span>이미 사용중인 별명입니다.</span></div>
                 </div>
 
-                <div class="age-box">
-                    <div class="text age"><span>연령대</span></div>
-                    <select id="age" name="age">
-                        <option value="">연령대</option>
-                        <option value="10s">10대</option>
-                        <option value="20s">20대</option>
-                        <option value="30s">30대</option>
-                        <option value="40s">40대</option>
-                        <option value="50s">50대</option>
-                        <option value="60s">60대 이상</option>
-                    </select>
+                <div>
+                    <div class="text password"><span>비밀번호</span></div>
+                    <input type="password" id="password" class="input password" name="password" required>
+                </div>
+
+                <div>
+                    <div class="password check"><span class="text_name_1">비밀번호 확인</span></div>
+                    <input type="password" id="password-check" class="input password-check" name="password-check"
+                        required>
+                    <div class="error nickname_error"><span>비밀번호가 일치하지 않습니다.</span></div>
+                </div>
+
+                <div>
+                    <div class="text email"><span class="text_name_1">이메일</span></div>
+                    <input type="email" id="email" class="input email" name="email" required>
+                </div>
+
+                <div class="box">
+                    <div class="gender-box">
+                        <div class="text gender"><span>성별</span></div>
+                        <select id="gender" name="gender">
+                            <option value="">성별</option>
+                            <option value="male">여성</option>
+                            <option value="female">남성</option>
+                        </select>
+                    </div>
+
+                    <div class="age-box">
+                        <div class="text age"><span>연령대</span></div>
+                        <select id="age" name="age">
+                            <option value="">연령대</option>
+                            <option value="10s">10대</option>
+                            <option value="20s">20대</option>
+                            <option value="30s">30대</option>
+                            <option value="40s">40대</option>
+                            <option value="50s">50대</option>
+                            <option value="60s">60대 이상</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="signup-button">저장하기</button>
                 </div>
             </div>
-            
-            <div>
-                <button type="submit" class="signup-button">저장하기</button>
-            </div>
-
         </section>
 
         <hr>
@@ -93,20 +91,34 @@
                 삭제를 취소하고 싶을 경우 저희 고객센터(biz@plato.co.kr)을 통해 연락주시기 바랍니다.<br>
             </p>
             <div class="agreement">
-                <input type="checkbox" id="agreement" name="agreement">
-                <label for="agreement"><span>회원 탈퇴에 동의합니다.</span></label>
+                <label>
+                    <input type="radio" id="agree" name="agree">
+                    <span>회원 탈퇴에 동의합니다.</span>
+                </label>
             </div>
             <div>
                 <button type="submit" class="unregister-button">회원 탈퇴</button>
             </div>
         </section>
 
+        <div class="overlay">
+            <!-- 팝업 창이 떳을 때 배경을 어둡게 처리
+                                         팝업 이외의 부분을 클릭할 수 없게 -->
+            <div class="popup">
+                <h4>정말로 탈퇴하시겠습니까?</h4>
+                <button id="confirm-btn">확인</button>
+                <button id="cancle-btn">취소</button>
+            </div>
+        </div>
     </main>
 
     <!-- 풋터 -->
     <footer>
 
     </footer>
+
+    <!-- js -->
+    <script src="Eunsol/js/script.js"></script>
 </body>
 
 </html>

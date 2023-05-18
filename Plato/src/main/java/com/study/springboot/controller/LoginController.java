@@ -28,6 +28,13 @@ public class LoginController {
 		return "Yuchan/mainpage";
 	}
 	
+	@RequestMapping("/profile")
+	public String profile() {
+		System.out.println("/profile");
+		return "Eunsol/profile";
+	}
+	
+	
 	
 
 	
