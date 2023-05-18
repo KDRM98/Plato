@@ -170,8 +170,6 @@
 <body>
 <%
     int likeCount = 0;
-
-
 %>
 	<div class="info">
 		<div class="rinfo">
@@ -313,7 +311,7 @@
 	<jsp:include page="/WEB-INF/views/Hyunyoung/footer.jsp"></jsp:include>
 </body>
 <script>
-	var likeCount = 0;
+	var likeCount = document.getElementById("likeCount").textContent;
 	function clickLike() {
         likeCount++;
         document.getElementById("likeCount").textContent = likeCount;
