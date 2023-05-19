@@ -40,7 +40,7 @@ main .modified-item .circle-container{
 main .modified-item .circle {
     width: 170px;
     height: 170px;
-    background-color: paleturquoise;
+/*     background-color: paleturquoise; */
     border-radius: 50%;
     /* margin-left: 400px; */
     /* flex-shrink: 0; */
@@ -98,7 +98,7 @@ main .modified-item .duplicate-check-button {
 
 main .modified-item .error {
     color: #e7223d;
-    /* display: none; */
+   	display: none;
     font-size: 13px;
 
 }
