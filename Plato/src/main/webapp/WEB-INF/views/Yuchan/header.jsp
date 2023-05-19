@@ -338,7 +338,7 @@ header {
   <div class="white-back">  <div class="final-touch">
     <div class="box">
       <div class="login-container">
-        <img src="../image/logo2.png" class="logo">
+        <img src="../image/logo2.png" class="logo"> 
         <form method="POST" action="/login">
           <div class="container">
             <a class="id-text">아이디</a> <br> <input type="text" id="id"
