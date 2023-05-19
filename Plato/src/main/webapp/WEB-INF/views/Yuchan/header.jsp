@@ -4,6 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Header</title>
+<link rel="stylesheet" href="Yuchan/register.js">  <!--은솔 만듬-->
+
 <style>
 body {
   margin: 0 auto;
@@ -373,34 +375,44 @@ header {
 			<div class="signup-container">
 				<img src="../image/logo2.png" class="logo">
 				<form method="POST" action="/signup">
+					
 					<div class="container">
+						등록
 						<a class="id-text">아이디</a> <br> <input type="text" id="id"
 							name="id" required>
 						<button type="button" class="duplicate-check-button">중복
 							확인</button>
 
-						<a class="nickname-text">별명</a> <br> <input type="text"
-							id="nickname" name="nickname" required>
-						<button type="button" class="duplicate-check-button">중복
-							확인</button>
+						<a class="nickname-text">별명</a> <br> 
+						<input type="text" id="nickname" name="nickname" required>
+						<button type="button" class="duplicate-check-button">중복 확인</button>
 
 						<a class="password-text">비밀번호</a> <br> <input type="password"
 							id="password" name="password" required> <a
-							class="password-check-text">비밀번호 확인</a> <br> <input
-							type="password" id="password-check" name="password-check"
-							required> <a class="email-text">이메일</a> <br> <input
-							type="email" id="email" name="email" required>
-						<div class="gender-box">
+							class="password-check-text">비밀번호 확인</a> <br> 
+							<input type="password" id="password-check" name="password-check" required> 
+							<div class="error pw_error">
+								<span>비밀번호가 일치하지 않습니다.</span>
+							</div>
+							
+							<a class="email-text">이메일</a> <br> 
+							<input type="email" id="email" name="email" required>
+							<div class="error email_error">
+								<span>이메일 형식이 올바르지 않습니다.</span>
+							</div>
+						
+						<div class="gender-box">	
 							<a class="gender-text">성별</a> <br> <select id="gender"
 								name="gender">
-								<option value="">성별</option>
+								<option value="" selected disabled>성별</option>
 								<option value="male">여성</option>
 								<option value="female">남성</option>
 							</select>
 						</div>
+						
 						<div class="age-box">
 							<a class="age-text">연령대</a> <br> <select id="age" name="age">
-								<option value="">연령대</option>
+								<option value=""selected disabled >연령대</option>
 								<option value="10s">10대</option>
 								<option value="20s">20대</option>
 								<option value="30s">30대</option>
@@ -409,7 +421,9 @@ header {
 								<option value="60s">60대 이상</option>
 							</select>
 						</div>
+					
 					</div>
+					
 					<button type="submit" class="signup-button">가입하기</button>
 				</form>
 			</div>
