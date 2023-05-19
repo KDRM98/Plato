@@ -29,14 +29,12 @@
 				<!-- 프로필 사진 -->
 				<div class="circle-container">
 					<img class="circle" src="Eunsol/imges/basic.jpg">
-					<div class="change">
 						<%-- <form action="/member/updateImg" method="post" enctype="multipart/form-data">
 							<input type="file" name="file"> <input type="hidden" name="memberId" id="memberId" value="${login.memberID}"> --%>
-							<button class="circle-camera">
-								<img src="Eunsol/imges/Photograph.png">
-							</button>
+						<button class="circle-camera">
+							<img src="Eunsol/imges/Photograph.png">
+						</button>
 						<!-- </form> -->
-					</div>
 
 				</div>
 
@@ -94,7 +92,7 @@
 							<span>성별</span>
 						</div>
 						<select id="gender" name="gender">
-							<option value="" selected disabled >성별</option>
+							<option value="" selected disabled>성별</option>
 							<option value="male">여성</option>
 							<option value="female">남성</option>
 						</select>
@@ -105,7 +103,7 @@
 							<span>연령대</span>
 						</div>
 						<select id="age" name="age">
-							<option value="" selected disabled >연령대</option>
+							<option value="" selected disabled>연령대</option>
 							<option value="10s">10대</option>
 							<option value="20s">20대</option>
 							<option value="30s">30대</option>
@@ -140,10 +138,17 @@
 					class="highlight">삭제</span>됩니다. <br> 삭제를 취소하고 싶을 경우 저희
 				고객센터(biz@plato.co.kr)을 통해 연락주시기 바랍니다.<br>
 			</p>
+			
 			<div class="agreement">
-				<label> <input type="radio" id="agree" name="agree">
-					<span>회원 탈퇴에 동의합니다.</span>
+				<label> 
+					<input type="checkbox" id="agree" >
+					 <em></em> <span style="color: #e7223d; font-weight:bold;">회원 탈퇴에 동의합니다.</span>
 				</label>
+
+
+				<!-- <label> <input type="radio" id="agree" name="agree">
+					<span>회원 탈퇴에 동의합니다.</span>
+				</label> -->
 			</div>
 
 			<!-- 회원 탈퇴 버튼 -->

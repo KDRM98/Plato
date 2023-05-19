@@ -8,7 +8,7 @@ const overlay = document.querySelector(".overlay");
 const popup = document.querySelector(".popup");
 const confirmBtn = document.getElementById("confirm-btn");
 const cancleBtn = document.getElementById("cancle-btn");
-var agreeCheckbox = document.querySelector('.agreement input[type="radio"]');
+var agreeCheckbox = document.querySelector('.agreement input[type="checkbox"]');
 
 // 비밀번호 일치하지 않을 때 에러메세지 생성
 // blur : HTML 요소에서 포커스가 빠져나가면 발생하는 이벤트
@@ -53,7 +53,8 @@ email.addEventListener("blur", function() {
 
 
 
-// 회원탈퇴 동의 라디오 버튼 활성 비활성
+
+/*// 회원탈퇴 동의 라디오 버튼 활성 비활성
 var clickCount = 0;
 
 agreeCheckbox.addEventListener("click", function() {
@@ -62,7 +63,7 @@ agreeCheckbox.addEventListener("click", function() {
 	if (clickCount % 2 === 0) {
 		this.checked = false;
 	}
-});
+});*/
 
 //회원탈퇴 동의 라디오 눌러야 회원탈퇴 버튼 활성화 되도록
 withdrawBtn.addEventListener("click", function() {
