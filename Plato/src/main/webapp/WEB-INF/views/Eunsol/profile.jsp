@@ -26,6 +26,15 @@
 
         <section class="modified-item">
             <div class="item">
+                
+                <div class="circle-container">
+                    <div class="circle">
+                        <button class="circle-camera">
+                            <img src="Eunsol/imges/Photograph.png" >
+                        </button>
+                    </div>
+                </div>
+
                 <div>
                     <div class="text nickname"><span>별명</span></div>
                     <input type="text" id="nickname" class="input nickname" name="nickname" required>
