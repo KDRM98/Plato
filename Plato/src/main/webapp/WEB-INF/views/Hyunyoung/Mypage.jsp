@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page import="java.util.List, java.util.ArrayList, java.util.Map, java.util.HashMap" %>
+    <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -171,18 +175,18 @@
             }
         </style>
         <div class="container">
-            <div style="font-size:40px;">이름</div>
-            <div style="font-size:15px;margin-left:10px;">@아이디</div>
-            <div style="font-size:25px;margin-top:20px;margin-left:8px; ">레시피</div>
+            <div style="font-size:40px;">ì´ë¦</div>
+            <div style="font-size:15px;margin-left:10px;">@ìì´ë</div>
+            <div style="font-size:25px;margin-top:20px;margin-left:8px; ">ë ìí¼</div>
         </div>
     </div>
 
     
 
-    <div class="profile-button">프로필 수정</div>
+    <div class="profile-button">íë¡í ìì </div>
 
     <div class="tab-container2">
-        <button class="tab" id="btn1" onclick="openTab(event, 'tab1')">내 게시물</button><button class="tab_2" id="btn2" onclick="openTab(event, 'tab2')">내 댓글</button><button class="tab-content_3"></button>
+        <button class="tab" id="btn1" onclick="openTab(event, 'tab1')">ë´ ê²ìë¬¼</button><button class="tab_2" id="btn2" onclick="openTab(event, 'tab2')">ë´ ëê¸</button><button class="tab-content_3"></button>
     </div>
 
     <div class="remaining-space">
@@ -203,30 +207,30 @@
     </div>
     </div>
        
-    <button class="more-button">더보기</button>
+    <button class="more-button">ëë³´ê¸°</button>
     
     <script>
-        // 탭 컨테이너들을 선택합니다.
+        // í­ ì»¨íì´ëë¤ì ì íí©ëë¤.
         const tabContainers = document.querySelectorAll('.tab-content');
     
-        // 모든 탭 컨테이너를 숨깁니다.
+        // ëª¨ë  í­ ì»¨íì´ëë¥¼ ì¨ê¹ëë¤.
         function hideAllTabContainers() {
             tabContainers.forEach((tabContainer) => {
                 tabContainer.style.display = 'none';
             });
         }
     
-        // 탭을 클릭할 때 실행되는 함수입니다.
+        // í­ì í´ë¦­í  ë ì¤íëë í¨ììëë¤.
         function openTab(event, tabId) {
-            // 모든 탭 컨테이너를 숨깁니다.
+            // ëª¨ë  í­ ì»¨íì´ëë¥¼ ì¨ê¹ëë¤.
             hideAllTabContainers();
     
-            // 선택한 탭 컨테이너를 표시합니다.
+            // ì íí í­ ì»¨íì´ëë¥¼ íìí©ëë¤.
             const selectedTabContainer = document.getElementById(tabId);
             selectedTabContainer.style.display = 'block';
     
             if (tabId === 'tab1') {
-                // tab1에 해당하는 CSS 호출
+                // tab1ì í´ë¹íë CSS í¸ì¶
                 document.getElementById('btn2').classList.add('tab_2');
                 document.getElementById('btn2').classList.remove('tab_1');
 
@@ -234,7 +238,7 @@
                 document.getElementById('btn1').classList.remove('tab_2');
                
             } else if (tabId === 'tab2') {
-                // tab2에 해당하는 CSS 호출
+                // tab2ì í´ë¹íë CSS í¸ì¶
                 document.getElementById('btn1').classList.add('tab_2');
                 document.getElementById('btn1').classList.remove('tab');
                 document.getElementById('btn2').classList.add('tab_1');
@@ -243,7 +247,7 @@
             }
         }
     
-        // 초기 설정: 첫 번째 탭을 표시합니다.
+        // ì´ê¸° ì¤ì : ì²« ë²ì§¸ í­ì íìí©ëë¤.
         hideAllTabContainers();
         document.getElementById('tab1').style.display = 'block';
     </script>
