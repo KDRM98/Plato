@@ -1,67 +1,65 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Header</title>
-<link rel="stylesheet" href="Yuchan/register.js">  <!--은솔 만듬-->
 
 <style>
 body {
-  margin: 0 auto;
+	margin: 0 auto;
 }
 
 header {
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
 }
 
 .logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
 }
 
 .logo img {
-  width: auto;
-  height: 60px;
+	width: auto;
+	height: 60px;
 }
 
-.right-loginbtn,
-.right-signupbtn {
-  background-color: #000;
-  color: #fff;
-  padding: 15px 20px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 14px;
+.right-loginbtn, .right-signupbtn {
+	background-color: #000;
+	color: #fff;
+	padding: 15px 20px;
+	margin-right: 10px;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+	font-size: 14px;
 }
 
 .Yuchan .white-back {
-  width: 100%;
-  height: 800px;
-  background-color: white;
-  position: absolute;
-  top: 72px;
-  display: none;
-  z-index: 1000;
+	width: 100%;
+	height: 800px;
+	background-color: white;
+	position: absolute;
+	top: 72px;
+	display: none;
+	z-index: 1000;
 }
 
 .Yuchan .final-touch {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.Yuchan .box,
-.login-image {
-  display: inline-block;
+.Yuchan .box, .login-image {
+	display: inline-block;
 }
 
 .Yuchan .box {
@@ -327,156 +325,167 @@ header {
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">
-    <img src="../image/logo1.png" alt="Logo">
-  </div>
-  <div style="position: absolute; right: 0;">
-    <button class="right-loginbtn">로그인</button>
-    <button class="right-signupbtn">회원가입</button>
-  </div>
-</header>
-<div class="Yuchan">
-  <div class="white-back">  <div class="final-touch">
-    <div class="box">
-      <div class="login-container">
-        <img src="../image/logo2.png" class="logo"> 
-        <form method="POST" action="/login">
-          <div class="container">
-            <a class="id-text">아이디</a> <br> <input type="text" id="id"
-              name="id" required> <a class="password-text">비밀번호</a> <br>
-            <input type="password" id="password" name="password" required>
-            <div class="id-pass">
-              <div class="id-box">
-                <button class="search_id">아이디 찾기</button>
-                <p class="greater_than">></p>
-              </div>
-              <div class="pass-box">
-                <button class="search_pass">비밀번호 찾기</button>
-                <p class="greater_than">></p>
-              </div>
-            </div>
-          </div>
-          <button type="submit" class="login-button">로그인</button>
-          <div class="noaccount-div">
-            <p class="no_account">계정이 없나요?</p>
-            <button class="text_singup">회원 가입</button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <img src="../image/login-image.png" alt="Login Image" class="login-image">
-  </div></div>
-  <div class="overlay"></div>
-</div>
-<div class="Yuchan1">
-	<div class="final-touch1">
-		<div class="box">
-			<div class="signup-container">
-				<img src="../image/logo2.png" class="logo">
-				<form method="POST" action="/signup">
-					
-					<div class="container">
-						등록
-						<a class="id-text">아이디</a> <br> <input type="text" id="id"
-							name="id" required>
-						<button type="button" class="duplicate-check-button">중복
-							확인</button>
-
-						<a class="nickname-text">별명</a> <br> 
-						<input type="text" id="nickname" name="nickname" required>
-						<button type="button" class="duplicate-check-button">중복 확인</button>
-
-						<a class="password-text">비밀번호</a> <br> <input type="password"
-							id="password" name="password" required> <a
-							class="password-check-text">비밀번호 확인</a> <br> 
-							<input type="password" id="password-check" name="password-check" required> 
-							<div class="error pw_error">
-								<span>비밀번호가 일치하지 않습니다.</span>
+	<header>
+		<div class="logo">
+			<img src="../image/logo1.png" alt="Logo">
+		</div>
+		<div style="position: absolute; right: 0;">
+			<button class="right-loginbtn">로그인</button>
+			<button class="right-signupbtn">회원가입</button>
+		</div>
+	</header>
+	<div class="Yuchan">
+		<div class="white-back">
+			<div class="final-touch">
+				<div class="box">
+					<div class="login-container">
+						<img src="../image/logo2.png" class="logo">
+						<form method="POST" action="/login">
+							<div class="container">
+								<a class="id-text">아이디</a> <br> <input type="text" id="id"
+									name="id" required> <a class="password-text">비밀번호</a> <br>
+								<input type="password" id="password" name="password" required>
+								<div class="id-pass">
+									<div class="id-box">
+										<button class="search_id">아이디 찾기</button>
+										<p class="greater_than">></p>
+									</div>
+									<div class="pass-box">
+										<button class="search_pass">비밀번호 찾기</button>
+										<p class="greater_than">></p>
+									</div>
+								</div>
 							</div>
-							
-							<a class="email-text">이메일</a> <br> 
-							<input type="email" id="email" name="email" required>
-							<div class="error email_error">
-								<span>이메일 형식이 올바르지 않습니다.</span>
+							<button type="submit" class="login-button">로그인</button>
+							<div class="noaccount-div">
+								<p class="no_account">계정이 없나요?</p>
+								<button class="text_singup">회원 가입</button>
 							</div>
-						
-						<div class="gender-box">	
-							<a class="gender-text">성별</a> <br> <select id="gender"
-								name="gender">
-								<option value="" selected disabled>성별</option>
-								<option value="male">여성</option>
-								<option value="female">남성</option>
-							</select>
-						</div>
-						
-						<div class="age-box">
-							<a class="age-text">연령대</a> <br> <select id="age" name="age">
-								<option value=""selected disabled >연령대</option>
-								<option value="10s">10대</option>
-								<option value="20s">20대</option>
-								<option value="30s">30대</option>
-								<option value="40s">40대</option>
-								<option value="50s">50대</option>
-								<option value="60s">60대 이상</option>
-							</select>
-						</div>
-					
+						</form>
 					</div>
-					
-					<button type="submit" class="signup-button">가입하기</button>
-				</form>
+				</div>
+				<img src="../image/login-image.png" alt="Login Image"
+					class="login-image">
 			</div>
 		</div>
-		<img src="../image/signup-image.jpg" alt="Signup Image" class="signup-image"></img>
+		<div class="overlay"></div>
 	</div>
-	<div class="overlay"></div>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('.right-loginbtn').click(function() {
-        $('.login-container').fadeIn();
-        $('.login-image').fadeIn();
-        $('.white-back').fadeIn();
-        $('.overlay').fadeIn();
-        $('.login-container').css('z-index', '10000');
-        $('.login-image').css('z-index', '5000');
-    });
-    
-    $('.overlay').click(function() {
-        $('.login-container').fadeOut();
-        $('.login-container').css('z-index', 'initial');
-        $('.login-image').fadeOut();
-        $('.login-image').css('z-index', 'initial');
-        $('.white-back').fadeOut();  
-        $('.overlay').fadeOut();
-    });
+	<div class="Yuchan1">
+		<div class="final-touch1">
+			<div class="box">
+				<div class="signup-container">
+					<img src="../image/logo2.png" class="logo">
+					<form method="POST" action="/signup">
 
-    $('.login-container').hide();
-    $('.login-image').hide();
-});
+						<div class="container">
+							등록 <a class="id-text">아이디</a> <br> <input type="text"
+								id="id" name="id" required>
+							<button type="button" class="duplicate-check-button">중복
+								확인</button>
 
-$(document).ready(function() {
-    $('.right-signupbtn').click(function() {
-        $('.signup-container').fadeIn();
-        $('.signup-image').fadeIn();
-        $('.overlay').fadeIn();
-        $('.signup-container').css('z-index', '10000');
-        $('.signup-image').css('z-index', '1000');
-    });
-    
-    $('.overlay').click(function() {
-        $('.signup-container').fadeOut();
-        $('.overlay').fadeOut();
-        $('.signup-container').css('z-index', 'initial');
-        $('.signup-image').fadeOut();
-        $('.signup-image').css('z-index', 'initial');
-    });
+							<a class="nickname-text">별명</a> <br> <input type="text"
+								id="nickname" name="nickname" required>
+							<button type="button" class="duplicate-check-button">중복
+								확인</button>
 
-    $('.signup-container').hide();
-    $('.signup-image').hide();
-});
-</script>
+
+
+
+							<a class="password-text">비밀번호</a> <br> <input
+								type="password" id="password" name="password" required>
+							<a class="password-check-text">비밀번호 확인</a> <br> <input
+								type="password" id="password-check" name="password-check"
+								required>
+
+
+							<a class="email-text">이메일</a> <br> <input type="email"
+								id="email" name="email" required>
+
+
+							<div class="gender-box">
+								<a class="gender-text">성별</a> <br> <select id="gender"
+									name="gender">
+									<option value="" selected disabled>성별</option>
+									<option value="male">여성</option>
+									<option value="female">남성</option>
+								</select>
+							</div>
+
+							<div class="age-box">
+								<a class="age-text">연령대</a> <br> <select id="age"
+									name="age">
+									<option value="" selected disabled>연령대</option>
+									<option value="10s">10대</option>
+									<option value="20s">20대</option>
+									<option value="30s">30대</option>
+									<option value="40s">40대</option>
+									<option value="50s">50대</option>
+									<option value="60s">60대 이상</option>
+								</select>
+							</div>
+
+						</div>
+
+						<button type="submit" class="signup-button">가입하기</button>
+					</form>
+				</div>
+			</div>
+			<img src="../image/signup-image.jpg" alt="Signup Image"
+				class="signup-image"></img>
+		</div>
+		<div class="overlay"></div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.right-loginbtn').click(function() {
+				$('.login-container').fadeIn();
+				$('.login-image').fadeIn();
+				$('.white-back').fadeIn();
+				$('.overlay').fadeIn();
+				$('.login-container').css('z-index', '10000');
+				$('.login-image').css('z-index', '5000');
+			});
+
+			$('.overlay').click(function() {
+				$('.login-container').fadeOut();
+				$('.login-container').css('z-index', 'initial');
+				$('.login-image').fadeOut();
+				$('.login-image').css('z-index', 'initial');
+				$('.white-back').fadeOut();
+				$('.overlay').fadeOut();
+			});
+
+			$('.login-container').hide();
+			$('.login-image').hide();
+		});
+
+		$(document).ready(function() {
+			$('.right-signupbtn').click(function() {
+				$('.signup-container').fadeIn();
+				$('.signup-image').fadeIn();
+				$('.overlay').fadeIn();
+				$('.signup-container').css('z-index', '10000');
+				$('.signup-image').css('z-index', '1000');
+			});
+
+			$('.overlay').click(function() {
+				$('.signup-container').fadeOut();
+				$('.overlay').fadeOut();
+				$('.signup-container').css('z-index', 'initial');
+				$('.signup-image').fadeOut();
+				$('.signup-image').css('z-index', 'initial');
+			});
+
+			$('.signup-container').hide();
+			$('.signup-image').hide();
+		});
+	</script>
+	
+	<!--은솔 js 만듬-->
+	<script src="Yuchan/register.js"></script>
+
+	
+	
 </body>
 </html>
