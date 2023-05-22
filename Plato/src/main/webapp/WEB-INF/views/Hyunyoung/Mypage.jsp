@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.List, java.util.ArrayList, java.util.Map, java.util.HashMap" %>
     <%@ page isELIgnored="false" %>
+    <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
 
