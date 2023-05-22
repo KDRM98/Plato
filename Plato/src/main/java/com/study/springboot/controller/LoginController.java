@@ -33,11 +33,10 @@ public class LoginController {
 		System.out.println("/profile");
 		return "Eunsol/profile";
 	}
-	
-	
-	
-
-	
-	
+	@RequestMapping("/mypage")
+	public String mypage() {
+		System.out.println("/mypage");
+		return "Hyunyoung/Mypage";
+	}
 
 }
