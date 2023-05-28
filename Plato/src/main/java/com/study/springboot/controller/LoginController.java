@@ -28,11 +28,18 @@ public class LoginController {
 		return "Yuchan/mainpage";
 	}
 	
-	@RequestMapping("/profile")
-	public String profile() {
-		System.out.println("/profile");
-		return "Eunsol/profile";
+	@RequestMapping("/header")
+	public String header() {
+		System.out.println("/header");
+		return "Eunsol/header";
 	}
+	
+	@RequestMapping("/footer")
+	public String footer() {
+		System.out.println("/footer");
+		return "Eunsol/footer";
+	}
+	
 	@RequestMapping("/mypage")
 	public String mypage() {
 		System.out.println("/mypage");
