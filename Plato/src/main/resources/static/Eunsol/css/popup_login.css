@@ -1,0 +1,134 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+body{
+	background-color: beige;
+}
+
+.popup_login {
+	position : absolute;
+	left : 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 600px;
+	height: 600px;
+	border-radius: 100%;
+	background-color : white;
+/* 	background-image : url("/Eunsol/imges/login_plato.png");
+	background-repeat :no-repeat;
+	background-position : 53% 50%;
+	background-size : 101%; */
+	opacity :0;
+	transition: all 0.5s;
+	z-index : 5;
+	box-sizing: border-box;
+	border: 1px solid pink;
+	
+
+}
+.popup_login:target{
+	opacity: 1;
+}
+.popup_login:target + .dim{
+	opacity: 1; z-index: 3;
+}
+
+.popup_login .close{
+	position : absolute;
+	left : 90%;
+	display : block;
+	width : 40px;
+	height: 40px;
+	border-radius: 100%;
+	text-indent : -9999em;
+	border: 1px solid pink;
+	background-image: url("/Eunsol/imges/x.svg");
+	background-size : 40%;
+	background-repeat : no-repeat;
+	background-position : 50% 50%;
+	cursor: pointer;
+	background-color: white;
+}
+
+.popup_login .content{
+	position : absolute;
+	left : 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 600px;
+	height: 600px;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 50px;
+}
+
+.popup_login img {
+	padding-bottom: 10px;
+	width: 200px;
+}
+.popup_login .welcome{
+	font-size: 35px;
+/* 	font-weight: bold; */
+}
+
+
+
+.popup_login .login_input{
+	padding: 10px 120px 5px 120px;
+}
+.popup_login .id_pw{
+	text-align: left;
+}
+
+.popup_login .login_id{
+	padding-bottom: 20px;
+}
+.popup_login input{
+	width: 100%;
+	height: 40px;
+	border: 1px solid  #a1a1a1;
+	box-sizing: border-box;
+}
+
+.popup_login .error{
+font-size: 12px;
+color: #e7223d;
+padding-bottom: 15px;
+	}
+
+.popup_login .error.two {
+	display: none;
+}
+
+.popup_login ul li{
+	display: inline-block;
+
+}
+.popup_login .login_btn{
+	padding: 10px 120px 5px 120px;
+	height: 40px;
+}
+
+.popup_login button
+{width: 100%;
+height: 100%;
+background-color:#212121;
+color: white;
+border: none;
+	
+}
+
+.dim {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index :-1;
+	width:100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.6);
+	opacity: 0;	
+	transition: all 0.5s;
+}
