@@ -1,3 +1,12 @@
+        @font-face {
+            font-family: 'SUITE-Regular';
+            src: url('/font/SUITE-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            }
+ body {
+            font-family: 'SUITE-Regular', sans-serif;
+        }
 * {
 	margin: 0;
 	padding: 0;
@@ -39,6 +48,7 @@ header .user_status {
 header .user_status ul li {
 	display : inline-block;
 	margin : 0px 10px;
+	
 	
 }
 
