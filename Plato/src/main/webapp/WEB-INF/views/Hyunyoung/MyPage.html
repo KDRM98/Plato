@@ -46,24 +46,20 @@
             cursor: pointer;
         }
 
-    
-             
         .remaining-space {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        align-items: flex-start;
-    }
-
-
-        .remaining-space a {
-            color: black;
-            text-decoration: none;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: flex-start;
         }
 
-        .remaining-space a.underline {
+        .remaining-space a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .remaining-space a.active {
             text-decoration: underline;
-            
         }
 
     </style>
@@ -86,6 +82,7 @@
                 position: relative;
             }
         </style>
+
         <div class="container">
             <div style="font-size:40px;">이름</div>
             <div style="font-size:15px;margin-left:10px;">@아이디</div>
@@ -93,29 +90,26 @@
         </div>
     </div>
 
-    <div class="remaining-space">
-        <a1 href="#" onclick="toggleUnderline(event, this)">작성글</a1>
-        <br>
-        <a2 href="#" onclick="toggleUnderline(event, this)">작성댓글</a2>
-        <br>
-        <a3 href="#" onclick="toggleUnderline(event, this)">좋아요 한 글</a3>
-    </div>
-</body>
-</html>
 
-<script>
-    function toggleUnderline(event, element, currentId) {
-        event.preventDefault(); // 클릭 이벤트의 기본 동작(링크로 이동)을 막음
-        
-        // 모든 a 태그의 밑줄을 제거
-        var aTags = document.querySelectorAll('.remaining-space a');
-        for (var i = 0; i < aTags.length; i++) {
-            if (aTags[i].id !== currentId) {
-                aTags[i].style.textDecoration = 'none';
+    <div class="remaining-space">
+        <a href="#" onclick="toggleUnderline(event, this)">작성글</a>
+        <br>
+        <a href="#" onclick="toggleUnderline(event, this)">작성댓글</a>
+        <br>
+        <a href="#" onclick="toggleUnderline(event, this)">좋아요 한 글</a>
+    </div>
+    
+    <script>
+        function toggleUnderline(event, element) {
+            event.preventDefault();
+    
+            // 모든 a 태그의 밑줄을 제거
+            var aTags = document.querySelectorAll('.remaining-space a');
+            for (var i = 0; i < aTags.length; i++) {
+                aTags[i].style.borderBottom = "none";
             }
+    
+            // 선택한 a 태그에 밑줄을 추가
+            element.style.borderBottom = "underline";
         }
-        
-        // 클릭된 a 태그에 밑줄을 추가 또는 제거
-        element.style.textDecoration = (element.style.textDecoration === 'underline') ? 'none' : 'underline';
-    }
-</script>
+    </script>
