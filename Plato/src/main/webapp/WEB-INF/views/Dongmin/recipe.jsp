@@ -1,224 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.List, java.util.ArrayList, java.util.Map, java.util.HashMap" %>
-    <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="Dongmin/css/recipe.css">
 <link rel="stylesheet" href="/Yuchan/writecomment.css">
 <link rel="stylesheet" href="/Yuchan/my_comment.css">
 <link rel="stylesheet" href="/Yuchan/fixcomment.css">
 <link rel="stylesheet" href="/Yuchan/normal_comment.css">
-<style>
-	body{
-		margin: 0;
-		padding: 0;
-	}
-	/* 굵고 둥근 구분선 */
-	hr {
-	  width: 1000px;
-	  margin: 70px auto;
-	  border: 1px solid lightgray;
-	  /* box-shadow: 0 0 5px #FF9364; */
-  	}
-  	
-  	/* 가운데 로고삽입 구분선 */
-	/* hr {
-	  background-image: linear-gradient(to right, rgba(255, 147, 100, 0), rgba(255, 147, 100, 0.75), rgba(255, 147, 100, 0));
-	  border: 0;
-	  height: 1px;
-	  margin-bottom: 60px;
-	  margin-top: 60px;
-	  overflow: visible;
-	  text-align: center;
-	}
-	hr:after {
-	  background: white;
-	  color: #FF9364;
-	  content: "Plato";
-	  font-weight: bold;
-	  display: inline-block;
-	  font-size: 1em;
-	  padding: 0 0.4em;
-	  position: relative;
-	  top: -0.5em;
-	} */
-	
-	.info{
-		border-bottom: 1px solid lightgray;
-		height: 500px;
-		display: flex;
-		width: 100%;
-		justify-content: space-between;
-	}
-	.rinfo{
-		width: 750px;
-		height: 100%;
-		display:flex;
-		text-align:center;
-		align-items:center;
-		justify-content:center;
-	}
-	.fimg{
-	}
-	.fimg img{
-		width: 750px;
-		height: 100%;
-		object-fit: cover;
-	}
-	.subinfo{
-		height: 70px;
-		width: 600px;
-		font-size: 30px;
-		font-weight: bold;
-		align-items: center;
-		padding-top: 60px;
-		justify-content: space-around;
-	}
-	.circle{
-		width: 20px;
-		height: 20px;
-	}
-	.like img{
-        width: 30px;
-        height: 30px;
-        vertical-align: middle;
-        margin-right: 10px;
-        filter: invert(100%);
-    }
-    .like {
-	    background: #FF5733;
-	    color: white;
-	    position: relative;
-	    border: none;
-	    min-width: 140px;
-	    min-height: 60px;
-	    border-radius: 1000px;
-	    cursor: pointer;
-	    font-weight: 700;
-	    transition: 0.3s;
-	    margin-top: 50px;
-	}
-	.like:hover {
-    	transform: scale(1.2);
-	}
-
-	.like:hover::after{
-		content: "";
-	    width: 30px;
-	    height: 30px;
-	    border-radius: 100%;
-	    border: 6px solid red;
-	    position: absolute;
-	    z-index: -1;
-	    top: 50%;
-	    left: 50%;
-	    transform: translate(-50%, -50%);
-	    animation: ring 0.7s infinite;
-	}
-	@keyframes ring {
-	    0% {
-	        width: 20px;
-	        height: 20px;
-	        opacity: 1;
-	    }
-	    100% {
-	        width: 150px;
-	        height: 150px;
-	        opacity: 0;
-	    }
-	}
-	
-	.info_icon{
-		display:flex;
-		flex-direction: column;
-		align-items: center;
-		width: 200px;
-	}
-	
-	.ltitle{
-		font-size: 30px;
-		border-bottom: 3px solid black;
-	}
-	.introelement{
-		padding-left:150px; 
-	}
-	.ingredientlist{
-		display:grid; 
-		grid-template-columns: 1fr auto auto; 
-		width: 320px; 
-		height: 50px; 
-		border-bottom: solid 1px lightgray; 
-		font-size: 20px;
-		align-items: center;
-		margin-left: 30px;
-	}
-	.eat{
-		display: inline-block;
-		background-color:white; 
-		color:black; 
-		width: 50px; 
-		height: 30px; 
-		font-size: 12px;
-		border: solid 1px black;
-		border-radius: 50px;
-		text-align:center;
-		line-height: 30px;
-		text-decoration:none;
-	}
-	.ordernum{
-		width: 70px;
-		height: 70px;
-		border-radius: 50%;
-		background-color: #FF9364;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 30px; 
-		font-weight:bold;
-		color: white;
-	}
-	.orderlist{
-		margin-top: 30px;
-		display: flex;
-		height: 300px;
-		width: 1100px;
-		flex-direction: row;
-		overflow: hidden;
-        text-overflow: ellipsis;
-	}
-	.how{
-		font-size: 20px;
-		display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 9;
-        height: 215px;
-        width: 500px;
-        flex: 7;
-		padding-left: 50px;
-	}
-	.how img{
-		width: 315px;
-		height: 215px;
-		object-fit: cover;
-	}
-  	.column{
-  		margin-top: 30px;
-  	}
-  	#ingredient-container {
-    display: flex;
-    flex-wrap: wrap;
-    min-width: 100%;
-    margin: 0 auto;
-    margin-top: -30px;
-  }
-
-</style>
 <body>
 <%
     int likeCount = 0;
@@ -240,7 +33,7 @@
 				    <div style="display: flex; align-items: center; justify-content: center;">
 				      <img alt="heart" src="../image/heart.png">
 				      좋아요
-				      <span id="likeCount" style="font-size:20px; padding-left: 10px;"><%= likeCount %></span>
+				      <span id="likeCount" style="font-size:20px; padding-left: 10px;">${likeCount }</span>
 				    </div>
 				  </button>
 				</form>
@@ -301,7 +94,7 @@
 			<span class="ltitle">조리방법</span><br>
 				<div class="orderlist">				
 					<div class="ordernum">1</div>
-					<div class="how"">
+					<div class="how">
 						1. 명란은 1줄 준비해서 껍질을 제거하고 알맹이만 발라줘요<br>
 						1. 명란은 1줄 준비해서 껍질을 제거하고 알맹이만 발라줘요<br>
 						1. 명란은 1줄 준비해서 껍질을 제거하고 알맹이만 발라줘요<br>

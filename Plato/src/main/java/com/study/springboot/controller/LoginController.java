@@ -11,7 +11,10 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class LoginController {
-	
+	int likeCount=33;
+	boolean isLiked = false;
+	String id = "admin";
+	String pw = "1234";
 	@RequestMapping("/test")
 	public String test() {
 		System.out.println("/test");
@@ -23,8 +26,11 @@ public class LoginController {
 		return "Dongmin/reply";
 	}
 	@RequestMapping("/recipe")
-	public String recipe() {
+	public String recipe(
+				Model model
+			) {
 		System.out.println("/recipe");
+		model.addAttribute("likeCount" , likeCount);
 		return "Dongmin/recipe";
 	}
 	
@@ -64,7 +70,7 @@ public class LoginController {
 		if( id != null && pw != null) {
 			
 		}else {
-			model.setAttribute("error", "아이디와 패스워드는 필수 입니다.");
+			model.addAttribute("error", "아이디와 패스워드는 필수 입니다.");
 			
 		}
 		
