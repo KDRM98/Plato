@@ -64,7 +64,7 @@ public class LoginController {
 		if( id != null && pw != null) {
 			
 		}else {
-			model.getAttribute("error", "아이디와 패스워드는 필수 입니다.");
+			model.setAttribute("error", "아이디와 패스워드는 필수 입니다.");
 			
 		}
 		
