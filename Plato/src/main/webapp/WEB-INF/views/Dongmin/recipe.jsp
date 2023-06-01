@@ -222,7 +222,9 @@
 <body>
 <%
     int likeCount = 0;
+	String thispage = "recipe";
 %>
+	
 	<div class="info">
 		<div class="rinfo">
 			<div>
@@ -232,13 +234,16 @@
 	      		</span>
 	      		</div>
 	      		<p style="color: purple; padding-top: 20px;">By 김동민</p>
-	            <button class="like" onclick="clickLike()">
-	            	<div style="display: flex; align-items:center; justify-content:center;">
-					<img alt="heart" src="../image/heart.png">
-					좋아요
-					<span id="likeCount" style="font-size:20px; padding-left: 10px;"><%= likeCount %></span>
-	            	</div>
-           		</button>
+	      		
+				<form action="recipe" method="post">
+				  <button type="submit" class="like" onclick="clickLike()">
+				    <div style="display: flex; align-items: center; justify-content: center;">
+				      <img alt="heart" src="../image/heart.png">
+				      좋아요
+				      <span id="likeCount" style="font-size:20px; padding-left: 10px;"><%= likeCount %></span>
+				    </div>
+				  </button>
+				</form>
 		        <div class="subinfo" style="display: flex;">
 		        	<div class="info_icon">
 		            	<div><img alt="clock" src="../image/clock.png"></div>

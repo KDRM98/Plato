@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 	
+	String id = "admin";
+	String pw = "1234";
+	boolean like = false;
+	
 	@RequestMapping("/test")
 	public String test() {
 		System.out.println("/test");
