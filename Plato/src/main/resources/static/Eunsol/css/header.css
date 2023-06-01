@@ -1,0 +1,76 @@
+        @font-face {
+            font-family: 'SUITE-Regular';
+            src: url('/font/SUITE-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            }
+ body {
+            font-family: 'SUITE-Regular', sans-serif;
+        }
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+/* 폰트 적용하기 */
+
+
+header {
+	height: 60px;
+	text-align: center;
+	background-color: white;
+/* 	border-bottom: 1px solid red; */
+}
+
+header .logo img {
+	height: 40px;
+	margin: 10px;
+}
+
+header .navigation {
+	/* float: left; */
+	position : absolute;
+	left : 0;
+	display: block; /* a태그가 인라인 요소이기 때문에 width와 height 값 변경을 위해*/
+	width: 25px;
+	margin: 21px;
+	text-indent: -9999em; /*글씨 사라졋*/
+	background-image: url("/Eunsol/imges/three_bars.svg");
+	cursor: pointer;
+}
+
+header .user_status {
+	position : absolute;
+	right: 0;
+	/* float: right; */
+	margin : 20px 15px;
+
+}
+
+header .user_status ul li {
+	display : inline-block;
+	margin : 0px 10px;
+	
+	
+}
+
+header .user_status ul li a{
+ 	color: #a1a1a1;
+	}
+	
+header .user_status ul li a:hover{
+ 	color: #212121;
+ 	font-weight:bold;
+	}
+
+header .user_status ul li #search_glass {
+	display : inline-block;
+	text-align : left;
+	width : 73px;
+	height :21px;
+	background-image: url("/Eunsol/imges/search_glass.svg");
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
+}
