@@ -30,7 +30,9 @@ header .logo img {
 }
 
 header .navigation {
-	float: left;
+	/* float: left; */
+	position : absolute;
+	left : 0;
 	display: block; /* a태그가 인라인 요소이기 때문에 width와 height 값 변경을 위해*/
 	width: 25px;
 	margin: 21px;
@@ -40,7 +42,9 @@ header .navigation {
 }
 
 header .user_status {
-	float: right;
+	position : absolute;
+	right: 0;
+	/* float: right; */
 	margin : 20px 15px;
 
 }

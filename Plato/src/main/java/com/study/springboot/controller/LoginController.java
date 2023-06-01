@@ -1,14 +1,14 @@
 package com.study.springboot.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class LoginController {
-	
-	String id = "admin";
-	String pw = "1234";
-	boolean like = false;
 	
 	@RequestMapping("/test")
 	public String test() {
@@ -42,6 +42,34 @@ public class LoginController {
 	public String footer() {
 		System.out.println("/footer");
 		return "Eunsol/footer";
+	}
+	
+	@RequestMapping("/login_check")
+	public String login_chexck(
+			HttpServletRequest request,
+			Model model
+			) {
+		System.out.println("/login_check");
+
+		String nextPage = null;
+		
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		
+		String _id = "admin";
+		String _pw = "1234";
+		
+		if( id != null && pw != null) {
+			
+		}else {
+			model.getAttribute("error", "아이디와 패스워드는 필수 입니다.");
+			
+		}
+		
+		
+		
+		
+		return "Eunsol/header";
 	}
 	
 	@RequestMapping("/mypage")
