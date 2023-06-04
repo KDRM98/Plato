@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 @Controller
 public class LoginController {
 	int likeCount=33;
-	boolean isLiked = false;
+	boolean isLiked = true;
 	String id = "admin";
 	String pw = "1234";
 	@RequestMapping("/test")
@@ -27,11 +25,32 @@ public class LoginController {
 	}
 	@RequestMapping("/recipe")
 	public String recipe(
-				Model model
+			HttpServletRequest request,
+			Model model
 			) {
 		System.out.println("/recipe");
-		model.addAttribute("likeCount" , likeCount);
+	    model.addAttribute("likeCount", likeCount);
+	    model.addAttribute("isLiked", isLiked);
 		return "Dongmin/recipe";
+	}
+	
+	@RequestMapping("/recipeLike")
+	public String updateRecipe(
+	        @RequestParam(value = "likeCount") int likeCount,
+	        @RequestParam(value = "isLiked") boolean isLiked,
+	        HttpServletRequest request,
+	        Model model) {
+	    
+		this.isLiked = isLiked;
+	    this.likeCount = likeCount;
+	    System.out.println(isLiked);
+	    System.out.println(this.isLiked);
+	    System.out.println(this.likeCount);
+	    // 처리 로직...
+	    
+	    // 업데이트된 값들을 응답으로 전달
+	    
+	    return "Dongmin/recipe";
 	}
 	
 	@RequestMapping("/main")

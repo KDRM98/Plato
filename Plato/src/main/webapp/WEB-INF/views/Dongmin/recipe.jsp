@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/Yuchan/normal_comment.css">
 <body>
 <%
-    int likeCount = 0;
+	
 	String thispage = "recipe";
 %>
 	
@@ -28,15 +28,13 @@
 	      		</div>
 	      		<p style="color: purple; padding-top: 20px;">By 김동민</p>
 	      		
-				<form action="recipe" method="post">
-				  <button type="submit" class="like" onclick="clickLike()">
+				  <button class="like" onclick="clickLike()">
 				    <div style="display: flex; align-items: center; justify-content: center;">
 				      <img alt="heart" src="../image/heart.png">
 				      좋아요
 				      <span id="likeCount" style="font-size:20px; padding-left: 10px;">${likeCount }</span>
 				    </div>
 				  </button>
-				</form>
 		        <div class="subinfo" style="display: flex;">
 		        	<div class="info_icon">
 		            	<div><img alt="clock" src="../image/clock.png"></div>
@@ -164,14 +162,39 @@
 		<jsp:include page="/WEB-INF/views/Hyunyoung/footer.jsp"></jsp:include>
 </body>
 <script>
-	var likeCount = document.getElementById("likeCount").textContent;
+	var likeCountElement = document.getElementById('likeCount');
+	var likeCount = parseInt(likeCountElement.textContent);
+	var isLiked = ${isLiked};
 	function clickLike() {
 		// ajax > java >  html
 		
-		
-        likeCount++;
-        document.getElementById("likeCount").textContent = likeCount;
-    }
+	    if(isLiked){
+	    	likeCount++;
+	    }else{
+	    	likeCount--;
+	    }
+		isLiked = !isLiked;
+	    var requestData = 'likeCount=' + likeCount + '&isLiked=' + isLiked;
+	    console.log(isLiked);
+
+	    // AJAX 요청 생성
+	    var xhr = new XMLHttpRequest();
+	    xhr.open('POST', '/recipeLike');
+	    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	    xhr.onreadystatechange = function() {
+	      if (xhr.readyState === XMLHttpRequest.DONE) {
+	        if (xhr.status === 200) {
+	          this.isLiked = ${isLiked};
+	        } else {
+	        	this.isLiked = ${isLiked};
+	        }
+	      }
+	    };
+
+	    xhr.send(requestData);
+	    // 서버로 요청 전송
+	    document.getElementById("likeCount").textContent = likeCount;
+	}
 	
 	var ingredients = [
 	    { name: "우동면", quantity: "1인분", link: "https://www.coupang.com/np/search?component=&q=우동면&channel=user" },
