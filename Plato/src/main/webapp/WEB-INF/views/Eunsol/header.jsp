@@ -54,8 +54,7 @@
 				</form>
 			</div>
 
-			<div class="error 1">아이디 또는 비밀번호가 일치하지 않습니다.</div>
-			<div class="error two">아이디 또는 비밀번호를 입력해 주세요.</div>
+			<div class="error">${error}</div>
 
 			<div class="search_idpw">
 				<ul>

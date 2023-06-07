@@ -72,7 +72,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/login_check")
-	public String login_chexck(
+	public String login_check(
 			HttpServletRequest request,
 			Model model
 			) {
@@ -90,7 +90,7 @@ public class LoginController {
 			
 		}else {
 			model.addAttribute("error", "아이디와 패스워드는 필수 입니다.");
-			
+			nextPage = "Eunsol/header";
 		}
 		
 		
@@ -98,6 +98,13 @@ public class LoginController {
 		
 		return "Eunsol/header";
 	}
+	
+	@RequestMapping("/join")
+	public String join() {
+		System.out.println("/join");
+		return "Eunsol/join";
+	}
+
 	
 	@RequestMapping("/mypage")
 	public String mypage() {

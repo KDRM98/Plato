@@ -1,12 +1,14 @@
-        @font-face {
-            font-family: 'SUITE-Regular';
-            src: url('/font/SUITE-Regular.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-            }
- body {
-            font-family: 'SUITE-Regular', sans-serif;
-        }
+@font-face {
+	font-family: 'SUITE-Regular';
+	src: url('/font/SUITE-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+body {
+	font-family: 'SUITE-Regular', sans-serif;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -14,14 +16,12 @@
 	text-decoration: none;
 }
 
-/* 폰트 적용하기 */
-
 
 header {
 	height: 60px;
 	text-align: center;
 	background-color: white;
-/* 	border-bottom: 1px solid red; */
+	/* 	border-bottom: 1px solid red; */
 }
 
 header .logo img {
@@ -31,8 +31,8 @@ header .logo img {
 
 header .navigation {
 	/* float: left; */
-	position : absolute;
-	left : 0;
+	position: absolute;
+	left: 0;
 	display: block; /* a태그가 인라인 요소이기 때문에 width와 height 값 변경을 위해*/
 	width: 25px;
 	margin: 21px;
@@ -42,34 +42,31 @@ header .navigation {
 }
 
 header .user_status {
-	position : absolute;
+	position: absolute;
 	right: 0;
 	/* float: right; */
-	margin : 20px 15px;
-
+	margin: 20px 15px;
 }
 
 header .user_status ul li {
-	display : inline-block;
-	margin : 0px 10px;
-	
-	
+	display: inline-block;
+	margin: 0px 10px;
 }
 
-header .user_status ul li a{
- 	color: #a1a1a1;
-	}
-	
-header .user_status ul li a:hover{
- 	color: #212121;
- 	font-weight:bold;
-	}
+header .user_status ul li a {
+	color: #a1a1a1;
+}
+
+header .user_status ul li a:hover {
+	color: #212121;
+	font-weight: bold;
+}
 
 header .user_status ul li #search_glass {
-	display : inline-block;
-	text-align : left;
-	width : 73px;
-	height :21px;
+	display: inline-block;
+	text-align: left;
+	width: 73px;
+	height: 21px;
 	background-image: url("/Eunsol/imges/search_glass.svg");
 	background-position: 100% 50%;
 	background-repeat: no-repeat;
