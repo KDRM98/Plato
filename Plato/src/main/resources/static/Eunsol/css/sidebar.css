@@ -1,0 +1,112 @@
+
+:root {
+    --main-color: rgb(59, 148, 220);
+    /* 지정할 속성에 var(--main-color) 라고 쓰면 적용됨 */
+}
+header {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    background-color: #333;
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6rem 1rem;
+    text-align: center;
+}
+header .logo {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}
+header .logo span {
+    color: var(--main-color);
+}
+header .navbar {}
+header .navbar a {
+    display: block;
+    color: white;
+    margin: 2rem 0;
+    font-size: 1.5rem;
+}
+header .navbar a:hover {
+    color: var(--main-color);
+}
+header .sns {}
+header .sns a {
+    color: white;
+    font-size: 2rem;
+    margin: 0 1rem;
+}
+
+header .sns a:hover {
+    color: var(--main-color);
+}
+
+<!-- 
+    <!-- 메뉴 열기 버튼 -->
+    <span id="btn-menu" class="btn-menu">
+        <i class="fa fa-bars"></i>
+    </span>
+    
+    <!-- ########## header ########## -->
+    <header>
+        
+        <!-- 메뉴 닫기 버튼 -->
+        <span id="btn-close" class="btn-menu">
+            <i class="fa fa-times"></i>
+        </span>
+
+        <a href="#" class="logo">
+            <span>나의</span>포트폴리오
+        </a>
+
+        <!-- 메뉴 -->
+        <nav class="navbar">
+            <a href="#login">login</a>
+            <a href="#profile">profile</a>
+            <a href="#portfolio">portfolio</a>
+        </nav>
+
+        <!-- sns 버튼 -->
+        <div class="sns">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-linkedin"></a>
+        </div>
+
+    </header>
+
+$(function() {
+
+    /* 메뉴 닫기 */
+    $('#btn-close').on('click', function() {
+        $('header').animate({
+            'left' : '-25rem'
+        }, 400)
+
+        $('body').animate({
+            'padding-left' : 0
+        }, 400)
+    })
+
+    /* 메뉴 열기 */
+    $('#btn-menu').on('click', function() {
+        $('header').animate({
+            'left' : 0
+        }, 400)
+
+        $('body').animate({
+            'padding-left' : '25rem'
+        }, 400)
+    })
+
+
+
+
+
+})
+
+-->
