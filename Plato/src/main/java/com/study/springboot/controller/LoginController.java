@@ -104,6 +104,18 @@ public class LoginController {
 		System.out.println("/join");
 		return "Eunsol/join";
 	}
+	
+	@RequestMapping("/profile")
+	public String profile() {
+		System.out.println("/profile");
+		return "Eunsol/profile";
+	}
+	
+	@RequestMapping("/profile2")
+	public String profile2() {
+		System.out.println("/profile2");
+		return "Eunsol/profile2";
+	}
 
 	
 	@RequestMapping("/mypage")

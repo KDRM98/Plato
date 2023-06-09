@@ -49,8 +49,8 @@
 						<ul class="box gender">
 							<li class="radio_item"><input type="radio" id="M"
 								name="gender" value="M"> <label for="M">남자</label></li>
-							<li class="radio_item"><input type="radio" id="F name="
-								gender" value="F"> <label for="F">여자</label></li>
+							<li class="radio_item"><input type="radio" id="F" 
+								name="gender" value="F"> <label for="F">여자</label></li>
 						</ul>
 						<div class="box age">
 							<select id="age" name="age">
