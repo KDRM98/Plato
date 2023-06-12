@@ -184,9 +184,15 @@
 	    xhr.onreadystatechange = function() {
 	      if (xhr.readyState === XMLHttpRequest.DONE) {
 	        if (xhr.status === 200) {
-	          this.isLiked = ${isLiked};
+	          isLiked = ${isLiked};
+	          if(isLiked){
+	  	    	document.getElementById("likeCount").style.background = "lightgray";
+		  	    }
+		  	    else{
+		  	    	document.getElementById("likeCount").style.background = "#FF5733";
+		  	    }
 	        } else {
-	        	this.isLiked = ${isLiked};
+	        	
 	        }
 	      }
 	    };

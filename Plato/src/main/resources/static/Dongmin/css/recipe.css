@@ -9,28 +9,6 @@ body{
 	  border: 1px solid lightgray;
 	  /* box-shadow: 0 0 5px #FF9364; */
   	}
-  	
-  	/* 가운데 로고삽입 구분선 */
-	/* hr {
-	  background-image: linear-gradient(to right, rgba(255, 147, 100, 0), rgba(255, 147, 100, 0.75), rgba(255, 147, 100, 0));
-	  border: 0;
-	  height: 1px;
-	  margin-bottom: 60px;
-	  margin-top: 60px;
-	  overflow: visible;
-	  text-align: center;
-	}
-	hr:after {
-	  background: white;
-	  color: #FF9364;
-	  content: "Plato";
-	  font-weight: bold;
-	  display: inline-block;
-	  font-size: 1em;
-	  padding: 0 0.4em;
-	  position: relative;
-	  top: -0.5em;
-	} */
 	
 	.info{
 		border-bottom: 1px solid lightgray;
@@ -91,7 +69,7 @@ body{
     	transform: scale(1.2);
 	}
 
-	.like:hover::after{
+/* 	.like:hover::after{
 		content: "";
 	    width: 30px;
 	    height: 30px;
@@ -115,7 +93,7 @@ body{
 	        height: 150px;
 	        opacity: 0;
 	    }
-	}
+	} */
 	
 	.info_icon{
 		display:flex;
@@ -202,3 +180,27 @@ body{
     margin: 0 auto;
     margin-top: -30px;
   }
+
+  
+  
+  	/* 가운데 로고삽입 구분선 */
+	/* hr {
+	  background-image: linear-gradient(to right, rgba(255, 147, 100, 0), rgba(255, 147, 100, 0.75), rgba(255, 147, 100, 0));
+	  border: 0;
+	  height: 1px;
+	  margin-bottom: 60px;
+	  margin-top: 60px;
+	  overflow: visible;
+	  text-align: center;
+	}
+	hr:after {
+	  background: white;
+	  color: #FF9364;
+	  content: "Plato";
+	  font-weight: bold;
+	  display: inline-block;
+	  font-size: 1em;
+	  padding: 0 0.4em;
+	  position: relative;
+	  top: -0.5em;
+	} */
