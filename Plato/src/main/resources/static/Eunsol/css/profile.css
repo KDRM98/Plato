@@ -175,8 +175,19 @@ input::placeholder {
 
 	}
 
-.form_content .error{
-	display :none;
+.error{
+	height: 200px;
+}
+
+.error #pwMsg{
+/* 	display :none; */
+	color: #e7223d;
+}
+
+.error #emailMsg{
+/* 	display :none; */
+	color: #e7223d;
+	
 }
 
 .add_info{
@@ -195,6 +206,7 @@ input::placeholder {
 	max-width: 100%;
 	min-height: 50px;
 	padding: 0 10px 0 45px;
+    border-bottom: 0.5px solid #dfdfdf;
 }
 
 .nickname::before {
@@ -225,9 +237,7 @@ input::placeholder {
 	top: 0;
 	right: 0;
 	bottom: 0;
-	lrgb(248, 182, 82)
 	/* border-radius: inherit; */
-    border-bottom: 0.5px solid #dfdfdf;
 	pointer-events: none;
 	content: ''
 }

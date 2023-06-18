@@ -1,0 +1,113 @@
+.meiyou{
+height: 500px
+}
+.unregister {
+	/* padding: 20px 20px 0px 20px; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.unregister .title {
+	size: 20px;
+	font-weight: bold;
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+.unregister .highlight {
+	font-weight: bold;
+	color: #e7223d;
+}
+
+.unregister .agreement {
+	padding: 10px 0px 10px 0px;
+}
+
+/* 1. input 태그를 숨김처리  */
+.unregister #agree {
+	display: none;
+}
+
+/* 선택되지 않은 체크박스 스타일 꾸미기 */
+input[type="checkbox"]+em {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	margin-right: 5px;
+	background: url(/Eunsol/imges/bg_chkbox.gif) 0 0 no-repeat;
+	vertical-align: middle;
+}
+
+/* 선택된 체크박스 스타일 꾸미기 */
+input[id="agree"]:checked+em {
+	background-position:-38px 0;
+}
+
+/*radio 색깔 바꾸기*/
+/* :root { 
+	accent-color: red;
+} */
+
+#unregister-button {
+	width: 320px;
+	height: 35px;
+	border-radius: 0.5rem;
+	background-color: #e7223d;
+	color: white;
+	border:none;
+	font-size: 15px;
+	margin-bottom: 40px;
+	pointer-events: none;
+	opacity: 0.5; 
+}
+
+/* #unregister-button:hover {
+	background-color: #f57a8e;
+	}
+ */
+
+
+.popup {
+	display: none;
+	position: fixed;
+	height: 110px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	padding: 20px;
+	background-color: #f2f2f2;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.popup h4 {
+	height: 40px;
+}
+
+.popup button {
+	border-radius: 0.5rem;
+	border: 1px solid gray;
+	width: 100px;
+	height: 30px;
+	cursor: pointer;
+}
+
+#cancle-btn {
+	background-color: black;
+	color: white;
+	border: 1px solid black;
+}
+
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+}

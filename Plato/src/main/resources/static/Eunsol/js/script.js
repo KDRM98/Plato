@@ -3,12 +3,14 @@ const passwordCheck = document.getElementById("password-check");
 const email = document.getElementById("email")
 const pwError = document.querySelector(".pw_error")
 const emError = document.querySelector(".email_error")
-const withdrawBtn = document.querySelector(".unregister-button");
+
 const overlay = document.querySelector(".overlay");
 const popup = document.querySelector(".popup");
 const confirmBtn = document.getElementById("confirm-btn");
 const cancleBtn = document.getElementById("cancle-btn");
-var agreeCheckbox = document.querySelector('.agreement input[type="checkbox"]');
+
+const checkbox = document.getElementById('agree');
+const unregisterButton = document.getElementById('unregister-button');
 
 // 비밀번호 일치하지 않을 때 에러메세지 생성
 // blur : HTML 요소에서 포커스가 빠져나가면 발생하는 이벤트
@@ -66,11 +68,26 @@ agreeCheckbox.addEventListener("click", function() {
 });*/
 
 //회원탈퇴 동의 라디오 눌러야 회원탈퇴 버튼 활성화 되도록
-withdrawBtn.addEventListener("click", function() {
-	if (agreeCheckbox.checked) {
+checkbox.addEventListener('change', function() {
+  if (checkbox.checked) {
+	console.log("체크 눌렀다")
+    unregisterButton.style.pointerEvents = 'auto'; // 체크박스가 선택되면 버튼 활성화
+  } else {
+    unregisterButton.style.pointerEvents = 'none'; // 체크박스가 선택되지 않으면 버튼 비활성화
+  }
+});
+
+
+
+
+
+unregisterButton.addEventListener("click", function() {
+	if (checkbox.checked) {
 		overlay.style.display = "block";
 		popup.style.display = "block";
-	}
+	}else {
+    unregisterButton.disabled = true; // 체크박스가 선택되지 않으면 버튼 비활성화
+  }
 });
 
 //회원탈퇴 최종 확인시 메인페이지로 돌아가도록
