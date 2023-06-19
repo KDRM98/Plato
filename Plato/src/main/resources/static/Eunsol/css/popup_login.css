@@ -7,14 +7,22 @@
 body{
 	background-color: beige;
 }
+.popup_login button, input, select{
+	border-radius: 0;
+	border: none;
+	background: 0 0;
+	outline: 0;
+	text-decoration: none;
+	cursor: pointer;
+}
 
 .popup_login {
 	position : absolute;
 	left : 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: 600px;
-	height: 600px;
+	width: 500px;
+	height: 500px;
 	border-radius: 100%;
 	background-color : white;
 /* 	background-image : url("/Eunsol/imges/login_plato.png");
@@ -25,8 +33,7 @@ body{
 	transition: all 0.5s;
 	z-index : 5;
 	box-sizing: border-box;
-	border: 1px solid pink;
-	
+
 
 }
 .popup_login:target{
@@ -44,72 +51,126 @@ body{
 	height: 40px;
 	border-radius: 100%;
 	text-indent : -9999em;
-	border: 1px solid pink;
+/* 	border: 1px solid pink; */
 	background-image: url("/Eunsol/imges/x.svg");
 	background-size : 40%;
 	background-repeat : no-repeat;
 	background-position : 50% 50%;
 	cursor: pointer;
 	background-color: white;
+	z-index: 10;
 }
 
 .popup_login .content{
 	position : absolute;
 	left : 50%;
-	top: 50%;
+	top: 46%;
 	transform: translate(-50%, -50%);
-	width: 600px;
-	height: 600px;
+	width: 300px;
+	height: auto;
 	text-align: center;
 	box-sizing: border-box;
-	padding: 50px;
+	padding: 10px;
+	z-index: 7;
+
+	
 }
 
 .popup_login img {
 	padding-bottom: 10px;
-	width: 200px;
-}
-.popup_login .welcome{
-	font-size: 35px;
-/* 	font-weight: bold; */
+	width: 170px;
 }
 
 
-
-.popup_login .login_input{
-	padding: 10px 120px 5px 120px;
-}
-.popup_login .id_pw{
-	text-align: left;
+.basic_info{
+	border: 1px solid  #a1a1a1;	
 }
 
-.popup_login .login_id{
-	padding-bottom: 20px;
-}
-.popup_login input{
-	width: 100%;
-	height: 40px;
-	border: 1px solid  #a1a1a1;
+.form_item input{
+	flex: 1 1 auto;
 	box-sizing: border-box;
+	width: 270px;
+	font-size: 16px;
+	line-height: 22px;
+	color: #222
 }
+
+input::placeholder {
+  font-size: 12px;
+}
+
+.form_item::before {
+	position: absolute;
+	top: 10px;
+	left: 9px;
+	content: ''
+}
+
+
+.form_item {
+	display: flex;
+	align-items: center;
+	position: relative;
+	box-sizing: border-box;
+	max-width: 100%;
+	min-height: 50px;
+	padding: 0 10px 0 45px;
+}
+
+
+.form_item::after{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	/* border-radius: inherit; */
+    border-bottom: 0.5px solid #dfdfdf;
+	pointer-events: none;
+	content: ''
+}
+
+.form_item.user::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -96px -296px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px
+}
+
+.form_item.pw::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -64px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px
+}
+
+
+
 
 .popup_login .error{
 font-size: 12px;
 color: #e7223d;
 padding-bottom: 15px;
+height: 15px;
 	}
 
 .popup_login .error.two {
 	display: none;
 }
 
-.popup_login ul li{
-	display: inline-block;
-
+.popup_login ul{
+		display: flex;
+		justify-content: space-between;
+	
 }
 .popup_login .login_btn{
-	padding: 10px 120px 5px 120px;
+	padding: 10px 0px 5px 0px;
 	height: 40px;
+	width: 100%
 }
 
 .popup_login button

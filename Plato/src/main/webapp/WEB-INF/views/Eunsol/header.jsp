@@ -19,40 +19,35 @@
 			<div class="user_status">
 				<ul>
 					<li><a href="#pop1" class="login">로그인</a></li>
-					<li><a href="#">회원가입</a></li>
+					<li><a href="/join">회원가입</a></li>
 					<li><a id="search_glass" href="#">Search</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="logo">
-			<img alt="로고" src="Eunsol/imges/o_logo.png">
+			<a href="/header"><img alt="로고" src="Eunsol/imges/o_logo.png"></a>
 		</div>
 	</header>
 	<!-- clear : both; -->
 
 	<div class="popup_login" id="pop1">
-		<a href="#" class="close">닫기</a>
+		<a href="/header" class="close">닫기</a>
 
 		<div class="content">
 			<div class="popup_logo">
 				<img alt="로고" src="Eunsol/imges/o_logo.png">
 			</div>
-			<div class="welcome">
-				<p>welcome</p>
-			</div>
-			<div class="login_input">
-				<form action="/header">
-				<div class="login_id">
-					<p class="id_pw">Id</p>
-					<input type="text" id="id" name="id" required="required">
-				</div>
 
-				<div>
-					<p class="id_pw">Password</p>
-					<input type="password" id="pw" name="pw" required="required">
+			<div class="basic_info">
+					<div class="form_item user">
+						<input type="text" id="id" name="id" placeholder=" 아이디" value
+							maxlength="10" required>
+					</div>
+					<div class="form_item pw">
+						<input type="password" id="pw" name="pw" placeholder=" 비밀번호" value
+							maxlength="10" required>
+					</div>
 				</div>
-				</form>
-			</div>
 
 			<div class="error">${error}</div>
 
@@ -70,7 +65,7 @@
 
 
 			<div>
-				계정이 없나요? <a href="#" class="sign_up">회원가입</a>
+				계정이 없나요? <a href="/join" class="sign_up">회원가입</a>
 			</div>
 
 		</div>
