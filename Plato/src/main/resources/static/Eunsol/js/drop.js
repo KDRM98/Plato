@@ -20,7 +20,8 @@ checkbox.addEventListener('change', function() {
   }
 });
 
-unregisterButton.addEventListener("click", function() {
+unregisterButton.addEventListener("click", function(event) {
+		event.preventDefault();
 		console.log("탈퇴버튼 눌렀다")
 		overlay.style.display = "block";
 		popup.style.display = "block";
