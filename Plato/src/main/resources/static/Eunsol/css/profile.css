@@ -176,19 +176,21 @@ input::placeholder {
 	}
 
 .error{
-	height: 200px;
+	margin-top : 2px;
+	height: auto;
 }
 
-.error #pwMsg{
-/* 	display :none; */
+.error #pwMsg, #emailMsg{
+	display :none;
 	color: #e7223d;
+	font-weight: bold;
 }
 
-.error #emailMsg{
-/* 	display :none; */
+/* .error #emailMsg{
+	display :none;
 	color: #e7223d;
 	
-}
+} */
 
 .add_info{
 		border: 1px solid  #a1a1a1;

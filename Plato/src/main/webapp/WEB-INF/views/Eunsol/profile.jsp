@@ -71,7 +71,7 @@
 				</div>
 
 				<div class="error">
-					<div id="nickMsg">이미 사용중인 별명입니다.</div>
+	
 				</div>
 
 				<div>
