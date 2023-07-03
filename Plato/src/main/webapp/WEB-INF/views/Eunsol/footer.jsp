@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			<div class="b_footer">
-				플라토는 통신판매중개자로 통신판매의 당사자가 아닙니다.<br> 플라토는 행당 상품의 주문, 품질, 교환/환불 등
+				플라토는 통신판매중개자로 통신판매의 당사자가 아닙니다.<br> 플라토는 해당 상품의 주문, 품질, 교환/환불 등
 				의무와 책임을 부담하지 않습니다. <br> <br> <em>COPYRIGHT @PLATO.ALL
 					RIGHTS RESERVED</em>
 			</div>

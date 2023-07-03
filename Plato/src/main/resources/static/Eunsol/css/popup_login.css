@@ -46,19 +46,32 @@ body{
 .popup_login .close{
 	position : absolute;
 	left : 90%;
-	display : block;
+/* 	display : block; */
 	width : 40px;
 	height: 40px;
 	border-radius: 100%;
-	text-indent : -9999em;
+/* 	text-indent : -9999em; */
 /* 	border: 1px solid pink; */
-	background-image: url("/Eunsol/imges/x.svg");
+/* 	background-image: url("/Eunsol/imges/x.svg");
 	background-size : 40%;
 	background-repeat : no-repeat;
-	background-position : 50% 50%;
+	background-position : 50% 50%; */
 	cursor: pointer;
 	background-color: white;
 	z-index: 10;
+
+}
+
+.popup_login .close img{
+	width: 24px;
+	height: 24px;;
+	display: block;
+	margin: 8px;
+
+}
+
+.popup_login .close:hover img {
+  filter: brightness(1000%) saturate(100%) invert(100%) contrast(1000%);
 }
 
 .popup_login .content{
@@ -76,10 +89,11 @@ body{
 	
 }
 
-.popup_login img {
+.popup_login .content img {
 	padding-bottom: 10px;
 	width: 170px;
 }
+
 
 
 .basic_info{
@@ -125,10 +139,12 @@ input::placeholder {
 	bottom: 0;
 	left: 0;
 	/* border-radius: inherit; */
-    border-bottom: 0.5px solid #dfdfdf;
 	pointer-events: none;
 	content: ''
 }
+
+.form_item.user::after{
+border-bottom: 0.5px solid #dfdfdf;}
 
 .form_item.user::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
@@ -136,7 +152,16 @@ input::placeholder {
 	background-position: -96px -296px;
 	background-repeat: no-repeat;
 	width: 30px;
-	height: 30px
+	height: 30px;
+}
+
+.form_item.user:focus::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -225px -260px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
 }
 
 .form_item.pw::before {
@@ -145,7 +170,7 @@ input::placeholder {
 	background-position: -64px -264px;
 	background-repeat: no-repeat;
 	width: 30px;
-	height: 30px
+	height: 30px;
 }
 
 
