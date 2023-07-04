@@ -114,5 +114,8 @@
 	<div class="dim"></div>
 
 
+	<!-- js -->
+	<script src="Eunsol/js/popup_login.js"></script>
+
 </body>
 </html>

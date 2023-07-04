@@ -155,10 +155,10 @@ border-bottom: 0.5px solid #dfdfdf;}
 	height: 30px;
 }
 
-.form_item.user:focus::before {
+.form_item.user.a::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
-	background-position: -225px -260px;
+	background-position: -224px -264px;
 	background-repeat: no-repeat;
 	width: 30px;
 	height: 30px;
@@ -168,6 +168,15 @@ border-bottom: 0.5px solid #dfdfdf;}
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -64px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
+.form_item.pw.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -128px -264px;
 	background-repeat: no-repeat;
 	width: 30px;
 	height: 30px;
