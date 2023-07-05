@@ -21,3 +21,15 @@ formPwInput.addEventListener('focus', () => {
 formPwInput.addEventListener('blur', () => {
   formPw.classList.remove('a');
 });
+
+const statusLogin = Array.from(document.querySelectorAll(".login"));
+const popup = document.querySelector('.popup_login');
+const dim = document.querySelector('.dim');
+
+statusLogin.forEach((login)=> {
+ login.addEventListener('click', () => {
+ popup.style.display = 'block';
+ dim.style.display = 'block';
+});
+
+});

@@ -33,7 +33,7 @@ button, input, select{
 	flex-direction: column;
 	align-items : center;
 	justify-content: center;
-	padding-top : 40px;
+	padding-top : 120px;
 }
 
 .form_content{
@@ -83,8 +83,8 @@ button, input, select{
 	}
 
 .circle-camera img {
-	height: 60px;
-	width: 60px;
+	height: 40px;
+	width: 40px;
 }
 
 .basic_info{
@@ -135,14 +135,6 @@ input::placeholder {
 	content: ''
 }
 
-.form_item.user::before {
-	background-image: url("/Eunsol/imges/join_icon.png");
-	background-size: 340px 326px;
-	background-position: -96px -296px;
-	background-repeat: no-repeat;
-	width: 30px;
-	height: 30px
-}
 
 .form_item.pw::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
@@ -151,6 +143,15 @@ input::placeholder {
 	background-repeat: no-repeat;
 	width: 30px;
 	height: 30px
+}
+
+.form_item.pw.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -128px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
 }
 
 .form_item.pw_ck::before {
@@ -162,6 +163,15 @@ input::placeholder {
 	height: 30px
 }
 
+.form_item.pw_ck.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -128px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
 .form_item.email::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
@@ -171,6 +181,18 @@ input::placeholder {
 	height: 30px;
 	;
 }
+
+.form_item.email.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -310px -32px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+	;
+}
+
+
 .form_item.email::after{
 	border-bottom :none
 
@@ -201,7 +223,7 @@ input::placeholder {
 
 
 
-.nickname {
+.form_item.nickname {
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -209,10 +231,10 @@ input::placeholder {
 	max-width: 100%;
 	min-height: 50px;
 	padding: 0 10px 0 45px;
-    border-bottom: 0.5px solid #dfdfdf;
+/*     border-bottom: 0.5px solid #dfdfdf; */
 }
 
-.nickname::before {
+.form_item.nickname::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -96px -296px;
@@ -225,7 +247,21 @@ input::placeholder {
 	content: ''
 }
 
-.nickname input{
+.form_item.nickname.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -224px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 10px;
+	left: 9px;
+	content: ''
+}
+
+
+.form_item.nickname input{
 	flex: 1 1 auto;
 	box-sizing: border-box;
 	width: 270px;
@@ -235,7 +271,7 @@ input::placeholder {
 }
 
 
-.nickname::after{
+.form_item.nickname::after{
 	position: absolute;
 	top: 0;
 	right: 0;

@@ -19,7 +19,7 @@
 					<%-- <form action="/member/updateImg" method="post" enctype="multipart/form-data">
 							<input type="file" name="file"> <input type="hidden" name="memberId" id="memberId" value="${login.memberID}"> --%>
 					<button class="circle-camera">
-						<img src="Eunsol/imges/Photograph.png">
+						<img src="Eunsol/imges/camera.png">
 					</button>
 				</div>
 				<div class="basic_info">
@@ -44,7 +44,7 @@
 				</div>
 
 				<div class="add_info">
-					<div class="nickname">
+					<div class="form_item nickname">
 						<input type="text" id="nickname" name="nickname" placeholder=" 별명"
 							value maxlength="10" required>
 					</div>
@@ -59,12 +59,12 @@
 							<select id="age" name="age">
 								<option value="" selected disabled style="color: #929294;">연령대
 									선택</option>
-								<option value="10s">10대</option>
-								<option value="20s">20대</option>
-								<option value="30s">30대</option>
-								<option value="40s">40대</option>
-								<option value="50s">50대</option>
-								<option value="60s">60대 이상</option>
+								<option value="10">10대</option>
+								<option value="20">20대</option>
+								<option value="30">30대</option>
+								<option value="40">40대</option>
+								<option value="50">50대</option>
+								<option value="60">60대 이상</option>
 							</select>
 						</div>
 					</div>
@@ -129,5 +129,6 @@
 	<!-- js -->
 	<script src="Eunsol/js/drop.js"></script>
 	<script src="Eunsol/js/profile_error.js"></script>
+	<script src="Eunsol/js/profile2.js"></script>
 </body>
 </html>

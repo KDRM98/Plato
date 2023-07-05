@@ -67,9 +67,10 @@
 	margin-bottom: 10px;
 	display: inline-block; 
 	text-decoration: none; 
+	
 }
 
-.side_login_btn a {
+.side_login_btn span {
 	display: block; /* 링크를 블록 요소로 변경 */
 	width: 100%;
 	height: 100%;
@@ -77,6 +78,7 @@
 	text-align: center;
 	text-decoration: none; 
 	color: #ffffff;
+	cursor: pointer;
 }
 
 .side_login a{

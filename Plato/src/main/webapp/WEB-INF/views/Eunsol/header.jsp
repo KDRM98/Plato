@@ -40,10 +40,10 @@
 						</div>
 						<div class="side_login">
 							<div class="side_login_btn">
-								<a href="#pop1">로그인</a>
+								<span class="login">로그인</a>
 							</div>
 							<div>
-						계정이 없나요? <a href="/join" class="side_join"> 회원가입</a>
+						계정이 없나요? <a href="/joinForm" class="side_join"> 회원가입</a>
 							</div>
 						</div>
 					</div>
@@ -53,8 +53,8 @@
 			</div>
 			<div class="user_status">
 				<ul>
-					<li><a href="#pop1" class="login">로그인</a></li>
-					<li><a href="/join">회원가입</a></li>
+					<li><span class="login">로그인</span></li>
+					<li><a href="/joinForm" >회원가입</a></li>
 					<li><a id="search_glass" href="#">Search <img
 							src="/Eunsol/imges/search_glass.svg" alt="search_glass Image">
 					</a></li>
@@ -101,12 +101,12 @@
 
 
 			<div class="login_btn">
-				<button type="submit">로그인</button>
+				<button type="submit" >로그인</button>
 			</div>
 
 
 			<div>
-				계정이 없나요? <a href="/join" class="sign_up">회원가입</a>
+				계정이 없나요? <a href="/joinForm" class="sign_up">회원가입</a>
 			</div>
 
 		</div>

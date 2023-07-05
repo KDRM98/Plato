@@ -5,8 +5,9 @@
 	font-style: normal;
 }
 
-body {
+header body {
 	font-family: 'SUITE-Regular', sans-serif;
+	font-size: 16px;
 }
 
 * {
@@ -69,11 +70,12 @@ header .user_status ul li {
 	margin: 0px 10px;
 }
 
-header .user_status ul li a {
+header .user_status ul li{
 	color: #a1a1a1;
+	cursor: pointer;
 }
 
-header .user_status ul li a:hover {
+header .user_status ul li:hover {
 	color: #212121;
 	font-weight: bold;
 }

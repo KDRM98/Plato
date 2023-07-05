@@ -10,16 +10,18 @@
 
 footer .a_footer {
 	background-color: #212121;
-	padding: 30px 500px;
+	padding: 30px 250px;
 	display: flex;
 	justify-content: center;
 	color: #a1a1a1;
 	height: 140px;
 	align-items: center;
 	font-size: 13px;
+
 }
 
-footer .a_footer ul {
+footer .a_footer .company {
+	width: 400px;
 }
 
 footer .a_footer .footer_logo {
@@ -31,7 +33,7 @@ footer .a_footer .footer_logo {
 }
 
 footer .a_footer img {
-	width: 150px;
+	width: 120px;
 }
 
 footer .b_footer {

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="base" template="/WEB-INF/views/Eunsol/platojoin.jsp">
+		<put-attribute name="title" value="기본타이틀" />
+		<put-attribute name="header" value="/WEB-INF/views/Eunsol/header.jsp" />
+		<put-attribute name="main" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/Eunsol/footer.jsp" />
+	</definition>
+	
+	<definition name="viewList1" extends="base">
+		<put-attribute name="title" value="plato 회원가입 페이지" />
+		<put-attribute name="main" value="/WEB-INF/views/Eunsol/joinForm.jsp" />
+	</definition>
+	
+	<definition name="viewList2" extends="base">
+		<put-attribute name="title" value="plato 회원정보수정 페이지" />
+		<put-attribute name="main" value="/WEB-INF/views/Eunsol/profile.jsp" />
+	</definition>
+
+</tiles-definitions>
