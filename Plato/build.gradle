@@ -27,8 +27,9 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	// JSP 관련 라이브러리
-	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	//implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
+   implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+   implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
 	
 	// @Valid 관
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
