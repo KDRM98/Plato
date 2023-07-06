@@ -3,24 +3,24 @@ const formItems = formItemInput.map(input => input.parentNode);
 
 //커서가 생기면 앞에 이미지가 바뀌는
 formItemInput.forEach((input, index) => {
-  input.addEventListener('focus', () => {
-    formItems[index].classList.add('a');
-  });
-  
-  input.addEventListener('blur', () => {
-    formItems[index].classList.remove('a');
-  });
+	input.addEventListener('focus', () => {
+		formItems[index].classList.add('a');
+	});
+
+	input.addEventListener('blur', () => {
+		formItems[index].classList.remove('a');
+	});
 });
 
 // 선택된 나이대 색이 검정색이 되도록
 const age = document.querySelector("#age");
- age.addEventListener('change', () => {
-    age.style.color='black';
-  });
-  
-  
-const pw = document.getElementById("pw");
-const pw_ck = document.getElementById("pw_ck");
+age.addEventListener('change', () => {
+	age.style.color = 'black';
+});
+
+
+const pw = document.getElementById("join_pw");
+const pw_ck = document.getElementById("join_pw_ck");
 const pwError = document.querySelector("#pwMsg")
 const formPwCk = document.querySelector(".form_item.pw_ck")
 
@@ -67,16 +67,60 @@ email.addEventListener("blur", function() {
 		emError.style.display = 'block';
 		formEmail.classList.add('b');
 		isEmailValid = false;
-		
+
 	}
 
 });
 
-  const id = document.getElementById('id');
-  const idCheck = document.getElementById('idCheck');
+const id = document.getElementById('join_id');
+const duId = document.getElementById('duId');
 
-  id.addEventListener('blur', function() {
-    form.submit();
-  });
 
+id.addEventListener('blur', function() {
+	// ajax
+	console.log("id 중복확인 들어왔다");
+
+	const xhr = new XMLHttpRequest();
+	console.log("id.value : "+id.value);
+	
+	let url = "/idCheck?id="+id.value
+	xhr.open("get", url); //select는 get으로 보이게 update는 put로 post는 insert 안보이게
+
+	xhr.send();
+
+	xhr.onload = function() {
+		console.log(xhr.responseText);
+ 		if (xhr.responseText === '-1') {
+		duId.style.display='block';	}else{
+			duId.style.display='none';
+		}}
+
+});
+
+
+
+const nick = document.getElementById('join_nickname');
+const duNick = document.getElementById('duNick');
+
+
+nick.addEventListener('blur', function() {
+	// ajax
+	console.log("nickname 중복확인 들어왔다");
+
+	const xhr = new XMLHttpRequest();
+	console.log("nick.value : "+nick.value);
+	
+	let url = "/nickCheck?nickname="+nick.value
+	xhr.open("get", url); //select는 get으로 보이게 update는 put로 post는 insert 안보이게
+
+	xhr.send();
+
+	xhr.onload = function() {
+		console.log(xhr.responseText);
+ 		if (xhr.responseText === '-1') {
+		duNick.style.display='block';	}else{
+			duNick.style.display='none';
+		}}
+
+});
 

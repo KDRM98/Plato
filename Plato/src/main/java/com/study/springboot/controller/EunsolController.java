@@ -8,7 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study.springboot.dto.memberDTO;
 import com.study.springboot.service.memberService;
@@ -70,19 +71,64 @@ public class EunsolController {
 		return "viewList1";
 	}
 	
+	@RequestMapping("/idCheck")
+	@ResponseBody
+	public int idcheck(
+			@RequestParam("id") String id,
+			@ModelAttribute memberDTO DTO, Model model
+			) {
+		System.out.println("/idcheck");
+		int result = member.idCheck(DTO);
+		return result;
+	}
+	
+	@RequestMapping("/nickCheck")
+	@ResponseBody
+	public int nickCheck(
+			HttpServletRequest req,
+			@ModelAttribute memberDTO DTO, Model model
+			) {
+		System.out.println("/nickCheck");
+		
+		String nick = req.getParameter("nickname");
+		int result = member.nicknameCheck(DTO);
+		System.out.println("result: " +result);
+		/*
+		 * if (result == -1) { model.addAttribute("msg", "이미 사용중인 아이디 입니다."); }
+		 */
+		return result;
+	}
+	
 	@RequestMapping(value = "/join", method=RequestMethod.POST)
 	public String join(
-			@ModelAttribute memberDTO memberDTO, Model model
+			@ModelAttribute memberDTO memberDTO, Model model,
+			HttpServletRequest req
 			)
 	{
+		System.out.println("/join");
+		// 빈 칸 체크
+	    if (memberDTO.getId().isEmpty() || memberDTO.getPw().isEmpty() || memberDTO.getPw_ck().isEmpty()
+	    		|| memberDTO.getNickname().isEmpty() || memberDTO.getEmail().isEmpty()|| memberDTO.getGender().isEmpty()
+	    		|| memberDTO.getAge()== -1) {
+	        model.addAttribute("error", "빈 칸을 모두 입력해주세요."); // 에러 메시지를 모델에 추가
+	        return "viewList1"; // 에러가 발생한 JSP 페이지로 이동
+	    }
+		
 		int result = member.insertMember(memberDTO);
 		System.out.println("insertMember 결과" + result);
-		
-	
-		
-		
-		return "viewList1";
+		String nickname = req.getParameter("nickname");
+		model.addAttribute("nickname", nickname);
+		return "viewList3";
 	}
+	
+	@RequestMapping("/joincomp")
+	public String joincomp(
+			@ModelAttribute memberDTO DTO, Model model
+			) {
+
+		return "Eunsol/joincomp";
+	}
+	
 	
 	
 	@RequestMapping("/profile")

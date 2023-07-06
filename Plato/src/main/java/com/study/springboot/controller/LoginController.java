@@ -62,7 +62,7 @@ public class LoginController {
 	@RequestMapping("/mypage")
 	public String mypage() {
 		System.out.println("/mypage");
-		return "Hyunyoung/Mypage";
+		return "Hyunyoung/MyPage";
 	}
 
 }

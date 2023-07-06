@@ -205,7 +205,7 @@ input::placeholder {
 	font-weight: bold;
 }
 
-.form_content .error #pwMsg, #emMsg{
+.form_content .error div{
 	display :none;
 }
 
@@ -213,7 +213,7 @@ input::placeholder {
 
 .add_info{
 		border: 1px solid  #a1a1a1;
-		margin: 30px 0px;
+		margin: 30px 0px 0px;
 }
 
 
@@ -359,7 +359,8 @@ select option:checked {
 	font-size: 18px;
 	font-weight: 600;
 	line-height: 22px;
-	color: #fff
+	color: #fff;
+	margin-top: 15px;
 }
 
 .signup-button:disabled {

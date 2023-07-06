@@ -22,14 +22,21 @@ formPwInput.addEventListener('blur', () => {
   formPw.classList.remove('a');
 });
 
-const statusLogin = Array.from(document.querySelectorAll(".login"));
+
+//로그인 누르면 로그린 팝업이 뜨도록
+const statusLogin = document.querySelectorAll(".login");
 const popup = document.querySelector('.popup_login');
 const dim = document.querySelector('.dim');
 
-statusLogin.forEach((login)=> {
- login.addEventListener('click', () => {
+function loginPop(){ 
  popup.style.display = 'block';
  dim.style.display = 'block';
-});
+}
+
+
+statusLogin.forEach((login)=> {
+ login.addEventListener('click',loginPop);
 
 });
+
+

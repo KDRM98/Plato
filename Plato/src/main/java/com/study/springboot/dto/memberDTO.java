@@ -9,10 +9,11 @@ public class memberDTO {
 	private int admin;	
 	private String id;
 	private String pw;
+	private String pw_ck;	
 	private String nickname;
 	private String email;
 	private String gender;
-	private int age;
+	private int age = -1;
 	private String image;
 	
 	
@@ -75,6 +76,12 @@ public class memberDTO {
 	public String toString() {
 		return "memberDTO [user_id=" + user_id + ", admin=" + admin + ", id=" + id + ", pw=" + pw + ", nickname="
 				+ nickname + ", email=" + email + ", gender=" + gender + ", age=" + age + ", image=" + image + "]";
+	}
+	public String getPw_ck() {
+		return pw_ck;
+	}
+	public void setPw_ck(String pw_ck) {
+		this.pw_ck = pw_ck;
 	}
 	
 	

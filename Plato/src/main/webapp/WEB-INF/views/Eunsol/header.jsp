@@ -40,7 +40,7 @@
 						</div>
 						<div class="side_login">
 							<div class="side_login_btn">
-								<span class="login">로그인</a>
+								<span class="login">로그인</span>
 							</div>
 							<div>
 						계정이 없나요? <a href="/joinForm" class="side_join"> 회원가입</a>

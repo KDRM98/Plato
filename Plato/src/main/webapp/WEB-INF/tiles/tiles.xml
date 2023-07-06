@@ -5,7 +5,7 @@
 
 <tiles-definitions>
 
-	<definition name="base" template="/WEB-INF/views/Eunsol/platojoin.jsp">
+	<definition name="base" template="/WEB-INF/tiles/platoLayout.jsp">
 		<put-attribute name="title" value="기본타이틀" />
 		<put-attribute name="header" value="/WEB-INF/views/Eunsol/header.jsp" />
 		<put-attribute name="main" value="" />
@@ -20,6 +20,11 @@
 	<definition name="viewList2" extends="base">
 		<put-attribute name="title" value="plato 회원정보수정 페이지" />
 		<put-attribute name="main" value="/WEB-INF/views/Eunsol/profile.jsp" />
+	</definition>
+	
+	<definition name="viewList3" extends="base">
+		<put-attribute name="title" value="plato 회원가입 완료 페이지" />
+		<put-attribute name="main" value="/WEB-INF/views/Eunsol/joincomp.jsp" />
 	</definition>
 
 </tiles-definitions>

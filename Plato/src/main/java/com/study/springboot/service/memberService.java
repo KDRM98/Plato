@@ -6,5 +6,5 @@ public interface memberService {
 
 	int insertMember(memberDTO DTO);
 	int idCheck(memberDTO DTO);
-	
+	int nicknameCheck(memberDTO DTO);
 }
