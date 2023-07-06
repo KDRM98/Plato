@@ -166,6 +166,12 @@
 	var likeCountElement = document.getElementById('likeCount');
 	var likeCount = parseInt(likeCountElement.textContent);
 	var isLiked = ${isLiked};
+	if(isLiked){
+	    	document.querySelector(".like").style.background = "lightgray";
+  	    }
+  	    else{
+  	    	document.querySelector(".like").style.background = "#FF5733";
+  	    }
 	function clickLike() {
 		// ajax > java >  html
 		
@@ -187,10 +193,10 @@
 	        if (xhr.status === 200) {/* 
 	          isLiked = ${isLiked}; */
 	          if(isLiked){
-	  	    	document.getElementById("likeCount").style.background = "lightgray";
+	        	  document.querySelector(".like").style.background = "lightgray";
 		  	    }
 		  	    else{
-		  	    	document.getElementById("likeCount").style.background = "#FF5733";
+		  	    	document.querySelector(".like").style.background = "#FF5733";
 		  	    }
 	        } else {
 	        	

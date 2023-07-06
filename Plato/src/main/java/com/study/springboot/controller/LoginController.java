@@ -69,10 +69,15 @@ public class LoginController {
 		return "Yuchan/mainpage";
 	}
 	
-	@RequestMapping("/mypage")
+	@RequestMapping("/MyPage")
 	public String mypage() {
-		System.out.println("/mypage");
-		return "Hyunyoung/Mypage";
+		System.out.println("/MyPage");
+		return "Hyunyoung/MyPage";
+	}
+	@RequestMapping("/presonerPage")
+	public String personerPage() {
+		System.out.println("/personerPage");
+		return "Hyunyoung/personerPage";
 	}
 
 }
