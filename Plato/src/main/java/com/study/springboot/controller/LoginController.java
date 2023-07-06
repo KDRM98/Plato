@@ -34,6 +34,16 @@ public class LoginController {
 		return "Dongmin/recipe";
 	}
 	
+	@RequestMapping("/addrecipe")
+	public String addrecipe(
+			HttpServletRequest request,
+			Model model
+			) {
+		return "Dongmin/addrecipe";
+	}
+	
+	
+	
 	@RequestMapping("/recipeLike")
 	public String updateRecipe(
 	        @RequestParam(value = "likeCount") int likeCount,

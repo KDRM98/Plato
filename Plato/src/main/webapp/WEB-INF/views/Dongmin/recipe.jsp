@@ -145,7 +145,8 @@
 		</div>	
 	</div><!-- 소개글부터 조리방법, 데이터분석까지 -->
 	<!-- 댓글 쓰기칸 -->
-	<%@ include file="/WEB-INF/views/Yuchan/writecomment.jsp" %>
+	
+	<%@ include file="/WEB-INF/views/Yuchan/writecomment.jsp"%>
 	<!-- 내가 쓴 댓글(수정 삭제 추가) -->
 	<div style="margin-bottom: 50px;">
 		<jsp:include page="/WEB-INF/views/Yuchan/my_comment.jsp">
@@ -183,8 +184,8 @@
 	    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	    xhr.onreadystatechange = function() {
 	      if (xhr.readyState === XMLHttpRequest.DONE) {
-	        if (xhr.status === 200) {
-	          isLiked = ${isLiked};
+	        if (xhr.status === 200) {/* 
+	          isLiked = ${isLiked}; */
 	          if(isLiked){
 	  	    	document.getElementById("likeCount").style.background = "lightgray";
 		  	    }
