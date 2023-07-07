@@ -82,7 +82,15 @@
 		</div>
 			<hr>
 		<div class="introelement">
-			<span class="ltitle">재료</span><br>
+			<span class="ltitle">재료</span>
+			<select id="market-select">
+			  <option value="https://www.coupang.com/np/search?component=&q=" selected>쿠팡</option>
+			  <option value="https://browse.gmarket.co.kr/search?keyword=">G마켓</option>
+			  <option value="https://search.11st.co.kr/Search.tmall?kwd=">11번가</option>
+			  <option value="https://www.kurly.com/search?sword=">마켓컬리(Kurly)</option>
+			  <option value="https://search.shopping.naver.com/search/all?query=">네이버쇼핑</option>
+			</select>
+			<br>
 			<div class="ingredient" style="margin-top: 50px; display: flex; flex-wrap: wrap; width: 1300px;">
 				<div id="ingredient-container"></div>
 			</div>
@@ -160,7 +168,7 @@
 	</div>
 	
 		
-		<jsp:include page="/WEB-INF/views/Hyunyoung/footer.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/Eunsol/footer.jsp"></jsp:include>
 </body>
 <script>
 	var likeCountElement = document.getElementById('likeCount');
@@ -210,50 +218,56 @@
 	}
 	
 	var ingredients = [
-	    { name: "우동면", quantity: "1인분", link: "https://www.coupang.com/np/search?component=&q=우동면&channel=user" },
-	    { name: "명란젓", quantity: "1개(30g)", link: "https://www.coupang.com/np/search?component=&q=명란젓&channel=user" },
-	    { name: "쪽파", quantity: "1줄(10g)", link: "https://www.coupang.com/np/search?component=&q=쪽파&channel=user" },
-	    { name: "버터", quantity: "1조각(10g)", link: "https://www.coupang.com/np/search?component=&q=버터&channel=user" },
-	    { name: "달걀", quantity: "1개", link: "https://www.coupang.com/np/search?component=&q=달걀&channel=user" },
-	    { name: "김가루", quantity: "약간", link: "https://www.coupang.com/np/search?component=&q=김가루&channel=user" },
-	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
-	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
-	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
-	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
-	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
-	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
-	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
-	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
-	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
-	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유&channel=user" },
+	    { name: "우동면", quantity: "1인분", link: "https://www.coupang.com/np/search?component=&q=우동면" },
+	    { name: "명란젓", quantity: "1개(30g)", link: "https://www.coupang.com/np/search?component=&q=명란젓" },
+	    { name: "쪽파", quantity: "1줄(10g)", link: "https://www.coupang.com/np/search?component=&q=쪽파" },
+	    { name: "버터", quantity: "1조각(10g)", link: "https://www.coupang.com/np/search?component=&q=버터" },
+	    { name: "달걀", quantity: "1개", link: "https://www.coupang.com/np/search?component=&q=달걀" },
+	    { name: "김가루", quantity: "약간", link: "https://www.coupang.com/np/search?component=&q=김가루" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유" },
+	    { name: "쯔유", quantity: "1숟가락(8g)", link: "https://www.coupang.com/np/search?component=&q=쯔유" },
 	  ];
 	
 	  var container = document.getElementById("ingredient-container");
 	  
 	  for (var i = 0; i < ingredients.length; i++) {
-	    var ingredient = ingredients[i];
-	    
-	    // 칸과 행 계산
-	    var column = Math.floor(i / 5) % 4;
-	    var row = i % 5;
-	    
-	    // 칸이 없을 경우 생성
-	    if (!container.children[column]) {
-	      var columnDiv = document.createElement("div");
-	      columnDiv.className="column";
-	      container.appendChild(columnDiv);
-	    }
-	    
-	    // 재료 추가
-	    var ingredientDiv = document.createElement("div");
-	    ingredientDiv.className = "ingredientlist";
-	    ingredientDiv.innerHTML = `
-	      <div>`+ingredient.name+`</div>
-	      <div style="margin-right: 15px;">`+ingredient.quantity+`</div>
-	      <div><a class="eat" href=`+ingredient.link+`>구매</a></div>
-	    `;
-	    container.children[column].appendChild(ingredientDiv);
-	  }
+		  var ingredient = ingredients[i];
+
+		  // 칸과 행 계산
+		  var column = Math.floor(i / 5) % 4;
+		  var row = i % 5;
+
+		  // 칸이 없을 경우 생성
+		  if (!container.children[column]) {
+		    var columnDiv = document.createElement("div");
+		    columnDiv.className = "column";
+		    container.appendChild(columnDiv);
+		  }
+
+		  // 재료 추가
+		  var ingredientDiv = document.createElement("div");
+		  ingredientDiv.className = "ingredientlist";
+		  ingredientDiv.innerHTML =
+		    `<div>` + ingredient.name + `</div>
+		    <div style="margin-right: 15px;">` + ingredient.quantity + `</div>
+		    <div><a class="eat" href="#" onclick="getPurchaseLink('` + ingredient.name + `')">구매</a></div>`;
+		  container.children[column].appendChild(ingredientDiv);
+		}
+
+		function getPurchaseLink(ingredient) {
+		  var selectedMarket = document.getElementById("market-select").value;
+		  var plink = selectedMarket + encodeURIComponent(ingredient);
+		  window.open(plink, "_blank");
+		}
+
 	
 
 </script>
