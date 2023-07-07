@@ -15,27 +15,28 @@
 				<div class="basic_info">
 
 					<div class="form_item user">
-						<input type="text" id="join_id" name="id" placeholder=" 아이디" value
-							maxlength="10" required>
+						<input type="text" id="join_id" name="id" data-id="Id" placeholder=" 아이디" value
+							maxlength="10" >
 					</div>
 
 					<div class="form_item pw">
 						<input type="password" id="join_pw" name="pw" placeholder=" 비밀번호" value
-							maxlength="10" required>
+							maxlength="10" >
 					</div>
 					<div class="form_item pw_ck">
 						<input type="password" id="join_pw_ck" name="pw_ck"
-							placeholder=" 비밀번호 재확인" value maxlength="10" required>
+							placeholder=" 비밀번호 재확인" value maxlength="10" >
 					</div>
 					<div class="form_item email">
 						<input type="email" id="email" name="email"
-							placeholder=" 비밀번호 분실 시 확인용 이메일" required>
+							placeholder=" 비밀번호 분실 시 확인용 이메일" >
 					</div>
 				</div>
 
 				<div class="error">
 					<!-- 	<div id="idMsg">아이디는 필수 정보입니다.</div> -->
 					<div id="duId">이미 사용중인 아이디 입니다.</div>
+					<div>${duId}</div>
 					<!-- 	<div id="pswdMsg">비밀번호는 필수 정보입니다.</div> -->
 					<div id="pwMsg">비밀번호가 일치하지 않습니다.</div>
 					<!-- <div id="emailMsg">비밀번호 분실 시 확인용 이메일은 필수 정보입니다.</div> -->
@@ -45,7 +46,7 @@
 				<div class="add_info">
 					<div class="form_item nickname">
 						<input type="text" id="join_nickname" name="nickname" placeholder=" 별명"
-							value maxlength="10" required>
+							value maxlength="10" >
 					</div>
 					<div class="select_box">
 						<ul class="box gender">
@@ -76,8 +77,14 @@
 				<div>
 					<button type="submit" class="signup-button">가입하기</button>
 				</div>
-				<div>
-				${error}
+				<div class="error">
+				<p class="nullError Id">${errorId}</p>
+				<p class="nullError Pw">${errorPw}</p>
+				<p class="nullError Pw_ck">${errorPw_ck}</p>
+				<p class="nullError Nickname">${errorNickname}</p>
+				<p class="nullError Email">${errorEmail}</p>
+				<p class="Gender">${errorGender}</p>
+				<p class="Age">${errorAge}</p>
 				</div>
 			</div>
 		</div>

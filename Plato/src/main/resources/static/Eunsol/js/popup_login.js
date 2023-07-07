@@ -35,6 +35,7 @@ function loginPop(){
 
 
 statusLogin.forEach((login)=> {
+
  login.addEventListener('click',loginPop);
 
 });

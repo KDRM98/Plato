@@ -20,6 +20,10 @@
 					src="/Eunsol/imges/three_bars.svg" alt="Checkbox Image">
 				</label>
 				
+				
+				
+				
+				
 				<!-- 왼쪽 사이드바 -->
 				<div class="sidebar" id="sb">
 					<div class="close">
@@ -43,18 +47,22 @@
 								<span class="login">로그인</span>
 							</div>
 							<div>
-						계정이 없나요? <a href="/join" class="side_join"> 회원가입</a>
+						계정이 없나요? <a href="/joinForm" class="side_join"> 회원가입</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			    <!-- 왼쪽 사이드바 끝-->
 
+
+
+
+
 			</div>
 			<div class="user_status">
 				<ul>
 					<li><a href="#pop1" class="login">로그인</a></li>
-					<li><a href="/join">회원가입</a></li>
+					<li><a href="/joinForm">회원가입</a></li>
 					<li><a id="search_glass" href="#">Search <img
 							src="/Eunsol/imges/search_glass.svg" alt="search_glass Image">
 					</a></li>
@@ -106,13 +114,15 @@
 
 
 			<div>
-				계정이 없나요? <a href="/join" class="sign_up">회원가입</a>
+				계정이 없나요? <a href="/joinForm" class="sign_up">회원가입</a>
 			</div>
 
 		</div>
 	</div>
 	<div class="dim"></div>
-
+	
+	<!-- js -->
+	<script src="Eunsol/js/popup_login.js"></script>
 
 </body>
 </html>

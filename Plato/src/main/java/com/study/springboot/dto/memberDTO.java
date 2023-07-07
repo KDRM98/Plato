@@ -12,7 +12,7 @@ public class memberDTO {
 	private String pw_ck;	
 	private String nickname;
 	private String email;
-	private String gender;
+	private String gender = "-1";
 	private int age = -1;
 	private String image;
 	

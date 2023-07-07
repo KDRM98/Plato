@@ -199,7 +199,7 @@ input::placeholder {
 
 
 .form_content .error{
-	margin-top : 2px;
+	margin-top : 5px;
 	height: auto;
 	color: #e7223d;
 	font-weight: bold;
@@ -209,6 +209,10 @@ input::placeholder {
 	display :none;
 }
 
+.form_content .error p{
+	margin-top : 2px;
+
+}
 
 
 .add_info{
@@ -361,6 +365,7 @@ select option:checked {
 	line-height: 22px;
 	color: #fff;
 	margin-top: 15px;
+	margin-bottom: 5px;
 }
 
 .signup-button:disabled {
