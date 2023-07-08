@@ -24,6 +24,7 @@ public class EunsolController {
 	@Autowired
 	memberService member;
 	
+	//----------------------------체킹
 	@RequestMapping("/header")
 	public String header() {
 		System.out.println("/header");
@@ -34,6 +35,12 @@ public class EunsolController {
 	public String footer() {
 		System.out.println("/footer");
 		return "Eunsol/footer";
+	}
+	
+	@RequestMapping("/jf")
+	public String jf() {
+		System.out.println("/jf");
+		return "Eunsol/joinForm";
 	}
 	
 	@RequestMapping("/login_check")
@@ -61,6 +68,14 @@ public class EunsolController {
 		return "Eunsol/header";
 	}
 	
+	@RequestMapping("/profile2")
+	public String profile2() {
+		System.out.println("/profile2");
+		return "Eunsol/profile2";
+	}
+	
+	//----------------- 구현
+	//회원가입 페이지
 	@RequestMapping("/joinForm")
 	public String joinForm(
 			@ModelAttribute memberDTO DTO, Model model
@@ -70,6 +85,7 @@ public class EunsolController {
 		return "viewList1";
 	}
 	
+	//id 중복검사
 	@RequestMapping("/idCheck")
 	@ResponseBody
 	public int idCheck(
@@ -82,6 +98,7 @@ public class EunsolController {
 		return result;
 	}
 	
+	//nickname 중복검사
 	@RequestMapping("/nickCheck")
 	@ResponseBody
 	public int nickCheck(
@@ -98,6 +115,7 @@ public class EunsolController {
 		return result;
 	}
 	
+	// 가입하기 버튼 누르면 연결
 	@RequestMapping(value = "/join", method=RequestMethod.POST)
 	public String join(
 			@ModelAttribute memberDTO memberDTO, Model model,
@@ -136,7 +154,7 @@ public class EunsolController {
 		    	 model.addAttribute("errorEmail", "별명을 입력해주세요."); 
 		    }
 		    
-		    if( memberDTO.getGender().isEmpty()) {
+		    if( memberDTO.getGender()== "-1") {
 		    	 model.addAttribute("errorGender", "성별을 선택해주세요."); 
 		    }
 		    
@@ -155,27 +173,23 @@ public class EunsolController {
 		return "viewList3";
 	}
 	
+	
+	//회원가입 완료 페이지
 	@RequestMapping("/joincomp")
-	public String joincomp(
-			@ModelAttribute memberDTO DTO, Model model
-			) {
+	public String joincomp() {
 
 		return "Eunsol/joincomp";
 	}
 	
 	
-	
+	//마이페이지 중 프로필수정
 	@RequestMapping("/profile")
 	public String profile() {
 		System.out.println("/profile");
 		return "viewList2";
 	}
 	
-	@RequestMapping("/profile2")
-	public String profile2() {
-		System.out.println("/profile2");
-		return "Eunsol/profile2";
-	}
+
 
 	
 	

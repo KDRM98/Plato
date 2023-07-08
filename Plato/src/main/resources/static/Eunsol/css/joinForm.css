@@ -50,7 +50,7 @@ button, input, select{
 	border: 1px solid  #a1a1a1;	
 }
 
-.form_item input{
+.joinform_item input{
 	flex: 1 1 auto;
 	box-sizing: border-box;
 	width: 270px;
@@ -63,7 +63,7 @@ input::placeholder {
   font-size: 12px;
 }
 
-.form_item::before {
+.joinform_item::before {
 	position: absolute;
 	top: 10px;
 	left: 9px;
@@ -71,7 +71,7 @@ input::placeholder {
 }
 
 
-.form_item {
+.joinform_item {
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -82,7 +82,7 @@ input::placeholder {
 }
 
 
-.form_item::after{
+.joinform_item::after{
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -94,7 +94,7 @@ input::placeholder {
 	content: ''
 }
 
-.form_item.user::before {
+.joinform_item.user::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -96px -296px;
@@ -103,7 +103,7 @@ input::placeholder {
 	height: 30px
 }
 
-.form_item.user.a::before {
+.joinform_item.user.a::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -224px -264px;
@@ -112,7 +112,7 @@ input::placeholder {
 	height: 30px;
 }
 
-.form_item.pw::before {
+.joinform_item.pw::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -64px -264px;
@@ -121,7 +121,7 @@ input::placeholder {
 	height: 30px
 }
 
-.form_item.pw.a::before {
+.joinform_item.pw.a::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -128px -264px;
@@ -131,7 +131,7 @@ input::placeholder {
 }
 
 
-.form_item.pw_ck::before {
+.joinform_item.pw_ck::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -64px -264px;
@@ -140,7 +140,7 @@ input::placeholder {
 	height: 30px
 }
 
-.form_item.pw_ck.a::before {
+.joinform_item.pw_ck.a::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -128px -264px;
@@ -149,7 +149,7 @@ input::placeholder {
 	height: 30px;
 }
 
-.form_item.pw_ck.b::before {
+.joinform_item.pw_ck.b::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -95px -264px;
@@ -158,7 +158,7 @@ input::placeholder {
 	height: 30px;
 }
 
-.form_item.email::before {
+.joinform_item.email::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -310px -160px;
@@ -168,7 +168,7 @@ input::placeholder {
 	;
 }
 
-.form_item.email.a::before {
+.joinform_item.email.a::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -310px -32px;
@@ -178,7 +178,7 @@ input::placeholder {
 	;
 }
 
-.form_item.email.b::before {
+.joinform_item.email.b::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -310px -97px;
@@ -188,7 +188,7 @@ input::placeholder {
 	;
 }
 
-.form_item.email::after{
+.joinform_item.email::after{
 	border-bottom :none
 
 	}
@@ -223,7 +223,7 @@ input::placeholder {
 
 
 
-.form_item.nickname {
+.joinform_item.nickname {
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -233,7 +233,7 @@ input::placeholder {
 	padding: 0 10px 0 45px;
 }
 
-.form_item.nickname::before {
+.joinform_item.nickname::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -96px -296px;
@@ -246,7 +246,7 @@ input::placeholder {
 	content: ''
 }
 
-.form_item.nickname input{
+.joinform_item.nickname input{
 	flex: 1 1 auto;
 	box-sizing: border-box;
 	width: 270px;
@@ -256,7 +256,7 @@ input::placeholder {
 }
 
 
-.form_item.nickname::after{
+.joinform_item.nickname::after{
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -268,7 +268,7 @@ input::placeholder {
 	content: ''
 }
 
-.form_item.nickname.a::before {
+.joinform_item.nickname.a::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -224px -264px;
@@ -302,17 +302,17 @@ ul.box.gender {
 }
 
 
-.radio_item+.radio_item {
+.joinradio_item+.joinradio_item {
 	margin-left: -1px 
 	/* 라디오 버튼 요소들이 붙어있는 것처럼 보이게 */
 }
 
 
-.radio_item input[type="radio"] + label {
+.joinradio_item input[type="radio"] + label {
   cursor: pointer;
 }
 
-.radio_item input:checked+label {
+.joinradio_item input:checked+label {
 	z-index: 1;
 	border-color: #FF5733;
 	font-weight: bold;
@@ -321,7 +321,7 @@ ul.box.gender {
 
 }
 
-.radio_item label {
+.joinradio_item label {
 	display: block;
 	position: relative;
 	box-sizing: border-box;
