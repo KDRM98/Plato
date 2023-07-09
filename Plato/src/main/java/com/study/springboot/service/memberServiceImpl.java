@@ -66,4 +66,20 @@ public class memberServiceImpl implements memberService {
 		return result;
 	}
 
+	@Override
+	public int loginCheck(memberDTO DTO) {
+		System.out.println("loginCheck 서비스");
+		int loginCheck = DAO.loginCheck(DTO);
+		System.out.println(loginCheck);
+		return loginCheck;
+	}
+
+	@Override
+	public memberDTO basicInfo(memberDTO DTO) {
+		System.out.println("basicInfo 서비스");
+		memberDTO result = DAO.basicInfo(DTO);
+		System.out.println(result);
+		return result;
+	}
+
 }

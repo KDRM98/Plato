@@ -1,7 +1,5 @@
 package com.study.springboot.service;
 
-import java.util.Map;
-
 import com.study.springboot.dto.memberDTO;
 
 public interface memberService {
@@ -9,4 +7,6 @@ public interface memberService {
 	int insertMember(memberDTO DTO);
 	int idCheck(memberDTO DTO);
 	int nicknameCheck(memberDTO DTO);
+	int loginCheck(memberDTO DTO);
+	memberDTO basicInfo(memberDTO DTO);
 }

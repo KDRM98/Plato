@@ -21,6 +21,11 @@
 		<put-attribute name="title" value="plato 회원정보수정 페이지" />
 		<put-attribute name="main" value="/WEB-INF/views/Eunsol/profile.jsp" />
 	</definition>
+	
+	<definition name="viewList3" extends="base">
+		<put-attribute name="title" value="plato 회원가입완료 페이지" />
+		<put-attribute name="main" value="/WEB-INF/views/Eunsol/joincomp.jsp" />
+	</definition>
 
 </tiles-definitions>
 

@@ -1,8 +1,7 @@
 package com.study.springboot.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,26 +45,46 @@ public class EunsolController {
 	@RequestMapping("/login_check")
 	public String login_check(
 			HttpServletRequest request,
-			Model model
+			Model model,
+			@ModelAttribute memberDTO DTO
 			) {
 		System.out.println("/login_check");
 
-		String nextPage = null;
+		String nextPage = "Eunsol/header";
 		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+		int loginCheck = member.loginCheck(DTO);
+		memberDTO basicInfo = member.basicInfo(DTO);
+		String nickname = basicInfo.getNickname();
+		int uerid = basicInfo.getUser_id();			
 		
-		String _id = "admin";
-		String _pw = "1234";
-		
-		if( id != null && pw != null) {
+		HttpSession session = request.getSession();
+		if (id != null && pw != null) {
+			if (loginCheck == 1) {
+				// 로그인 확인 완료s
+
+				// 세션 가져오기
+				
+
+				// 세션 저장하기
+				session.setAttribute("loginSession", id);
+				model.addAttribute("nickname", nickname);
+				nextPage = "Eunsol/header";
+
+			} else {
+				// 회원정보 없음
+				
+				session.setAttribute("msg", "아이디나 비밀번호가 올바르지 않습니다.");
+				nextPage = "/loginForm";
+			}
+		} else {
 			
-		}else {
-			model.addAttribute("error", "아이디와 패스워드는 필수 입니다.");
-			nextPage = "Eunsol/header";
+			session.setAttribute("msg", "아이디와 비밀번호를 입력해주세요.");
+			nextPage = "/login?msg";
 		}
-		
-		return "Eunsol/header";
+
+		return nextPage;
 	}
 	
 	@RequestMapping("/profile2")
@@ -124,7 +143,7 @@ public class EunsolController {
 	{
 		System.out.println("/join");
 		// 빈 칸 체크
-	    if (memberDTO.getId().isEmpty() || memberDTO.getPw().isEmpty() || memberDTO.getPw_ck().isEmpty()
+	    if (memberDTO.getId().isEmpty() || idCheck(memberDTO.getId(), memberDTO) != -1 ||memberDTO.getPw().isEmpty() || memberDTO.getPw_ck().isEmpty()
 	    		|| memberDTO.getNickname().isEmpty() || memberDTO.getEmail().isEmpty()|| memberDTO.getGender().isEmpty()
 	    		|| memberDTO.getAge()== -1) 
 	    
@@ -134,6 +153,7 @@ public class EunsolController {
 		    }
 	    	 
 	    	 if(idCheck(memberDTO.getId(), memberDTO) != -1) {
+	    		 System.out.println("join 아이디 중복확인");
 		    	 model.addAttribute("duId", "이미 사용중인 아이디 입니다."); 
 		    }
 	    	 
@@ -165,11 +185,17 @@ public class EunsolController {
 	        return "viewList1"; // 에러가 발생한 JSP 페이지로 이동
 	    }
   
-		
+	   
+	    
+	    
+		//데이터베이스에 삽입
 		int result = member.insertMember(memberDTO);
 		System.out.println("insertMember 결과" + result);
+		
+		//회원가입완료 페이지에 닉네임 뜨게
 		String nickname = req.getParameter("nickname");
 		model.addAttribute("nickname", nickname);
+		
 		return "viewList3";
 	}
 	
