@@ -8,7 +8,9 @@ formItemInput.forEach((input, index) => {
 	});
 
 	input.addEventListener('blur', () => {
-		formItems[index].classList.remove('a');
+		if (input.value === '') {
+			formItems[index].classList.remove('a');
+		}
 	});
 });
 
@@ -21,14 +23,14 @@ age.addEventListener('change', () => {
 
 // 비밀번호 일치하지 않을 때 에러메세지 생성
 // blur : HTML 요소에서 포커스가 빠져나가면 발생하는 이벤트
-const pw = document.getElementById("join_pw");
+const join_pw = document.getElementById("join_pw");
 const pw_ck = document.getElementById("join_pw_ck");
 const pwError = document.querySelector("#pwMsg")
 const formPwCk = document.querySelector(".joinform_item.pw_ck")
 
 let isPasswordValid = true; // 패스워드의 유효성 여부를 저장하는 변수
 pw_ck.addEventListener("blur", function() {
-	const password = pw.value;
+	const password = join_pw.value;
 	const passwordConfirm = pw_ck.value;
 
 	if (passwordConfirm === '') {
@@ -147,6 +149,7 @@ const duNick = document.getElementById('duNick');
 const sinup_btn = document.querySelector(".signup-button");
 
 const idRstr = document.getElementById('idRstr');
+const pwRstr = document.getElementById('pwRstr');
 
 function checkDuplicateValue(inputValue, url, duElement) {
 	return new Promise((resolve) => {
@@ -188,7 +191,29 @@ function checkIdPattern(idValue) {
 }
 
 
+function checkPwPattern(pwValue) {
+	if (pwValue !== '') {
+		return new Promise((resolve) => {
 
+			const hasLowercase = /[a-z]/.test(pwValue);
+			const hasNumber = /[0-9]/.test(pwValue);
+			const hasSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(pwValue);
+			/*const isValidLength = pwValue.length >= 5 && pwValue.length <= 16;*/
+			
+			const result = hasLowercase && hasNumber && hasSpecialChar /*&& isValidLength*/;
+			if (result) {
+				pwRstr.style.display = 'none';
+				resolve(false); // 유효한 아이디일 때 버튼 활성화
+			} else {
+				pwRstr.style.display = 'block';
+				resolve(true)
+			}
+		});
+	} else {
+		// idValue가 null인 경우 처리
+		return Promise.resolve(false);; // 유효한 아이디로 간주하여 버튼 활성화
+	}
+}
 
 
 function checkEmailPattern(emailValue) {
@@ -218,6 +243,8 @@ async function handleBlur() {
 
 	const idCheckPattern = await checkIdPattern(idValue)
 
+	const pwValue = join_pw.value;
+	const pwCheckPattern = await checkPwPattern(pwValue)
 
 	const emailValue = email.value;
 	const emailCheckPattern = await checkEmailPattern(emailValue)
@@ -225,11 +252,12 @@ async function handleBlur() {
 	const nickValue = nick.value;
 	const nickUrl = "/nickCheck?nickname=" + nickValue;
 	const nickDuplicate = await checkDuplicateValue(nickValue, nickUrl, duNick);
-	console.log("idDuplicate :" + idDuplicate, idCheckPattern, emailCheckPattern, nickDuplicate, (idDuplicate || idCheckPattern || emailCheckPattern || nickDuplicate));
-	sinup_btn.disabled = idDuplicate || idCheckPattern || emailCheckPattern || nickDuplicate; // 중복 상태가 하나라도 발견되면 true
+	console.log("idDuplicate :" + idDuplicate, idCheckPattern, pwCheckPattern, emailCheckPattern, nickDuplicate, (idDuplicate || idCheckPattern || pwCheckPattern || emailCheckPattern || nickDuplicate));
+	sinup_btn.disabled = idDuplicate || idCheckPattern || pwCheckPattern || emailCheckPattern || nickDuplicate; // 중복 상태가 하나라도 발견되면 true
 }
 
 id.addEventListener('blur', handleBlur);
+join_pw.addEventListener('blur', handleBlur);
 email.addEventListener('blur', handleBlur);
 nick.addEventListener('blur', handleBlur);
 
@@ -249,55 +277,59 @@ id.addEventListener("blur", function() {
 });*/
 
 
-
+// 빈칸으로 가입하기 눌렀을때 생긴 오류메세지 id칸 채우면 오류 사라지게
 const joinInput = Array.from(document.querySelectorAll(".joinform_item input"));
 const nullError = document.querySelectorAll(".nullError")
-console.log("joinInput[0]",joinInput[0],joinInput.length);
-console.log("nullError[0]", nullError[0],nullError.length );
+console.log("joinInput[0]", joinInput[0], joinInput.length);
+console.log("nullError[0]", nullError[0], nullError.length);
 joinInput.forEach((input, index) => {
-	console.log("포이치문 들어왔당");
-	console.log("index- input",index,"-",input);
-	
+/*	console.log("포이치문 들어왔당");
+	console.log("index- input", index, "-", input);
+*/
 	input.addEventListener("blur", function() {
-	
-	console.log("이벤트리스너 들어왔당");
-	console.log("nullError[index]",nullError[index]);
-	
-	const value = input.value;
-	console.log("value : " + value, index);
-		if (index === 5|| index === 6) {
-			if( value !== '-1'){
-			nullError[index].style.display = "none";		
-			}
-		}else{
-			if(value !== ''){
-				nullError[index].style.display = "none";	
-			}
+
+/*		console.log("이벤트리스너 들어왔당");
+		console.log("nullError[index]", nullError[index]);
+*/
+		const value = input.value;
+		console.log("value : " + value, index);
+
+		if (value !== '') {
+			nullError[index].style.display = "none";
 		}
+
 	});
 });
+
 
 const genderRadios = document.querySelectorAll('.joinradio_item input');
 const ageSelect = document.getElementById('age');
 const errorNull = document.querySelectorAll('.errorNull');
 
 genderRadios.forEach(radio => {
-	console.log("성별 포이치문 들어왔당");
-	console.log("radio",radio);
-  radio.addEventListener('change', function() {
-	  console.log("성별 이벤트리스너 들어왔당");
-    const value = this.value;
-    console.log("value : " + value);
-    if (value !== '-1') {
-      errorNull[0].style.display = 'none';
-    }
-  });
+/*	console.log("성별 포이치문 들어왔당");
+	console.log("radio", radio);*/
+	radio.addEventListener('change', function() {
+/*		console.log("성별 이벤트리스너 들어왔당");*/
+		const value = this.value;
+/*		console.log("value : " + value);*/
+		if (value !== '-1') {
+			errorNull[0].style.display = 'none';
+		}
+	});
 });
 
 ageSelect.addEventListener('blur', function() {
-  const value = this.value;
-  if (value !== '-1') {
-    errorNull[1].style.display = 'none';
-  }
+	const value = this.value;
+	if (value !== '-1') {
+		errorNull[1].style.display = 'none';
+	}
 });
+
+
+
+// 아이디만 치고 가입시 에러뜨고 값 유지하기
+
+
+
 

@@ -18,6 +18,7 @@ formItemInput.forEach((input, index) => {
 const age = document.querySelector("#age");
 age.addEventListener('change', () => {
 	age.style.color = 'black';
+	age.value
 });
 
 
@@ -277,7 +278,7 @@ id.addEventListener("blur", function() {
 });*/
 
 
-
+// 빈칸으로 가입하기 눌렀을때 생긴 오류메세지 id칸 채우면 오류 사라지게
 const joinInput = Array.from(document.querySelectorAll(".joinform_item input"));
 const nullError = document.querySelectorAll(".nullError")
 console.log("joinInput[0]", joinInput[0], joinInput.length);
@@ -300,6 +301,7 @@ joinInput.forEach((input, index) => {
 
 	});
 });
+
 
 const genderRadios = document.querySelectorAll('.joinradio_item input');
 const ageSelect = document.getElementById('age');
@@ -326,5 +328,38 @@ ageSelect.addEventListener('blur', function() {
 });
 
 
+
+// 아이디만 치고 가입시 에러뜨고 값 유지하기
+//const sinup_btn = document.querySelector(".signup-button");
+
+
+sinup_btn.addEventListener('click', function() {
+	// ajax
+	var join_gender = document.querySelector('input[name="gender"]:checked');
+	console.log("가입하기 눌렀다");
+/*	console.log(join_gender.value)*/
+	const xhr = new XMLHttpRequest();
+
+	let url = "/join?id="+ id.value+"&pw="+join_pw.value+"&email="+email.value+"&nickname="+nick.value
+	+"&gender="+join_gender.value+"&age="+age.value;
+	
+	xhr.open("post", url); //select는 get으로 보이게 update는 put로 post는 insert 안보이게
+
+	xhr.send();
+
+	xhr.onload = function() {
+		console.log(xhr.responseText);
+		/*if (xhr.responseText === '-1') {
+			
+			
+		} else {
+			duNick.style.display = 'none';
+			sinup_btn.disabled = false;
+
+			 // 버튼 활성화
+		}*/
+	}
+
+});
 
 

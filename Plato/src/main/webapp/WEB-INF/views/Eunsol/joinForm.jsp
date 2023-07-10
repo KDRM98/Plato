@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="Eunsol/css/joinForm.css">
 </head>
 <body>
-	<form id="join_form" action="/join" method="post">
+	<!-- <form id="join_form" action="/join" method="post"> -->
 		<div class="join_container">
 			<div class="form_content">
 				<div class="basic_info">
@@ -41,6 +41,7 @@
 					<div id="pwMsg">비밀번호가 일치하지 않습니다.</div>
 					<!-- <div id="emailMsg">비밀번호 분실 시 확인용 이메일은 필수 정보입니다.</div> -->
 					<div id="emMsg">이메일 형식이 올바르지 않습니다.</div>
+					<div>${emMsg}</div>
 				</div>
 
 				<div class="add_info">
@@ -88,7 +89,7 @@
 				</div>
 			</div>
 		</div>
-	</form>
+<!-- 	</form> -->
 
 
 	<!-- js -->

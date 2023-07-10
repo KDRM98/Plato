@@ -78,6 +78,7 @@ public class memberServiceImpl implements memberService {
 	public memberDTO basicInfo(memberDTO DTO) {
 		System.out.println("basicInfo 서비스");
 		memberDTO result = DAO.basicInfo(DTO);
+		
 		System.out.println(result);
 		return result;
 	}

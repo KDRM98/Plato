@@ -1,5 +1,9 @@
 package com.study.springboot.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -54,10 +58,12 @@ public class EunsolController {
 		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+		
 		int loginCheck = member.loginCheck(DTO);
+		
 		memberDTO basicInfo = member.basicInfo(DTO);
 		String nickname = basicInfo.getNickname();
-		int uerid = basicInfo.getUser_id();			
+		int uer_id = basicInfo.getUser_id();			
 		
 		HttpSession session = request.getSession();
 		if (id != null && pw != null) {
@@ -81,7 +87,7 @@ public class EunsolController {
 		} else {
 			
 			session.setAttribute("msg", "아이디와 비밀번호를 입력해주세요.");
-			nextPage = "/login?msg";
+			nextPage = "";
 		}
 
 		return nextPage;
@@ -135,24 +141,24 @@ public class EunsolController {
 	}
 	
 	// 가입하기 버튼 누르면 연결
-	@RequestMapping(value = "/join", method=RequestMethod.POST)
-	public String join(
+	@RequestMapping(value = "/join1", method=RequestMethod.POST)
+	public String join1(
 			@ModelAttribute memberDTO memberDTO, Model model,
 			HttpServletRequest req
 			)
 	{
 		System.out.println("/join");
 		// 빈 칸 체크
-	    if (memberDTO.getId().isEmpty() || idCheck(memberDTO.getId(), memberDTO) != -1 ||memberDTO.getPw().isEmpty() || memberDTO.getPw_ck().isEmpty()
-	    		|| memberDTO.getNickname().isEmpty() || memberDTO.getEmail().isEmpty()|| memberDTO.getGender().isEmpty()
+	    if (memberDTO.getId().isEmpty() || idCheck(memberDTO.getId(), memberDTO) == -1 ||memberDTO.getPw().isEmpty() || memberDTO.getPw_ck().isEmpty()
+	    		|| memberDTO.getNickname().isEmpty() || memberDTO.getEmail().isEmpty()|| emailcheck(memberDTO.getEmail())  != "-1" || memberDTO.getGender().isEmpty()
 	    		|| memberDTO.getAge()== -1) 
-	    
-	    {
+	    	
+	    {	System.out.println("if문에 걸렸");
 	    	 if(memberDTO.getId().isEmpty()) {
 		    	 model.addAttribute("errorId", "아이디를 입력해주세요."); 
 		    }
 	    	 
-	    	 if(idCheck(memberDTO.getId(), memberDTO) != -1) {
+	    	 if(idCheck(memberDTO.getId(), memberDTO) == -1) {
 	    		 System.out.println("join 아이디 중복확인");
 		    	 model.addAttribute("duId", "이미 사용중인 아이디 입니다."); 
 		    }
@@ -166,11 +172,14 @@ public class EunsolController {
 		    	 model.addAttribute("errorPw_ck", "비밀번호 재확인을 입력해주세요."); 
 		    }
 		    
-		    if( memberDTO.getNickname().isEmpty()) {
-		    	 model.addAttribute("errorNickname", "이메일을 입력해주세요."); 
+		    if( memberDTO.getEmail().isEmpty()) {
+		    	 model.addAttribute("errorNickname", "이메일을 입력해주세요.");}
+		    
+		    if( emailcheck(memberDTO.getEmail())  != "-1") {
+		    	model.addAttribute("emMsg", "이메일을 입력해주세요.");
 		    }
 		    
-		    if( memberDTO.getEmail().isEmpty()) {
+		    if( memberDTO.getNickname().isEmpty()) {
 		    	 model.addAttribute("errorEmail", "별명을 입력해주세요."); 
 		    }
 		    
@@ -185,26 +194,55 @@ public class EunsolController {
 	        return "viewList1"; // 에러가 발생한 JSP 페이지로 이동
 	    }
   
-	   
-	    
-	    
 		//데이터베이스에 삽입
 		int result = member.insertMember(memberDTO);
 		System.out.println("insertMember 결과" + result);
 		
 		//회원가입완료 페이지에 닉네임 뜨게
 		String nickname = req.getParameter("nickname");
-		model.addAttribute("nickname", nickname);
+		/* model.addAttribute("nickname", nickname); */
 		
-		return "viewList3";
+		return "redirect:/joincomp?nickname="+nickname;
 	}
 	
+	@RequestMapping(value = "/join", method=RequestMethod.POST)
+	@ResponseBody
+	public Map join(
+			@ModelAttribute memberDTO memberDTO, Model model,
+			HttpServletRequest req
+			)
+	{
+		System.out.println("/join");
+		// 빈 칸 체크
+	    if (memberDTO.getId().isEmpty() || idCheck(memberDTO.getId(), memberDTO) == -1 ||memberDTO.getPw().isEmpty() || memberDTO.getPw_ck().isEmpty()
+	    		|| memberDTO.getNickname().isEmpty() || memberDTO.getEmail().isEmpty()|| emailcheck(memberDTO.getEmail())  != "-1" || memberDTO.getGender().isEmpty()
+	    		|| memberDTO.getAge()== -1) 
+	    	
+	    {	Map errors = validateMember(memberDTO);
+	    
+	    	return errors;
+	    }
+  
+		//데이터베이스에 삽입
+		int result = member.insertMember(memberDTO);
+		System.out.println("insertMember 결과" + result);
+		
+		//회원가입완료 페이지에 닉네임 뜨게
+		String nickname = req.getParameter("nickname");
+		/* model.addAttribute("nickname", nickname); */
+		Map map = new HashMap();
+		map.put("nickname", nickname);
+		map.put("result", result);
+		map.put("url", "/joincomp");
+		
+		return map;
+	}
 	
 	//회원가입 완료 페이지
 	@RequestMapping("/joincomp")
-	public String joincomp() {
-
-		return "Eunsol/joincomp";
+	public String joincomp(@RequestParam("nickname") String nickname,Model model) {
+		model.addAttribute("nickname", nickname);
+		return "viewList3";
 	}
 	
 	
@@ -215,8 +253,73 @@ public class EunsolController {
 		return "viewList2";
 	}
 	
-
-
 	
+	//----------- Java에서 정규식을 사용하여 이메일 주소를 검증하는 방법
+    private static final String EMAIL_REGEX =
+            "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    
+    public static boolean validateEmail(String email) {
+        Pattern pattern = Pattern.compile(EMAIL_REGEX);
+        return pattern.matcher(email).matches();
+    }
+	
+    public String emailcheck(String email) {
+        boolean isValid = validateEmail(email);
+        if (isValid) {
+            System.out.println("Valid email address");
+            return "0"; // 유효
+        } else {
+            System.out.println("Invalid email address");
+            return "-1"; // 유효하지 않음
+        }
+    }
+
+
+    
+    public Map validateMember(memberDTO memberDTO) {
+        Map errors = new HashMap();
+
+        if (memberDTO.getId().isEmpty()) {
+            errors.put("errorId", "아이디를 입력해주세요.");
+        }
+
+        if (idCheck(memberDTO.getId(), memberDTO) == -1) {
+            System.out.println("join 아이디 중복확인");
+            errors.put("duId", "이미 사용중인 아이디입니다.");
+        }
+
+        if (memberDTO.getPw().isEmpty()) {
+            errors.put("errorPw", "비밀번호를 입력해주세요.");
+        }
+
+        if (memberDTO.getPw_ck().isEmpty()) {
+            errors.put("errorPw_ck", "비밀번호 재확인을 입력해주세요.");
+        }
+
+        if (memberDTO.getEmail().isEmpty()) {
+            errors.put("errorNickname", "이메일을 입력해주세요.");
+        }
+
+        if (!validateEmail(memberDTO.getEmail())) {
+            errors.put("emMsg", "유효한 이메일 주소를 입력해주세요.");
+        }
+
+        if (memberDTO.getNickname().isEmpty()) {
+            errors.put("errorEmail", "별명을 입력해주세요.");
+        }
+
+        if (memberDTO.getGender().equals("-1")) {
+            errors.put("errorGender", "성별을 선택해주세요.");
+        }
+
+        if (memberDTO.getAge() == -1) {
+            errors.put("errorAge", "연령대를 선택해주세요.");
+        }
+
+        return errors;
+    }
+
+    
+    
 	
 }
