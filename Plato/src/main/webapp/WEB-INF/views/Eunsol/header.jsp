@@ -15,9 +15,10 @@
 	<header>
 		<div>
 			<div class="navigation">
-				<input type="checkbox" id="menuicon"> <label
-					for="menuicon" class="custom-checkbox"> <img
-					src="/Eunsol/imges/three_bars.svg" alt="Checkbox Image" id="menuimg">
+				<input type="checkbox" id="menuicon"> <label for="menuicon"
+					class="custom-checkbox"> <img
+					src="/Eunsol/imges/three_bars.svg" alt="Checkbox Image"
+					id="menuimg">
 				</label>
 
 
@@ -80,10 +81,14 @@
 
 	<!-- 팝업 로그인 창 -->
 	<div class="popup_login" id="pop1">
-		<a href="/header" class="close"> <img alt="Close Image"
+		<!-- 		<a href="/header" class="close"> <img alt="Close Image"
 			src="/Eunsol/imges/x.svg">
-		</a>
-
+		</a> -->
+		<div class="close">
+			<input type="checkbox" id="popcloseicon"> <label
+				for="popcloseicon"> <img src="/Eunsol/imges/x.svg"
+				alt="Close Image" id="popcloseimg">
+		</div>
 		<div class="content">
 			<div class="popup_logo">
 				<img alt="로고" src="Eunsol/imges/o_logo.png">
@@ -127,6 +132,5 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="Eunsol/js/popup_login.js"></script>
 	<script src="Eunsol/js/sidebar.js"></script>
-
 </body>
 </html>
