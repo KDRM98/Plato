@@ -1,0 +1,64 @@
+.recContainer{
+	width : 1000px;
+	margin: 0 auto;
+	border : 1px solid black;
+}
+
+.registContainer{
+	margin-left : 100px;
+	margin-top : 50px;
+}
+
+.regist{
+	padding-top: 30px;
+	min-height: 50px;
+}
+#title{
+	font-weight: bold;
+	font-size: 30px;
+}
+.difficulty-button{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: white; 
+	font-weight:bold;
+}
+
+#spenttime {
+  position: relative;
+  display: inline-block;
+}
+
+#spenttime select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+}
+
+#spenttime select::-ms-expand {
+  display: none;
+}
+
+#spenttime::after {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #888;
+  pointer-events: none;
+}
+
+/* 스타일을 적용할 때 선택된 옵션 스타일 */
+#spenttime select option:checked {
+  background-color: #e0e0e0;
+}

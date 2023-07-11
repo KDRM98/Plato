@@ -28,22 +28,18 @@
 	      		</div>
 	      		<p style="color: purple; padding-top: 20px;">By 김동민</p>
 	      		
-				  <button class="like" onclick="clickLike()">
-				    <div style="display: flex; align-items: center; justify-content: center;">
-				      <img alt="heart" src="../image/heart.png">
-				      좋아요
-				      <span id="likeCount" style="font-size:20px; padding-left: 10px;">${likeCount }</span>
-				    </div>
-				  </button>
 		        <div class="subinfo" style="display: flex;">
 		        	<div class="info_icon">
 		            	<div><img alt="clock" src="../image/clock.png"></div>
 		            	<div>20분</div>
 		        	</div>
-		        	<div class="info_icon">
-		            	<div><img alt="money" src="../image/money.png"></div>
-		            	<div>12,000원</div>
-		        	</div>
+		        	<button class="like" onclick="clickLike()">
+				    	<div style="display: flex; align-items: center; justify-content: center;">
+				      		<img alt="heart" src="../image/heart.png">
+				      		좋아요
+				      		<span id="likeCount" style="font-size:20px; padding-left: 10px;">${likeCount }</span>
+				    	</div>
+					  </button>
 		        	<div class="info_icon">
 					<img alt="difficulty" src="../image/difficulty.png" style="height:30px; width:30px;">
 					<div style="display: flex; flex-direction: column; font-size: 10px;">
@@ -167,8 +163,6 @@
 		</jsp:include>
 	</div>
 	
-		
-		<jsp:include page="/WEB-INF/views/Eunsol/footer.jsp"></jsp:include>
 </body>
 <script>
 	var likeCountElement = document.getElementById('likeCount');

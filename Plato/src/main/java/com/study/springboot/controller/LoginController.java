@@ -31,7 +31,7 @@ public class LoginController {
 		System.out.println("/recipe");
 	    model.addAttribute("likeCount", likeCount);
 	    model.addAttribute("isLiked", isLiked);
-		return "Dongmin/recipe";
+		return "viewList4";
 	}
 	
 	@RequestMapping("/addrecipe")

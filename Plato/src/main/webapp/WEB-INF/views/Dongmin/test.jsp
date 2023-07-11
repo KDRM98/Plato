@@ -26,6 +26,5 @@
 </jsp:include>
 <br>
 <br>
-<jsp:include page="/WEB-INF/views/Hyunyoung/footer.jsp"></jsp:include>
 </body>
 </html>
