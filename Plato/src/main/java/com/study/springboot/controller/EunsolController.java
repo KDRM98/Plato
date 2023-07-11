@@ -280,7 +280,7 @@ public class EunsolController {
         Map errors = new HashMap();
 
         if (memberDTO.getId().isEmpty()) {
-            errors.put("errorId", "아이디를 입력해주세요.");
+            errors.put("nullError Id", "아이디를 입력해주세요.");
         }
 
         if (idCheck(memberDTO.getId(), memberDTO) == -1) {
@@ -289,31 +289,32 @@ public class EunsolController {
         }
 
         if (memberDTO.getPw().isEmpty()) {
-            errors.put("errorPw", "비밀번호를 입력해주세요.");
+            errors.put("nullError Pw", "비밀번호를 입력해주세요.");
         }
 
         if (memberDTO.getPw_ck().isEmpty()) {
-            errors.put("errorPw_ck", "비밀번호 재확인을 입력해주세요.");
+            errors.put("nullError Pw_ck", "비밀번호 재확인을 입력해주세요.");
         }
 
         if (memberDTO.getEmail().isEmpty()) {
-            errors.put("errorNickname", "이메일을 입력해주세요.");
+            errors.put("nullError Email", "이메일을 입력해주세요.");
         }
 
-        if (!validateEmail(memberDTO.getEmail())) {
-            errors.put("emMsg", "유효한 이메일 주소를 입력해주세요.");
-        }
+		/*
+		 * if (!validateEmail(memberDTO.getEmail())) { errors.put("emMsg",
+		 * "유효한 이메일 주소를 입력해주세요."); }
+		 */
 
         if (memberDTO.getNickname().isEmpty()) {
-            errors.put("errorEmail", "별명을 입력해주세요.");
+            errors.put("nullError Nickname", "별명을 입력해주세요.");
         }
 
         if (memberDTO.getGender().equals("-1")) {
-            errors.put("errorGender", "성별을 선택해주세요.");
+            errors.put("errorNull Gender", "성별을 선택해주세요.");
         }
 
         if (memberDTO.getAge() == -1) {
-            errors.put("errorAge", "연령대를 선택해주세요.");
+            errors.put("errorNull Age", "연령대를 선택해주세요.");
         }
 
         return errors;

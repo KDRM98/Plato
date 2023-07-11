@@ -27,10 +27,16 @@ formPwInput.addEventListener('blur', () => {
 const statusLogin = document.querySelectorAll(".login");
 const popup = document.querySelector('.popup_login');
 const dim = document.querySelector('.dim');
+const popcloseimg = document.querySelector('#popcloseimg');
 
 function loginPop(){ 
  popup.style.display = 'block';
  dim.style.display = 'block';
+}
+
+function closeloginPop(){ 
+ popup.style.display = 'none';
+ dim.style.display = 'none';
 }
 
 
@@ -40,4 +46,6 @@ statusLogin.forEach((login)=> {
 
 });
 
+
+popcloseimg.addEventListener('click',closeloginPop);
 

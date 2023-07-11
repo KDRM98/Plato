@@ -12,6 +12,10 @@
 	text-decoration: none;
 }
 
+body{
+	background-color: beige;
+}
+
 #join_form {
 	font-family: 'SUITE-Regular', sans-serif;
 	font-size: 12px;
@@ -203,6 +207,7 @@ input::placeholder {
 	height: auto;
 	color: #e7223d;
 	font-weight: bold;
+	font-size: 12px;
 }
 
 .form_content .error div{

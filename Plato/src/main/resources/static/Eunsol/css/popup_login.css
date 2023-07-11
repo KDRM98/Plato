@@ -5,7 +5,7 @@
 	text-decoration: none;
 }
 body{
-	background-color: beige;
+
 }
 .popup_login button, input, select{
 	border-radius: 0;
@@ -56,6 +56,9 @@ body{
 	 z-index: 3;
 }
 
+#popcloseicon{
+	display: none;
+}
 
 
 .popup_login .close{
@@ -77,7 +80,7 @@ body{
 
 }
 
-.popup_login .close img{
+.popup_login #popcloseimg{
 	width: 24px;
 	height: 24px;;
 	display: block;
@@ -85,7 +88,7 @@ body{
 
 }
 
-.popup_login .close:hover img {
+.popup_login #popcloseimg:hover {
   filter: brightness(1000%) saturate(100%) invert(100%) contrast(1000%);
 }
 

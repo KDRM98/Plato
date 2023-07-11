@@ -11,15 +11,18 @@
 	z-index: 1;	
 }
 
-#menuicon:checked + label + .sidebar{
-	left:0;
-}
 
 .sidebar .close{
 	width: 20px;
 	margin: 30px 15px 20px 250px; 
 	
 }
+
+
+#closeicon {
+	display: none;
+}
+
 .sidebar .close img{
 	filter: brightness(1000%);
 }
