@@ -200,7 +200,7 @@ function checkPwPattern(pwValue) {
 			const hasNumber = /[0-9]/.test(pwValue);
 			const hasSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(pwValue);
 			/*const isValidLength = pwValue.length >= 5 && pwValue.length <= 16;*/
-			
+
 			const result = hasLowercase && hasNumber && hasSpecialChar /*&& isValidLength*/;
 			if (result) {
 				pwRstr.style.display = 'none';
@@ -280,51 +280,41 @@ id.addEventListener("blur", function() {
 
 // 빈칸으로 가입하기 눌렀을때 생긴 오류메세지 id칸 채우면 오류 사라지게
 const joinInput = Array.from(document.querySelectorAll(".joinform_item input"));
-const nullError = document.querySelectorAll(".nullError")
 console.log("joinInput[0]", joinInput[0], joinInput.length);
-console.log("nullError[0]", nullError[0], nullError.length);
+/*console.log("nullError[0]", nullError[0], nullError.length);*/
 joinInput.forEach((input, index) => {
-/*	console.log("포이치문 들어왔당");
-	console.log("index- input", index, "-", input);
-*/
 
 	input.addEventListener("blur", function() {
 
-/*		console.log("이벤트리스너 들어왔당");
-		console.log("nullError[index]", nullError[index]);
-*/
+
+		const name = input.name;
 		const value = input.value;
-		console.log("value : " + value, index);
+		const nullError = document.querySelector(".nullError." + name)
+
+		console.log("value : " + value, index, name);
 
 		if (value !== '') {
-			nullError[index].style.display = "none";
+			if (nullError) {
+				nullError.style.display = "none";
+			}
 		}
 
 	});
 });
 
 
-const genderRadios = document.querySelectorAll('.joinradio_item input');
+
 const ageSelect = document.getElementById('age');
-const errorNull = document.querySelectorAll('.errorNull');
 
-genderRadios.forEach(radio => {
-/*	console.log("성별 포이치문 들어왔당");
-	console.log("radio", radio);*/
-	radio.addEventListener('change', function() {
-/*		console.log("성별 이벤트리스너 들어왔당");*/
-		const value = this.value;
-/*		console.log("value : " + value);*/
-		if (value !== '-1') {
-			errorNull[0].style.display = 'none';
-		}
-	});
-});
 
 ageSelect.addEventListener('blur', function() {
+	const errorNull_age = document.querySelector('.errorNull.age');
 	const value = this.value;
 	if (value !== '-1') {
-		errorNull[1].style.display = 'none';
+		if (errorNull_age) {
+
+			errorNull_age.style.display = 'none';
+		}
 	}
 });
 
@@ -334,50 +324,79 @@ ageSelect.addEventListener('blur', function() {
 //const sinup_btn = document.querySelector(".signup-button");
 const nicknameError = document.querySelector('.nullError.Nickname');
 const null_error = document.querySelector('.null.error');
+const nick_error = document.querySelector('.nick.error');
 
 sinup_btn.addEventListener('click', function() {
 	// ajax
 	var join_gender = document.querySelector('input[name="gender"]:checked');
 	console.log("가입하기 눌렀다");
-/*	console.log(join_gender.value)*/
+	/*	console.log(join_gender.value)*/
 	const xhr = new XMLHttpRequest();
 
-	let url = "/join?id="+ id.value+"&pw="+join_pw.value+"&pw_ck="+pw_ck.value+"&email="+email.value+"&nickname="+nick.value
-	+"&gender="+join_gender.value+"&age="+age.value;
-	
+	let url = "/join?id=" + id.value + "&pw=" + join_pw.value + "&pw_ck=" + pw_ck.value + "&email=" + email.value + "&nickname=" + nick.value
+		+ "&gender=" + join_gender.value + "&age=" + age.value;
+
 	xhr.open("post", url); //select는 get으로 보이게 update는 put로 post는 insert 안보이게
 
 	xhr.send();
 
 	xhr.onload = function() {
 		console.log(xhr.responseText);
-		let errors = JSON.parse(xhr.responseText);
-/*		console.log(errors.errorNickname);*/
-		
-		const keys = Object.keys(errors);
-		console.log(keys);
-		
-        html = ""
-		for (let i = 0; i < keys.length; i++) {
-        let key = keys[i];
-        let value = errors[key];
-        console.log(i,key,value);
-		html += "<p class =\""+key+"\">"+value+"</p>"
-        }
-		
-		
-/*		a = [n,i]
-		html = ""
-		if(errors.errorNickname)
-			html += "<p>"+errors.errorNickname+"</p>"
-		if(errors.errorname)
-			html += "<p>"+errors.errorname+"</p>"
-			
-		for */
-/*		nicknameError.textContent = errors.errorNickname;*/
-		null_error.innerHTML = html;
+		console.log(typeof (xhr.responseText));
+		let result = JSON.parse(xhr.responseText);
+		if (result.url) {
+			/*		console.log(errors.errorNickname);*/
+			let map = JSON.parse(xhr.responseText);
 
-	}	
-	});
+
+			let nickname = map.nickname;
+			let url = map.url;
+
+			// URL에 nickname 추가하여 이동
+			let redirectUrl = url + "?nickname=" + nickname;
+			window.location.href = redirectUrl;
+
+		}
+		else {
+			let errors = JSON.parse(xhr.responseText);
+			const keys = Object.keys(errors);
+			console.log(keys);
+			keys.sort();
+			html = ""
+			html2 = ""
+			for (let i = 0; i < keys.length; i++) {
+				let key = keys[i];
+				let value = errors[key];
+				console.log(i, key, value);
+				if (key == "8 duNick") {
+					duNick.style.display = 'block';
+				}else if(key == "2 duId"){
+					duId.style.display = 'block';
+				}else if(key == "6 emMsg"){
+						emError.style.display = 'block';
+					formEmail.classList.add('b');
+					isEmailValid = false;}
+				else {
+					html += "<p class =\"" + key + "\">" + value + "</p>"
+				}
+				null_error.innerHTML = html;
+
+			}
+
+
+		}
+
+		/*		a = [n,i]
+				html = ""
+				if(errors.errorNickname)
+					html += "<p>"+errors.errorNickname+"</p>"
+				if(errors.errorname)
+					html += "<p>"+errors.errorname+"</p>"
+					
+				for */
+		/*		nicknameError.textContent = errors.errorNickname;*/
+
+	}
+});
 
 

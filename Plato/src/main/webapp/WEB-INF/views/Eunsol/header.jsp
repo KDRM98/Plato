@@ -96,12 +96,12 @@
 			<form action="/login_check">
 				<div class="basic_info">
 					<div class="form_item user">
-						<input type="text" id="id" name="id" placeholder=" 아이디" value
-							maxlength="20" required>
+						<input type="text" id="login_id" name="id" placeholder=" 아이디" value
+							maxlength="20" >
 					</div>
 					<div class="form_item pw">
-						<input type="password" id="pw" name="pw" placeholder=" 비밀번호" value
-							maxlength="16" required>
+						<input type="password" id="login_pw" name="pw" placeholder=" 비밀번호" value
+							maxlength="16" >
 					</div>
 				</div>
 
