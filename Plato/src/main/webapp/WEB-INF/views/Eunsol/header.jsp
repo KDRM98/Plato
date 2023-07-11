@@ -15,9 +15,9 @@
 	<header>
 		<div>
 			<div class="navigation">
-				<input type="checkbox" id="menuicon"> <label for="menuicon"
-					class="custom-checkbox"> <img
-					src="/Eunsol/imges/three_bars.svg" alt="Checkbox Image">
+				<input type="checkbox" id="menuicon"> <label
+					for="menuicon" class="custom-checkbox"> <img
+					src="/Eunsol/imges/three_bars.svg" alt="Checkbox Image" id="menuimg">
 				</label>
 
 
@@ -27,9 +27,11 @@
 				<!-- 왼쪽 사이드바 -->
 				<div class="sidebar" id="sb">
 					<div class="close">
-						<a href="/header"> <img alt="Close Image"
-							src="/Eunsol/imges/x.svg">
-						</a>
+						<input type="checkbox" id="closeicon"> <label
+							for="closeicon" class="custom-checkbox"> <img
+							src="/Eunsol/imges/x.svg" alt="Close Image" id="closeimg">
+						</label>
+
 					</div>
 					<div class="side_content">
 						<div class="side_picture">
@@ -122,7 +124,9 @@
 	<div class="dim"></div>
 
 	<!-- js -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="Eunsol/js/popup_login.js"></script>
+	<script src="Eunsol/js/sidebar.js"></script>
 
 </body>
 </html>

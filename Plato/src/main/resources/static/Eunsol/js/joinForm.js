@@ -287,6 +287,7 @@ joinInput.forEach((input, index) => {
 /*	console.log("포이치문 들어왔당");
 	console.log("index- input", index, "-", input);
 */
+
 	input.addEventListener("blur", function() {
 
 /*		console.log("이벤트리스너 들어왔당");
@@ -331,7 +332,8 @@ ageSelect.addEventListener('blur', function() {
 
 // 아이디만 치고 가입시 에러뜨고 값 유지하기
 //const sinup_btn = document.querySelector(".signup-button");
-
+const nicknameError = document.querySelector('.nullError.Nickname');
+const null_error = document.querySelector('.null.error');
 
 sinup_btn.addEventListener('click', function() {
 	// ajax
@@ -340,7 +342,7 @@ sinup_btn.addEventListener('click', function() {
 /*	console.log(join_gender.value)*/
 	const xhr = new XMLHttpRequest();
 
-	let url = "/join?id="+ id.value+"&pw="+join_pw.value+"&email="+email.value+"&nickname="+nick.value
+	let url = "/join?id="+ id.value+"&pw="+join_pw.value+"&pw_ck="+pw_ck.value+"&email="+email.value+"&nickname="+nick.value
 	+"&gender="+join_gender.value+"&age="+age.value;
 	
 	xhr.open("post", url); //select는 get으로 보이게 update는 put로 post는 insert 안보이게
@@ -349,17 +351,33 @@ sinup_btn.addEventListener('click', function() {
 
 	xhr.onload = function() {
 		console.log(xhr.responseText);
-		/*if (xhr.responseText === '-1') {
+		let errors = JSON.parse(xhr.responseText);
+/*		console.log(errors.errorNickname);*/
+		
+		const keys = Object.keys(errors);
+		console.log(keys);
+		
+        html = ""
+		for (let i = 0; i < keys.length; i++) {
+        let key = keys[i];
+        let value = errors[key];
+        console.log(i,key,value);
+		html += "<p class =\""+key+"\">"+value+"</p>"
+        }
+		
+		
+/*		a = [n,i]
+		html = ""
+		if(errors.errorNickname)
+			html += "<p>"+errors.errorNickname+"</p>"
+		if(errors.errorname)
+			html += "<p>"+errors.errorname+"</p>"
 			
-			
-		} else {
-			duNick.style.display = 'none';
-			sinup_btn.disabled = false;
+		for */
+/*		nicknameError.textContent = errors.errorNickname;*/
+		null_error.innerHTML = html;
 
-			 // 버튼 활성화
-		}*/
-	}
-
-});
+	}	
+	});
 
 

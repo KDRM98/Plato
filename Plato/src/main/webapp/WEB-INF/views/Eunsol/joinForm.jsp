@@ -16,20 +16,20 @@
 
 					<div class="joinform_item user">
 						<input type="text" id="join_id" name="id" data-id="Id"
-							placeholder=" 아이디" value maxlength="10">
+							placeholder=" 아이디" value ="asdf123">
 					</div>
 
 					<div class="joinform_item pw">
 						<input type="password" id="join_pw" name="pw" placeholder=" 비밀번호"
-							value maxlength="10">
+							value maxlength="16" value="123qwe!">
 					</div>
 					<div class="joinform_item pw_ck">
 						<input type="password" id="join_pw_ck" name="pw_ck"
-							placeholder=" 비밀번호 재확인" value maxlength="10">
+							placeholder=" 비밀번호 재확인" value maxlength="10" value="123qwe!">
 					</div>
 					<div class="joinform_item email">
 						<input type="email" id="email" name="email"
-							placeholder=" 비밀번호 분실 시 확인용 이메일">
+							placeholder=" 비밀번호 분실 시 확인용 이메일" value="les805@naver.com">
 					</div>
 				</div>
 
@@ -47,7 +47,7 @@
 				<div class="add_info">
 					<div class="joinform_item nickname">
 						<input type="text" id="join_nickname" name="nickname"
-							placeholder=" 별명" value maxlength="10">
+							placeholder=" 별명" value maxlength="10" value="미니묭">
 					</div>
 					<div class="select_box">
 						<ul class="box gender">
@@ -78,18 +78,20 @@
 				<div>
 					<button type="submit" class="signup-button">가입하기</button>
 				</div>
-				<div class="error">
+				<div class="null error">
 					<p class="nullError Id">${errorId}</p>
 					<p class="nullError Pw">${errorPw}</p>
 					<p class="nullError Pw_ck">${errorPw_ck}</p>
-					<p class="nullError Nickname">${errorNickname}</p>
 					<p class="nullError Email">${errorEmail}</p>
+					<p class="nullError Nickname">${errorNickname}</p>
 					<p class="errorNull Gender">${errorGender}</p>
 					<p class="errorNull Age">${errorAge}</p>
 				</div>
 			</div>
 		</div>
 <!-- 	</form> -->
+
+
 
 
 	<!-- js -->
