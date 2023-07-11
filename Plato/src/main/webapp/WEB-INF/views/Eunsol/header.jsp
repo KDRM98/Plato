@@ -81,19 +81,15 @@
 
 	<!-- 팝업 로그인 창 -->
 	<div class="popup_login" id="pop1">
-		<!-- 		<a href="/header" class="close"> <img alt="Close Image"
-			src="/Eunsol/imges/x.svg">
-		</a> -->
 		<div class="close">
-			<input type="checkbox" id="popcloseicon"> <label
-				for="popcloseicon"> <img src="/Eunsol/imges/x.svg"
-				alt="Close Image" id="popcloseimg">
+			<input type="checkbox" id="popcloseicon"> 
+			<label for="popcloseicon"> 
+			<img src="/Eunsol/imges/x.svg" alt="Close Image" id="popcloseimg">
 		</div>
 		<div class="content">
 			<div class="popup_logo">
 				<img alt="로고" src="Eunsol/imges/o_logo.png">
 			</div>
-			<form action="/login_check">
 				<div class="basic_info">
 					<div class="form_item user">
 						<input type="text" id="login_id" name="id" placeholder=" 아이디" value
@@ -105,7 +101,9 @@
 					</div>
 				</div>
 
-				<div class="error">${msg}</div>
+				<div class="login error">
+				
+				</div>
 
 				<div class="search_idpw">
 					<ul>
@@ -118,7 +116,6 @@
 				<div class="login_btn">
 					<button type="submit">로그인</button>
 				</div>
-			</form>
 
 			<div>
 				계정이 없나요? <a href="/joinForm" class="sign_up">회원가입</a>

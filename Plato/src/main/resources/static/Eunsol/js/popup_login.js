@@ -5,21 +5,21 @@ const formPwInput = document.querySelector(".form_item.pw input")
 
 // 아이디 입력창에 커서가 생기면 앞에 이미지가 바뀌는
 formUserInput.addEventListener('focus', () => {
-  formUser.classList.add('a');
+	formUser.classList.add('a');
 });
 
 formUserInput.addEventListener('blur', () => {
-  formUser.classList.remove('a');
+	if (formUserInput.value === '') { formUser.classList.remove('a'); }
 });
 
 
 // 비번 입력창에 커서가 생기면 앞에 이미지가 바뀌는
 formPwInput.addEventListener('focus', () => {
-  formPw.classList.add('a');
+	formPw.classList.add('a');
 });
 
 formPwInput.addEventListener('blur', () => {
-  formPw.classList.remove('a');
+	if (formPwInput.value === '') { formUser.classList.remove('a'); }
 });
 
 
@@ -29,23 +29,82 @@ const popup = document.querySelector('.popup_login');
 const dim = document.querySelector('.dim');
 const popcloseimg = document.querySelector('#popcloseimg');
 
-function loginPop(){ 
- popup.style.display = 'block';
- dim.style.display = 'block';
+function loginPop() {
+	popup.style.display = 'block';
+	dim.style.display = 'block';
 }
 
-function closeloginPop(){ 
- popup.style.display = 'none';
- dim.style.display = 'none';
+function closeloginPop() {
+	popup.style.display = 'none';
+	dim.style.display = 'none';
 }
 
+statusLogin.forEach((login) => {
+	login.addEventListener('click', loginPop);
+});
 
-statusLogin.forEach((login)=> {
+popcloseimg.addEventListener('click', closeloginPop);
 
- login.addEventListener('click',loginPop);
+
+
+//login check
+const login_btn = document.querySelector('.login_btn button');
+
+
+login_btn.addEventListener('click', function() {
+	console.log("로그인 눌렀다");
+
+	const login_id = document.querySelector('#login_id');
+	const login_pw = document.querySelector('#login_pw');
+	const login_error = document.querySelector('.login.error');
+
+
+	// ajax
+	const xhr = new XMLHttpRequest();
+
+	let url = "/login_check?id=" + login_id.value + "&pw=" + login_pw.value;
+
+	xhr.open("post", url);
+
+	xhr.send();
+
+	xhr.onload = function() {
+		console.log(xhr.responseText);
+		
+		let result = JSON.parse(xhr.responseText);
+		if (result.url) {
+			let logincomp = JSON.parse(xhr.responseText);
+			console.log("여기왔다")
+			let url = logincomp.url;
+			let nickname = logincomp.nickname;
+			let nextPage = url + "?nickname=" + nickname;
+			window.location.href = nextPage;
+		} else if (result.msg) {
+			let map = JSON.parse(xhr.responseText);
+			let value = map.msg
+			html = ""
+			html += "<p class =\"" + key + "\">" + value + "</p>"
+			login_error.innerHTML = html;
+		} else if (result.idNullMsg) {
+			let map = JSON.parse(xhr.responseText);
+			let value = map.idNullMsg
+			html = ""
+			html += "<p class =\"" + key + "\">" + value + "</p>"
+			login_error.innerHTML = html;
+		} else if (result.pwNullMsg) {
+			let map = JSON.parse(xhr.responseText);
+			let value = map.pwNullMsg
+			html = ""
+			html += "<p class =\"" + key + "\">" + value + "</p>"
+			login_error.innerHTML = html;
+		}
+
+
+
+
+	}
 
 });
 
 
-popcloseimg.addEventListener('click',closeloginPop);
 

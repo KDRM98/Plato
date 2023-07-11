@@ -23,32 +23,6 @@ menuimg.addEventListener('click', function() {
 
 
 
-const login_btn = document.querySelector('.login_btn button');
-
-
-login_btn.addEventListener('click', function() {
-	console.log("로그인 눌렀다");
-
-	const login_id = document.querySelector('#login_id');
-	const login_pw = document.querySelector('#login_pw');
-
-	// ajax
-	const xhr = new XMLHttpRequest();
-
-	let url = "/login_check?id=" + login_id.value + "&pw=" +login_pw.value;
-
-	xhr.open("post", url);
-
-	xhr.send();
-
-	xhr.onload = function() {
-		console.log(xhr.responseText);
-		let result = JSON.parse(xhr.responseText);
-		
-		
-		}
-
-});
 
 
 

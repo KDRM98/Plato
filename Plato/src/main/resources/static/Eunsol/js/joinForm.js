@@ -353,8 +353,8 @@ sinup_btn.addEventListener('click', function() {
 			let url = map.url;
 
 			// URL에 nickname 추가하여 이동
-			let redirectUrl = url + "?nickname=" + nickname;
-			window.location.href = redirectUrl;
+			let nextPgae = url + "?nickname=" + nickname;
+			window.location.href = nextPgae;
 
 		}
 		else {
