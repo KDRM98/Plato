@@ -368,14 +368,14 @@ sinup_btn.addEventListener('click', function() {
 				let key = keys[i];
 				let value = errors[key];
 				console.log(i, key, value);
-				if (key == "8 duNick") {
+				if (key == "duNick") {
 					duNick.style.display = 'block';
-				}else if(key == "2 duId"){
+				}else if(key == "duId"){
 					duId.style.display = 'block';
-				}else if(key == "6 emMsg"){
-						emError.style.display = 'block';
+				}else if(key == "emMsg"){if((email.value) != ""){
+					emError.style.display = 'block';
 					formEmail.classList.add('b');
-					isEmailValid = false;}
+					isEmailValid = false;}}
 				else {
 					html += "<p class =\"" + key + "\">" + value + "</p>"
 				}

@@ -29,8 +29,25 @@ public class EunsolController {
 
 	// ----------------------------체킹
 	@RequestMapping("/header")
-	public String header() {
+	public String header(HttpServletRequest request, Model model) {
 		System.out.println("/header");
+		
+		  HttpSession session = request.getSession(); 
+		  if(session.getAttribute("userid") != null) { // 세션 값이 존재하는 경우
+		  
+		  int userid = (int)session.getAttribute("userid"); String nickname = (String)
+		  session.getAttribute("nickname");
+		  
+		  session.setAttribute("welcome", "님, 오늘도 좋은하루 되세요!"); 
+		  String welcome =(String)session.getAttribute("welcome");
+		  
+		  
+		  model.addAttribute("userid", userid); model.addAttribute("nickname",
+		  nickname); model.addAttribute("welcome", welcome);
+		  
+		  
+		  }
+		 
 		return "Eunsol/header";
 	}
 
@@ -45,8 +62,34 @@ public class EunsolController {
 		System.out.println("/jf");
 		return "Eunsol/joinForm";
 	}
-
+	
+	@RequestMapping("/testjoincomp")
+	public String testjoincomp() {
+		System.out.println("/testjoincomp");
+		return "Eunsol/joincomp";
+	}
+	
+	@RequestMapping("/findid")
+	public String finid() {
+		System.out.println("/finid");
+		return "Eunsol/findid";
+	}
+	
+	@RequestMapping("/findidcomp")
+	public String finidcomp() {
+		System.out.println("/finidcomp");
+		return "Eunsol/findidcomp";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout() {
+		System.out.println("/logout");
+		return "Eunsol/findidcomp";
+	}
+	
+	
 	@RequestMapping("/login_check")
+	@ResponseBody
 	public Map login_check(
 			HttpServletRequest request,
 			Model model,
@@ -58,22 +101,22 @@ public class EunsolController {
 		String pw = request.getParameter("pw");
 
 		int loginCheck = member.loginCheck(DTO);
-
+		System.out.println(loginCheck);
 		
-
 		HttpSession session = request.getSession();
-		if (id != null && pw != null) {
+		if ( (id != null && !id.equals("")) || (pw != null && !pw.equals(""))) {
+			System.out.println("id: "+id+ "/"+"pw: "+pw);
 			if (loginCheck == 1) {
 				// 로그인 확인 완료s
 
 				// 세션 가져오기
-
+				
 				// 세션 저장하기
 				memberDTO basicInfo = member.basicInfo(DTO);
 				String nickname = basicInfo.getNickname();
-				int user_id = basicInfo.getUserid();
+				int userid = basicInfo.getUserid();
 				
-				session.setAttribute("user_id", user_id);
+				session.setAttribute("userid", userid);
 				session.setAttribute("nickname", nickname);
 				
 				Map logincomp = new HashMap();
@@ -87,21 +130,26 @@ public class EunsolController {
 				map.put("msg", "아이디나 비밀번호가 올바르지 않습니다.");
 				return map;
 			}
+		} else if (id != null && !id.equals("") && (pw == null || pw.equals(""))) {
+		    // 아이디는 있고 비밀번호가 없음
+			System.out.println("아이디는 있고 비밀번호가 없음");
+		    Map map = new HashMap();
+		    map.put("pwNullMsg", "비밀번호를 입력해주세요.");
+		    return map;
+		} else if ((id == null || id.equals("")) && pw != null && !pw.equals("")) {
+		    // 아이디는 없고 비밀번호는 있음
+			System.out.println("아이디는 없고 비밀번호는 있음");
+		    Map map = new HashMap();
+		    map.put("idNullMsg", "아이디를 입력해주세요.");
+		    return map;
 		} else {
-			if (id == null) {
-				Map map = new HashMap();
-				map.put("idNullMsg", "아이디를 입력해주세요.");
-				return map;
-			} else {
-				if (pw == null) {
-					Map map = new HashMap();
-					map.put("pwNullMsg", "비밀번호를 입력해주세요.");
-					return map;
-				}
-			}
-
+		    // 아이디와 비밀번호 둘 다 없음
+			System.out.println("아이디와 비밀번호 둘 다 없음");
+		    Map map = new HashMap();
+		    map.put("idNullMsg", "아이디를 입력해주세요.");
+		    map.put("pwNullMsg", "비밀번호를 입력해주세요.");
+		    return map;
 		}
-		return null; // 음...? 뭘 리턴하지
 	}
 
 	@RequestMapping("/profile2")
@@ -275,40 +323,40 @@ public class EunsolController {
 
 		if (idCheck(memberDTO.getId(), memberDTO) == -1) {
 			System.out.println("join 아이디 중복확인");
-			errors.put("2 duId", "이미 사용중인 아이디입니다.");
+			errors.put("duId", "이미 사용중인 아이디입니다.");
 		}
 
 		if (memberDTO.getPw().isEmpty()) {
-			errors.put("3 nullError pw", "비밀번호를 입력해주세요.");
+			errors.put("2 nullError pw", "비밀번호를 입력해주세요.");
 		}
 
 		if (memberDTO.getPw_ck().isEmpty()) {
-			errors.put("4 nullError pw_ck", "비밀번호 재확인을 입력해주세요.");
+			errors.put("3 nullError pw_ck", "비밀번호 재확인을 입력해주세요.");
 		}
 
 		if (memberDTO.getEmail().isEmpty()) {
-			errors.put("5 nullError email", "이메일을 입력해주세요.");
+			errors.put("4 nullError email", "이메일을 입력해주세요.");
 		}
 
 		if (!validateEmail(memberDTO.getEmail())) {
-			errors.put("6 emMsg", "유효한 이메일 주소를 입력해주세요.");
+			errors.put("emMsg", "유효한 이메일 주소를 입력해주세요.");
 		}
 
 		if (memberDTO.getNickname().isEmpty()) {
-			errors.put("7 nullError nickname", "별명을 입력해주세요.");
+			errors.put("5 nullError nickname", "별명을 입력해주세요.");
 		}
 
 		if (nickCheck(req, memberDTO) == -1) {
 			System.out.println("join별명 중복확인");
-			errors.put("8 duNick", "이미 사용중인 별명입니다.");
+			errors.put("duNick", "이미 사용중인 별명입니다.");
 		}
 
 		if (memberDTO.getGender().equals("-1")) {
-			errors.put("9 errorNull gender", "성별을 선택해주세요.");
+			errors.put("6 errorNull gender", "성별을 선택해주세요.");
 		}
 
 		if (memberDTO.getAge() == -1) {
-			errors.put("10 errorNull age", "연령대를 선택해주세요.");
+			errors.put("7 errorNull age", "연령대를 선택해주세요.");
 		}
 
 		return errors;

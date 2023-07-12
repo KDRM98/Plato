@@ -23,7 +23,6 @@
 				</div>
 				<hr>
 				<div class="joincomp_btn">
-					<a ></a>
 					<a href="/header" class="btn home">홈으로</a> <span class="btn login">로그인</span>
 				</div>
 			</div>

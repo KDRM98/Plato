@@ -51,12 +51,20 @@ popcloseimg.addEventListener('click', closeloginPop);
 const login_btn = document.querySelector('.login_btn button');
 
 
+function errorMsg(msg, result){
+			let key = Object.keys(result);
+			let value = msg;
+			html += "<p class =\"" + key + "\">" + value + "</p>"
+						
+};
+
+
 login_btn.addEventListener('click', function() {
 	console.log("로그인 눌렀다");
 
 	const login_id = document.querySelector('#login_id');
 	const login_pw = document.querySelector('#login_pw');
-	const login_error = document.querySelector('.login.error');
+
 
 
 	// ajax
@@ -79,25 +87,33 @@ login_btn.addEventListener('click', function() {
 			let nickname = logincomp.nickname;
 			let nextPage = url + "?nickname=" + nickname;
 			window.location.href = nextPage;
-		} else if (result.msg) {
-			let map = JSON.parse(xhr.responseText);
-			let value = map.msg
+			
+		} else {
 			html = ""
-			html += "<p class =\"" + key + "\">" + value + "</p>"
-			login_error.innerHTML = html;
-		} else if (result.idNullMsg) {
+			if(result.msg){errorMsg(result.msg,result);}
+			if(result.idNullMsg){errorMsg(result.idNullMsg,result);}
+			if(result.pwNullMsg){errorMsg(result.pwNullMsg,result);}		
+			let login_error = document.querySelector('.login.error');
+			login_error.innerHTML = html;	
+		}
+		
+		
+		
+		/* else if (result.idNullMsg) {
 			let map = JSON.parse(xhr.responseText);
+			const key = Object.keys(map);
 			let value = map.idNullMsg
 			html = ""
 			html += "<p class =\"" + key + "\">" + value + "</p>"
 			login_error.innerHTML = html;
 		} else if (result.pwNullMsg) {
 			let map = JSON.parse(xhr.responseText);
+			const key = Object.keys(map);
 			let value = map.pwNullMsg
 			html = ""
 			html += "<p class =\"" + key + "\">" + value + "</p>"
 			login_error.innerHTML = html;
-		}
+		}*/
 
 
 

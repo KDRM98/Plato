@@ -35,18 +35,24 @@ header .navigation {
 	/* float: left; */
 	position: absolute;
 	left: 0;
-	display: block; /* a태그가 인라인 요소이기 때문에 width와 height 값 변경을 위해*/
-	width: 25px;
+	display: inline; /* a태그가 인라인 요소이기 때문에 width와 height 값 변경을 위해*/
+	width: 330px;
 	margin: 21px;
+	display: inline-flex;
 	/* text-indent: -9999em; */
 	/*글씨 사라졋*/
-	background-image: url("/Eunsol/imges/three_bars.svg");
+/* 	background-image: url("/Eunsol/imges/three_bars.svg");
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-size: contain; */
+	justify-content: space-between;
 }
 
 #menuicon{
 	display: none;
+}
+
+#menuimg{
+	width: 25px;
 }
 
 .custom-checkbox {
@@ -58,6 +64,17 @@ header .navigation {
 .custom-checkbox:hover img {
   filter: brightness(1000%) saturate(100%) invert(100%) contrast(1000%);
 }
+
+
+header .hello_nickname .header_nickname{
+	color: #FF5733;
+}
+
+header #heartImg{
+	width: 16px;
+}
+
+
 
 header .user_status {
 	position: absolute;
