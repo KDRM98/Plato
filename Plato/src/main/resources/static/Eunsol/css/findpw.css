@@ -5,7 +5,7 @@
 	text-decoration: none;
 }
 
-.findIdComp button, input {
+.findPw button, input {
 	border-radius: 0;
 	border: none;
 	background: 0 0;
@@ -19,7 +19,7 @@ body {
 	font-family: 'SUITE-Regular', sans-serif;
 }
 
-.findIdComp {
+.findPw {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -27,44 +27,45 @@ body {
 	padding: 120px 0px;
 }
 
-.findIdComp_container {
-	width: 600px;
-	height: 350px;
+.findPw_container {
+	width: 400px;
+	height: 470px;
 	border: 1px solid #D5C8C8;
 	background-color: white;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 }
 
-.findIdComp_content {
-	width: 600px;
-	height: 250px;
+.findPw_content {
+	width: 400px;
+	height: 350px;
 	/* 	border: 1px solid black; */
 	background-color: white;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 50px;
 	/* 	justify-content: center; */
 }
 
-.findIdComp_content .title {
+.findPw_content .title {
 	font-size: 25px;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 }
 
-.findIdComp_content .expln {
-	font-size: 14px;
+.findPw_content .expln {
+	font-size: 12px;
 	margin-bottom: 10px;
+	text-align: center;
 }
 
 .rqdInfo {
 	border: 1px solid #D5C8C8;
-	margin: 20px 0px;
+	margin: 20px 0px 5px;
 }
 
-.findIdForm input {
+.findPwForm input {
 	flex: 1 1 auto;
 	box-sizing: border-box;
 	width: 270px;
@@ -77,14 +78,14 @@ input::placeholder {
 	font-size: 12px;
 }
 
-.findIdForm::before {
+.findPwForm::before {
 	position: absolute;
 	top: 10px;
 	left: 9px;
 	content: ''
 }
 
-.findIdForm {
+.findPwForm {
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -94,7 +95,7 @@ input::placeholder {
 	padding: 0 10px 0 45px;
 }
 
-.findIdForm::after {
+.findPwForm::after {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -105,10 +106,35 @@ input::placeholder {
 	content: ''
 }
 
-.findIdForm.email {
+.findPwForm.id {
 	border-bottom: 0.5px solid #dfdfdf;
 }
-.findIdForm.email::before {
+
+
+.findPwForm.id::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -96px -296px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px
+}
+
+.findPwForm.id.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -224px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
+
+.findPwForm.email {
+	border-bottom: 0.5px solid #dfdfdf;
+}
+
+.findPwForm.email::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -310px -160px;
@@ -118,8 +144,18 @@ input::placeholder {
 	;
 }
 
+.findPwForm.email.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -310px -32px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+	;
+}
 
-.findIdForm.nickname::before {
+
+.findPwForm.nickname::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -96px -296px;
@@ -132,45 +168,26 @@ input::placeholder {
 	content: ''
 }
 
-.findIdComp_content hr{
-	color: #D5C8C8;
-	width: 400px;
-	margin: 20px 0px;
-	height: 0.1px;
+.findPwForm.nickname.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -224px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 10px;
+	left: 9px;
+	content: ''
 }
-
-
-.findIdComp-btn .btn{
-	width: 160px;
-	height: 55px; 
-	border: 1px solid #D5C8C8;
-	font-family: 'SUITE-Regular', sans-serif;
-	font-size: 16px;
-	margin: 10px 8px;
-	text-decoration: none;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	
-
+.findPw_content .findPw_error{
+		height: 40px;
 }
-
-
-.findIdComp-btn .home{
-	background-color: transparent; 
-	margin: 0px auto;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	
-}
-
-.findIdComp-btn .login{
+.findPw_content .find-button{
+	width: 325px;
+	height :50px;
+	box-sizing: border-box;
 	background-color: #FF5733;
 	color: white;
-	border: none;
-	cursor: pointer;
-	
+	font-size: 15px;
 }
-
-

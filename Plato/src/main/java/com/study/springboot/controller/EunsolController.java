@@ -31,23 +31,22 @@ public class EunsolController {
 	@RequestMapping("/header")
 	public String header(HttpServletRequest request, Model model) {
 		System.out.println("/header");
-		
-		  HttpSession session = request.getSession(); 
-		  if(session.getAttribute("userid") != null) { // 세션 값이 존재하는 경우
-		  
-		  int userid = (int)session.getAttribute("userid"); String nickname = (String)
-		  session.getAttribute("nickname");
-		  
-		  session.setAttribute("welcome", "님, 오늘도 좋은하루 되세요!"); 
-		  String welcome =(String)session.getAttribute("welcome");
-		  
-		  
-		  model.addAttribute("userid", userid); model.addAttribute("nickname",
-		  nickname); model.addAttribute("welcome", welcome);
-		  
-		  
-		  }
-		 
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("userid") != null) { // 세션 값이 존재하는 경우
+
+			int userid = (int) session.getAttribute("userid");
+			String nickname = (String) session.getAttribute("nickname");
+
+			session.setAttribute("welcome", "님, 맛있는 비밀의 모험을 떠나보세요!");
+			String welcome = (String) session.getAttribute("welcome");
+
+			model.addAttribute("userid", userid);
+			model.addAttribute("nickname", nickname);
+			model.addAttribute("welcome", welcome);
+
+		}
+
 		return "Eunsol/header";
 	}
 
@@ -62,63 +61,72 @@ public class EunsolController {
 		System.out.println("/jf");
 		return "Eunsol/joinForm";
 	}
-	
+
 	@RequestMapping("/testjoincomp")
 	public String testjoincomp() {
 		System.out.println("/testjoincomp");
 		return "Eunsol/joincomp";
 	}
-	
+
 	@RequestMapping("/findid")
 	public String finid() {
 		System.out.println("/finid");
 		return "Eunsol/findid";
 	}
-	
+
 	@RequestMapping("/findidcomp")
 	public String finidcomp() {
 		System.out.println("/finidcomp");
 		return "Eunsol/findidcomp";
 	}
-	
-	@RequestMapping("/logout")
-	public String logout() {
-		System.out.println("/logout");
-		return "Eunsol/findidcomp";
+
+	@RequestMapping("/testfindpw")
+	public String testfindpw() {
+		System.out.println("/testfinid");
+		return "Eunsol/findpw";
 	}
-	
-	
+
+	@RequestMapping("/testfindpwcomp")
+	public String testfindpwcomp() {
+		System.out.println("/testfinpwcomp");
+		return "Eunsol/findpwcomp";
+	}
+
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest req) {
+		System.out.println("/logout");
+		HttpSession session = req.getSession();
+		session.invalidate();
+		return "Eunsol/header"; // 메인페이지로 수정
+	}
+
 	@RequestMapping("/login_check")
 	@ResponseBody
-	public Map login_check(
-			HttpServletRequest request,
-			Model model,
-			@ModelAttribute memberDTO DTO) {
+	public Map login_check(HttpServletRequest request, Model model, @ModelAttribute memberDTO DTO) {
 		System.out.println("/login_check");
-
 
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 
 		int loginCheck = member.loginCheck(DTO);
 		System.out.println(loginCheck);
-		
+
 		HttpSession session = request.getSession();
-		if ( (id != null && !id.equals("")) || (pw != null && !pw.equals(""))) {
-			System.out.println("id: "+id+ "/"+"pw: "+pw);
+		if ((id != null && !id.equals("")) || (pw != null && !pw.equals(""))) {
+			System.out.println("id: " + id + "/" + "pw: " + pw);
 			if (loginCheck == 1) {
 				// 로그인 확인 완료s
 
 				// 세션 가져오기
-				
+
 				// 세션 저장하기
 				memberDTO basicInfo = member.basicInfo(DTO);
 				String nickname = basicInfo.getNickname();
 				int userid = basicInfo.getUserid();
-				
+
 				session.setAttribute("userid", userid);
 				session.setAttribute("nickname", nickname);
-				
+
 				Map logincomp = new HashMap();
 				logincomp.put("nickname", nickname);
 				logincomp.put("url", "/header"); // 메인으로 나중에 수정 요망
@@ -131,24 +139,24 @@ public class EunsolController {
 				return map;
 			}
 		} else if (id != null && !id.equals("") && (pw == null || pw.equals(""))) {
-		    // 아이디는 있고 비밀번호가 없음
+			// 아이디는 있고 비밀번호가 없음
 			System.out.println("아이디는 있고 비밀번호가 없음");
-		    Map map = new HashMap();
-		    map.put("pwNullMsg", "비밀번호를 입력해주세요.");
-		    return map;
+			Map map = new HashMap();
+			map.put("pwNullMsg", "비밀번호를 입력해주세요.");
+			return map;
 		} else if ((id == null || id.equals("")) && pw != null && !pw.equals("")) {
-		    // 아이디는 없고 비밀번호는 있음
+			// 아이디는 없고 비밀번호는 있음
 			System.out.println("아이디는 없고 비밀번호는 있음");
-		    Map map = new HashMap();
-		    map.put("idNullMsg", "아이디를 입력해주세요.");
-		    return map;
+			Map map = new HashMap();
+			map.put("idNullMsg", "아이디를 입력해주세요.");
+			return map;
 		} else {
-		    // 아이디와 비밀번호 둘 다 없음
+			// 아이디와 비밀번호 둘 다 없음
 			System.out.println("아이디와 비밀번호 둘 다 없음");
-		    Map map = new HashMap();
-		    map.put("idNullMsg", "아이디를 입력해주세요.");
-		    map.put("pwNullMsg", "비밀번호를 입력해주세요.");
-		    return map;
+			Map map = new HashMap();
+			map.put("idNullMsg", "아이디를 입력해주세요.");
+			map.put("pwNullMsg", "비밀번호를 입력해주세요.");
+			return map;
 		}
 	}
 
@@ -247,15 +255,10 @@ public class EunsolController {
 	public Map join(@ModelAttribute memberDTO memberDTO, Model model, HttpServletRequest req) {
 		System.out.println("/join");
 		// 빈 칸 체크
-		if (memberDTO.getId().isEmpty() 
-				|| idCheck(memberDTO.getId(), memberDTO) == -1 
-				|| memberDTO.getPw().isEmpty()
-				|| memberDTO.getPw_ck().isEmpty() 
-				|| memberDTO.getNickname().isEmpty()
-				|| nickCheck(req, memberDTO) == -1 
-				|| memberDTO.getEmail().isEmpty()
-				|| emailcheck(memberDTO.getEmail()) == "-1" 
-				|| memberDTO.getGender() == "-1"
+		if (memberDTO.getId().isEmpty() || idCheck(memberDTO.getId(), memberDTO) == -1 || memberDTO.getPw().isEmpty()
+				|| memberDTO.getPw_ck().isEmpty() || memberDTO.getNickname().isEmpty()
+				|| nickCheck(req, memberDTO) == -1 || memberDTO.getEmail().isEmpty()
+				|| emailcheck(memberDTO.getEmail()) == "-1" || memberDTO.getGender() == "-1"
 				|| memberDTO.getAge() == -1)
 
 		{

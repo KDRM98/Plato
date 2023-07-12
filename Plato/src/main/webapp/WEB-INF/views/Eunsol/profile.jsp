@@ -10,30 +10,32 @@
 <link rel="stylesheet" href="Eunsol/css/drop.css">
 </head>
 <body>
-	<form id="join_form" action="" method="post">
-		<div class="join_container">
-			<div class="form_content">
+	<form id="profile_form" action="" method="post">
+		<div class="profile_container">
+			<div class="profile_content">
 				<!-- 프로필 사진 -->
 				<div class="circle-container">
 					<img class="circle" src="Eunsol/imges/basic.jpg">
-					<%-- <form action="/member/updateImg" method="post" enctype="multipart/form-data">
-							<input type="file" name="file"> <input type="hidden" name="memberId" id="memberId" value="${login.memberID}"> --%>
 					<button class="circle-camera">
 						<img src="Eunsol/imges/camera.png">
 					</button>
 				</div>
 				<div class="basic_info">
 					<div class="form_item pw">
-						<input type="password" id="pw" name="pw" placeholder=" 비밀번호" value
-							maxlength="10" required>
+						<input type="password" id="pw" name="pw" placeholder="기존 비밀번호" 
+							maxlength="16" >
 					</div>
-					<div class="form_item pw_ck">
+					<div class="form_item newPw">
+						<input type="password" id="pw" name="pw" placeholder="새로운 비밀번호" 
+							maxlength="16" >
+					</div>
+					<div class="form_item newPw_ck">
 						<input type="password" id="pw_ck" name="pw_ck"
-							placeholder=" 비밀번호 재확인" value maxlength="10" required>
+							placeholder="새로운 비밀번호 재확인"  maxlength="16" >
 					</div>
 					<div class="form_item email">
 						<input type="email" id="email" name="email"
-							placeholder=" 비밀번호 분실 시 확인용 이메일" required>
+							placeholder=" 비밀번호 분실 시 확인용 이메일" >
 					</div>
 				</div>
 

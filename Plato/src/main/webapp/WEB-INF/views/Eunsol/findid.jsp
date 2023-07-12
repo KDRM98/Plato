@@ -16,14 +16,17 @@
 				<div class="expln">내 정보에 등록한 정보로 아이디를 찾을 수 있습니다.</div>
 				<div class="rqdInfo">
 					<div class="findIdForm email">
-						<input type="email" id="findEmail" name="email"
+						<input type="email" id="findId_Email" name="email"
 							placeholder="등록한 이메일 주소">
 					</div>
 					<div class="findIdForm nickname">
-						<input type="text" id="join_nickname" name="nickname"
+						<input type="text" id="findId_Nick" name="nickname"
 							placeholder="등록한 별명" maxlength="10">
 					</div>
 				</div>
+				<div class="findId_error">
+				</div>
+				
 				<div>
 					<button type="submit" class="find-button">찾기</button>
 				</div>

@@ -15,27 +15,30 @@
 <body>
 	<header>
 		<div>
-		
-				<div class="navigation">
-					<input type="checkbox" id="menuicon"> <label for="menuicon"
-						class="custom-checkbox"> <img
-						src="/Eunsol/imges/three_bars.svg" alt="Checkbox Image"
-						id="menuimg">
-					</label>
+
+			<div class="navigation">
+				<input type="checkbox" id="menuicon"> <label for="menuicon"
+					class="custom-checkbox"> <img
+					src="/Eunsol/imges/three_bars.svg" alt="Checkbox Image"
+					id="menuimg">
+				</label>
 
 
 
 
 
-					<!-- 왼쪽 사이드바 -->
-					<div class="sidebar" id="sb">
-						<div class="close">
-							<input type="checkbox" id="closeicon"> <label
-								for="closeicon" class="custom-checkbox"> <img
-								src="/Eunsol/imges/x.svg" alt="Close Image" id="closeimg">
-							</label>
+				<!-- 왼쪽 사이드바 -->
+				<div class="sidebar" id="sb">
 
-						</div>
+					<div class="close">
+						<input type="checkbox" id="closeicon"> <label
+							for="closeicon" class="custom-checkbox"> <img
+							src="/Eunsol/imges/x.svg" alt="Close Image" id="closeimg">
+						</label>
+					</div>
+
+					<!-- 로그인 안했을 때-->
+					<c:if test="${empty userid}">
 						<div class="side_content">
 							<div class="side_picture">
 								<img class="side_circle" src="Eunsol/imges/orang_plato.png">
@@ -56,26 +59,62 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<!-- 왼쪽 사이드바 끝-->
+					</c:if>
 
-
-				
-
-
-			
-
+					<!-- 로그인 했을 때-->
+					<c:if test="${not empty userid}">
+						<div class="side_content">
+							<div class="side_picture">
+								<img class="side_circle" src="Eunsol/imges/orang_plato.png">
+							</div>
+							<div class="side_menu">
+								<ul>
+									<li><a href="#" class="find_recipe">레시피찾기</a></li>
+									<li><a href="#" class="today_recipe">오늘의 인기레시피</a></li>
+									<li><a href="#" class="last_recipe">지난 인기레시피</a></li>
+									<li>&#160;</li>
+									<li><a href="#" class="last_recipe">마이페이지</a></li>
+									<li><a href="#" class="last_recipe">글쓰기</a></li>
+								</ul>
+							</div>
+							<div class="side_login">
+								<div class="side_login_btn">
+									<a href="/logout" class="logout">로그아웃</a>
+								</div>
+							</div>
+						</div>
+					</c:if>
 				</div>
-			
-		
+				<!-- 왼쪽 사이드바 끝-->
+
+				<!-- 로그인시 닉네임 표출-->
+				<c:if test="${not empty userid}">
+					<div class="hello_nickname">
+						<img alt="heart Img" src="/Eunsol/imges/heart.svg" id="heartImg">
+						<span class="header_nickname">${nickname}</span>${welcome}
+					</div>
+				</c:if>
+				<!-- 로그인시 닉네임 표출 끝-->
+			</div>
+
+
 			<div class="user_status">
 				<ul>
-					<li><a href="javascript:void(0)" class="login">로그인</a></li>
-					<li><a href="/logout" class="logout">로그아웃</a></li>
-					<li><a href="/joinForm">회원가입</a></li>
-					<li><a id="search_glass" href="#">Search <img
-							src="/Eunsol/imges/search_glass.svg" alt="search_glass Image">
-					</a></li>
+					<c:if test="${empty userid}">
+						<li><a href="javascript:void(0)" class="login">로그인</a></li>
+						<li><a href="/joinForm">회원가입</a></li>
+						<li><a id="search_glass" href="#">Search <img
+								src="/Eunsol/imges/search_glass.svg" alt="search_glass Image">
+						</a></li>
+					</c:if>
+					<c:if test="${not empty userid}">
+						<li><a href="/logout" class="logout">로그아웃</a></li>
+						<li><a href="#">마이페이지</a></li>
+						<li><a href="#">글쓰기</a></li>
+						<li><a id="search_glass" href="#">Search&#160;<img
+								src="/Eunsol/imges/search_glass.svg" alt="search_glass Image">
+						</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>
@@ -101,12 +140,12 @@
 			</div>
 			<div class="basic_info">
 				<div class="form_item user">
-					<input type="text" id="login_id" name="id" placeholder=" 아이디" 
+					<input type="text" id="login_id" name="id" placeholder=" 아이디"
 						maxlength="20">
 				</div>
 				<div class="form_item pw">
 					<input type="password" id="login_pw" name="pw" placeholder=" 비밀번호"
-						 maxlength="16">
+						maxlength="16">
 				</div>
 			</div>
 
@@ -130,6 +169,7 @@
 
 		</div>
 	</div>
+	<!-- 팝업 로그인 창 끝-->
 	<div class="dim"></div>
 
 	<!-- js -->

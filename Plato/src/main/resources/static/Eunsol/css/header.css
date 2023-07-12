@@ -7,7 +7,7 @@
 
 header body {
 	font-family: 'SUITE-Regular', sans-serif;
-	font-size: 16px;
+/* 	font-size: 16px; */
 }
 
 * {
@@ -36,7 +36,7 @@ header .navigation {
 	position: absolute;
 	left: 0;
 	display: inline; /* a태그가 인라인 요소이기 때문에 width와 height 값 변경을 위해*/
-	width: 330px;
+	width: 320px;
 	margin: 21px;
 	display: inline-flex;
 	/* text-indent: -9999em; */
@@ -65,13 +65,16 @@ header .navigation {
   filter: brightness(1000%) saturate(100%) invert(100%) contrast(1000%);
 }
 
+header .hello_nickname{
+	font-size: 12px;
+}
 
 header .hello_nickname .header_nickname{
 	color: #FF5733;
 }
 
 header #heartImg{
-	width: 16px;
+	width: 12px;
 }
 
 
@@ -103,8 +106,8 @@ header .user_status ul li:hover {
 
 header .user_status ul li a {
 	display: inline-flex;
-	text-align: left;
-	width: 73px;
+/* 	text-align: left; */
+	width: 100%;
 	height: 21px;
 /* 	background-image: url("/Eunsol/imges/search_glass.svg");
 	background-position: 100% 50%;

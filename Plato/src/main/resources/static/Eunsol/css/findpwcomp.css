@@ -5,7 +5,7 @@
 	text-decoration: none;
 }
 
-.findIdComp button, input {
+.findPwComp button, input {
 	border-radius: 0;
 	border: none;
 	background: 0 0;
@@ -19,7 +19,7 @@ body {
 	font-family: 'SUITE-Regular', sans-serif;
 }
 
-.findIdComp {
+.findPwComp {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -27,7 +27,7 @@ body {
 	padding: 120px 0px;
 }
 
-.findIdComp_container {
+.findPwComp_container {
 	width: 600px;
 	height: 350px;
 	border: 1px solid #D5C8C8;
@@ -37,7 +37,7 @@ body {
 	align-items: center;
 }
 
-.findIdComp_content {
+.findPwComp_content {
 	width: 600px;
 	height: 250px;
 	/* 	border: 1px solid black; */
@@ -49,14 +49,15 @@ body {
 	/* 	justify-content: center; */
 }
 
-.findIdComp_content .title {
+.findPwComp_content .title {
 	font-size: 25px;
 	margin-bottom: 40px;
 }
 
-.findIdComp_content .expln {
+.findPwComp_content .expln {
 	font-size: 14px;
 	margin-bottom: 10px;
+	text-align: center;
 }
 
 .rqdInfo {
@@ -132,7 +133,7 @@ input::placeholder {
 	content: ''
 }
 
-.findIdComp_content hr{
+.findPwComp_content hr{
 	color: #D5C8C8;
 	width: 400px;
 	margin: 20px 0px;
@@ -140,7 +141,7 @@ input::placeholder {
 }
 
 
-.findIdComp-btn .btn{
+.findPwComp-btn .btn{
 	width: 160px;
 	height: 55px; 
 	border: 1px solid #D5C8C8;
@@ -156,7 +157,7 @@ input::placeholder {
 }
 
 
-.findIdComp-btn .home{
+.findPwComp-btn .home{
 	background-color: transparent; 
 	margin: 0px auto;
 	display: inline-flex;
@@ -165,7 +166,7 @@ input::placeholder {
 	
 }
 
-.findIdComp-btn .login{
+.findPwComp-btn .login{
 	background-color: #FF5733;
 	color: white;
 	border: none;
