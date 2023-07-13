@@ -21,7 +21,7 @@ age.addEventListener('change', () => {
 	age.value
 });
 
-
+//불러온 정보 기존과 다를 경우 블랙으로
 const add_info_Input = Array.from(document.querySelectorAll(".add_info .form_item input"));
 const add_infoClass = formItem_Input.map(input => input.parentNode);
 
@@ -48,7 +48,7 @@ let exst_age = document.querySelector(".profile_content #age").value;
 
 
 
-find_button.addEventListener('click', function() {
+save_button.addEventListener('click', function() {
 	// ajax
 	console.log("정보변경하기 눌렀다");
 	/*	console.log(join_gender.value)*/
@@ -104,15 +104,15 @@ find_button.addEventListener('click', function() {
 		console.log(xhr.responseText);
 		let result = JSON.parse(xhr.responseText);
 
-		if (result.url) {
-			console.log("정보일치");
+		if (result.comp) {
+			console.log("정보수정완료");
 
-			let id = result.id;
-			let url = result.url;
-
-			// URL에 nickname 추가하여 이동
-			let nextPgae = url + "?id=" + id;
-			window.location.href = nextPgae;
+			let comp = result.comp;
+			let pop_profilecomp = document.querySelector(".pop_profilecomp");
+			pop_profilecomp.style.display = "block"
+			let mdfd = document.querySelector(".pop_profilecomp .mdfd");
+			html = "<div>" + comp + "</div>"
+			findId2_error.innerHTML = html;
 		}
 		else {
 			console.log("문제가 생겼다");
@@ -121,25 +121,25 @@ find_button.addEventListener('click', function() {
 			let value = result[key]
 			if (result.emailError) {
 				console.log("이메일 형식 오류");
-				emlfr.style.display = value;
-				rqdInfo_email.classList.add('b');
-				emailValid = false;
-			} else if (result.nullError) {
-				console.log("정보 불일치");
-				let findId2_error = document.querySelector(".findId2.error");
-				html = "<p class =\"" + key + "\">" + value + "</p>"
-				findId2_error.innerHTML = html;
+				emailMsg.style.display = value;
+				/*				rqdInfo_email.classList.add('b');*/
+				/*				emailValid = false;*/
+			} else if (result.nickError) {
+				console.log("닉네임 중복");
+				duNick.style.display = value;
 			}
 			else if (result.insertMsg) {
-				console.log("입력된정보 없음");
-				let findId1_error = document.querySelector(".findId1.error");
-				html = "<p class =\"" + key + "\">" + value + "</p>"
-				findId1_error.innerHTML = html;
+				console.log("빈칸 있음");
+				let profile2_error = document.querySelector(".profile2.error");
+				html = "<div>"+ value +"</div>"
+				profile2_error.innerHTML = html;
 			}
 			else {
 				console.log("예상못한 오류");
-				let findId2_error = document.querySelector(".findId1.error");
-				html = "<p>고객센터에 문의해주세요!</p>"
+				let pop_profilecomp = document.querySelector(".pop_profilecomp");
+				pop_profilecomp.style.display = "block"
+				let mdfd = document.querySelector(".pop_profilecomp .mdfd");
+				html = "<div>고객센터에 문의해주세요</div>"
 				findId2_error.innerHTML = html;
 			}
 
@@ -151,7 +151,6 @@ find_button.addEventListener('click', function() {
 });
 
 
-//별명 중복확인 만들어야 함
 // 아이디 보이는 칸 어떻게 보일지 생각해야함
 
 

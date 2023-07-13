@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <!-- css -->
 <link rel="stylesheet" href="Eunsol/css/profile.css">
+<link rel="stylesheet" href="Eunsol/css/pop_profilecomp.css">
 <link rel="stylesheet" href="Eunsol/css/drop.css">
 </head>
 <body>
@@ -15,6 +16,9 @@
 		<div class="profile_container">
 			<div class="profile_content">
 				<!-- 프로필 사진 -->
+				<div class="title">
+					<strong>회원정보 수정</strong>
+				</div>
 				<div class="circle-container">
 					<img class="circle" src="${image}">
 					<button class="circle-camera">
@@ -22,7 +26,11 @@
 					</button>
 				</div>
 				
-					<div class="add_info">
+				<div class = " static_id">
+					<strong>${id}</strong>
+				</div>
+
+				<div class="add_info">
 					<div class="form_item email">
 						<input type="email" id="email" name="email"
 							placeholder=" 비밀번호 분실 시 확인용 이메일" value="${email}">
@@ -70,16 +78,17 @@
 						</div>
 					</div>
 				</div>
-				
-				
-					<div class="profile2 error">
+
+
+				<div class="profile2 error">
 					<div id="emailMsg">이메일 형식이 올바르지 않습니다.</div>
+					<div id="duNick">이미 사용중인 아이디 입니다.</div>
 				</div>
 				<div>
 					<button type="submit" class="save-button">정보 변경하기</button>
 				</div>
-				
-				
+
+
 				<div class="pw_info">
 					<div class="form_item pw">
 						<input type="password" id="pw" name="pw" placeholder="기존 비밀번호"
@@ -103,64 +112,102 @@
 					<button type="submit" class="pwSave-button">비밀번호 변경하기</button>
 				</div>
 
-			
 
-			
+
+
 				<div>
 					<button type="submit" class="cancle-button">취소하기</button>
 				</div>
 			</div>
 		</div>
 	</form>
-	<div class="meiyou"></div>
-	<form id="withdrawal" action="" method="post">
-		<div class="unregister">
-			<div class="title">
-				<span>회원탈퇴</span>
+
+
+
+	<!-- 팝업 로그인 창 -->
+	<div class="pop_profilecomp" >
+		<div class="content">
+
+			<div class="mdfd">
+			<div>예시 문구입니다.</div>
 			</div>
-			<p>
-				사용하고 계신 아이디는 탈퇴할 경우 재사용 및 <span class="highlight">복구가 불가능합니다.</span><br>
-				탈퇴한 아이디는 본인과 타인 모두 <span class="highlight">재사용 및 복구가 불가하오니</span>
-				신중하게 선택하시기 바랍니다.<br> 회원 탈퇴를 진행했을 경우, 30일 이후에 자동으로 <span
-					class="highlight">삭제</span>됩니다. <br> 삭제를 취소하고 싶을 경우 저희
-				고객센터(biz@plato.co.kr)을 통해 연락주시기 바랍니다.<br>
-			</p>
+			
+			<div class="profilecomp-btn">
+				<a href="/header" class="btn check">확인</a> <a href="/header" class="btn home">홈으로</a>
+			</div>
 
-			<div class="agreement">
-				<label> <input type="checkbox" id="agree"> <em></em>
-					<span style="color: #e7223d; font-weight: bold;">회원 탈퇴에
-						동의합니다.</span>
-				</label>
+		</div>
+		</div>
+		<!-- 팝업 로그인 창 끝-->
+		<div class="dim"></div>
 
 
-				<!-- <label> <input type="radio" id="agree" name="agree">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="meiyou"></div>
+		<form id="withdrawal" action="" method="post">
+			<div class="unregister">
+				<div class="title">
+					<span>회원탈퇴</span>
+				</div>
+				<p>
+					사용하고 계신 아이디는 탈퇴할 경우 재사용 및 <span class="highlight">복구가
+						불가능합니다.</span><br> 탈퇴한 아이디는 본인과 타인 모두 <span class="highlight">재사용
+						및 복구가 불가하오니</span> 신중하게 선택하시기 바랍니다.<br> 회원 탈퇴를 진행했을 경우, 30일 이후에 자동으로
+					<span class="highlight">삭제</span>됩니다. <br> 삭제를 취소하고 싶을 경우 저희
+					고객센터(biz@plato.co.kr)을 통해 연락주시기 바랍니다.<br>
+				</p>
+
+				<div class="agreement">
+					<label> <input type="checkbox" id="agree"> <em></em>
+						<span style="color: #e7223d; font-weight: bold;">회원 탈퇴에
+							동의합니다.</span>
+					</label>
+
+
+					<!-- <label> <input type="radio" id="agree" name="agree">
 					<span>회원 탈퇴에 동의합니다.</span>
 				</label> -->
-			</div>
+				</div>
 
-			<!-- 회원 탈퇴 버튼 -->
-			<div>
-				<button type="submit" id="unregister-button">회원 탈퇴</button>
-			</div>
+				<!-- 회원 탈퇴 버튼 -->
+				<div>
+					<button type="submit" id="unregister-button">회원 탈퇴</button>
+				</div>
 
 
-			<!-- 팝업창 -->
-			<div class="overlay">
-				<!-- 팝업 창이 떳을 때 배경을 어둡게 처리
+				<!-- 팝업창 -->
+				<div class="overlay">
+					<!-- 팝업 창이 떳을 때 배경을 어둡게 처리
                                          팝업 이외의 부분을 클릭할 수 없게 -->
-				<div class="popup">
-					<h4>정말로 탈퇴하시겠습니까?</h4>
-					<button id="confirm-btn">확인</button>
-					<button id="cancle-btn">취소</button>
+					<div class="popup">
+						<h4>정말로 탈퇴하시겠습니까?</h4>
+						<button id="confirm-btn">확인</button>
+						<button id="cancle-btn">취소</button>
+					</div>
 				</div>
 			</div>
-		</div>
-	</form>
+		</form>
 
 
-	<!-- js -->
-	<script src="Eunsol/js/drop.js"></script>
-	<script src="Eunsol/js/profile_error.js"></script>
-	<script src="Eunsol/js/profile.js"></script>
+		<!-- js -->
+		<script src="Eunsol/js/drop.js"></script>
+		<script src="Eunsol/js/profile_error.js"></script>
+		<script src="Eunsol/js/profile.js"></script>
 </body>
 </html>

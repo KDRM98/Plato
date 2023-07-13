@@ -341,6 +341,7 @@ public class EunsolController {
 		memberDTO result = member.myprofile(DTO);
 	/*	String email = result.getEmail();*/
 		model.addAttribute("image", result.getImage());
+		model.addAttribute("id", result.getId());
 		model.addAttribute("email", result.getEmail());
 		model.addAttribute("nickname", result.getNickname());
 		model.addAttribute("gender", result.getGender());
@@ -349,9 +350,9 @@ public class EunsolController {
 		return "viewList2";
 	}
 	
-	
+	// 정보 변경하기 거름망
 	@RequestMapping("/myinfocomp")
-	public String myinfocomp(
+	public Map myinfocomp(
 			Model model,
 			HttpServletRequest request,
 			@ModelAttribute memberDTO DTO
@@ -360,9 +361,30 @@ public class EunsolController {
 		HttpSession session = request.getSession();
 		DTO.setUser_id((int)session.getAttribute("userid"));
 		int result = member.updateMember(DTO);
+		String email = request.getParameter("email");
+		String nickname = request.getParameter("nickname");
+		int nick_result = member.nicknameCheck(DTO);
 		
+		Map map = new HashMap();
+		if ((email != null && !email.equals("")) && (nickname != null && !nickname.equals(""))) {
+			if (emailcheck(email) == "-1") {
+				map.put("emailError", "'block'");
+
+			} else if (nick_result == -1) {
+				map.put("nickError", "'block'");
+				
+			} else {
+				map.put("comp", "회원정보가 수정되었습니다.");
+				
+			}
+		} else {
+			// 아이디와 비밀번호 둘 다 없음
+			System.out.println("빈칸 있음");
+			map.put("insertMsg", "정보를 입력해 주세요.");
+			
+		}
+		return map;
 		
-		return "viewList2";
 	}
 	
 	
@@ -394,6 +416,9 @@ public class EunsolController {
 		}
 	}
 
+	
+	
+	// 회원가입시 거름망
 	public Map validateMember(memberDTO memberDTO, HttpServletRequest req) {
 		Map errors = new HashMap();
 
