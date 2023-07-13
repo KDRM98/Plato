@@ -38,21 +38,34 @@
 		where id=#{id} and pw=#{pw}
 	</select>
 	
-	<!-- userid로 프로필 사진, 이메일, 별명, 성별, 연령대 검색-->
-	<select id="profile" parameterType="memberDTO" resultType="memberDTO">
-		select image, email, nickname, age, gender
+	<!-- userid로 프로필 사진, 아이디, 이메일, 별명, 성별, 연령대 검색-->
+	<select id="myprofile" parameterType="memberDTO" resultType="memberDTO">
+		select pw, image, id, email, nickname, age, gender
 		from member
 		where userid=#{userid}
 	</select>
 	
-	<update id="updateMember">
-	UPDATE member
-	SET 
-	<if test="todo != null and due_date != null">
 	
-	</if>
-	WHERE userid=#{userid}
+	<select id="findId" parameterType="memberDTO" resultType="string">
+		select id
+		from member
+		where email=#{email} and nickname=#{nickname}
+	</select>
+	
+	
+	
+	<update id="updateMember" parameterType="memberDTO" >
+    UPDATE member
+    SET
+    <if test="column1 ne null and column1 ne oldColumn1">
+        column1 = #{column1},
+    </if>
+    ...
+    WHERE userid = #{userid}
 	</update>
+	
+	
+	
 
 	<delete id="deleteMember" parameterType="memberDTO">
 	delete member

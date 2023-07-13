@@ -42,7 +42,7 @@ button, input, select{
 	width: 380px;
 	height: auto;	
 	background-color: white;
-	padding: 20px;
+	padding: 40px 20px;
 }
 
 
@@ -87,8 +87,9 @@ button, input, select{
 	width: 40px;
 }
 
-.profile_content .basic_info{
+.profile_content .pw_info{
 	border: 1px solid  #a1a1a1;	
+	margin-bottom: 5px;
 }
 
 .profile_content .form_item input{
@@ -99,6 +100,11 @@ button, input, select{
 	line-height: 22px;
 	color: #222
 }
+
+.profile_content .add_info .form_item input{
+	color:  #a1a1a1;
+}
+
 
 .profile_content input::placeholder {
   font-size: 12px;
@@ -189,6 +195,11 @@ button, input, select{
 	height: 30px;
 }
 
+.profile_content .form_item.newPw_ck::after{
+	
+border-bottom :none;
+	}
+
 .profile_content .form_item.email::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
@@ -196,7 +207,7 @@ button, input, select{
 	background-repeat: no-repeat;
 	width: 30px;
 	height: 30px;
-	;
+
 }
 
 .profile_content .form_item.email.a::before {
@@ -206,18 +217,15 @@ button, input, select{
 	background-repeat: no-repeat;
 	width: 30px;
 	height: 30px;
-	;
+
 }
 
 
-.profile_content .form_item.email::after{
-	border-bottom :none
 
-	}
 
 .profile_content .error{
 	margin-top : 2px;
-	height: auto;
+	height: 30px;
 }
 
 .profile_content .error #pwMsg, #emailMsg{
@@ -234,7 +242,7 @@ button, input, select{
 
 .profile_content .add_info{
 		border: 1px solid  #a1a1a1;
-		margin: 30px 0px;
+		margin: 30px 0px 5px;
 }
 
 
@@ -284,7 +292,6 @@ button, input, select{
 	width: 270px;
 	font-size: 16px;
 	line-height: 22px;
-	color: #222
 }
 
 
@@ -371,7 +378,22 @@ button, input, select{
   color: black; /* 체크할것 */
 }
 
-.profile_content .signup-button {
+
+
+
+.profile_content .save-button {
+	width: 100%;
+	padding: 14px 0;
+	border: none;
+	background: #FF5733 ;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	color: #fff;
+	margin-bottom: 40px;
+}
+
+.profile_content .pwSave-button {
 	width: 100%;
 	padding: 14px 0;
 	border: none;
@@ -381,6 +403,19 @@ button, input, select{
 	line-height: 22px;
 	color: #fff
 }
+
+.profile_content .cancle-button {
+	width: 100%;
+	padding: 14px 0;
+	border: 1px solid  #929294;
+	background: rgba(0, 0, 0, 0) ;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	color: black;
+	margin-top: 20px;
+}
+
 
 .profile_content .signup-button:disabled {
 	background: CBC8B5;

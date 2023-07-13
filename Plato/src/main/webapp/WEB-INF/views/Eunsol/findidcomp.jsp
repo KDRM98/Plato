@@ -16,7 +16,7 @@
 					<strong>아이디 찾기</strong>
 				</div>
 				<div class="expln">
-					회원가입 시 사용한 아이디는 <strong>${id}</strong>입니다.
+					회원가입시 사용한 아이디는 <strong>${id}</strong> 입니다.
 				</div>
 				<div>
 				<hr>

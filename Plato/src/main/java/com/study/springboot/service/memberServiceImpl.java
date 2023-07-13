@@ -83,4 +83,23 @@ public class memberServiceImpl implements memberService {
 		return result;
 	}
 
+	@Override
+	public String findId(memberDTO DTO) {
+		System.out.println("findId 서비스");
+		String result = DAO.findId(DTO);
+		return result;
+	}
+
+	@Override
+	public memberDTO myprofile(memberDTO DTO) {
+		memberDTO result = DAO.myprofile(DTO);
+		return result;
+	}
+
+	@Override
+	public int updateMember(memberDTO DTO) {
+		int result = DAO.updateMember(DTO);
+		return result;
+	}
+
 }

@@ -69,15 +69,51 @@ public class EunsolController {
 	}
 
 	@RequestMapping("/findid")
-	public String finid() {
+	@ResponseBody
+	public Map findid(@ModelAttribute memberDTO DTO, @RequestParam("email") String email,
+			@RequestParam("nickname") String nickname, Model model) {
 		System.out.println("/finid");
-		return "Eunsol/findid";
+
+		String id = member.findId(DTO);
+		System.out.println(id);
+		
+		Map map = new HashMap();
+		if ((email != null && !email.equals("")) && (nickname != null && !nickname.equals(""))) {
+			if (emailcheck(email) == "-1") {
+				map.put("emailError", "'block'");
+
+			} else if (id == null) {
+
+				map.put("nullError", "일치하는 정보가 없습니다.");
+				
+			} else if (id != null) {
+
+				map.put("id", id);
+				map.put("url", "/findidcomp");
+				
+			}
+		} else {
+			// 아이디와 비밀번호 둘 다 없음
+			System.out.println("빈칸 있음");
+			map.put("insertMsg", "정보를 입력해 주세요.");
+			
+		}
+		return map;
+	}
+
+	
+	
+	@RequestMapping("/findidForm")
+	public String findidForm() {
+		System.out.println("/findidForm");
+		return "viewList4";
 	}
 
 	@RequestMapping("/findidcomp")
-	public String finidcomp() {
+	public String finidcomp(@RequestParam("id") String id, Model model) {
 		System.out.println("/finidcomp");
-		return "Eunsol/findidcomp";
+		model.addAttribute("id", id);
+		return "viewList5";
 	}
 
 	@RequestMapping("/testfindpw")
@@ -138,13 +174,13 @@ public class EunsolController {
 				map.put("msg", "아이디나 비밀번호가 올바르지 않습니다.");
 				return map;
 			}
-		} else if (id != null && !id.equals("") && (pw == null || pw.equals(""))) {
+		} else if ((id != null && id.trim().length() != 0)&& (pw == null || pw.trim().length() == 0)) {
 			// 아이디는 있고 비밀번호가 없음
 			System.out.println("아이디는 있고 비밀번호가 없음");
 			Map map = new HashMap();
 			map.put("pwNullMsg", "비밀번호를 입력해주세요.");
 			return map;
-		} else if ((id == null || id.equals("")) && pw != null && !pw.equals("")) {
+		} else if ((id == null ||  id.trim().length() == 0) && pw != null && pw.trim().length() != 0) {
 			// 아이디는 없고 비밀번호는 있음
 			System.out.println("아이디는 없고 비밀번호는 있음");
 			Map map = new HashMap();
@@ -293,10 +329,51 @@ public class EunsolController {
 
 	// 마이페이지 중 프로필수정
 	@RequestMapping("/profile")
-	public String profile() {
+	public String profile(
+			Model model,
+			HttpServletRequest request,
+			@ModelAttribute memberDTO DTO
+			) {
 		System.out.println("/profile");
+		
+		HttpSession session = request.getSession();
+		DTO.setUser_id((int)session.getAttribute("userid"));
+		memberDTO result = member.myprofile(DTO);
+	/*	String email = result.getEmail();*/
+		model.addAttribute("image", result.getImage());
+		model.addAttribute("email", result.getEmail());
+		model.addAttribute("nickname", result.getNickname());
+		model.addAttribute("gender", result.getGender());
+		model.addAttribute("age", result.getAge());
+		/* model.addAttribute("r", result);    r.email */
 		return "viewList2";
 	}
+	
+	
+	@RequestMapping("/myinfocomp")
+	public String myinfocomp(
+			Model model,
+			HttpServletRequest request,
+			@ModelAttribute memberDTO DTO
+			) {
+		System.out.println("/myinfocomp");
+		HttpSession session = request.getSession();
+		DTO.setUser_id((int)session.getAttribute("userid"));
+		int result = member.updateMember(DTO);
+		
+		
+		return "viewList2";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// ----------- Java에서 정규식을 사용하여 이메일 주소를 검증하는 방법
 	private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";

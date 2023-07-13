@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,74 +16,103 @@
 			<div class="profile_content">
 				<!-- 프로필 사진 -->
 				<div class="circle-container">
-					<img class="circle" src="Eunsol/imges/basic.jpg">
+					<img class="circle" src="${image}">
 					<button class="circle-camera">
 						<img src="Eunsol/imges/camera.png">
 					</button>
 				</div>
-				<div class="basic_info">
-					<div class="form_item pw">
-						<input type="password" id="pw" name="pw" placeholder="기존 비밀번호" 
-							maxlength="16" >
-					</div>
-					<div class="form_item newPw">
-						<input type="password" id="pw" name="pw" placeholder="새로운 비밀번호" 
-							maxlength="16" >
-					</div>
-					<div class="form_item newPw_ck">
-						<input type="password" id="pw_ck" name="pw_ck"
-							placeholder="새로운 비밀번호 재확인"  maxlength="16" >
-					</div>
+				
+					<div class="add_info">
 					<div class="form_item email">
 						<input type="email" id="email" name="email"
-							placeholder=" 비밀번호 분실 시 확인용 이메일" >
+							placeholder=" 비밀번호 분실 시 확인용 이메일" value="${email}">
 					</div>
-				</div>
-
-				<div class="error">
-					<div id="pwMsg">비밀번호가 일치하지 않습니다.</div>
-					<div id="emailMsg">이메일 형식이 올바르지 않습니다.</div>
-
-				</div>
-
-				<div class="add_info">
 					<div class="form_item nickname">
 						<input type="text" id="nickname" name="nickname" placeholder=" 별명"
-							value maxlength="10" required>
+							maxlength="10" value="${nickname}">
 					</div>
 					<div class="select_box">
+
+
+
 						<ul class="box gender">
 							<li class="radio_item"><input type="radio" id="M"
-								name="gender" value="M"> <label for="M">남자</label></li>
+								name="gender" value="M" ${gender == "M" ? 'checked' : ''}>
+								<label for="M">남자</label></li>
 							<li class="radio_item"><input type="radio" id="F"
-								name="gender" value="F"> <label for="F">여자</label></li>
+								name="gender" value="F" ${gender == "F" ? 'checked' : ''}>
+								<label for="F">여자</label></li>
 						</ul>
+
+
+
+
 						<div class="box age">
 							<select id="age" name="age">
 								<option value="" selected disabled style="color: #929294;">연령대
 									선택</option>
-								<option value="10">10대</option>
-								<option value="20">20대</option>
-								<option value="30">30대</option>
-								<option value="40">40대</option>
-								<option value="50">50대</option>
-								<option value="60">60대 이상</option>
+								<option value="10" ${age == 10 ? 'selected' : ''}>10대</option>
+								<option value="20" ${age == 20 ? 'selected' : ''}>20대</option>
+								<option value="30" ${age == 30 ? 'selected' : ''}>30대</option>
+								<option value="40" ${age == 40 ? 'selected' : ''}>40대</option>
+								<option value="50" ${age == 50 ? 'selected' : ''}>50대</option>
+								<option value="60" ${age == 60 ? 'selected' : ''}>60대이상</option>
+
+								<%-- <option value="60" <c:if test="${gender == 60}">selected</c:if>60대이상</option>
+								
+								<c:if test="${gender == 60}">
+									<option value="60" selected>60대이상</option>
+								</c:if>
+								<c:if test="${gender != 60}">
+									<option value="60">60대이상</option>
+								</c:if> --%>
 							</select>
 						</div>
 					</div>
 				</div>
+				
+				
+					<div class="profile2 error">
+					<div id="emailMsg">이메일 형식이 올바르지 않습니다.</div>
+				</div>
+				<div>
+					<button type="submit" class="save-button">정보 변경하기</button>
+				</div>
+				
+				
+				<div class="pw_info">
+					<div class="form_item pw">
+						<input type="password" id="pw" name="pw" placeholder="기존 비밀번호"
+							maxlength="16">
+					</div>
+					<div class="form_item newPw">
+						<input type="password" id="newPw" name="pw" placeholder="새로운 비밀번호"
+							maxlength="16">
+					</div>
+					<div class="form_item newPw_ck">
+						<input type="password" id="newPw_ck" name="pw_ck"
+							placeholder="새로운 비밀번호 재확인" maxlength="16">
+					</div>
+				</div>
 
-				<div class="error">
-	
+				<div class="profile1 error">
+					<div id="pwMsg">새로운 비밀번호가 일치하지 않습니다.</div>
 				</div>
 
 				<div>
-					<button type="submit" class="signup-button">저장하기</button>
+					<button type="submit" class="pwSave-button">비밀번호 변경하기</button>
+				</div>
+
+			
+
+			
+				<div>
+					<button type="submit" class="cancle-button">취소하기</button>
 				</div>
 			</div>
 		</div>
 	</form>
-<div class="meiyou"></div>
+	<div class="meiyou"></div>
 	<form id="withdrawal" action="" method="post">
 		<div class="unregister">
 			<div class="title">
@@ -126,11 +156,11 @@
 			</div>
 		</div>
 	</form>
-	
-	
+
+
 	<!-- js -->
 	<script src="Eunsol/js/drop.js"></script>
 	<script src="Eunsol/js/profile_error.js"></script>
-	<script src="Eunsol/js/profile2.js"></script>
+	<script src="Eunsol/js/profile.js"></script>
 </body>
 </html>

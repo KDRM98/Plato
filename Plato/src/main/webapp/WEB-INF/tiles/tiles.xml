@@ -26,6 +26,17 @@
 		<put-attribute name="title" value="plato 회원가입완료 페이지" />
 		<put-attribute name="main" value="/WEB-INF/views/Eunsol/joincomp.jsp" />
 	</definition>
-
+	
+	<definition name="viewList4" extends="base">
+		<put-attribute name="title" value="plato 아이디찾기 페이지" />
+		<put-attribute name="main" value="/WEB-INF/views/Eunsol/findid.jsp" />
+	</definition>
+	
+	<definition name="viewList5" extends="base">
+		<put-attribute name="title" value="plato 아이디찾기완료 페이지" />
+		<put-attribute name="main" value="/WEB-INF/views/Eunsol/findidcomp.jsp" />
+	</definition>
+	
+<!--  name="viewList__" 은솔 0~99  동민 100~199 유찬 200~299 현영 300~ -->
 </tiles-definitions>
 

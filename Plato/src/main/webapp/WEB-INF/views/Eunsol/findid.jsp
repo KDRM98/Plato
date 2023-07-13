@@ -24,13 +24,15 @@
 							placeholder="등록한 별명" maxlength="10">
 					</div>
 				</div>
-				<div class="findId_error">
+				<div class="findId1 error">
+					<div id="emlfr">이메일 형식이 올바르지 않습니다.</div>
 				</div>
 				
 				<div>
-					<button type="submit" class="find-button">찾기</button>
+					<button type="submit" class="find-button">아이디 찾기</button>
 				</div>
-
+				<div class="findId2 error">
+				</div>
 			</div>
 		</div>
 	</div>

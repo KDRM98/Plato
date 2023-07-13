@@ -1,5 +1,5 @@
-const pw = document.getElementById("pw");
-const pw_ck = document.getElementById("pw_ck");
+const pw = document.getElementById("newPw");
+const pw_ck = document.getElementById("newPw_ck");
 const email = document.getElementById("email")
 const pwError = document.querySelector("#pwMsg")
 const emError = document.querySelector("#emailMsg")
