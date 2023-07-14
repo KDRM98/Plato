@@ -111,7 +111,7 @@
 					<c:if test="${not empty userid}">
 						<li><a href="/logout" class="logout">로그아웃</a></li>
 						<li><a href="#">마이페이지</a></li>
-						<li><a href="#">글쓰기</a></li>
+						<li><a href="/addrecipe">글쓰기</a></li>
 						<li><a id="search_glass" href="#">Search&#160;<img
 								src="/Eunsol/imges/search_glass.svg" alt="search_glass Image">
 						</a></li>
