@@ -74,7 +74,7 @@
 									<li><a href="#" class="last_recipe">지난 인기레시피</a></li>
 									<li>&#160;</li>
 									<li><a href="#" class="sb_mypage">마이페이지</a></li>
-									<li><a href="#" class="sb_write">글쓰기</a></li>
+									<li><a href="/addrecipe" class="sb_write">글쓰기</a></li>
 									<li><a href="/profile" class="sb_modify">회원정보수정</a></li>
 								</ul>
 							</div>
