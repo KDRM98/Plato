@@ -1,6 +1,7 @@
 package com.study.springboot.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,15 +32,28 @@ public class LoginController {
 		System.out.println("/recipe");
 	    model.addAttribute("likeCount", likeCount);
 	    model.addAttribute("isLiked", isLiked);
-		return "viewList4";
+		return "viewList101";
 	}
 	
 	@RequestMapping("/addrecipe")
-	public String addrecipe(
-			HttpServletRequest request,
-			Model model
-			) {
-		return "Dongmin/addrecipe";
+	public String header(HttpServletRequest request, Model model) {
+		System.out.println("/addrecipe");
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("userid") != null) { // 세션 값이 존재하는 경우
+
+			int userid = (int) session.getAttribute("userid");
+			String nickname = (String) session.getAttribute("nickname");
+
+			model.addAttribute("userid", userid);
+			model.addAttribute("nickname", nickname);
+			
+			return "Dongmin/addrecipe";
+		}
+		else {
+			String referer = "recipe";
+	        return "redirect:" + referer;
+		}
 	}
 	
 	
