@@ -16,6 +16,15 @@ public class memberDTO {
 	private int age = -1;
 	private String image;
 	
+
+	// 회원정보 수정을 위해 기존 정보 저장
+	private String pre_image;
+	private String pre_nickname;
+	private String pre_email;
+	private String pre_gender;
+	private int pre_age;
+	
+	
 	
 	public int getUserid() {
 		return userid;
@@ -79,16 +88,49 @@ public class memberDTO {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	public String getPre_nickname() {
+		return pre_nickname;
+	}
+	public void setPre_nickname(String pre_nickname) {
+		this.pre_nickname = pre_nickname;
+	}
+	public String getPre_email() {
+		return pre_email;
+	}
+	public void setPre_email(String pre_email) {
+		this.pre_email = pre_email;
+	}
+	public String getPre_gender() {
+		return pre_gender;
+	}
+	public void setPre_gender(String pre_gender) {
+		this.pre_gender = pre_gender;
+	}
+	public int getPre_age() {
+		return pre_age;
+	}
+	public void setPre_age(int pre_age) {
+		this.pre_age = pre_age;
+	}
+	public String getPre_image() {
+		return pre_image;
+	}
+	public void setPre_image(String pre_image) {
+		this.pre_image = pre_image;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	
 	@Override
 	public String toString() {
 		return "memberDTO [userid=" + userid + ", admin=" + admin + ", id=" + id + ", pw=" + pw + ", pw_ck=" + pw_ck
 				+ ", nickname=" + nickname + ", email=" + email + ", gender=" + gender + ", age=" + age + ", image="
-				+ image + "]";
+				+ image + ", pre_nickname=" + pre_nickname + ", pre_email=" + pre_email + ", pre_gender=" + pre_gender
+				+ ", pre_age=" + pre_age + ", pre_image=" + pre_image + "]";
 	}
-	
 
 	
 	
+	}
 	
-		
-}

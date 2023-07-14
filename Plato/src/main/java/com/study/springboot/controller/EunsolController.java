@@ -76,7 +76,7 @@ public class EunsolController {
 
 		String id = member.findId(DTO);
 		System.out.println(id);
-		
+
 		Map map = new HashMap();
 		if ((email != null && !email.equals("")) && (nickname != null && !nickname.equals(""))) {
 			if (emailcheck(email) == "-1") {
@@ -85,24 +85,22 @@ public class EunsolController {
 			} else if (id == null) {
 
 				map.put("nullError", "일치하는 정보가 없습니다.");
-				
+
 			} else if (id != null) {
 
 				map.put("id", id);
 				map.put("url", "/findidcomp");
-				
+
 			}
 		} else {
 			// 아이디와 비밀번호 둘 다 없음
 			System.out.println("빈칸 있음");
 			map.put("insertMsg", "정보를 입력해 주세요.");
-			
+
 		}
 		return map;
 	}
 
-	
-	
 	@RequestMapping("/findidForm")
 	public String findidForm() {
 		System.out.println("/findidForm");
@@ -174,13 +172,13 @@ public class EunsolController {
 				map.put("msg", "아이디나 비밀번호가 올바르지 않습니다.");
 				return map;
 			}
-		} else if ((id != null && id.trim().length() != 0)&& (pw == null || pw.trim().length() == 0)) {
+		} else if ((id != null && id.trim().length() != 0) && (pw == null || pw.trim().length() == 0)) {
 			// 아이디는 있고 비밀번호가 없음
 			System.out.println("아이디는 있고 비밀번호가 없음");
 			Map map = new HashMap();
 			map.put("pwNullMsg", "비밀번호를 입력해주세요.");
 			return map;
-		} else if ((id == null ||  id.trim().length() == 0) && pw != null && pw.trim().length() != 0) {
+		} else if ((id == null || id.trim().length() == 0) && pw != null && pw.trim().length() != 0) {
 			// 아이디는 없고 비밀번호는 있음
 			System.out.println("아이디는 없고 비밀번호는 있음");
 			Map map = new HashMap();
@@ -214,7 +212,7 @@ public class EunsolController {
 	// id 중복검사
 	@RequestMapping("/idCheck")
 	@ResponseBody
-	public int idCheck(@RequestParam("id") String id, @ModelAttribute memberDTO DTO) {
+	public int idCheck(@ModelAttribute memberDTO DTO) {
 		System.out.println("/idcheck");
 		int result = member.idCheck(DTO);
 		System.out.println("idCheck_result: " + result);
@@ -224,9 +222,8 @@ public class EunsolController {
 	// nickname 중복검사
 	@RequestMapping("/nickCheck")
 	@ResponseBody
-	public int nickCheck(HttpServletRequest req, @ModelAttribute memberDTO DTO) {
+	public int nickCheck(@ModelAttribute memberDTO DTO) {
 		System.out.println("/nickCheck");
-		String nick = req.getParameter("nickname");
 		int result = member.nicknameCheck(DTO);
 		System.out.println("nickCheck_result: " + result);
 
@@ -291,11 +288,10 @@ public class EunsolController {
 	public Map join(@ModelAttribute memberDTO memberDTO, Model model, HttpServletRequest req) {
 		System.out.println("/join");
 		// 빈 칸 체크
-		if (memberDTO.getId().isEmpty() || idCheck(memberDTO.getId(), memberDTO) == -1 || memberDTO.getPw().isEmpty()
-				|| memberDTO.getPw_ck().isEmpty() || memberDTO.getNickname().isEmpty()
-				|| nickCheck(req, memberDTO) == -1 || memberDTO.getEmail().isEmpty()
-				|| emailcheck(memberDTO.getEmail()) == "-1" || memberDTO.getGender() == "-1"
-				|| memberDTO.getAge() == -1)
+		if (memberDTO.getId().isEmpty() || idCheck(memberDTO) == -1 || memberDTO.getPw().isEmpty()
+				|| memberDTO.getPw_ck().isEmpty() || memberDTO.getNickname().isEmpty() || nickCheck(memberDTO) == -1
+				|| memberDTO.getEmail().isEmpty() || emailcheck(memberDTO.getEmail()) == "-1"
+				|| memberDTO.getGender() == "-1" || memberDTO.getAge() == -1)
 
 		{
 			Map errors = validateMember(memberDTO, req);
@@ -329,73 +325,53 @@ public class EunsolController {
 
 	// 마이페이지 중 프로필수정
 	@RequestMapping("/profile")
-	public String profile(
-			Model model,
-			HttpServletRequest request,
-			@ModelAttribute memberDTO DTO
-			) {
+	public String profile(Model model, HttpServletRequest request, @ModelAttribute memberDTO DTO) {
 		System.out.println("/profile");
-		
+
 		HttpSession session = request.getSession();
-		DTO.setUser_id((int)session.getAttribute("userid"));
+
+		// TODO 트라이케치문 작성하기
+
+		DTO.setUser_id((int) session.getAttribute("userid"));
+
 		memberDTO result = member.myprofile(DTO);
-	/*	String email = result.getEmail();*/
+		/* String email = result.getEmail(); */
 		model.addAttribute("image", result.getImage());
 		model.addAttribute("id", result.getId());
 		model.addAttribute("email", result.getEmail());
 		model.addAttribute("nickname", result.getNickname());
 		model.addAttribute("gender", result.getGender());
 		model.addAttribute("age", result.getAge());
-		/* model.addAttribute("r", result);    r.email */
+		/* model.addAttribute("r", result); r.email */
+
 		return "viewList2";
 	}
-	
+
 	// 정보 변경하기 거름망
 	@RequestMapping("/myinfocomp")
-	public Map myinfocomp(
-			Model model,
-			HttpServletRequest request,
-			@ModelAttribute memberDTO DTO
-			) {
+	@ResponseBody
+	public Map myinfocomp(Model model, HttpServletRequest request, @ModelAttribute memberDTO DTO) {
 		System.out.println("/myinfocomp");
+
 		HttpSession session = request.getSession();
-		DTO.setUser_id((int)session.getAttribute("userid"));
+		DTO.setUser_id((int) session.getAttribute("userid"));
+		memberDTO pre_date = member.myprofile(DTO);
+
 		int result = member.updateMember(DTO);
+
 		String email = request.getParameter("email");
 		String nickname = request.getParameter("nickname");
-		int nick_result = member.nicknameCheck(DTO);
-		
-		Map map = new HashMap();
-		if ((email != null && !email.equals("")) && (nickname != null && !nickname.equals(""))) {
-			if (emailcheck(email) == "-1") {
-				map.put("emailError", "'block'");
 
-			} else if (nick_result == -1) {
-				map.put("nickError", "'block'");
-				
-			} else {
-				map.put("comp", "회원정보가 수정되었습니다.");
-				
-			}
-		} else {
-			// 아이디와 비밀번호 둘 다 없음
-			System.out.println("빈칸 있음");
-			map.put("insertMsg", "정보를 입력해 주세요.");
-			
-		}
+		System.out.println("email" + email);
+		System.out.println("nickname" + nickname);
+
+		Map map = new HashMap();
+
+		map.put("comp", "회원정보가 수정되었습니다.");
+
 		return map;
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	// ----------- Java에서 정규식을 사용하여 이메일 주소를 검증하는 방법
 	private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
@@ -416,8 +392,6 @@ public class EunsolController {
 		}
 	}
 
-	
-	
 	// 회원가입시 거름망
 	public Map validateMember(memberDTO memberDTO, HttpServletRequest req) {
 		Map errors = new HashMap();
@@ -426,7 +400,7 @@ public class EunsolController {
 			errors.put("1 nullError id", "아이디를 입력해주세요.");
 		}
 
-		if (idCheck(memberDTO.getId(), memberDTO) == -1) {
+		if (idCheck(memberDTO) == -1) {
 			System.out.println("join 아이디 중복확인");
 			errors.put("duId", "이미 사용중인 아이디입니다.");
 		}
@@ -451,7 +425,7 @@ public class EunsolController {
 			errors.put("5 nullError nickname", "별명을 입력해주세요.");
 		}
 
-		if (nickCheck(req, memberDTO) == -1) {
+		if (nickCheck(memberDTO) == -1) {
 			System.out.println("join별명 중복확인");
 			errors.put("duNick", "이미 사용중인 별명입니다.");
 		}

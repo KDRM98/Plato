@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="Eunsol/css/drop.css">
 </head>
 <body>
-	<form id="profile_form" action="" method="post">
+
 		<div class="profile_container">
 			<div class="profile_content">
 				<!-- 프로필 사진 -->
@@ -20,7 +20,7 @@
 					<strong>회원정보 수정</strong>
 				</div>
 				<div class="circle-container">
-					<img class="circle" src="${image}">
+					<img class="circle" src="${image}" pre_date="${image}">
 					<button class="circle-camera">
 						<img src="Eunsol/imges/camera.png">
 					</button>
@@ -33,19 +33,19 @@
 				<div class="add_info">
 					<div class="form_item email">
 						<input type="email" id="email" name="email"
-							placeholder=" 비밀번호 분실 시 확인용 이메일" value="${email}">
+							placeholder=" 비밀번호 분실 시 확인용 이메일" pre_date="${email}" value="${email}">
 					</div>
 					<div class="form_item nickname">
 						<input type="text" id="nickname" name="nickname" placeholder=" 별명"
-							maxlength="10" value="${nickname}">
+							maxlength="10" pre_date="${nickname}" value="${nickname}">
 					</div>
 					<div class="select_box">
 
 
 
-						<ul class="box gender">
+						<ul class="box gender" pre_date="${gender}">
 							<li class="radio_item"><input type="radio" id="M"
-								name="gender" value="M" ${gender == "M" ? 'checked' : ''}>
+								name="gender" value="M" ${gender == "M" ? 'checked' : ''} >
 								<label for="M">남자</label></li>
 							<li class="radio_item"><input type="radio" id="F"
 								name="gender" value="F" ${gender == "F" ? 'checked' : ''}>
@@ -56,7 +56,7 @@
 
 
 						<div class="box age">
-							<select id="age" name="age">
+							<select id="age" name="age" pre_date="${age}">
 								<option value="" selected disabled style="color: #929294;">연령대
 									선택</option>
 								<option value="10" ${age == 10 ? 'selected' : ''}>10대</option>
@@ -116,11 +116,11 @@
 
 
 				<div>
-					<button type="submit" class="cancle-button">취소하기</button>
+					<button type="button" class="cancle-button">취소하기</button>
 				</div>
 			</div>
 		</div>
-	</form>
+
 
 
 
@@ -133,7 +133,7 @@
 			</div>
 			
 			<div class="profilecomp-btn">
-				<a href="/header" class="btn check">확인</a> <a href="/header" class="btn home">홈으로</a>
+				<a href="/profile" class="btn check">확인</a> <a href="/header" class="btn home">홈으로</a>
 			</div>
 
 		</div>
@@ -160,7 +160,7 @@
 
 
 		<div class="meiyou"></div>
-		<form id="withdrawal" action="" method="post">
+
 			<div class="unregister">
 				<div class="title">
 					<span>회원탈퇴</span>
@@ -202,7 +202,7 @@
 					</div>
 				</div>
 			</div>
-		</form>
+	
 
 
 		<!-- js -->
