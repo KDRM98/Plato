@@ -75,14 +75,17 @@ function checkEmailPattern(emailValue) {
 }
 
 //중복확인(닉네임)
+let exst_nick = document.querySelector(".profile_content #nickname").value;
 function checkDuplicateValue(inputValue, url, duElement) {
 	return new Promise((resolve) => {
+		
+let new_nickname = document.querySelector(".profile_content #nickname").value;
 		const xhr = new XMLHttpRequest();
 		xhr.open("get", url);
 		xhr.send();
 
 		xhr.onload = function() {
-			console.log(xhr.responseText);
+			console.log(xhr.responseText);if (exst_nickname !== new_nickname){
 			if (xhr.responseText === '-1') { // 자신의 아이디면 중복된걸로 나옴 문제 해결요망
 				duElement.style.display = 'block';
 				resolve(true); // 중복 상태 발견
@@ -90,7 +93,11 @@ function checkDuplicateValue(inputValue, url, duElement) {
 				duElement.style.display = 'none';
 				resolve(false); // 중복 상태 발견되지 않음
 			}
+		}else{
+			duElement.style.display = 'none';
+			resolve(false); // 중복 상태 발견되지 않음
 		};
+		}
 	});
 }
 

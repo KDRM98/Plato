@@ -115,12 +115,21 @@ login_btn.addEventListener('click', function() {
 			login_error.innerHTML = html;
 		}*/
 
-
-
-
 	}
 
 });
 
+
+// 비밀번호 치고 엔터쳤을 때 로그인 버튼 눌리도록
+// const formPwInput = document.querySelector(".form_item.pw input")
+//const login_btn = document.querySelector('.login_btn button');
+formPwInput.addEventListener('keydown', function(event) {
+	console.log(event.keyCode === 13)
+  if (event.keyCode === 13) {
+    event.preventDefault(); // 기본 엔터 동작 방지
+
+    document.querySelector('.login_btn button').click(); // 로그인 버튼 클릭
+  }
+});
 
 

@@ -53,17 +53,58 @@
 	</select>
 	
 	
-	
-	<update id="updateMember" parameterType="memberDTO" >
+	<!-- 입력한 값만 업데이트-->
+<!-- 	<update id="updateMember" parameterType="memberDTO" >
     UPDATE member
     SET
-    <if test="column1 ne null and column1 ne oldColumn1">
-        column1 = #{column1},
+    <if test="image != null and image != pre_image ">
+        image = #{image},
     </if>
-    ...
+    
+    <if test="nickname != null and nickname != pre_nickname">
+        nickname = #{nickname},
+    </if>
+    
+    <if test="email != null and email != pre_email">
+        email = #{email},
+    </if>
+    
+    <if test="gender != null and gender != pre_gender">
+        gender = #{gender},
+    </if>
+     
+    <if test="age != null and age != pre_age">
+        age = #{age},
+    </if>
+    
     WHERE userid = #{userid}
-	</update>
+	</update> -->
 	
+<update id="updateMember" parameterType="memberDTO">
+  UPDATE member
+  SET
+  <if test="image != null and image != pre_image">
+   image = #{image},
+  </if>
+
+  <if test="nickname != null and nickname != pre_nickname">
+  nickname = #{nickname},
+  </if>
+
+  <if test="email != null and email != pre_email">
+   email = #{email},
+  </if>
+
+  <if test="gender != -1 and gender != pre_gender">
+   gender = #{gender},
+  </if>
+
+  <if test="age != -1 and age != pre_age">
+   age = #{age},
+  </if>
+	userid = #{userid}
+  WHERE userid = #{userid}
+</update>
 	
 	
 

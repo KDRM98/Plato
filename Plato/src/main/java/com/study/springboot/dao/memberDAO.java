@@ -16,7 +16,7 @@ public interface memberDAO {
 	memberDTO myprofile(memberDTO DTO);
 	
 	int updateMember(memberDTO DTO);
-	
+
 	
 	
 }
