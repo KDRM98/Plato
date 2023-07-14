@@ -79,15 +79,18 @@
 			<hr>
 		<div class="introelement">
 			<span class="ltitle">재료</span>
-			<select id="market-select">
-			  <option value="https://www.coupang.com/np/search?component=&q=" selected>쿠팡</option>
-			  <option value="https://browse.gmarket.co.kr/search?keyword=">G마켓</option>
-			  <option value="https://search.11st.co.kr/Search.tmall?kwd=">11번가</option>
-			  <option value="https://www.kurly.com/search?sword=">마켓컬리(Kurly)</option>
-			  <option value="https://search.shopping.naver.com/search/all?query=">네이버쇼핑</option>
-			</select>
+			<div id="markets">
+				<select id="market-select">
+				  <option value="https://www.coupang.com/np/search?component=&q=" selected>쿠팡</option>
+				  <option value="https://browse.gmarket.co.kr/search?keyword=">G마켓</option>
+				  <option value="https://search.11st.co.kr/Search.tmall?kwd=">11번가</option>
+				  <option value="https://www.kurly.com/search?sword=">마켓컬리(Kurly)</option>
+				  <option value="https://search.shopping.naver.com/search/all?query=">네이버쇼핑</option>
+				</select>
+				<span style="font-size:20px; color:lightgray;">* 재료의 구매 버튼 클릭 시, 해당 사이트에서 검색합니다.</span>
+			</div>
 			<br>
-			<div class="ingredient" style="margin-top: 50px; display: flex; flex-wrap: wrap; width: 1300px;">
+			<div class="ingredient" style=" display: flex; flex-wrap: wrap; width: 1300px;">
 				<div id="ingredient-container"></div>
 			</div>
 		</div>
