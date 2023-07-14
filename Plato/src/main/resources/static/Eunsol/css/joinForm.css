@@ -44,7 +44,7 @@ button, input, select{
 .form_content{
 	box-sizing: border-box;
 	padding :0px;
-	width: 380px;
+	width: 390px;
 	height: auto;	
 	background-color: white;
 	padding: 20px;
@@ -197,9 +197,6 @@ input::placeholder {
 
 	}
 
-/* .form_content .error{
-	display :none;
-} */
 
 
 .form_content .error{

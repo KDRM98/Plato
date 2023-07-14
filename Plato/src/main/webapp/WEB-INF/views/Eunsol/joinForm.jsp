@@ -16,20 +16,20 @@
 
 					<div class="joinform_item user">
 						<input type="text" id="join_id" name="id" data-id="Id"
-							placeholder=" 아이디" value ="asdf123">
+							placeholder=" 아이디"  >
 					</div>
 
 					<div class="joinform_item pw">
 						<input type="password" id="join_pw" name="pw" placeholder=" 비밀번호"
-							value maxlength="16" value="123qwe!">
+							maxlength="16"  >
 					</div>
 					<div class="joinform_item pw_ck">
 						<input type="password" id="join_pw_ck" name="pw_ck"
-							placeholder=" 비밀번호 재확인" value maxlength="10" value="123qwe!">
+							placeholder=" 비밀번호 재확인" maxlength="16"  >
 					</div>
 					<div class="joinform_item email">
 						<input type="email" id="email" name="email"
-							placeholder=" 비밀번호 분실 시 확인용 이메일" value="les805@naver.com">
+							placeholder=" 비밀번호 분실 시 확인용 이메일" >
 					</div>
 				</div>
 
@@ -47,18 +47,18 @@
 				<div class="add_info">
 					<div class="joinform_item nickname">
 						<input type="text" id="join_nickname" name="nickname"
-							placeholder=" 별명" value maxlength="10" value="미니묭">
+							placeholder=" 별명" maxlength="10" >
 					</div>
 					<div class="select_box">
 						<ul class="box gender">
 							<li class="joinradio_item"><input type="radio" id="M"
 								name="gender" value="M"> <label for="M">남자</label></li>
 							<li class="joinradio_item"><input type="radio" id="F"
-								name="gender" value="F"> <label for="F">여자</label></li>
+								name="gender" value="F" checked=true> <label for="F">여자</label></li>
 						</ul>
 						<div class="box age">
 							<select id="age" name="age">
-								<option value="" selected disabled style="color: #929294;">연령대
+								<option value="-1" selected disabled style="color: #929294;">연령대
 									선택</option>
 								<option value="10">10대</option>
 								<option value="20">20대</option>
@@ -71,7 +71,7 @@
 					</div>
 				</div>
 
-				<div class="error">
+				<div class="nick error">
 					<div id="duNick">이미 사용중인 별명입니다.</div>
 				</div>
 
@@ -79,13 +79,13 @@
 					<button type="submit" class="signup-button">가입하기</button>
 				</div>
 				<div class="null error">
-					<p class="nullError Id">${errorId}</p>
+	<%-- 				<p class="nullError Id">${errorId}</p>
 					<p class="nullError Pw">${errorPw}</p>
 					<p class="nullError Pw_ck">${errorPw_ck}</p>
 					<p class="nullError Email">${errorEmail}</p>
 					<p class="nullError Nickname">${errorNickname}</p>
 					<p class="errorNull Gender">${errorGender}</p>
-					<p class="errorNull Age">${errorAge}</p>
+					<p class="errorNull Age">${errorAge}</p> --%>
 				</div>
 			</div>
 		</div>

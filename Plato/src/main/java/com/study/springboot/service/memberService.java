@@ -9,4 +9,8 @@ public interface memberService {
 	int nicknameCheck(memberDTO DTO);
 	int loginCheck(memberDTO DTO);
 	memberDTO basicInfo(memberDTO DTO);
+	String findId(memberDTO DTO);
+	memberDTO myprofile(memberDTO DTO);
+	
+	int updateMember(memberDTO DTO);
 }

@@ -1,6 +1,5 @@
-
-const overlay = document.querySelector(".overlay");
-const popup = document.querySelector(".popup");
+const overlay = document.querySelector("overlay");
+const drop_popup = document.querySelector(".popup");
 const confirmBtn = document.getElementById("confirm-btn");
 const cancleBtn = document.getElementById("cancle-btn");
 const checkbox = document.getElementById('agree');
@@ -24,7 +23,7 @@ unregisterButton.addEventListener("click", function(event) {
 		event.preventDefault();
 		console.log("탈퇴버튼 눌렀다")
 		overlay.style.display = "block";
-		popup.style.display = "block";
+		drop_popup.style.display = "block";
 	
 });
 
@@ -34,12 +33,12 @@ confirmBtn.addEventListener("click", function() {
 	// 탈퇴 처리 로직 추가
 	alert("탈퇴되었습니다.");
 	overlay.style.display = "none";
-	popup.style.display = "none";
+	drop_popup.style.display = "none";
 	window.location.href = "https://www.naver.com"; // 메인페이지 주소 넣기
 });
 
 //회원탈퇴 최종 취소시 원 페이지로 돌아가도록
 cancleBtn.addEventListener("click", function() {
 	overlay.style.display = "none";
-	popup.style.display = "none";
+	drop_popup.style.display = "none";
 });

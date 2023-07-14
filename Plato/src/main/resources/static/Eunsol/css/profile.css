@@ -14,7 +14,6 @@
 
 body {
 	font-family: 'SUITE-Regular', sans-serif;
-	font-size: 12px;
 	background-color: beige;
 }
 
@@ -27,33 +26,40 @@ button, input, select{
 	cursor: pointer;
 }
 
-.join_container{
+.profile_container{
 	width: 100%;	
 	display: flex;
 	flex-direction: column;
 	align-items : center;
 	justify-content: center;
 	padding-top : 120px;
+	font-size: 12px;
 }
 
-.form_content{
+.profile_content{
 	box-sizing: border-box;
 	padding :0px;
-	width: 380px;
+	width: 400px;
 	height: auto;	
 	background-color: white;
-	padding: 20px;
+	padding: 40px 20px;
 }
 
+.profile_content .title{
+	text-align: center;
+	font-size: 25px;
+	margin-bottom:30px; 
+	text-decoration: underline;
+}
 
-.circle-container {
+.profile_content .circle-container {
 	/* margin-right: 0; */
 	text-align: center;
 	margin-bottom:20px;
 	position: relative; 
 }
 
-.circle {
+.profile_content .circle {
 	width: 170px;
 	height: 170px;
 	/*     background-color: paleturquoise; */
@@ -65,7 +71,7 @@ button, input, select{
 	/* margin-right: 0;    */
 }
 
-.circle-camera {
+.profile_content .circle-camera {
 	position: absolute;
 	top: 20%;
 	left: 30%;
@@ -78,20 +84,29 @@ button, input, select{
 	cursor: pointer;
 }
 
-.circle-camera:hover {
+.profile_content .circle-camera:hover {
 	background-color:  #FF5733;
 	}
 
-.circle-camera img {
+.profile_content .circle-camera img {
 	height: 40px;
 	width: 40px;
 }
 
-.basic_info{
-	border: 1px solid  #a1a1a1;	
+.profile_content .static_id{
+	text-align: center;
+	font-size: 20px;
+	color:  #FF5733;
 }
 
-.form_item input{
+
+
+.profile_content .pw_info{
+	border: 1px solid  #a1a1a1;	
+	margin-bottom: 5px;
+}
+
+.profile_content .form_item input{
 	flex: 1 1 auto;
 	box-sizing: border-box;
 	width: 270px;
@@ -100,11 +115,16 @@ button, input, select{
 	color: #222
 }
 
-input::placeholder {
+.profile_content .add_info .form_item input{
+	color:  #a1a1a1;
+}
+
+
+.profile_content input::placeholder {
   font-size: 12px;
 }
 
-.form_item::before {
+.profile_content .form_item::before {
 	position: absolute;
 	top: 10px;
 	left: 9px;
@@ -112,7 +132,7 @@ input::placeholder {
 }
 
 
-.form_item {
+.profile_content .form_item {
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -123,7 +143,7 @@ input::placeholder {
 }
 
 
-.form_item::after{
+.profile_content .form_item::after{
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -135,8 +155,7 @@ input::placeholder {
 	content: ''
 }
 
-
-.form_item.pw::before {
+.profile_content .form_item.pw::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -64px -264px;
@@ -145,7 +164,7 @@ input::placeholder {
 	height: 30px
 }
 
-.form_item.pw.a::before {
+.profile_content .form_item.pw.a::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -128px -264px;
@@ -154,7 +173,7 @@ input::placeholder {
 	height: 30px;
 }
 
-.form_item.pw_ck::before {
+.profile_content .form_item.newPw::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -64px -264px;
@@ -163,7 +182,7 @@ input::placeholder {
 	height: 30px
 }
 
-.form_item.pw_ck.a::before {
+.profile_content .form_item.newPw.a::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -128px -264px;
@@ -172,58 +191,77 @@ input::placeholder {
 	height: 30px;
 }
 
-.form_item.email::before {
+.profile_content .form_item.newPw_ck::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -64px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px
+}
+
+.profile_content .form_item.newPw_ck.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -128px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
+.profile_content .form_item.newPw_ck::after{
+	
+border-bottom :none;
+	}
+
+.profile_content .form_item.email::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -310px -160px;
 	background-repeat: no-repeat;
 	width: 30px;
 	height: 30px;
-	;
+
 }
 
-.form_item.email.a::before {
+.profile_content .form_item.email.a::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -310px -32px;
 	background-repeat: no-repeat;
 	width: 30px;
 	height: 30px;
-	;
+
 }
 
 
-.form_item.email::after{
-	border-bottom :none
 
-	}
 
-.error{
-	margin-top : 2px;
+.profile_content .error{
+	margin-top : 10px;
+	margin-bottom : 10px;
 	height: auto;
-}
-
-.error #pwMsg, #emailMsg{
-	display :none;
 	color: #e7223d;
 	font-weight: bold;
 }
 
-/* .error #emailMsg{
-	display :none;
-	color: #e7223d;
-	
-} */
 
-.add_info{
-		border: 1px solid  #a1a1a1;
-		margin: 30px 0px;
+.profile_content .error div{
+	display :none;
 }
 
 
 
 
-.form_item.nickname {
+.profile_content .add_info{
+		border: 1px solid  #a1a1a1;
+		margin: 30px 0px 5px;
+}
+
+
+
+
+.profile_content .form_item.nickname {
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -234,7 +272,7 @@ input::placeholder {
 /*     border-bottom: 0.5px solid #dfdfdf; */
 }
 
-.form_item.nickname::before {
+.profile_content .form_item.nickname::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -96px -296px;
@@ -247,7 +285,7 @@ input::placeholder {
 	content: ''
 }
 
-.form_item.nickname.a::before {
+.profile_content .form_item.nickname.a::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -224px -264px;
@@ -261,17 +299,16 @@ input::placeholder {
 }
 
 
-.form_item.nickname input{
+.profile_content .form_item.nickname input{
 	flex: 1 1 auto;
 	box-sizing: border-box;
 	width: 270px;
 	font-size: 16px;
 	line-height: 22px;
-	color: #222
 }
 
 
-.form_item.nickname::after{
+.profile_content .form_item.nickname::after{
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -281,38 +318,38 @@ input::placeholder {
 	content: ''
 }
 
-.select_box{
+.profile_content .select_box{
 	display:flex;
 	height: 50px;
 	align-items : center;
 
 }
-.selext_box .box{
+.profile_content .selext_box .box{
 	flex:1;
 	
 }
 
-input[type="radio"] {
+.profile_content input[type="radio"] {
   display: none;
 }
 
-ul.box.gender {
+.profile_content ul.box.gender {
   display: flex;
   justify-content: center;
 }
 
 
-.radio_item+.radio_item {
+.profile_content .radio_item+.radio_item {
 	margin-left: -1px 
 	/* 라디오 버튼 요소들이 붙어있는 것처럼 보이게 */
 }
 
 
-.radio_item input[type="radio"] + label {
+.profile_content .radio_item input[type="radio"] + label {
   cursor: pointer;
 }
 
-.radio_item input:checked+label {
+.profile_content .radio_item input:checked+label {
 	z-index: 1;
 	border-color: #FF5733;
 	font-weight: 500;
@@ -320,7 +357,7 @@ ul.box.gender {
 
 }
 
-.radio_item label {
+.profile_content .radio_item label {
 	display: block;
 	position: relative;
 	box-sizing: border-box;
@@ -334,7 +371,7 @@ ul.box.gender {
 	text-align: center
 }
 
-.select_box .box{
+.profile_content .select_box .box{
 	box-sizing: border-box;
 	width: 50%;
 
@@ -342,7 +379,7 @@ ul.box.gender {
 
 }
 
-#age {
+.profile_content #age {
 	width: 156px;
 	height: 32px;
 	border : 1px solid #c6c6c6;
@@ -350,11 +387,26 @@ ul.box.gender {
 	color: #929294;
 }
 
-select option:checked {
+.profile_content select option:checked {
   color: black; /* 체크할것 */
 }
 
-.signup-button {
+
+
+
+.profile_content .save-button {
+	width: 100%;
+	padding: 14px 0;
+	border: none;
+	background: #FF5733 ;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	color: #fff;
+	margin-bottom: 40px;
+}
+
+.profile_content .pwSave-button {
 	width: 100%;
 	padding: 14px 0;
 	border: none;
@@ -365,7 +417,20 @@ select option:checked {
 	color: #fff
 }
 
-.signup-button:disabled {
+.profile_content .cancle-button {
+	width: 100%;
+	padding: 14px 0;
+	border: 1px solid  #929294;
+	background: rgba(0, 0, 0, 0) ;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	color: black;
+	margin-top: 20px;
+}
+
+
+.profile_content .signup-button:disabled {
 	background: CBC8B5;
 	cursor: default
 }
