@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <title>Recipe Search</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="css/reset.css">
   <style>
@@ -87,7 +86,7 @@
   .recipe-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Center the recipe cards */
+    justify-content: center;
   }
 
   .recipe-card {
@@ -100,31 +99,31 @@
     flex-direction: column;
     align-items: center;
     background-color: #fff;
-    position: relative; /* Add position relative for positioning the button */
+    position: relative;
     overflow: hidden;
   }
 
   @media (max-width: 1200px) {
     .recipe-card {
-      width: calc(25% - 20px); /* Limit to 4 cards per row */
+      width: calc(25% - 20px); 
     }
   }
 
   @media (max-width: 992px) {
     .recipe-card {
-      width: calc(33.33% - 20px); /* Limit to 3 cards per row */
+      width: calc(33.33% - 20px); /
     }
   }
 
   @media (max-width: 768px) {
     .recipe-card {
-      width: calc(50% - 20px); /* Limit to 2 cards per row */
+      width: calc(50% - 20px); 
     }
   }
 
   @media (max-width: 576px) {
     .recipe-card {
-      width: 100%; /* Limit to 1 card per row */
+      width: 100%; 
     }
   }
 
@@ -179,6 +178,23 @@
   .recipe-card:hover .quick-view-button {
     opacity: 1;
   }
+
+  .stat_box {
+  display: flex;
+  align-items: center;
+  background-color: #555;
+  padding: 10px;
+  color: #fff;
+}
+
+.sort-select-wrapper {
+      margin-left: auto; 
+    }
+
+    #sort-select {
+      padding: 0px 10px;
+    }
+
   </style>
 </head>
 <body>
@@ -205,8 +221,20 @@
     </div>
   </div>
   
-
   <div class="tags-container" id="tags-container"></div>
+  
+  <div class="stat_box">
+    <div class="sort-select-wrapper">
+      <div class="sort-select-container">
+        <select id="sort-select">
+          <option value="latest">최신순</option>
+          <option value="likes">좋아요순</option>
+          <option value="bookmarks">북마크순</option>
+          <option value="views">조회수순</option>
+        </select>
+      </div>
+    </div>
+  </div>
 
   <div class="recipe-grid" id="recipes-grid"></div>
 
@@ -220,17 +248,17 @@
 
     let selectedTags = [];
 
-    // Handle search button click event
+    // 검색 버튼
     searchIcon.forEach(icon => icon.addEventListener('click', searchRecipes));
 
-    // Handle Enter key press event for search input
+    // 검색할떼 엔터 허용
     searchInput.addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
         searchRecipes();
       }
     });
 
-    // Handle Enter key press event for include ingredient input
+    // 엔터 눌러 테그 추가하는 기능
     ingredientIncludeInput.addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
         addTag(ingredientIncludeInput.value, false);
@@ -239,7 +267,7 @@
       }
     });
 
-    // Handle Enter key press event for exclude ingredient input
+    // 제료 제거 테그 기능. 엔터 눌러 추가.
     ingredientExcludeInput.addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
         addTag(ingredientExcludeInput.value, true);
@@ -248,14 +276,14 @@
       }
     });
 
-    // Function to search recipes
+    // 레시피 검색 엔진
     function searchRecipes() {
       const searchText = searchInput.value.toLowerCase();
       const filteredRecipes = recipesData.filter(recipe => {
-        // Check if the recipe title contains the search text
+        // 제목 찾기
         const titleMatch = recipe.title.toLowerCase().includes(searchText);
         
-        // Check if any of the selected tags are present in the recipe ingredients
+        // 테그가 있는지 체크
         const tagsMatch = selectedTags.every(tag => recipe.ingredients.includes(tag));
         
         return titleMatch && tagsMatch;
@@ -264,7 +292,7 @@
       generateRecipeCards(filteredRecipes);
     }
 
-     // Function to generate recipe cards
+     // 레시피 박스 템플릿
   function generateRecipeCards(recipes = recipesData) {
     recipesGridContainer.innerHTML = '';
     for (let i = 0; i < recipes.length; i++) {
@@ -305,14 +333,14 @@
 
       const quickViewButton = document.createElement('button');
       quickViewButton.className = 'quick-view-button';
-      quickViewButton.textContent = 'Quick View';
+      quickViewButton.textContent = '미리 보기';
 
       recipeCard.appendChild(quickViewButton);
       recipesGridContainer.appendChild(recipeCard);
     }
   }
 
-    // Function to add a tag
+    // 테그 추가
     function addTag(tagText, isRemoved) {
       const tag = document.createElement('div');
       tag.className = 'tag';
@@ -336,7 +364,7 @@
       selectedTags.push(tagText);
     }
 
-    // Function to remove a tag
+    // 테그 제거
     function removeTag(tagText) {
       const index = selectedTags.indexOf(tagText);
       if (index > -1) {
@@ -344,7 +372,7 @@
       }
     }
 
-    // Sample recipe data
+    // 샘플
     const recipesData = [
       {
         title: 'Recipe 1',
@@ -402,7 +430,6 @@
       }
     ];
 
-    // Generate initial recipe cards
     generateRecipeCards();
 
   </script>
