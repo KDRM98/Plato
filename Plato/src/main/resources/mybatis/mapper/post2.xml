@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.springboot.dao.postDAO2">
+
+	<!-- userid의 게시물의 개수를 구하는 문 -->
+	<select id="rough" parameterType="postDTO2" resultType="int">
+		select count(*)
+		from  post
+		where userid=#{userid}
+	</select>
+
+
+</mapper>

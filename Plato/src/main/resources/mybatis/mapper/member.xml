@@ -95,7 +95,7 @@
    email = #{email},
   </if>
 
-  <if test="gender != -1 and gender != pre_gender">
+  <if test="gender != '-1' and gender != pre_gender">
    gender = #{gender},
   </if>
 
