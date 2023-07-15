@@ -42,6 +42,15 @@
 		<put-attribute name="main" value="/WEB-INF/views/Eunsol/findidcomp.jsp" />
 	</definition>
 	
+	<definition name="viewList6" extends="base">
+		<put-attribute name="title" value="plato 비밀번호찾기 페이지" />
+		<put-attribute name="main" value="/WEB-INF/views/Eunsol/findpw.jsp" />
+	</definition>
+	
+	<definition name="viewList7" extends="base">
+		<put-attribute name="title" value="plato 비밀번호찾기완료 페이지" />
+		<put-attribute name="main" value="/WEB-INF/views/Eunsol/findpwcomp.jsp" />
+	</definition>
 <!--  name="viewList__" 은솔 0~99  동민 100~199 유찬 200~299 현영 300~ -->
 
 </tiles-definitions>

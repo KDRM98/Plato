@@ -102,4 +102,18 @@ public class memberServiceImpl implements memberService {
 		return result;
 	}
 
+	@Override
+	public int pwCheck(memberDTO DTO) {
+		System.out.println("pwCheck 서비스");
+		int result = DAO.pwCheck(DTO);
+		return result;
+	}
+
+	@Override
+	public String findPw(memberDTO DTO) {
+		System.out.println("findpw 서비스");
+		String result = DAO.findPw(DTO);
+		return result;
+	}
+
 }

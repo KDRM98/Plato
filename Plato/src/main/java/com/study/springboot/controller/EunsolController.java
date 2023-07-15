@@ -1,13 +1,20 @@
 package com.study.springboot.controller;
 
+import java.net.PasswordAuthentication;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Pattern;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.rsocket.server.RSocketServer.Transport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study.springboot.dto.memberDTO;
+import com.study.springboot.service.emailSenderService;
 import com.study.springboot.service.memberService;
 
 /*import jakarta.servlet.http.HttpServletRequest;*/
@@ -26,6 +34,9 @@ public class EunsolController {
 
 	@Autowired
 	memberService member;
+
+	@Autowired
+	emailSenderService senderService;
 
 	// ----------------------------체킹
 	@RequestMapping("/header")
@@ -114,16 +125,47 @@ public class EunsolController {
 		return "viewList5";
 	}
 
-	@RequestMapping("/testfindpw")
-	public String testfindpw() {
-		System.out.println("/testfinid");
-		return "Eunsol/findpw";
+	@RequestMapping("/findpw")
+	@ResponseBody
+	public Map findpw(@ModelAttribute memberDTO DTO,
+			HttpServletRequest req) {
+		System.out.println("/findpw");
+		// TODO 여기야
+		int result = member.pwCheck(DTO);
+		System.out.println("일치하는 아이디 개수 :" + result);
+
+		Map map = new HashMap();
+		if (result == 1) {
+			System.out.println("일치하는 정보가 있어요");
+			String pw = member.findPw(DTO);
+			String toEmail = req.getParameter("email");
+			String subject = "plato 비밀번호 입니다.";
+			String body = "비밀번호는 "+ pw +" 입니다";
+			
+			senderService.sendEmail(toEmail,
+									subject,
+									body);
+			System.out.println("비밀번호를 메일로 전송했습니다.");
+			map.put("url", "/findpwcomp");
+
+		} else {
+			System.out.println("일치하는 정보가 없어요 ㅜㅜ");
+			map.put("nullError", "일치하는 정보가 없습니다.");
+		}
+
+		return map;
 	}
 
-	@RequestMapping("/testfindpwcomp")
-	public String testfindpwcomp() {
-		System.out.println("/testfinpwcomp");
-		return "Eunsol/findpwcomp";
+	@RequestMapping("/findpwForm")
+	public String findpwForm() {
+		System.out.println("/findpwForm");
+		return "viewList6";
+	}
+
+	@RequestMapping("/findpwcomp")
+	public String findpwcomp() {
+		System.out.println("/finpwcomp");
+		return "viewList7";
 	}
 
 	@RequestMapping("/logout")

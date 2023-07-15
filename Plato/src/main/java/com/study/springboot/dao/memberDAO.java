@@ -13,10 +13,11 @@ public interface memberDAO {
 	int loginCheck(memberDTO DTO);
 	memberDTO basicInfo(memberDTO DTO);
 	String findId(memberDTO DTO);
+	String findPw(memberDTO DTO);
 	memberDTO myprofile(memberDTO DTO);
 	
 	int updateMember(memberDTO DTO);
-
+	int pwCheck(memberDTO DTO);
 	
 	
 }

@@ -155,7 +155,7 @@
 			<div class="search_idpw">
 				<ul>
 					<li><a href="/findidForm" class="search id">아이디 찾기</a></li>
-					<li><a href="#" class="search pw">비빌번호 찾기</a></li>
+					<li><a href="/findpwForm" class="search pw">비빌번호 찾기</a></li>
 				</ul>
 			</div>
 

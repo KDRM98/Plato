@@ -13,4 +13,8 @@ public interface memberService {
 	memberDTO myprofile(memberDTO DTO);
 	
 	int updateMember(memberDTO DTO);
+	
+	int pwCheck(memberDTO DTO);
+	
+	String findPw(memberDTO DTO);
 }

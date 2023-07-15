@@ -110,7 +110,6 @@ input::placeholder {
 	border-bottom: 0.5px solid #dfdfdf;
 }
 
-
 .findPwForm.id::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
@@ -128,7 +127,6 @@ input::placeholder {
 	width: 30px;
 	height: 30px;
 }
-
 
 .findPwForm.email {
 	border-bottom: 0.5px solid #dfdfdf;
@@ -154,6 +152,15 @@ input::placeholder {
 	;
 }
 
+.findPwForm.email.b::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -310px -97px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+	;
+}
 
 .findPwForm.nickname::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
@@ -180,12 +187,22 @@ input::placeholder {
 	left: 9px;
 	content: ''
 }
-.findPw_content .findPw_error{
-		height: 40px;
+
+.findPw_content .findPw_error {
+	height: 40px;
+	color: #e7223d;
+	font-weight: bold;
+	font-size: 12px;
 }
-.findPw_content .find-button{
+
+.findPw_content .findPw_error div {
+	display: none;
 	width: 325px;
-	height :50px;
+}
+
+.findPw_content .find-button {
+	width: 325px;
+	height: 50px;
 	box-sizing: border-box;
 	background-color: #FF5733;
 	color: white;

@@ -18,99 +18,94 @@
 		where id=#{id}
 	</select>
 
-	<select id="nicknameCheck" parameterType="memberDTO" resultType="int">
+	<select id="nicknameCheck" parameterType="memberDTO"
+		resultType="int">
 		select count(*)
 		from member
 		where nickname=#{nickname}
 	</select>
 
 
-	<select id="loginCheck" parameterType="memberDTO" resultType="int">
+	<select id="loginCheck" parameterType="memberDTO"
+		resultType="int">
 		select count(*)
 		from member
 		where id=#{id} and pw=#{pw}
 	</select>
 
 	<!-- 아이디와 비번으로 userid와 닉네임 검색 -->
-	<select id="basicInfo" parameterType="memberDTO" resultType="memberDTO">
+	<select id="basicInfo" parameterType="memberDTO"
+		resultType="memberDTO">
 		select userid, nickname
 		from member
-		where id=#{id} and pw=#{pw}
+		where id=#{id} and
+		pw=#{pw}
 	</select>
-	
-	<!-- userid로 프로필 사진, 아이디, 이메일, 별명, 성별, 연령대 검색-->
-	<select id="myprofile" parameterType="memberDTO" resultType="memberDTO">
+
+	<!-- userid로 프로필 사진, 아이디, 이메일, 별명, 성별, 연령대 검색 -->
+	<select id="myprofile" parameterType="memberDTO"
+		resultType="memberDTO">
 		select pw, image, id, email, nickname, age, gender
-		from member
+		from
+		member
 		where userid=#{userid}
 	</select>
-	
-	
-	<select id="findId" parameterType="memberDTO" resultType="string">
+
+
+	<select id="findId" parameterType="memberDTO"
+		resultType="string">
 		select id
 		from member
 		where email=#{email} and nickname=#{nickname}
 	</select>
-	
-	
-	<!-- 입력한 값만 업데이트-->
-<!-- 	<update id="updateMember" parameterType="memberDTO" >
-    UPDATE member
-    SET
-    <if test="image != null and image != pre_image ">
-        image = #{image},
-    </if>
-    
-    <if test="nickname != null and nickname != pre_nickname">
-        nickname = #{nickname},
-    </if>
-    
-    <if test="email != null and email != pre_email">
-        email = #{email},
-    </if>
-    
-    <if test="gender != null and gender != pre_gender">
-        gender = #{gender},
-    </if>
-     
-    <if test="age != null and age != pre_age">
-        age = #{age},
-    </if>
-    
-    WHERE userid = #{userid}
-	</update> -->
-	
-<update id="updateMember" parameterType="memberDTO">
-  UPDATE member
-  SET
-  <if test="image != null and image != pre_image">
-   image = #{image},
-  </if>
 
-  <if test="nickname != null and nickname != pre_nickname">
-  nickname = #{nickname},
-  </if>
 
-  <if test="email != null and email != pre_email">
-   email = #{email},
-  </if>
-
-  <if test="gender != '-1' and gender != pre_gender">
-   gender = #{gender},
-  </if>
-
-  <if test="age != -1 and age != pre_age">
-   age = #{age},
-  </if>
-	userid = #{userid}
-  WHERE userid = #{userid}
-</update>
+	<select id="pwCheck" parameterType="memberDTO" resultType="int">
+		select count(*)
+		from member
+		where id= #{id} and email=#{email} and nickname=#{nickname}
+	</select>
 	
-	
+	<select id="findPw" parameterType="memberDTO" resultType="string">
+		select pw
+		from member
+		where id= #{id} and email=#{email} and nickname=#{nickname}
+	</select>
+
+
+
+	<update id="updateMember" parameterType="memberDTO">
+		UPDATE member
+		SET
+		<if test="image != null and image != pre_image">
+			image = #{image},
+		</if>
+
+		<if test="nickname != null and nickname != pre_nickname">
+			nickname = #{nickname},
+		</if>
+
+		<if test="email != null and email != pre_email">
+			email = #{email},
+		</if>
+
+		<if test="gender != '-1' and gender != pre_gender">
+			gender = #{gender},
+		</if>
+
+		<if test="age != -1 and age != pre_age">
+			age = #{age},
+		</if>
+		userid = #{userid}
+		WHERE userid = #{userid}
+	</update>
+
+
 
 	<delete id="deleteMember" parameterType="memberDTO">
-	delete member
-	where userid=#{userid}
+		delete member
+		where
+		userid=#{userid}
 	</delete>
 
 </mapper>

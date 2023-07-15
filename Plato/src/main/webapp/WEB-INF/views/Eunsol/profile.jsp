@@ -124,7 +124,7 @@
 
 
 
-	<!-- 팝업 로그인 창 -->
+	<!-- 팝업 완료창 -->
 	<div class="pop_profilecomp" >
 		<div class="content">
 
@@ -138,7 +138,7 @@
 
 		</div>
 		</div>
-		<!-- 팝업 로그인 창 끝-->
+		<!-- 팝업 완료창 끝-->
 		<div class="dim"></div>
 
 
