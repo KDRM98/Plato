@@ -191,6 +191,15 @@ button, input, select{
 	height: 30px;
 }
 
+.profile_content .form_item.newPw.b::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -95px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
 .profile_content .form_item.newPw_ck::before {
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
@@ -204,6 +213,15 @@ button, input, select{
 	background-image: url("/Eunsol/imges/join_icon.png");
 	background-size: 340px 326px;
 	background-position: -128px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
+.profile_content .form_item.newPw_ck.b::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -95px -264px;
 	background-repeat: no-repeat;
 	width: 30px;
 	height: 30px;

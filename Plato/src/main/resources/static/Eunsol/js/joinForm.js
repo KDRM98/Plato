@@ -142,7 +142,7 @@ nick.addEventListener('blur', function() {
 
 });
 */
-// id 및 nickname 증복, id 형식 안맞을 시  가입하기 버튼 불능
+// id 및 nickname 증복, id 형식 안맞을 시 가입하기 버튼 불능
 const id = document.getElementById('join_id');
 const duId = document.getElementById('duId');
 const nick = document.getElementById('join_nickname');
@@ -187,7 +187,7 @@ function checkIdPattern(idValue) {
 		});
 	} else {
 		// idValue가 null인 경우 처리
-		return Promise.resolve(false);; // 유효한 아이디로 간주하여 버튼 활성화
+		return Promise.resolve(false); // 유효한 아이디로 간주하여 버튼 활성화
 	}
 }
 
@@ -204,7 +204,7 @@ function checkPwPattern(pwValue) {
 			const result = hasLowercase && hasNumber && hasSpecialChar /*&& isValidLength*/;
 			if (result) {
 				pwRstr.style.display = 'none';
-				resolve(false); // 유효한 아이디일 때 버튼 활성화
+				resolve(false); // 유효한 비번일 때 버튼 활성화
 			} else {
 				pwRstr.style.display = 'block';
 				resolve(true)
@@ -212,7 +212,8 @@ function checkPwPattern(pwValue) {
 		});
 	} else {
 		// idValue가 null인 경우 처리
-		return Promise.resolve(false);; // 유효한 아이디로 간주하여 버튼 활성화
+		pwRstr.style.display = 'none';
+		return Promise.resolve(false);
 	}
 }
 
@@ -225,14 +226,14 @@ function checkEmailPattern(emailValue) {
 			const isValid = pattern.test(emailValue);
 
 			if (isValid) {
-				resolve(false); // 유효한 아이디일 때 버튼 활성화
+				resolve(false); 
 			} else {
 				resolve(true)
 			}
 		});
 	} else {
 		// emailValue가 null인 경우 처리
-		return Promise.resolve(false);; // 유효한 아이디로 간주하여 버튼 활성화
+		return Promise.resolve(false);
 	}
 }
 

@@ -20,10 +20,11 @@
 					<strong>회원정보 수정</strong>
 				</div>
 				<div class="circle-container">
-					<img class="circle" src="${image}" pre_date="${image}">
-					<button class="circle-camera">
+					<img id="pfImg" class="circle" src="${image}" pre_date="${image}">
+					<button id="up_btn" class="circle-camera">
 						<img src="Eunsol/imges/camera.png">
 					</button>
+					<input type="file" id="fileInput" style="display: none;">
 				</div>
 				
 				<div class = " static_id">
@@ -105,7 +106,11 @@
 				</div>
 
 				<div class="profile1 error">
+					<div id="pwRstr">비밀번호는 5~16자의 영문, 숫자, 특수문자 조합이 필수입니다. </div>
 					<div id="pwMsg">새로운 비밀번호가 일치하지 않습니다.</div>
+					<div id="nullPw">기존 비밀번호를 입력해 주세요</div>
+					<div id="nullNewPw">새로운 비밀번호를 입력해 주세요</div>
+					<div id="nullNewPw_ck">새로운 비밀번호 재확인를 입력해 주세요</div>
 				</div>
 
 				<div>
@@ -207,7 +212,8 @@
 
 		<!-- js -->
 		<script src="Eunsol/js/drop.js"></script>
-		<script src="Eunsol/js/profile_error.js"></script>
 		<script src="Eunsol/js/profile.js"></script>
+		<script src="Eunsol/js/profile_info.js"></script>
+		<script src="Eunsol/js/profile_pw.js"></script>
 </body>
 </html>

@@ -19,5 +19,7 @@ public interface memberDAO {
 	int updateMember(memberDTO DTO);
 	int pwCheck(memberDTO DTO);
 	
+	String prePw(memberDTO DTO);
+	int updatePw(memberDTO DTO);
 	
 }

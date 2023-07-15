@@ -127,8 +127,7 @@ public class EunsolController {
 
 	@RequestMapping("/findpw")
 	@ResponseBody
-	public Map findpw(@ModelAttribute memberDTO DTO,
-			HttpServletRequest req) {
+	public Map findpw(@ModelAttribute memberDTO DTO, HttpServletRequest req) {
 		System.out.println("/findpw");
 		// TODO 여기야
 		int result = member.pwCheck(DTO);
@@ -140,11 +139,9 @@ public class EunsolController {
 			String pw = member.findPw(DTO);
 			String toEmail = req.getParameter("email");
 			String subject = "plato 비밀번호 입니다.";
-			String body = "비밀번호는 "+ pw +" 입니다";
-			
-			senderService.sendEmail(toEmail,
-									subject,
-									body);
+			String body = "비밀번호는 " + pw + " 입니다";
+
+			senderService.sendEmail(toEmail, subject, body);
 			System.out.println("비밀번호를 메일로 전송했습니다.");
 			map.put("url", "/findpwcomp");
 
@@ -413,6 +410,64 @@ public class EunsolController {
 
 		return map;
 
+	}
+
+	// 비밀번호 변경하기
+	@RequestMapping("/pwmdcomp")
+	@ResponseBody
+	public Map pwmdcomp(Model model, HttpServletRequest req, @ModelAttribute memberDTO DTO) {
+		System.out.println("/pwmdcomp");
+
+		HttpSession session = req.getSession();
+		DTO.setUser_id((int) session.getAttribute("userid"));
+
+		String ins_prePw = req.getParameter("pre_pw");
+		String pre_pw = member.prePw(DTO);
+
+
+		System.out.println("입력한 기존 비밀번호 : "+ ins_prePw);	
+		System.out.println("등록된 기존 비밀번호 : "+ pre_pw);	
+
+		String newPw = req.getParameter("pw");
+
+		Map map = new HashMap();
+		if (pre_pw.equals(ins_prePw)) { //문자열을 비교할 때는 == 연산자 대신 equals() 메서드를 사용해야 함
+			System.out.println("기존 비밀번호 일치");
+			int result = member.updatePw(DTO); 
+			map.put("comp", "비밀번호가 수정되었습니다.");
+			System.out.println("비밀번호 수정 완료");
+			/*
+			 * if (validatePassword(newPw)) { System.out.println("비밀번호 형식 맞음");
+			 * 
+			 * int result = member.updatePw(DTO); map.put("comp", "비밀번호가 수정되었습니다.");
+			 * 
+			 * System.out.println("비밀번호 수정 완료");
+			 * 
+			 * } else { System.out.println("비밀번호 형식 안맞음");
+			 * 
+			 * map.put("errPwF", "blcok"); }
+			 */
+		} else {
+			System.out.println("기존 비밀번호가 불일치");
+			
+			map.put("errPrePw", "기존 비밀번호가 일치하지 않습니다");
+
+		}
+
+		return map;
+	}
+
+	// ----------- Java에서 정규식을 사용하여 비밀번호를 검증하는 방법
+	public static boolean validatePassword(String password) {
+		String lowercaseRegex = "[a-z]";
+		String numberRegex = "[0-9]";
+		String specialCharRegex = "[!@#$%^&*()_+\\-=[\\]{};':\"\\\\|,.<>/?]";
+
+		boolean hasLowercase = Pattern.compile(lowercaseRegex).matcher(password).find();
+		boolean hasNumber = Pattern.compile(numberRegex).matcher(password).find();
+		boolean hasSpecialChar = Pattern.compile(specialCharRegex).matcher(password).find();
+
+		return hasLowercase && hasNumber && hasSpecialChar;
 	}
 
 	// ----------- Java에서 정규식을 사용하여 이메일 주소를 검증하는 방법

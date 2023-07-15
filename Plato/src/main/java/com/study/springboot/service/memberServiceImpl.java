@@ -116,4 +116,21 @@ public class memberServiceImpl implements memberService {
 		return result;
 	}
 
+	@Override
+	public String prePw(memberDTO DTO) {
+		System.out.println("prePw 서비스");
+		String result = DAO.prePw(DTO);
+		/* System.out.println(result); */
+		return result;
+	}
+
+	@Override
+	public int updatePw(memberDTO DTO) {
+		System.out.println("prePw 서비스");
+		int result = DAO.updatePw(DTO);
+		return result;
+	}
+	
+	
+
 }

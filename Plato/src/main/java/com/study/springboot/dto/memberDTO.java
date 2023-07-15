@@ -17,13 +17,15 @@ public class memberDTO {
 	private String image;
 	
 
-	// 회원정보 수정을 위해 기존 정보 저장
+	// 회원정보 변경을 위해 기존 정보 저장
 	private String pre_image;
 	private String pre_nickname;
 	private String pre_email;
 	private String pre_gender;
 	private int pre_age;
 	
+	// 비밀번호 변경을 위해 기존 정보 저장
+	private String pre_pw;
 	
 	
 	public int getUserid() {
@@ -122,12 +124,18 @@ public class memberDTO {
 		this.userid = userid;
 	}
 	
+	public String getPre_pw() {
+		return pre_pw;
+	}
+	public void setPre_pw(String pre_pw) {
+		pre_pw = pre_pw;
+	}
 	@Override
 	public String toString() {
 		return "memberDTO [userid=" + userid + ", admin=" + admin + ", id=" + id + ", pw=" + pw + ", pw_ck=" + pw_ck
 				+ ", nickname=" + nickname + ", email=" + email + ", gender=" + gender + ", age=" + age + ", image="
-				+ image + ", pre_nickname=" + pre_nickname + ", pre_email=" + pre_email + ", pre_gender=" + pre_gender
-				+ ", pre_age=" + pre_age + ", pre_image=" + pre_image + "]";
+				+ image + ", pre_image=" + pre_image + ", pre_nickname=" + pre_nickname + ", pre_email=" + pre_email
+				+ ", pre_gender=" + pre_gender + ", pre_age=" + pre_age + ", Pre_pw=" + pre_pw + "]";
 	}
 
 	

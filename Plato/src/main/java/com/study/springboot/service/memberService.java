@@ -17,4 +17,7 @@ public interface memberService {
 	int pwCheck(memberDTO DTO);
 	
 	String findPw(memberDTO DTO);
+	
+	String prePw(memberDTO DTO);
+	int updatePw(memberDTO DTO);
 }
