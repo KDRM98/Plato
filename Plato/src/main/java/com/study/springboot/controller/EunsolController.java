@@ -61,24 +61,6 @@ public class EunsolController {
 		return "Eunsol/header";
 	}
 
-	@RequestMapping("/footer")
-	public String footer() {
-		System.out.println("/footer");
-		return "Eunsol/footer";
-	}
-
-	@RequestMapping("/jf")
-	public String jf() {
-		System.out.println("/jf");
-		return "Eunsol/joinForm";
-	}
-
-	@RequestMapping("/testjoincomp")
-	public String testjoincomp() {
-		System.out.println("/testjoincomp");
-		return "Eunsol/joincomp";
-	}
-
 	@RequestMapping("/findid")
 	@ResponseBody
 	public Map findid(@ModelAttribute memberDTO DTO, @RequestParam("email") String email,
@@ -233,12 +215,6 @@ public class EunsolController {
 		}
 	}
 
-	@RequestMapping("/profile2")
-	public String profile2() {
-		System.out.println("/profile2");
-		return "Eunsol/profile2";
-	}
-
 	// ----------------- 구현
 	// 회원가입 페이지
 	@RequestMapping("/joinForm")
@@ -371,7 +347,7 @@ public class EunsolController {
 
 		// TODO 트라이케치문 작성하기
 
-		DTO.setUser_id((int) session.getAttribute("userid"));
+		DTO.setUserid((int) session.getAttribute("userid"));
 
 		memberDTO result = member.myprofile(DTO);
 		/* String email = result.getEmail(); */
@@ -393,7 +369,7 @@ public class EunsolController {
 		System.out.println("/myinfocomp");
 
 		HttpSession session = request.getSession();
-		DTO.setUser_id((int) session.getAttribute("userid"));
+		DTO.setUserid((int) session.getAttribute("userid"));
 		memberDTO pre_date = member.myprofile(DTO);
 
 		int result = member.updateMember(DTO);
@@ -419,21 +395,20 @@ public class EunsolController {
 		System.out.println("/pwmdcomp");
 
 		HttpSession session = req.getSession();
-		DTO.setUser_id((int) session.getAttribute("userid"));
+		DTO.setUserid((int) session.getAttribute("userid"));
 
 		String ins_prePw = req.getParameter("pre_pw");
 		String pre_pw = member.prePw(DTO);
 
-
-		System.out.println("입력한 기존 비밀번호 : "+ ins_prePw);	
-		System.out.println("등록된 기존 비밀번호 : "+ pre_pw);	
+		System.out.println("입력한 기존 비밀번호 : " + ins_prePw);
+		System.out.println("등록된 기존 비밀번호 : " + pre_pw);
 
 		String newPw = req.getParameter("pw");
 
 		Map map = new HashMap();
-		if (pre_pw.equals(ins_prePw)) { //문자열을 비교할 때는 == 연산자 대신 equals() 메서드를 사용해야 함
+		if (pre_pw.equals(ins_prePw)) { // 문자열을 비교할 때는 == 연산자 대신 equals() 메서드를 사용해야 함
 			System.out.println("기존 비밀번호 일치");
-			int result = member.updatePw(DTO); 
+			int result = member.updatePw(DTO);
 			map.put("comp", "비밀번호가 수정되었습니다.");
 			System.out.println("비밀번호 수정 완료");
 			/*
@@ -449,9 +424,41 @@ public class EunsolController {
 			 */
 		} else {
 			System.out.println("기존 비밀번호가 불일치");
-			
-			map.put("errPrePw", "기존 비밀번호가 일치하지 않습니다");
 
+			map.put("errPrePw", "기존 비밀번호가 일치하지 않습니다.");
+
+		}
+
+		return map;
+	}
+
+	@RequestMapping("/dltmember")
+	@ResponseBody
+	public Map dltmember(@ModelAttribute memberDTO DTO, HttpServletRequest req) {
+		System.out.println("/dltmember");
+
+		HttpSession session = req.getSession();
+		DTO.setUserid((int) session.getAttribute("userid"));
+
+		String pw = member.prePw(DTO);
+		String ins_Pw = req.getParameter("pw");
+
+		Map map = new HashMap();
+		if (pw.equals(ins_Pw)) {
+			System.out.println("비밀번호 일치");
+			int result = member.deleteMember(DTO);
+			if (result == 1) {
+				System.out.println("회원정보 삭제 완료");
+				session.invalidate();
+				map.put("bye", "block");
+				map.put("url", "/header");
+			} else {
+				System.out.println("회원정보 삭제 에러");
+				map.put("delError", "고객센터에 문의하세요.");
+			}
+		} else {
+			System.out.println("비밀번호 불일치");
+			map.put("errPw", "비밀번호가 일치하지 않습니다.");
 		}
 
 		return map;

@@ -21,5 +21,8 @@ public interface memberDAO {
 	
 	String prePw(memberDTO DTO);
 	int updatePw(memberDTO DTO);
+
+	int deleteMember(memberDTO DTO);
+	
 	
 }

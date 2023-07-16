@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.study.springboot.dao.memberDAO;
 import com.study.springboot.dto.memberDTO;
 
@@ -129,6 +128,14 @@ public class memberServiceImpl implements memberService {
 		System.out.println("prePw 서비스");
 		int result = DAO.updatePw(DTO);
 		return result;
+	}
+
+	@Override
+	public int deleteMember(memberDTO DTO) {
+		System.out.println("deleteMember 서비스");
+		int result = DAO.deleteMember(DTO);
+		return result;
+		
 	}
 	
 	

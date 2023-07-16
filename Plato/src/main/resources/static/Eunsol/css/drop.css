@@ -1,18 +1,36 @@
-.meiyou{
-height: 500px
+.meiyou {
+	height: 500px
 }
+
 .unregister {
 	/* padding: 20px 20px 0px 20px; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
 }
 
+.unregister_container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	width: 700px;
+	margin: 120px 40px;
+	height: auto;
+}
+
+.unregister_content{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 40px;
+}
 .unregister .title {
-	size: 20px;
+	font-size: 25px;
 	font-weight: bold;
-	margin-top: 30px;
 	margin-bottom: 20px;
 }
 
@@ -42,7 +60,7 @@ input[type="checkbox"]+em {
 
 /* 선택된 체크박스 스타일 꾸미기 */
 input[id="agree"]:checked+em {
-	background-position:-38px 0;
+	background-position: -38px 0;
 }
 
 /*radio 색깔 바꾸기*/
@@ -50,25 +68,112 @@ input[id="agree"]:checked+em {
 	accent-color: red;
 } */
 
+
+
+
+.unregister_content .delForm_pw input{
+	flex: 1 1 auto;
+	box-sizing: border-box;
+	width: 270px;
+	font-size: 16px;
+	line-height: 22px;
+	color: #222;
+}
+
+.unregister_content input::placeholder {
+  font-size: 12px;
+}
+
+.unregister_content .delForm_pw::before {
+	position: absolute;
+	top: 10px;
+	left: 9px;
+	content: ''
+}
+
+
+.unregister_content .delForm_pw {
+	display: flex;
+	align-items: center;
+	position: relative;
+	box-sizing: border-box;
+	max-width: 100%;
+	min-height: 50px;
+	padding: 0 10px 0 45px;
+display: none;
+margin-bottom: 5px;
+	
+}
+
+.unregister_content .delForm_pw::after{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	/* border-radius: inherit; */
+    border: 0.5px solid #dfdfdf;
+	pointer-events: none;
+	content: ''
+}
+
+.unregister_content .delForm_pw::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -64px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px
+}
+
+.unregister_content .delForm_pw.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -128px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
+.unregister_content .delForm_pw.b::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -95px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
+.del_Error{
+	color: #e7223d;
+	font-weight: bold;
+	font-size: 12px;
+	width: 325px;
+}
+
+.del_Error div {
+	display: none;
+	
+}
+
 #unregister-button {
-	width: 320px;
-	height: 35px;
-	border-radius: 0.5rem;
+	width: 325px;
+	height: 50px;
+	/* 	border-radius: 0.5rem; */
 	background-color: #e7223d;
 	color: white;
-	border:none;
+	border: none;
 	font-size: 15px;
 	margin-bottom: 40px;
 	pointer-events: none;
-	opacity: 0.5; 
+	opacity: 0.5;
+	margin: 10px;
 }
 
 /* #unregister-button:hover {
 	background-color: #f57a8e;
 	}
  */
-
-
 .popup {
 	display: none;
 	position: fixed;
@@ -80,16 +185,33 @@ input[id="agree"]:checked+em {
 	padding: 20px;
 	background-color: #f2f2f2;
 	border: 1px solid #ccc;
-	border-radius: 5px;
+	/* 	border-radius: 5px; */
 	text-align: center;
 }
 
-.popup h4 {
-	height: 40px;
+.popup_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.popup_container .ques {
+	font-size: 20px;
+	font-weight: bold;
+	margin: 20px;
+}
+
+
+
+.delpop-btn {
+	width: 300px;
+	display: flex;
+	justify-content: space-around;
 }
 
 .popup button {
-	border-radius: 0.5rem;
+	/* 	border-radius: 0.5rem; */
 	border: 1px solid gray;
 	width: 100px;
 	height: 30px;
@@ -100,6 +222,7 @@ input[id="agree"]:checked+em {
 	background-color: black;
 	color: white;
 	border: 1px solid black;
+
 }
 
 .overlay {
@@ -110,4 +233,77 @@ input[id="agree"]:checked+em {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+
+.pop_error {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, 536%);
+	width: 600px;
+	height: 250px;
+	background-color: white;
+	display :none;
+	transition: all 0.5s;
+	z-index: 5;
+	box-sizing: border-box;
+	border: 1px solid  #a1a1a1;
+}
+
+
+.pop_error .content {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	height: auto;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 10px;
+	z-index: 7;
+}
+
+.pop_error .popdel {
+	height : 50px;
+margin-bottom:20px;
+	font-size: 25px;
+	font-weight: bold;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.popdel-btn .btn {
+	width: 160px;
+	height: 55px;
+	border: 1px solid #D5C8C8;
+	font-family: 'SUITE-Regular', sans-serif;
+	font-size: 16px;
+	margin: 10px 8px;
+	text-decoration: none;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.popdel-btn .check {
+	background-color: black;
+	margin: 0px auto;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 20px;
+	color: white;
+	border: none;
+}
+
+.popdel-btn .home {
+	background-color: transparent;
+	cursor: pointer;
+	margin-left: 20px;
+
 }

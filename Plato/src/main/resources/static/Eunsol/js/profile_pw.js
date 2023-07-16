@@ -129,7 +129,7 @@ pwSave_button.addEventListener('click', function() {
 			nullNewPw.style.display = 'block';
 		}
 		if (newPw_ck.value.trim().length === 0) {
-			nullNewck_ck.style.display = 'block';
+			nullNewck.style.display = 'block';
 		}
 		if (pw.value.trim().length === 0) {
 			nullPw.style.display = 'block';

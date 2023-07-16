@@ -31,8 +31,8 @@ public class memberDTO {
 	public int getUserid() {
 		return userid;
 	}
-	public void setUser_id(int user_id) {
-		this.userid = user_id;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	public int getAdmin() {
 		return admin;
@@ -120,9 +120,7 @@ public class memberDTO {
 	public void setPre_image(String pre_image) {
 		this.pre_image = pre_image;
 	}
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
+	
 	
 	public String getPre_pw() {
 		return pre_pw;

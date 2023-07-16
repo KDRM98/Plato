@@ -1,5 +1,7 @@
 package com.study.springboot.service;
 
+import java.util.Map;
+
 import com.study.springboot.dto.memberDTO;
 
 public interface memberService {
@@ -20,4 +22,6 @@ public interface memberService {
 	
 	String prePw(memberDTO DTO);
 	int updatePw(memberDTO DTO);
+	
+	int deleteMember(memberDTO DTO);
 }
