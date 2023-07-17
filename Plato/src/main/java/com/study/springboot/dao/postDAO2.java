@@ -10,7 +10,7 @@ public interface postDAO2 {
 	
 	
 	int rough(postDTO2 DTO);
-
+	postDTO2 gesipan(postDTO2 DTO);
 
 	
 	
