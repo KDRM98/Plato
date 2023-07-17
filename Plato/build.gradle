@@ -39,7 +39,6 @@ dependencies {
 	
 	// email 보내는 SMTP 관련 라이브러리
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
 
 	// 파일 업로드

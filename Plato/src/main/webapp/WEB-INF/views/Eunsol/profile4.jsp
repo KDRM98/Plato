@@ -20,27 +20,17 @@
 				<strong>회원정보 수정</strong>
 			</div>
 			<div class="circle-container">
-				<img id="pfImg" class="circle" src="${image}" pre_date="${image}"  >
+				<img id="pfImg" class="circle" src="${image}" pre_date="${image}">
 				<button id="up_btn" class="circle-camera">
-					<img src="Eunsol/imges/camera.png" title ="프로필사진 업로드">
+					<img src="Eunsol/imges/camera.png">
 				</button>
-				<div class ="close">
-				<button id="pfclose-btn">
-					<img src="Eunsol/imges/x.svg" alt="프로필사진 기본으로" title ="프로필사진 기본으로"  id="defimg">
-				</button>
-				</div>
-
-						
-
-
-				<form id="form" method="post" action="" enctype="multipart/form-data">
-					<input type="file" name="photo" id="fileinput" style="display: none;"> 
-						<input type="hidden" name="pre_image" value="${image}"> 
-						<input class="defimgset" type="hidden" name="image">
-						<input type="hidden" name="pre_nickname" value="${nickname}"> 
-						<input type="hidden" name="pre_email" value="${email}"> 
-						<input type="hidden" name="pre_gender" value="${gender}"> 
-						<input type="hidden" name="pre_age" value="${age}">
+				<input type="file" id="fileInput" style="display: none;">
+			
+<!-- 	<form action="/uploadOk" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+	<input type="file" name="filename"><br><br><br>
+	<input type="submit" value="업로드">
+	</form> -->
+			
 			</div>
 
 			<div class=" static_id">
@@ -93,7 +83,6 @@
 									<option value="60">60대이상</option>
 								</c:if> --%>
 						</select>
-						</form>
 					</div>
 				</div>
 			</div>
@@ -102,8 +91,6 @@
 			<div class="profile2 error">
 				<div id="emailMsg">이메일 형식이 올바르지 않습니다.</div>
 				<div id="duNick">이미 사용중인 아이디 입니다.</div>
-				<div id="pemailnull">수정할 이메일을 입력해주세요.</div>
-				<div id="pniknull">수정할 닉네임을 입력해수제요.</div>
 			</div>
 			<div>
 				<button type="submit" class="save-button">정보 변경하기</button>
@@ -241,20 +228,22 @@
 			</div>
 		</div>
 		<!-- 팝업창 끝 -->
-		<!-- 팝업 완료창 -->
-		<div class="pop_error">
-			<div class="content">
+	<!-- 팝업 완료창 -->
+	<div class="pop_error">
+		<div class="content">
 
-				<div class="popdel"></div>
-
-				<div class="popdel-btn">
-					<a href="/profile" class="btn check">확인</a> <a href="/header"
-						class="btn home">홈으로</a>
-				</div>
-
+			<div class="popdel">
+			
 			</div>
+
+			<div class="popdel-btn">
+				<a href="/profile" class="btn check">확인</a> <a href="/header"
+					class="btn home">홈으로</a>
+			</div>
+
 		</div>
-		<!-- 팝업 완료창 끝-->
+	</div>
+	<!-- 팝업 완료창 끝-->
 	</div>
 	<!-- js -->
 	<script src="Eunsol/js/drop.js"></script>

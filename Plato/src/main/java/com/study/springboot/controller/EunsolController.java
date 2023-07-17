@@ -1,27 +1,26 @@
 package com.study.springboot.controller;
 
-import java.net.PasswordAuthentication;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.regex.Pattern;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.rsocket.server.RSocketServer.Transport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.study.springboot.dto.memberDTO;
 import com.study.springboot.service.emailSenderService;
@@ -39,6 +38,129 @@ public class EunsolController {
 	emailSenderService senderService;
 
 	// ----------------------------체킹
+
+	@RequestMapping("/myinfocomp")
+	@ResponseBody
+	public Map myinfocomp(Model model, HttpServletRequest request, @ModelAttribute memberDTO DTO,
+			@RequestParam("photo") MultipartFile multipartFile) {
+		System.out.println("/myinfocomp");
+
+		String pre_image = request.getParameter("pre_image");
+		String em = DTO.getEmail();
+		String pre_em = DTO.getPre_email();
+		String nick = DTO.getNickname();
+		String pre_nick = DTO.getPre_nickname();
+		String gender = DTO.getGender();
+		String pre_gender = DTO.getPre_gender();
+		int age = DTO.getAge();
+		int pre_age = DTO.getPre_age();
+		String image = multipartFile.getOriginalFilename();
+		String image2 = DTO.getImage();
+		System.out.println("image :" + image);
+		System.out.println("pre_image : " + pre_image);
+		System.out.println("진짜 image : " + image2);
+		System.out.println("em :" + em);
+		System.out.println("pre_em :" + pre_em);
+		System.out.println("nick :" + nick);
+		System.out.println("pre_nick :" + pre_nick);
+		System.out.println("gender :" + gender);
+		System.out.println("pre_gender :" + pre_gender);
+		System.out.println("age :" + age);
+		System.out.println("pre_age :" + pre_age);
+	
+
+		HttpSession session = request.getSession();
+		Map map = new HashMap();
+
+		if (request.getParameter("email").isEmpty() || request.getParameter("nickname").isEmpty()) {
+			System.out.println("에러에 걸렸당");
+			if (request.getParameter("email").isEmpty()) {
+				map.put("errEmail", "이메일 입력없음");
+			}
+			if (request.getParameter("nickname").isEmpty()) {
+				map.put("errNick", "닉네임 입력없음");
+			}
+		} else if (!image2.equals("/basicInfo/img/basic.jpg")&&image.trim().length() == 0 && DTO.getEmail().equals(DTO.getPre_email())
+				&& DTO.getNickname().equals(DTO.getPre_nickname())
+				&& DTO.getGender().equals(DTO.getPre_gender())
+				&& DTO.getAge()== DTO.getPre_age()) {
+			System.out.println(!image2.equals("/basicInfo/img/basic.jpg"));
+			System.out.println(!image2.equals("/basicInfo/img/basic.jpg")&&image.trim().length() == 0 && DTO.getEmail().equals(DTO.getPre_email())
+					&& DTO.getNickname().equals(DTO.getPre_nickname())
+					&& DTO.getGender().equals(DTO.getPre_gender())
+					&& DTO.getAge()== DTO.getPre_age());
+			System.out.println("이전과 정보가 같네");
+
+			map.put("error", "수정할 정보를 변경해 주세요.");
+		} else if (image2.equals("/basicInfo/img/basic.jpg")) {
+
+			System.out.println("이미지는 기본이미지로 변경");
+			DTO.setUserid((int) session.getAttribute("userid"));
+			int result = member.updateMember(DTO);
+			session.setAttribute("nickname", nick);
+			session.setAttribute("image", image2);
+			System.out.println("update :" + result);
+
+			map.put("comp", "회원정보가 수정되었습니다.");
+		} else if (image.trim().length() == 0) {
+
+			System.out.println("이미지는 변경이 없네용");
+			DTO.setUserid((int) session.getAttribute("userid"));
+			DTO.setImage(pre_image);
+			int result = member.updateMember(DTO);
+			System.out.println("update :" + result);
+			session.setAttribute("nickname", nick);
+			map.put("comp", "회원정보가 수정되었습니다.");
+		} 
+		
+		else {
+			System.out.println("이미지 변경 있어요");
+			String path = "";
+			try {
+				path = ResourceUtils.getFile("classpath:static/image_upload/").toPath().toString();
+			} catch (FileNotFoundException e) {
+
+				e.printStackTrace();
+			}
+			File dir = new File(path);
+
+			String fileName = multipartFile.getOriginalFilename();
+			long now = System.currentTimeMillis();
+			fileName = now + "_" + fileName;
+			System.out.println("filename :" + fileName);
+
+			// file 객체 만들기
+			File file = new File(path + File.separator + fileName);
+
+			// 그 file 객체에 쓰기
+			try {
+				FileUtils.writeByteArrayToFile(file, multipartFile.getBytes());
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+
+			String src = File.separator + "image_upload" + File.separator + fileName;
+			System.out.println(File.separator + "image_upload" + File.separator + fileName);
+
+			DTO.setImage(src);
+			DTO.setUserid((int) session.getAttribute("userid"));
+			member.updateMember(DTO);
+			session.setAttribute("nickname", nick);
+			String email = request.getParameter("email");
+			String nickname = request.getParameter("nickname");
+			session.setAttribute("image", src);
+			System.out.println("email : " + email);
+			System.out.println("nickname : " + nickname);
+
+			map.put("comp", "회원정보가 수정되었습니다.");
+		}
+	
+
+	return map;
+
+	}
+
 	@RequestMapping("/header")
 	public String header(HttpServletRequest request, Model model) {
 		System.out.println("/header");
@@ -177,11 +299,15 @@ public class EunsolController {
 				// 세션 저장하기
 				memberDTO basicInfo = member.basicInfo(DTO);
 				String nickname = basicInfo.getNickname();
+				String image = basicInfo.getImage();
 				int userid = basicInfo.getUserid();
-
+				
+				
 				session.setAttribute("userid", userid);
 				session.setAttribute("nickname", nickname);
-
+				session.setAttribute("image", image);
+				System.out.println("image : " + image);
+				
 				Map logincomp = new HashMap();
 				logincomp.put("nickname", nickname);
 				logincomp.put("url", "/header"); // 메인으로 나중에 수정 요망
@@ -363,30 +489,31 @@ public class EunsolController {
 	}
 
 	// 정보 변경하기 거름망
-	@RequestMapping("/myinfocomp")
-	@ResponseBody
-	public Map myinfocomp(Model model, HttpServletRequest request, @ModelAttribute memberDTO DTO) {
-		System.out.println("/myinfocomp");
-
-		HttpSession session = request.getSession();
-		DTO.setUserid((int) session.getAttribute("userid"));
-		memberDTO pre_date = member.myprofile(DTO);
-
-		int result = member.updateMember(DTO);
-
-		String email = request.getParameter("email");
-		String nickname = request.getParameter("nickname");
-
-		System.out.println("email" + email);
-		System.out.println("nickname" + nickname);
-
-		Map map = new HashMap();
-
-		map.put("comp", "회원정보가 수정되었습니다.");
-
-		return map;
-
-	}
+	/*
+	 * @RequestMapping("/myinfocomp")
+	 * 
+	 * @ResponseBody public Map myinfocomp(Model model, HttpServletRequest
+	 * request, @ModelAttribute memberDTO DTO) { System.out.println("/myinfocomp");
+	 * 
+	 * HttpSession session = request.getSession(); DTO.setUserid((int)
+	 * session.getAttribute("userid")); memberDTO pre_date = member.myprofile(DTO);
+	 * 
+	 * int result = member.updateMember(DTO);
+	 * 
+	 * String email = request.getParameter("email"); String nickname =
+	 * request.getParameter("nickname");
+	 * 
+	 * System.out.println("email" + email); System.out.println("nickname" +
+	 * nickname);
+	 * 
+	 * Map map = new HashMap();
+	 * 
+	 * map.put("comp", "회원정보가 수정되었습니다.");
+	 * 
+	 * return map;
+	 * 
+	 * }
+	 */
 
 	// 비밀번호 변경하기
 	@RequestMapping("/pwmdcomp")

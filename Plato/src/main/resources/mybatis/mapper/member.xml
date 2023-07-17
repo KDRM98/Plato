@@ -36,7 +36,7 @@
 	<!-- 아이디와 비번으로 userid와 닉네임 검색 -->
 	<select id="basicInfo" parameterType="memberDTO"
 		resultType="memberDTO">
-		select userid, nickname
+		select userid, nickname, image
 		from member
 		where id=#{id} and
 		pw=#{pw}
