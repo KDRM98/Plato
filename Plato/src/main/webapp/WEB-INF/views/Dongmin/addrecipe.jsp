@@ -11,7 +11,7 @@
 <body>
 <div class="lr-container">
 	<div class="l-container">
-		<form action="/recipes" method="POST" enctype="multipart/form-data">
+		<form action="/addcomplete" method="POST" enctype="multipart/form-data">
 			<div class="recContainer">
 				<div class="registContainer">
 					<div class="regist" id="title">		
@@ -57,13 +57,19 @@
 					<div class="regist" name="mainimg">
 						<label for="image">대표 사진 </label>
 						<div class="image-preview"></div>
-						<input type="file" id="image" name="title-image" accept="image/*" onchange="previewImage(event)">
+						<input type="file" id="title-image" name="title-image" accept="image/*" onchange="previewImage(event)">
 					</div>
 					
 					<div class="regist" name="desc">
 						<label for="description">소개글:</label><br>
 						<textarea id="description" name="description" required></textarea>
 					</div>
+					
+					<div class="regist" name="ytbl">
+						<label for="description">유튜브 링크:</label><br>
+						<textarea id="description" name="description" placeholder="https://www.youtube.com/watch?v=???"></textarea>
+					</div>
+					
 					
 					<div class="regist" id="addigr">
 						<div id="ingredient-container">
@@ -100,8 +106,9 @@
 					      <div class="image-preview"></div>
 					      <input type="file" name="images" accept="image/*" onchange="previewImage(event)">
 					    </div>
-					  </div>
-					  <button type="button" onclick="addStep()">추가</button>
+					  </div>					  
+					  <button type="button" id="deletestepbutton" onclick="deleteStep()">삭제</button>
+					  <button type="button" id="addstepbutton" onclick="addStep()">추가</button>
 					</div>
 					<br>
 					<button type="submit">작성 완료</button>
@@ -122,6 +129,7 @@
 		
 </body>
 <script>
+	updateDeleteButtonState();
 	var difficultynum = document.querySelector(".difficultynum");
 	function selectDifficulty(level) {
 	  var buttons = document.getElementsByClassName('difficulty-button');
@@ -260,7 +268,7 @@ var originingredients = [
 	// 재료 추가 함수
 	var ingredientContainer = document.getElementById("ingredient-container");
     var customSelects = document.getElementsByClassName("custom-select");
-    var deleteButton = document.querySelector("#delete-ingredient-button");
+    var ingredientdeleteButton = document.querySelector("#delete-ingredient-button");
 
     function addIngredient() {
 	  var ingredientContainer = document.getElementById("ingredient-container");
@@ -302,7 +310,7 @@ var originingredients = [
 	  
 	  customSelects = document.getElementsByClassName("custom-select");
 
-	  deleteButton.disabled = false;
+	  ingredientdeleteButton.disabled = false;
 	  
 	  ingredientRow.appendChild(customSelect);
 	  
@@ -311,45 +319,77 @@ var originingredients = [
 	  ingredientContainer.appendChild(ingredientSection);
 	}
 	function deleteIngredient() {
-		  var ingredientContainer = document.getElementById("ingredient-container");
-		  var ingredientSections = document.getElementsByClassName("ingredient-section");
-		  if (customSelects.length > 3) {
-		    var lastIngredientSection = ingredientSections[ingredientSections.length - 1];
-		    ingredientContainer.removeChild(lastIngredientSection);
-		  }
-		  if(customSelects.length<=3){
-			  deleteButton.disabled = true;
-		  }
-		}
+	  var ingredientContainer = document.getElementById("ingredient-container");
+	  var ingredientSections = document.getElementsByClassName("ingredient-section");
+	  if (customSelects.length > 3) {
+	    var lastIngredientSection = ingredientSections[ingredientSections.length - 1];
+	    ingredientContainer.removeChild(lastIngredientSection);
+	  }
+	  if(customSelects.length<=3){
+		  ingredientdeleteButton.disabled = true;
+	  }
+	}
 
 	
 	// 재료칸 끝 --------------------------------------------------------------------------
 	
 	function addStep() {
 	  var instructionsContainer = document.getElementById('instructions-container');
-	  
+	
 	  var stepDiv = document.createElement('div');
 	  stepDiv.className = 'step';
-	  
+	
 	  var textarea = document.createElement('textarea');
 	  textarea.name = 'instructions';
 	  textarea.required = true;
-	  
+	
 	  var imagePreview = document.createElement('div');
 	  imagePreview.className = 'image-preview';
-	  
+	
 	  var fileInput = document.createElement('input');
 	  fileInput.type = 'file';
 	  fileInput.name = 'images';
 	  fileInput.accept = 'image/*';
 	  fileInput.onchange = previewImage;
-	  
+	
 	  stepDiv.appendChild(textarea);
 	  stepDiv.appendChild(imagePreview);
 	  stepDiv.appendChild(fileInput);
-	  
+	
 	  instructionsContainer.appendChild(stepDiv);
+	
+	  // 추가 후, 조건에 따라 삭제 버튼의 상태를 업데이트합니다
+	  updateDeleteButtonState();
 	}
+
+	
+	function deleteStep() {
+	  var instructionsContainer = document.getElementById('instructions-container');
+	  var steps = instructionsContainer.getElementsByClassName('step');
+
+	  // 최소 한 개의 입력칸이 있을 때만 삭제 버튼을 활성화합니다
+	  if (steps.length > 1) {
+	    // 가장 마지막 조리방법 입력칸을 삭제합니다
+	    instructionsContainer.removeChild(steps[steps.length - 1]);
+	  }
+
+	  // 삭제 후, 조건에 따라 삭제 버튼의 상태를 업데이트합니다
+	  updateDeleteButtonState();
+	}
+
+	function updateDeleteButtonState() {
+	  var instructionsContainer = document.getElementById('instructions-container');
+	  var steps = instructionsContainer.getElementsByClassName('step');
+	  var deletestepbutton = document.querySelector('#deletestepbutton');
+
+	  // 조건에 따라 삭제 버튼의 상태를 업데이트합니다
+	  if (steps.length >= 2) {
+		  deletestepbutton.disabled = false;
+	  } else {
+		  deletestepbutton.disabled = true;
+	  }
+	}
+
 	
 	function previewImage(event) {
 	  var file = event.target.files[0];

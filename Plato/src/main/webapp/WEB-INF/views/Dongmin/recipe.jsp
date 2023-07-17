@@ -13,8 +13,8 @@
 <link rel="stylesheet" href="/Yuchan/fixcomment.css">
 <link rel="stylesheet" href="/Yuchan/normal_comment.css">
 <body>
+
 <%
-	
 	String thispage = "recipe";
 %>
 	

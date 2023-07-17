@@ -1,14 +1,22 @@
 package com.study.springboot.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.study.springboot.service.ingredientService;
 import com.study.springboot.service.memberService;
@@ -68,7 +76,84 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping("/addingredient")
+	 @PostMapping("/addcomplete")
+	  public String addComplete(
+			  HttpServletRequest request, 
+			  Model model,
+			  @RequestParam("title-image") MultipartFile titleImage) throws FileNotFoundException {
+
+         // 상대적인 주소 classpath를 이용하는 방법
+		 String resourcePath = ResourceUtils.getFile("classpath:static/Dongmin/title_img/").getAbsolutePath();
+		 String path = resourcePath.replace("/bin/main", "/src/main/resources");
+
+		
+//		String timgfilePath = "classpath:static/Dongmin/title_img/";
+		// 제목 가져오기
+	    String title = request.getParameter("title");
+	    
+	    // 작성자 가져오기
+	    String writer = request.getParameter("writer");
+	    
+	    // 난이도 가져오기
+	    int difficulty = Integer.parseInt(request.getParameter("difficulty"));
+	    
+	    // 소요시간 가져오기
+	    int spentTime = Integer.parseInt(request.getParameter("settime"));
+	    
+	    // 대표 사진 가져오기
+	    
+	    // 파일 업로드 처리 및 저장 로직 구현
+	    
+	    // 소개글 가져오기
+	    String description = request.getParameter("description");
+	    
+	    // 재료 가져오기
+	    String[] ingredients = request.getParameterValues("ingredients");
+	    String[] amounts = request.getParameterValues("amounts");
+	    
+	    // 조리 방법 가져오기
+	    String[] instructions = request.getParameterValues("instructions");
+	    
+	    // 파일 업로드 처리 및 저장 로직 구현
+	    try {
+	        // 파일 저장
+	    	String fileName = titleImage.getOriginalFilename();
+			long now = System.currentTimeMillis();
+			fileName = now +"_"+ fileName;
+			System.out.println("fileName : "+ fileName);
+			
+			// file 객체 만들기
+			System.out.println(path +File.separator+ fileName);
+			File file = new File( path +File.separator+ fileName );
+			
+			// 그 file 객체에 덮어쓰기
+			FileUtils.writeByteArrayToFile(file, titleImage.getBytes());
+	        // DB에 파일 경로 저장 등 필요한 로직 수행
+	        String dbpath = "Dongmin/title_img" + fileName;
+	      } catch (IOException e) {
+	        // 파일 저장 실패 시 예외 처리
+	        e.printStackTrace();
+	      }
+	    // 레시피 등록 로직 호출
+	    // recipeService.addRecipe(title, writer, difficulty, spentTime, ...);
+	    
+	    // 값 콘솔에 출력
+	    System.out.println("Title: " + title);
+	    System.out.println("Writer: " + writer);
+	    System.out.println("Difficulty: " + difficulty);
+	    System.out.println("Spent Time: " + spentTime);
+	    System.out.println("Description: " + description);
+	    System.out.println("Ingredients: " + Arrays.toString(ingredients));
+	    System.out.println("Amounts: " + Arrays.toString(amounts));
+	    System.out.println("Instructions: " + Arrays.toString(instructions));
+	    
+	    // 추가 작업 및 리다이렉트 처리
+	    // ...
+	    
+	    return "Dongmin/recipe";
+	  }
+	
+	@PostMapping("/addingredient")
     public String addIngredient(@RequestParam("new-ingredient") String ingredientName) {
         // 재료 추가 로직 수행
         ingredientService.insertIngredient(ingredientName);
