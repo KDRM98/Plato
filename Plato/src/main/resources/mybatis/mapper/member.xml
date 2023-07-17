@@ -77,9 +77,9 @@
 	<update id="updateMember" parameterType="memberDTO">
 		UPDATE member
 		SET
-		<if test="image != null and image != pre_image">
+<!-- 		<if test="image != null and image != pre_image">
 			image = #{image},
-		</if>
+		</if> -->
 
 		<if test="nickname != null and nickname != pre_nickname">
 			nickname = #{nickname},
@@ -96,7 +96,8 @@
 		<if test="age != -1 and age != pre_age">
 			age = #{age},
 		</if>
-		userid = #{userid}
+		image = #{image}
+		<!-- userid = #{userid} -->
 		WHERE userid = #{userid}
 	</update>
 

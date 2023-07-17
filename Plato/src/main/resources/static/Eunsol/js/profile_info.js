@@ -40,6 +40,10 @@ email.addEventListener("blur", function() {
 //이메일 형식 체크
 const email = document.getElementById("email")
 const emError = document.querySelector("#emailMsg")
+
+/*const pemailnull = document.querySelector("#pemailnull")
+const pniknull = document.querySelector("#pniknull")*/
+
 let isEmailValid = true;
 function checkEmailPattern(emailValue) {
 	if (emailValue !== '') {
@@ -50,17 +54,21 @@ function checkEmailPattern(emailValue) {
 
 			if (isValid) {
 				emError.style.display = 'none';
+				pemailnull.style.display = "none";
 				isEmailValid = true;
 				resolve(false); // 유효한 아이디일 때 버튼 활성화
 			} else {
 				emError.style.display = 'block';
+				pemailnull.style.display = "none";
 				isEmailValid = false;
 				resolve(true)
 			}
 		});
 	} else {
 		// emailValue가 null인 경우 처리
-		emError.style.display = "none"; // 필드가 비어있을 때는 에러 메시지를 표시하지 않기
+		emError.style.display = "none";
+		pemailnull.style.display = "block";
+		 // 필드가 비어있을 때는 에러 메시지를 표시하지 않기
 		isEmailValid = true;
 		return Promise.resolve(false);; // 유효한 아이디로 간주하여 버튼 활성화
 	}

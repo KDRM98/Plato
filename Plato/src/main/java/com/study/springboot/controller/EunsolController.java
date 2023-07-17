@@ -1,27 +1,26 @@
 package com.study.springboot.controller;
 
-import java.net.PasswordAuthentication;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.regex.Pattern;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.rsocket.server.RSocketServer.Transport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.study.springboot.dto.memberDTO;
 import com.study.springboot.service.emailSenderService;
@@ -39,6 +38,90 @@ public class EunsolController {
 	emailSenderService senderService;
 
 	// ----------------------------체킹
+
+	@RequestMapping("/profile3")
+	public String profile3(Model model, HttpServletRequest request, @ModelAttribute memberDTO DTO) {
+		System.out.println("/profile3");
+
+		HttpSession session = request.getSession();
+
+		// TODO 트라이케치문 작성하기
+
+		DTO.setUserid((int) session.getAttribute("userid"));
+
+		memberDTO result = member.myprofile(DTO);
+		/* String email = result.getEmail(); */
+		model.addAttribute("image", result.getImage());
+		model.addAttribute("id", result.getId());
+		model.addAttribute("email", result.getEmail());
+		model.addAttribute("nickname", result.getNickname());
+		model.addAttribute("gender", result.getGender());
+		model.addAttribute("age", result.getAge());
+		/* model.addAttribute("r", result); r.email */
+
+		return "viewList8";
+	}
+
+	@RequestMapping("/myinfocomp2")
+	@ResponseBody
+	public Map myinfocomp2(Model model,
+			HttpServletRequest request,
+			@ModelAttribute memberDTO DTO,
+			@RequestParam("photo") MultipartFile multipartFile) {
+		System.out.println("/myinfocomp2");
+		Map map = new HashMap();
+		if(request.getParameter("email").isEmpty() || request.getParameter("nickname").isEmpty()) {
+			if(request.getParameter("email").isEmpty()) {map.put("errEmail", "이메일 입력없음");};
+			if( request.getParameter("nickname").isEmpty()) {map.put("errNick", "닉네입 입력없음");};
+			map.put("error","error");
+		}else {
+	
+		String path="";
+		try {
+			path = ResourceUtils.getFile("classpath:static/upload/").toPath().toString();
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		}
+		File dir = new File(path);
+		
+		String fileName = multipartFile.getOriginalFilename();
+		long now = System.currentTimeMillis();
+		fileName = now + "_" + fileName;
+		System.out.println("filename :" + fileName);
+
+		// file 객체 만들기
+		File file = new File(path + File.separator + fileName);
+		System.out.println(File.separator+"upload"+File.separator+fileName);
+		
+		// 그 file 객체에 쓰기
+		try {
+			FileUtils.writeByteArrayToFile(file, multipartFile.getBytes());
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		
+		String src = File.separator + "upload" + File.separator + fileName;
+		HttpSession session = request.getSession();
+		DTO.setImage(src);
+		DTO.setUserid((int) session.getAttribute("userid"));
+		member.updateMember(DTO);
+		
+		String email = request.getParameter("email");
+		String nickname = request.getParameter("nickname");
+
+		System.out.println("email : " + email);
+		System.out.println("nickname : " + nickname);
+		
+	
+
+		map.put("comp", "회원정보가 수정되었습니다.");}
+
+		return map;
+
+	}
+
 	@RequestMapping("/header")
 	public String header(HttpServletRequest request, Model model) {
 		System.out.println("/header");

@@ -21,18 +21,14 @@
 			</div>
 			<div class="circle-container">
 				<img id="pfImg" class="circle" src="${image}" pre_date="${image}">
-				<button id="up_btn" class="circle-camera">
-					<img src="Eunsol/imges/camera.png">
-				</button>
-				<input type="file" id="fileInput" style="display: none;">
-			
-<!-- 	<form action="/uploadOk" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-	<input type="file" name="filename"><br><br><br>
-	<input type="submit" value="업로드">
-	</form> -->
-			
+					<button id="up_btn" class="circle-camera">
+						<img src="Eunsol/imges/camera.png">
+					</button>
+				<form id="form" method="post" action="" enctype="multipart/form-data">
+					<input type="file" name="photo" id="fileinput" style="display: none;">
+				
 			</div>
-
+			
 			<div class=" static_id">
 				<strong>${id}</strong>
 			</div>
@@ -83,6 +79,7 @@
 									<option value="60">60대이상</option>
 								</c:if> --%>
 						</select>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -91,6 +88,8 @@
 			<div class="profile2 error">
 				<div id="emailMsg">이메일 형식이 올바르지 않습니다.</div>
 				<div id="duNick">이미 사용중인 아이디 입니다.</div>
+				<div id="pemailnull">수정할 이메일을 입력해주세요.</div>
+				<div id="pniknull">수정할 닉네임을 입력해수제요.</div>
 			</div>
 			<div>
 				<button type="submit" class="save-button">정보 변경하기</button>
@@ -228,27 +227,29 @@
 			</div>
 		</div>
 		<!-- 팝업창 끝 -->
-	<!-- 팝업 완료창 -->
-	<div class="pop_error">
-		<div class="content">
+		<!-- 팝업 완료창 -->
+		<div class="pop_error">
+			<div class="content">
 
-			<div class="popdel">
-			
+				<div class="popdel"></div>
+
+				<div class="popdel-btn">
+					<a href="/profile" class="btn check">확인</a> <a href="/header"
+						class="btn home">홈으로</a>
+				</div>
+
 			</div>
-
-			<div class="popdel-btn">
-				<a href="/profile" class="btn check">확인</a> <a href="/header"
-					class="btn home">홈으로</a>
-			</div>
-
 		</div>
-	</div>
-	<!-- 팝업 완료창 끝-->
+		<!-- 팝업 완료창 끝-->
 	</div>
 	<!-- js -->
 	<script src="Eunsol/js/drop.js"></script>
 	<script src="Eunsol/js/profile.js"></script>
-	<script src="Eunsol/js/profile_info.js"></script>
+	<script src="Eunsol/js/profile_info2.js"></script>
 	<script src="Eunsol/js/profile_pw.js"></script>
+	<script src="Eunsol/js/profile_upload.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+	<script src="https://malsup.github.io/jquery.form.js"></script>
 </body>
 </html>

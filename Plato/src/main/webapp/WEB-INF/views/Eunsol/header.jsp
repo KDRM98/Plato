@@ -75,7 +75,7 @@
 									<li>&#160;</li>
 									<li><a href="#" class="sb_mypage">마이페이지</a></li>
 									<li><a href="/addrecipe" class="sb_write">글쓰기</a></li>
-									<li><a href="/profile" class="sb_modify">회원정보수정</a></li>
+									<li><a href="/profile3" class="sb_modify">회원정보수정</a></li>
 								</ul>
 							</div>
 							<div class="side_login">
