@@ -9,110 +9,123 @@
 </head>
 <link rel="stylesheet" href="Dongmin/css/addrecipe.css">
 <body>
-	<form action="/recipes" method="POST" enctype="multipart/form-data">
-		<div class="recContainer">
-			<div class="registContainer">
-				<div class="regist" id="title">		
-					<label for="title">제목 : </label>
-					<input type="text" id="title" name="title" required>
-				</div>
-				<div class="regist" id="writer">
-					<label for="author">작성자: </label>
-					<input type="text" id="author" name="author" required>
-				</div>
-				
-				<div class="regist" id="difficulty">
-					<label for="image">난이도 : </label><span class="difficultynum" name="difficulty"> 0 </span>
-					<div id="difficulty-container">
-					    <button type="button" class="difficulty-button" onclick="selectDifficulty(1)"><span class="button-number"></span></button>
-					    <button type="button" class="difficulty-button" onclick="selectDifficulty(2)"><span class="button-number"></span></button>
-					    <button type="button" class="difficulty-button" onclick="selectDifficulty(3)"><span class="button-number"></span></button>
-					    <button type="button" class="difficulty-button" onclick="selectDifficulty(4)"><span class="button-number"></span></button>
-					    <button type="button" class="difficulty-button" onclick="selectDifficulty(5)"><span class="button-number"></span></button>
+<div class="lr-container">
+	<div class="l-container">
+		<form action="/recipes" method="POST" enctype="multipart/form-data">
+			<div class="recContainer">
+				<div class="registContainer">
+					<div class="regist" id="title">		
+						<label for="title">제목 : </label>
+						<input type="text" id="title" name="title" required>
 					</div>
-				</div>
-				
-				<div class="regist" id="spenttime">
-					<label for="image">소요시간</label>
-					<select name="settime">
-					  <option value="">-- 시간 선택 --</option>
-					  <option value="10">10분</option>
-					  <option value="20">20분</option>
-					  <option value="30">30분</option>
-					  <option value="40">40분</option>
-					  <option value="50">50분</option>
-					  <option value="60">1시간</option>
-					  <option value="70">1시간 10분</option>
-					  <option value="80">1시간 20분</option>
-					  <option value="90">1시간 30분</option>
-					  <option value="100">1시간 40분</option>
-					  <option value="110">1시간 50분</option>
-					  <option value="120">2시간</option>
-					</select>
-				</div>
-				
-				<div class="regist" name="mainimg">
-					<label for="image">대표 사진 </label>
-					<div class="image-preview"></div>
-					<input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
-				</div>
-				
-				<div class="regist" name="desc">
-					<label for="description">소개글:</label><br>
-					<textarea id="description" name="description" required></textarea>
-				</div>
-				
-				<div class="regist" id="addigr">
-					<div id="ingredient-container">
-						<!-- 초기 재료 섹션 (3개) -->
-						<div class="ingredient-section">
-							<span for="ingredients">재료:</span><br>
-							<div class="ingredient-row">
-								<div class="custom-select">
-									<input type="text" class="ingredient-input" name="ingredients[]" oninput="filterIngredients(this)" onclick="showDropdown(this)">
-									<input type="text" class="amount-input" name="amounts[]" placeholder="재료 양 입력">
-									<ul class="dropdown-content"></ul>
-								</div>
-								<div class="custom-select">
-									<input type="text" class="ingredient-input" name="ingredients[]" oninput="filterIngredients(this)" onclick="showDropdown(this)">
-									<input type="text" class="amount-input" name="amounts[]" placeholder="재료 양 입력">
-									<ul class="dropdown-content"></ul>
-								</div>
-								<div class="custom-select">
-									<input type="text" class="ingredient-input" name="ingredients[]" oninput="filterIngredients(this)" onclick="showDropdown(this)">
-									<input type="text" class="amount-input" name="amounts[]" placeholder="재료 양 입력">
-									<ul class="dropdown-content"></ul>
+					<div class="regist" id="writer">
+						<label for="author">작성자: </label>
+						<span style="margin-left: 10px; font-size: 25px; font-weight: bold; color: purple;">${nickname}</span>
+					</div>
+					
+					<div class="regist" id="difficulty">
+						<label for="image">난이도 : </label><span class="difficultynum"> 1 </span>
+						<input type="hidden" id="difficulty-input" name="difficulty" value="1">
+						<div id="difficulty-container">
+						    <button type="button" id="diff-one" class="difficulty-button" onclick="selectDifficulty(1)"><span class="button-number"></span></button>
+						    <button type="button" id="diff-two" class="difficulty-button" onclick="selectDifficulty(2)"><span class="button-number"></span></button>
+						    <button type="button" id="diff-three" class="difficulty-button" onclick="selectDifficulty(3)"><span class="button-number"></span></button>
+						    <button type="button" id="diff-four" class="difficulty-button" onclick="selectDifficulty(4)"><span class="button-number"></span></button>
+						    <button type="button" id="diff-five" class="difficulty-button" onclick="selectDifficulty(5)"><span class="button-number"></span></button>
+						</div>
+					</div>
+					
+					<div class="regist" id="spenttime">
+						<label for="image">소요시간</label>
+						<select name="settime">
+						  <option value="">-- 시간 선택 --</option>
+						  <option value="10">10분</option>
+						  <option value="20">20분</option>
+						  <option value="30">30분</option>
+						  <option value="40">40분</option>
+						  <option value="50">50분</option>
+						  <option value="60">1시간</option>
+						  <option value="70">1시간 10분</option>
+						  <option value="80">1시간 20분</option>
+						  <option value="90">1시간 30분</option>
+						  <option value="100">1시간 40분</option>
+						  <option value="110">1시간 50분</option>
+						  <option value="120">2시간</option>
+						</select>
+					</div>
+					
+					<div class="regist" name="mainimg">
+						<label for="image">대표 사진 </label>
+						<div class="image-preview"></div>
+						<input type="file" id="image" name="title-image" accept="image/*" onchange="previewImage(event)">
+					</div>
+					
+					<div class="regist" name="desc">
+						<label for="description">소개글:</label><br>
+						<textarea id="description" name="description" required></textarea>
+					</div>
+					
+					<div class="regist" id="addigr">
+						<div id="ingredient-container">
+							<!-- 초기 재료 섹션 (3개) -->
+							<div class="ingredient-section">
+								<span for="ingredients">재료:</span><br>
+								<div class="ingredient-row">
+									<div class="custom-select">
+										<input type="text" class="ingredient-input" name="ingredients" oninput="filterIngredients(this)" placeholder="원하는 재료를 입력해 검색 후 클릭" onclick="showDropdown(this)">
+										<input type="text" class="amount-input" name="amounts" placeholder="재료 양 입력">
+										<ul class="dropdown-content"></ul>
+									</div>
+									<div class="custom-select">
+										<input type="text" class="ingredient-input" name="ingredients" oninput="filterIngredients(this)" placeholder="원하는 재료를 입력해 검색 후 클릭" onclick="showDropdown(this)">
+										<input type="text" class="amount-input" name="amounts" placeholder="재료 양 입력">
+										<ul class="dropdown-content"></ul>
+									</div>
+									<div class="custom-select">
+										<input type="text" class="ingredient-input" name="ingredients" oninput="filterIngredients(this)" placeholder="원하는 재료를 입력해 검색 후 클릭" onclick="showDropdown(this)">
+										<input type="text" class="amount-input" name="amounts" placeholder="재료 양 입력">
+										<ul class="dropdown-content"></ul>
+									</div>
 								</div>
 							</div>
 						</div>
+						<button type="button" id="delete-ingredient-button" disabled onclick="deleteIngredient()">삭제</button>
+						<button type="button" id="add-ingredient-button" onclick="addIngredient()">추가</button>
 					</div>
-					<button type="button" id="delete-ingredient-button" disabled onclick="deleteIngredient()">삭제</button>
-					<button type="button" id="add-ingredient-button" onclick="addIngredient()">추가</button>
+					<div class="regist" id="how">
+					  <span for="instructions">조리방법:</span><br>
+					  <div id="instructions-container">
+					    <div class="step">
+					      <textarea name="instructions" required></textarea>
+					      <div class="image-preview"></div>
+					      <input type="file" name="images" accept="image/*" onchange="previewImage(event)">
+					    </div>
+					  </div>
+					  <button type="button" onclick="addStep()">추가</button>
+					</div>
+					<br>
+					<button type="submit">작성 완료</button>
 				</div>
-				<div class="regist" id="how">
-				  <span for="instructions">조리방법:</span><br>
-				  <div id="instructions-container">
-				    <div class="step">
-				      <textarea name="instructions[]" required></textarea>
-				      <div class="image-preview"></div>
-				      <input type="file" name="images[]" accept="image/*" onchange="previewImage(event)">
-				    </div>
-				  </div>
-				  <button type="button" onclick="addStep()">추가</button>
-				</div>
-				<br>
-				<button type="submit">작성 완료</button>
 			</div>
-		</div>
-	</form>
-		
+		</form>
+	</div>
+	<div class="r-container">
+		<form action="/addingredient" method="POST" enctype="multipart/form-data">
+			<div class="addingr-container">
+				<input type="text" class="new-ingredient" name="new-ingredient" placeholder="새로 추가할 재료 입력">
+				<button id="new-ingr-button">추가</button>
+			</div>
+		</form>
+	</div>
+</div>
 	
+		
 </body>
 <script>
 	var difficultynum = document.querySelector(".difficultynum");
 	function selectDifficulty(level) {
 	  var buttons = document.getElementsByClassName('difficulty-button');
-	  
+	  document.getElementById("difficulty-input").value = level;
 	  // 선택된 버튼 이외의 버튼들의 스타일 초기화
 	    for (var i = 0; i < buttons.length; i++) {
 	    	buttons[i].style.background = "white";
@@ -265,7 +278,8 @@ var originingredients = [
 	  var ingredientInput = document.createElement("input");
 	  ingredientInput.type = "text";
 	  ingredientInput.className = "ingredient-input";
-	  ingredientInput.name = "ingredients[]";
+	  ingredientInput.name = "ingredients";
+	  ingredientInput.placeholder = "원하는 재료를 입력해 검색 후 클릭";
 	  ingredientInput.oninput = function() {
 	    filterIngredients(this);
 	  };
@@ -276,7 +290,7 @@ var originingredients = [
 	  var amountInput = document.createElement("input");
 	  amountInput.type = "text";
 	  amountInput.className = "amount-input";
-	  amountInput.name = "amounts[]";
+	  amountInput.name = "amounts";
 	  amountInput.placeholder = "재료 양 입력";
 	  
 	  var dropdown = document.createElement("ul");
@@ -311,8 +325,6 @@ var originingredients = [
 	
 	// 재료칸 끝 --------------------------------------------------------------------------
 	
-	var stepCount = 1;
-
 	function addStep() {
 	  var instructionsContainer = document.getElementById('instructions-container');
 	  
@@ -320,7 +332,7 @@ var originingredients = [
 	  stepDiv.className = 'step';
 	  
 	  var textarea = document.createElement('textarea');
-	  textarea.name = 'instructions[]';
+	  textarea.name = 'instructions';
 	  textarea.required = true;
 	  
 	  var imagePreview = document.createElement('div');
@@ -328,7 +340,7 @@ var originingredients = [
 	  
 	  var fileInput = document.createElement('input');
 	  fileInput.type = 'file';
-	  fileInput.name = 'images[]';
+	  fileInput.name = 'images';
 	  fileInput.accept = 'image/*';
 	  fileInput.onchange = previewImage;
 	  
@@ -337,8 +349,6 @@ var originingredients = [
 	  stepDiv.appendChild(fileInput);
 	  
 	  instructionsContainer.appendChild(stepDiv);
-	  
-	  stepCount++;
 	}
 	
 	function previewImage(event) {

@@ -6,9 +6,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.study.springboot.service.ingredientService;
 import com.study.springboot.service.memberService;
 
 @Controller
@@ -16,6 +18,9 @@ public class LoginController {
 	
 	@Autowired
 	memberService member;
+	
+	@Autowired
+    private ingredientService ingredientService;
 	
 	int likeCount=33;
 	boolean isLiked = true;
@@ -63,7 +68,14 @@ public class LoginController {
 		}
 	}
 	
-	
+	@RequestMapping("/addingredient")
+    public String addIngredient(@RequestParam("new-ingredient") String ingredientName) {
+        // 재료 추가 로직 수행
+        ingredientService.insertIngredient(ingredientName);
+        
+        // 추가한 후 리다이렉트할 페이지나 뷰 이름 반환
+        return "redirect:/addrecipe"; // 예시로 recipeform 페이지로 리다이렉트
+    }
 	
 	@RequestMapping("/recipeLike")
 	public String updateRecipe(
