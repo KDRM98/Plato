@@ -1,14 +1,14 @@
 package com.study.springboot.service;
 
+import java.util.List;
+import java.util.Map;
 
-
-import com.study.springboot.dto.memberDTO;
 import com.study.springboot.dto.postDTO2;
 
 
 public interface postService2 {
 
-	int rough(postDTO2 DTO);
+	int totalCount(postDTO2 DTO);
 	
-	postDTO2 gesipan(postDTO2 DTO);
+	Map gesipan(postDTO2 DTO);
 }

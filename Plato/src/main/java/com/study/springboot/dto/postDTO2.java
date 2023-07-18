@@ -8,8 +8,12 @@ public class postDTO2 {
 	private int userid;
 	private int postid;
 	private String title;
-	private Date CDate;
+	private Date cdate;
 	private int views;
+	
+	
+	private int startNum;
+	private int endNum;
 	
 	public int getUserid() {
 		return userid;
@@ -29,11 +33,12 @@ public class postDTO2 {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Date getCDate() {
-		return CDate;
+
+	public Date getCdate() {
+		return cdate;
 	}
-	public void setCDate(Date cDate) {
-		CDate = cDate;
+	public void setCdate(Date cdate) {
+		this.cdate = cdate;
 	}
 	public int getViews() {
 		return views;
@@ -41,13 +46,21 @@ public class postDTO2 {
 	public void setViews(int views) {
 		this.views = views;
 	}
+	public int getStartNum() {
+		return startNum;
+	}
+	public void setStartNum(int startNum) {
+		this.startNum = startNum;
+	}
+	public int getEndNum() {
+		return endNum;
+	}
+	public void setEndNum(int endNum) {
+		this.endNum = endNum;
+	}
+
 	
-	@Override
-	public String toString() {
-		return "postDTO2 [userid=" + userid + ", postid=" + postid + ", title=" + title + ", CDate=" + CDate
-				+ ", views=" + views + "]";
-	}	
-	
+
 		
 	
 	}

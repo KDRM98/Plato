@@ -20,7 +20,7 @@
 				<strong>회원정보 수정</strong>
 			</div>
 			<div class="circle-container">
-				<img id="pfImg" class="circle" src="${image}" pre_date="${image}"  >
+				<img id="pfImg" class="circle" src="${image}" pre_date="${image}" onerror="this.src='/basicInfo/img/basic.jpg'" >
 				<button id="up_btn" class="circle-camera">
 					<img src="Eunsol/imges/camera.png" title ="프로필사진 업로드">
 				</button>

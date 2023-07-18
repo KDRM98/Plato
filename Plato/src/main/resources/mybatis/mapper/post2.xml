@@ -5,18 +5,27 @@
 <mapper namespace="com.study.springboot.dao.postDAO2">
 
 	<!-- userid의 게시물의 개수를 구하는 문 -->
-	<select id="rough" parameterType="postDTO2" resultType="int">
+	<select id="totalCount" parameterType="postDTO2" resultType="int">
 		select count(*)
 		from  post
 		where userid=#{userid}
 	</select>
 	
 	<select id="gesipan" parameterType="postDTO2" resultType="postDTO2" >
-		select title, postid, CDate, views
-		from  post
-		where userid=#{userid}
+		select *
+		from  ( 
+			SELECT rownum AS rnum,
+       			  title, postid, cdate, views
+   	 		FROM
+        		   post 
+			where userid=#{userid} 
+        	ORDER BY postid DESC
+        	)
+		WHERE rnum <![CDATA[>=]]> #{startNum}
+		  AND rnum <![CDATA[<=]]> #{endNum}
 	</select>
 	
-
+		
+		
 
 </mapper>
