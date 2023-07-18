@@ -80,28 +80,4 @@ save_button.addEventListener('click', function() {
 	}
 
 
-	/*  xhr.onlaod = function() {
-		  console.log("200");
-		  
-		  if(xhr.status ==200){
-			 console.log("200");
-			console.log(xhr.responseText);
-			let result = JSON.parse(xhr.responseText);
-			
-			let comp = result.comp;
-			let pop_profilecomp = document.querySelector(".pop_profilecomp");
-			pop_profilecomp.style.display = "block"
-			let mdfd = document.querySelector(".pop_profilecomp .mdfd");
-			html = "<div>" + comp + "</div>"
-			mdfd.innerHTML = html;
-			  
-		  }
-		  console.log("야ㅕ기야");
-	  }*/
-
 });
-
-
-
-
-

@@ -65,7 +65,7 @@
 					<c:if test="${not empty userid}">
 						<div class="side_content">
 							<div class="side_picture">
-								<img class="side_circle" src="Eunsol/imges/orang_plato.png">
+								<img class="side_circle" src="${image}">
 							</div>
 							<div class="side_menu">
 								<ul>
@@ -122,7 +122,7 @@
 
 
 		<div class="logo">
-			<a href="/header"><img alt="로고" src="Eunsol/imges/o_logo.png"></a>
+			<a href="/header"><img alt="메인홈으로 가기" src="Eunsol/imges/o_logo.png" title="메인홈으로 가기"></a>
 		</div>
 	</header>
 	<!-- clear : both; -->
