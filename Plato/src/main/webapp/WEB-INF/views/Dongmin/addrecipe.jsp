@@ -78,17 +78,17 @@
 								<span for="ingredients">재료:</span><br>
 								<div class="ingredient-row">
 									<div class="custom-select">
-										<input type="text" class="ingredient-input" name="ingredients" oninput="filterIngredients(this)" placeholder="원하는 재료를 입력해 검색 후 클릭" onclick="showDropdown(this)">
+										<input type="text" class="ingredient-input" name="ingredients" oninput="filterIngredients(this)" placeholder="원하는 재료를 입력해 검색 후 클릭" onclick="showDropdown(this)" required>
 										<input type="text" class="amount-input" name="amounts" placeholder="재료 양 입력">
 										<ul class="dropdown-content"></ul>
 									</div>
 									<div class="custom-select">
-										<input type="text" class="ingredient-input" name="ingredients" oninput="filterIngredients(this)" placeholder="원하는 재료를 입력해 검색 후 클릭" onclick="showDropdown(this)">
+										<input type="text" class="ingredient-input" name="ingredients" oninput="filterIngredients(this)" placeholder="원하는 재료를 입력해 검색 후 클릭" onclick="showDropdown(this)" required>
 										<input type="text" class="amount-input" name="amounts" placeholder="재료 양 입력">
 										<ul class="dropdown-content"></ul>
 									</div>
 									<div class="custom-select">
-										<input type="text" class="ingredient-input" name="ingredients" oninput="filterIngredients(this)" placeholder="원하는 재료를 입력해 검색 후 클릭" onclick="showDropdown(this)">
+										<input type="text" class="ingredient-input" name="ingredients" oninput="filterIngredients(this)" placeholder="원하는 재료를 입력해 검색 후 클릭" onclick="showDropdown(this)" required>
 										<input type="text" class="amount-input" name="amounts" placeholder="재료 양 입력">
 										<ul class="dropdown-content"></ul>
 									</div>
@@ -288,6 +288,7 @@ var originingredients = [
 	  ingredientInput.className = "ingredient-input";
 	  ingredientInput.name = "ingredients";
 	  ingredientInput.placeholder = "원하는 재료를 입력해 검색 후 클릭";
+	  ingredientInput.required = true;
 	  ingredientInput.oninput = function() {
 	    filterIngredients(this);
 	  };
@@ -383,7 +384,7 @@ var originingredients = [
 	  var deletestepbutton = document.querySelector('#deletestepbutton');
 
 	  // 조건에 따라 삭제 버튼의 상태를 업데이트합니다
-	  if (steps.length >= 2) {
+	  if (steps.length > 1) {
 		  deletestepbutton.disabled = false;
 	  } else {
 		  deletestepbutton.disabled = true;

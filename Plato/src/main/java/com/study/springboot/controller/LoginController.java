@@ -3,7 +3,9 @@ package com.study.springboot.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -76,15 +78,19 @@ public class LoginController {
 		}
 	}
 	
-	 @PostMapping("/addcomplete")
+	@PostMapping("/addcomplete")
 	  public String addComplete(
 			  HttpServletRequest request, 
 			  Model model,
-			  @RequestParam("title-image") MultipartFile titleImage) throws FileNotFoundException {
+			  @RequestParam("title-image") MultipartFile titleImage,
+		        @RequestParam("images") MultipartFile[] images) throws FileNotFoundException {
 
-         // 상대적인 주소 classpath를 이용하는 방법
+       // 상대적인 주소 classpath를 이용하는 방법
 		 String resourcePath = ResourceUtils.getFile("classpath:static/Dongmin/title_img/").getAbsolutePath();
-		 String path = resourcePath.replace("/bin/main", "/src/main/resources");
+		 String timgpath = resourcePath.replace("/bin/main", "/src/main/resources");
+		 
+		 String iresourcePath = ResourceUtils.getFile("classpath:static/Dongmin/inst_img/").getAbsolutePath();
+		 String Instimgpath = iresourcePath.replace("/bin/main", "/src/main/resources");
 
 		
 //		String timgfilePath = "classpath:static/Dongmin/title_img/";
@@ -117,19 +123,36 @@ public class LoginController {
 	    // 파일 업로드 처리 및 저장 로직 구현
 	    try {
 	        // 파일 저장
-	    	String fileName = titleImage.getOriginalFilename();
+	    	String tfileName = titleImage.getOriginalFilename();
 			long now = System.currentTimeMillis();
-			fileName = now +"_"+ fileName;
-			System.out.println("fileName : "+ fileName);
+			tfileName = now +"_"+ tfileName;
+			System.out.println("fileName : "+ tfileName);
 			
 			// file 객체 만들기
-			System.out.println(path +File.separator+ fileName);
-			File file = new File( path +File.separator+ fileName );
+			System.out.println(timgpath +File.separator+ tfileName);
+			File tfile = new File( timgpath +File.separator+ tfileName );
 			
 			// 그 file 객체에 덮어쓰기
-			FileUtils.writeByteArrayToFile(file, titleImage.getBytes());
-	        // DB에 파일 경로 저장 등 필요한 로직 수행
-	        String dbpath = "Dongmin/title_img" + fileName;
+			FileUtils.writeByteArrayToFile(tfile, titleImage.getBytes());
+
+			// DB에 파일 경로 저장 등 필요한 로직 수행
+			String dbtimgpath = "Dongmin/title_img" + tfileName;
+			
+			List<String> dbImagePaths = new ArrayList<>();
+	        for (MultipartFile image : images) {
+	        	if (image.isEmpty()) {
+	                dbImagePaths.add("");
+	                continue;
+	            }
+	            String imageName = image.getOriginalFilename();
+	            String imageFileName = System.currentTimeMillis() + "_" + imageName;
+	            File imageFile = new File(Instimgpath + File.separator + imageFileName);
+	            FileUtils.writeByteArrayToFile(imageFile, image.getBytes());
+	            String dbImagePath = "Dongmin/inst_img/" + imageFileName;
+	            dbImagePaths.add(dbImagePath);
+	        }
+	        System.out.println("dbImagePath: " + dbImagePaths);
+			
 	      } catch (IOException e) {
 	        // 파일 저장 실패 시 예외 처리
 	        e.printStackTrace();
@@ -146,6 +169,7 @@ public class LoginController {
 	    System.out.println("Ingredients: " + Arrays.toString(ingredients));
 	    System.out.println("Amounts: " + Arrays.toString(amounts));
 	    System.out.println("Instructions: " + Arrays.toString(instructions));
+	    
 	    
 	    // 추가 작업 및 리다이렉트 처리
 	    // ...
