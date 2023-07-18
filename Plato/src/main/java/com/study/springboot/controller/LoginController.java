@@ -199,17 +199,32 @@ public class LoginController {
 	    
 	    
 	    // DB에 게시글(Post)등록
-	    postDTO dto = new postDTO();
-	    dto.setPostid(postid);
-	    dto.setWriterId(userid);
-	    dto.setTitle(title);
-	    dto.setTimg(dbtimgpath);
-	    dto.setInfo(info);
-	    dto.setYtblink(ytblink);
-	    dto.setTime(time);
-	    dto.setDiff(diff);
-	    int result = post.insertpost(dto);
-	    System.out.println(result);
+	    postDTO pdto = new postDTO();
+	    pdto.setPostid(postid);
+	    pdto.setWriterId(userid);
+	    pdto.setTitle(title);
+	    pdto.setTimg(dbtimgpath);
+	    pdto.setInfo(info);
+	    pdto.setYtblink(ytblink);
+	    pdto.setTime(time);
+	    pdto.setDiff(diff);
+	    int presult = post.insertpost(pdto);
+	    System.out.println("post 결과 : "+presult);
+	    
+	    for (int i = 0; i < ingredients.length; i++) {
+	        String ingredient = ingredients[i];
+	        String amount = amounts[i];
+	        int ingid = ingredientService.selectIngIDByName(ingredient);
+	        ingredientDTO idto = new ingredientDTO();
+	        idto.setPostid(postid);
+	        idto.setIngid(ingid);
+	        idto.setIngamount(amount);
+	        
+	        int iresult = ingredientService.insertInges(idto);
+	        // result를 확인하고 필요에 따라 처리
+	        System.out.println("Inges 결과 : " + iresult);
+	        // 추가로 필요한 로직 수행
+	    }
 	    
 	    return "Dongmin/recipe";
 	  }

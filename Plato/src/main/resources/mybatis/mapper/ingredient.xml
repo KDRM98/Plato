@@ -12,4 +12,14 @@
         SELECT * FROM INGLIST
         ORDER BY ingid
     </select>
+    
+    <insert id="insertInges" parameterType="com.study.springboot.dto.ingredientDTO">
+        INSERT INTO INGES (postid, ingid, ingamt)
+        VALUES (#{postid}, #{ingid}, #{ingamount})
+    </insert>
+    
+    <select id="selectIngIDByName" parameterType="String" resultType="int">
+    	SELECT ingid FROM INGLIST
+		WHERE ing = #{ingredient}
+    </select>
 </mapper>

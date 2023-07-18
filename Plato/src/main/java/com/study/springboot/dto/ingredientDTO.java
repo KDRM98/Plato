@@ -1,9 +1,17 @@
 package com.study.springboot.dto;
 
 public class ingredientDTO {
+	private int postid;
 	private int ingid;
 	private String ing;
 	private String ingamount;
+	
+	public int getPostid() {
+		return postid;
+	}
+	public void setPostid(int postid) {
+		this.postid = postid;
+	}
 	
 	public int getIngid() {
 		return ingid;
