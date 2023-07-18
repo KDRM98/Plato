@@ -73,7 +73,7 @@
 									<li><a href="#" class="today_recipe">오늘의 인기레시피</a></li>
 									<li><a href="#" class="last_recipe">지난 인기레시피</a></li>
 									<li>&#160;</li>
-									<li><a href="#" class="sb_mypage">마이페이지</a></li>
+									<li><a href="/mypage" class="sb_mypage">마이페이지</a></li>
 									<li><a href="/addrecipe" class="sb_write">글쓰기</a></li>
 									<li><a href="/profile" class="sb_modify">회원정보수정</a></li>
 								</ul>
@@ -110,7 +110,7 @@
 					</c:if>
 					<c:if test="${not empty userid}">
 						<li><a href="/logout" class="logout">로그아웃</a></li>
-						<li><a href="#">마이페이지</a></li>
+						<li><a href="/mypage">마이페이지</a></li>
 						<li><a href="/addrecipe">글쓰기</a></li>
 						<li><a id="search_glass" href="#">Search&#160;<img
 								src="/Eunsol/imges/search_glass.svg" alt="search_glass Image">

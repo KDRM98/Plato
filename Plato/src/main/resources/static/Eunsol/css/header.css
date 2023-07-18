@@ -5,7 +5,7 @@
 	font-style: normal;
 }
 
-header body {
+body {
 	font-family: 'SUITE-Regular', sans-serif;
 /* 	font-size: 16px; */
 }
@@ -67,7 +67,7 @@ header .navigation {
 }
 
 header .hello_nickname{
-	font-size: 12px;
+	font-size: 13px;
 	
 }
 

@@ -33,7 +33,7 @@ public class postController2 {
 	 * System.out.println(result); return "Hyunyoung/rough"; }
 	 */
 
-	@RequestMapping("/gesipan")
+	@RequestMapping("/mypage")
 	public String gesipan(HttpServletRequest req, @ModelAttribute postDTO2 dto2, Model model,
 			@RequestParam(value = "pageNum", required = false) Integer pageNum) {
 		System.out.println("/gesipan 들어왔다");
@@ -61,8 +61,8 @@ public class postController2 {
 
 		req.setAttribute("pageNum", pageNum);
 		model.addAttribute("countPerpage", countPerpage);
-
-		dto2.setUserid(50);
+		
+		dto2.setUserid((int)session.getAttribute("userid"));
 		Map map = service.gesipan(dto2);
 		
 		List gsp = (List) map.get("gsp");		
@@ -71,7 +71,15 @@ public class postController2 {
 		int total = (int) map.get("totalCount");
 		req.setAttribute("total", total);
 		System.out.println("total :"+ total);
-		return "Eunsol/gesipan";
+		
+		String nickname = (String)session.getAttribute("nickname");
+		String image = (String)session.getAttribute("image");
+		//한번에 하는 방법이 있나
+
+		model.addAttribute("nickname" ,nickname);
+		model.addAttribute("image" ,image);
+		
+		return "viewList8";
 	}
 
 }

@@ -299,8 +299,8 @@ public class EunsolController {
 				// 세션 저장하기
 				memberDTO basicInfo = member.basicInfo(DTO);
 				/*
-				 * session.setAttribute("basicInfo", basicInfo); memberDTO basicInfo2
-				 * =(memberDTO) session.getAttribute("basicInfo");
+				 * session.setAttribute("basicInfo", basicInfo); 
+				 * memberDTO basicInfo2=(memberDTO)session.getAttribute("basicInfo");
 				 * DTO.setUserid(basicInfo2.getUserid());
 				 */
 				

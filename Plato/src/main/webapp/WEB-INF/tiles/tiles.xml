@@ -53,8 +53,8 @@
 	</definition>
 	
 	<definition name="viewList8" extends="base">
-		<put-attribute name="title" value="임시페이지" />
-		<put-attribute name="main" value="/WEB-INF/views/Eunsol/profile3.jsp" />
+		<put-attribute name="title" value="plato 마이페이지" />
+		<put-attribute name="main" value="/WEB-INF/views/Eunsol/gesipan.jsp" />
 	</definition>
 	
 	
