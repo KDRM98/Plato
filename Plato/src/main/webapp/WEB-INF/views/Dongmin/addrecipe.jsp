@@ -39,19 +39,19 @@
 						<label for="image">소요시간</label>
 						<select name="settime">
 						  <option value="">-- 시간 선택 --</option>
-						  <option value="10분">10분</option>
-						  <option value="20분">20분</option>
-						  <option value="30분">30분</option>
-						  <option value="40분">40분</option>
-						  <option value="50분">50분</option>
-						  <option value="60분">1시간</option>
-						  <option value="1시간 10분">1시간 10분</option>
-						  <option value="1시간 20분">1시간 20분</option>
-						  <option value="1시간 30분">1시간 30분</option>
-						  <option value="1시간 40분">1시간 40분</option>
-						  <option value="1시간 50분">1시간 50분</option>
-						  <option value="2시간">2시간</option>
-						  <option value="2시간 이상">2시간 이상</option>
+						  <option value="10">10분</option>
+						  <option value="20">20분</option>
+						  <option value="30">30분</option>
+						  <option value="40">40분</option>
+						  <option value="50">50분</option>
+						  <option value="60">1시간</option>
+						  <option value="70">1시간 10분</option>
+						  <option value="80">1시간 20분</option>
+						  <option value="90">1시간 30분</option>
+						  <option value="100">1시간 40분</option>
+						  <option value="110">1시간 50분</option>
+						  <option value="120">2시간</option>
+						  <option value="200">2시간 이상</option>
 						</select>
 					</div>
 					

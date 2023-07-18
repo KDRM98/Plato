@@ -21,14 +21,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.study.springboot.dto.ingredientDTO;
+import com.study.springboot.dto.postDTO;
 import com.study.springboot.service.ingredientService;
 import com.study.springboot.service.memberService;
+import com.study.springboot.service.postService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	memberService member;
+	
+	@Autowired
+	postService post;
+	
 	
 	@Autowired
     private ingredientService ingredientService;
@@ -96,6 +102,9 @@ public class LoginController {
 			  @RequestParam("title-image") MultipartFile titleImage,
 		        @RequestParam("images") MultipartFile[] images) throws FileNotFoundException {
 		
+		// postid 가져오기
+		int postid = post.getpostid();
+		
 		// 작성자 id 저장및 기재
 		HttpSession session = request.getSession();
 		int userid = (int) session.getAttribute("userid");
@@ -113,21 +122,17 @@ public class LoginController {
 		// 제목 가져오기
 	    String title = request.getParameter("title");
 	    
-	    // 작성자 가져오기
-	    String writer = request.getParameter("writer");
-	    
 	    // 난이도 가져오기
-	    int difficulty = Integer.parseInt(request.getParameter("difficulty"));
+	    int diff = Integer.parseInt(request.getParameter("difficulty"));
 	    
 	    // 소요시간 가져오기
-	    int spentTime = Integer.parseInt(request.getParameter("settime"));
-	    
-	    // 대표 사진 가져오기
-	    
-	    // 파일 업로드 처리 및 저장 로직 구현
+	    int time = Integer.parseInt(request.getParameter("settime"));
 	    
 	    // 소개글 가져오기
-	    String description = request.getParameter("description");
+	    String info = request.getParameter("description");
+	    
+	    //유튜브링크 가져오기
+	    String ytblink = request.getParameter("ytbl");
 	    
 	    // 재료 가져오기
 	    String[] ingredients = request.getParameterValues("ingredients");
@@ -136,6 +141,9 @@ public class LoginController {
 	    // 조리 방법 가져오기
 	    String[] instructions = request.getParameterValues("instructions");
 	    
+	    // 조리과정 이미지들 리스트
+	    List<String> dbImagePaths = new ArrayList<>();
+	    String dbtimgpath = "";
 	    // 파일 업로드 처리 및 저장 로직 구현
 	    try {
 	        // 파일 저장
@@ -152,9 +160,9 @@ public class LoginController {
 			FileUtils.writeByteArrayToFile(tfile, titleImage.getBytes());
 
 			// DB에 파일 경로 저장 등 필요한 로직 수행
-			String dbtimgpath = "Dongmin/title_img" + tfileName;
+			dbtimgpath = "Dongmin/title_img" + tfileName;
 			
-			List<String> dbImagePaths = new ArrayList<>();
+			
 	        for (MultipartFile image : images) {
 	        	if (image.isEmpty()) {
 	                dbImagePaths.add("");
@@ -167,7 +175,7 @@ public class LoginController {
 	            String dbImagePath = "Dongmin/inst_img/" + imageFileName;
 	            dbImagePaths.add(dbImagePath);
 	        }
-	        System.out.println("dbImagePath: " + dbImagePaths);
+	        
 			
 	      } catch (IOException e) {
 	        // 파일 저장 실패 시 예외 처리
@@ -177,18 +185,31 @@ public class LoginController {
 	    // recipeService.addRecipe(title, writer, difficulty, spentTime, ...);
 	    
 	    // 값 콘솔에 출력
+	    System.out.println("dbImagePath: " + dbImagePaths);
+	    System.out.println("ytbl: " + ytblink);
+	    System.out.println("dbtimgpath: " + dbtimgpath);
 	    System.out.println("Title: " + title);
-	    System.out.println("Writer: " + writer);
-	    System.out.println("Difficulty: " + difficulty);
-	    System.out.println("Spent Time: " + spentTime);
-	    System.out.println("Description: " + description);
+	    System.out.println("Writer: " + userid);
+	    System.out.println("Difficulty: " + diff);
+	    System.out.println("Spent Time: " + time);
+	    System.out.println("Description: " + info);
 	    System.out.println("Ingredients: " + Arrays.toString(ingredients));
 	    System.out.println("Amounts: " + Arrays.toString(amounts));
 	    System.out.println("Instructions: " + Arrays.toString(instructions));
 	    
 	    
-	    // 추가 작업 및 리다이렉트 처리
-	    // ...
+	    // DB에 게시글(Post)등록
+	    postDTO dto = new postDTO();
+	    dto.setPostid(postid);
+	    dto.setWriterId(userid);
+	    dto.setTitle(title);
+	    dto.setTimg(dbtimgpath);
+	    dto.setInfo(info);
+	    dto.setYtblink(ytblink);
+	    dto.setTime(time);
+	    dto.setDiff(diff);
+	    int result = post.insertpost(dto);
+	    System.out.println(result);
 	    
 	    return "Dongmin/recipe";
 	  }
