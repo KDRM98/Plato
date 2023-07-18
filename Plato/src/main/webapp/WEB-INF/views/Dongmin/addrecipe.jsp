@@ -61,14 +61,14 @@
 						<input type="file" id="title-image" name="title-image" accept="image/*" onchange="previewImage(event)">
 					</div>
 					
-					<div class="regist" name="desc">
+					<div class="regist" id="desc">
 						<label for="description">소개글:</label><br>
-						<textarea id="description" name="description" required></textarea>
+						<textarea id="desc" name="desc" required></textarea>
 					</div>
 					
-					<div class="regist" name="ytbl">
-						<label for="description">유튜브 링크:</label><br>
-						<textarea id="description" name="description" placeholder="https://www.youtube.com/watch?v=???"></textarea>
+					<div class="regist" id="ytbl">
+						<label for="youtubelink">유튜브 링크:</label><br>
+						<textarea id="ytbl" name="ytbl" placeholder="https://www.youtube.com/watch?v=???"></textarea>
 					</div>
 					
 					

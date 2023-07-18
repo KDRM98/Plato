@@ -22,22 +22,27 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.study.springboot.dto.ingredientDTO;
 import com.study.springboot.dto.postDTO;
+import com.study.springboot.dto.recipeDTO;
 import com.study.springboot.service.ingredientService;
 import com.study.springboot.service.memberService;
 import com.study.springboot.service.postService;
+import com.study.springboot.service.recipeService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
-	memberService member;
+	private memberService member;
 	
 	@Autowired
-	postService post;
+	private postService post;
 	
 	
 	@Autowired
     private ingredientService ingredientService;
+
+	@Autowired
+	private recipeService recipeService;
 	
 	int likeCount=33;
 	boolean isLiked = true;
@@ -129,7 +134,7 @@ public class LoginController {
 	    int time = Integer.parseInt(request.getParameter("settime"));
 	    
 	    // 소개글 가져오기
-	    String info = request.getParameter("description");
+	    String info = request.getParameter("desc");
 	    
 	    //유튜브링크 가져오기
 	    String ytblink = request.getParameter("ytbl");
@@ -226,8 +231,23 @@ public class LoginController {
 	        // 추가로 필요한 로직 수행
 	    }
 	    
+	    for (int i = 0; i < instructions.length; i++) {
+	        recipeDTO rdto = new recipeDTO();
+	        int recipeorder = i+1;
+	        rdto.setPostid(postid);
+	        rdto.setRecipeinfo(instructions[i]);
+	        rdto.setRecipeimg(dbImagePaths.get(i));
+	        rdto.setRecipeOrder(recipeorder);
+	        
+	        int rresult = recipeService.insertRecipe(rdto);
+	        // result를 확인하고 필요에 따라 처리
+	        System.out.println("Recipe 결과 : " + rresult);
+	        // 추가로 필요한 로직 수행
+	    }
+	    
 	    return "Dongmin/recipe";
 	  }
+	
 	
 	@PostMapping("/addingredient")
     public String addIngredient(@RequestParam("new-ingredient") String ingredientName) {
