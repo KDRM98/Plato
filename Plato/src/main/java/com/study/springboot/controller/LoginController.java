@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.study.springboot.dto.ingredientDTO;
 import com.study.springboot.service.ingredientService;
 import com.study.springboot.service.memberService;
 
@@ -60,7 +61,17 @@ public class LoginController {
 	@RequestMapping("/addrecipe")
 	public String header(HttpServletRequest request, Model model) {
 		System.out.println("/addrecipe");
+		
+		List<ingredientDTO> ingredientList = ingredientService.selectIngredientAll();
+        List<String> ingredientNames = new ArrayList<>();
+        
+        for (ingredientDTO ingredient : ingredientList) {
+            ingredientNames.add(ingredient.getIngredient());
+        }
+        
+        String ingredientNamesString = String.join(",", ingredientNames); // 리스트를 쉼표로 구분된 하나의 문자열로 변환
 
+        model.addAttribute("ingredientNames", ingredientNamesString);
 		HttpSession session = request.getSession();
 		if (session.getAttribute("userid") != null) { // 세션 값이 존재하는 경우
 
@@ -84,7 +95,12 @@ public class LoginController {
 			  Model model,
 			  @RequestParam("title-image") MultipartFile titleImage,
 		        @RequestParam("images") MultipartFile[] images) throws FileNotFoundException {
-
+		
+		// 작성자 id 저장및 기재
+		HttpSession session = request.getSession();
+		int userid = (int) session.getAttribute("userid");
+		System.out.println(userid);
+		
        // 상대적인 주소 classpath를 이용하는 방법
 		 String resourcePath = ResourceUtils.getFile("classpath:static/Dongmin/title_img/").getAbsolutePath();
 		 String timgpath = resourcePath.replace("/bin/main", "/src/main/resources");

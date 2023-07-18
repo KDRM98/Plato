@@ -7,4 +7,9 @@
         INSERT INTO INGLIST (ingid, ing)
         VALUES (seq_ingid.nextval, #{ingredient})
     </insert>
+    
+    <select id="selectIngredientAll" resultType="com.study.springboot.dto.ingredientDTO">
+        SELECT * FROM INGLIST
+        ORDER BY ingid
+    </select>
 </mapper>

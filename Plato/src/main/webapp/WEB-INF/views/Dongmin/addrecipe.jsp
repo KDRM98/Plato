@@ -39,18 +39,19 @@
 						<label for="image">소요시간</label>
 						<select name="settime">
 						  <option value="">-- 시간 선택 --</option>
-						  <option value="10">10분</option>
-						  <option value="20">20분</option>
-						  <option value="30">30분</option>
-						  <option value="40">40분</option>
-						  <option value="50">50분</option>
-						  <option value="60">1시간</option>
-						  <option value="70">1시간 10분</option>
-						  <option value="80">1시간 20분</option>
-						  <option value="90">1시간 30분</option>
-						  <option value="100">1시간 40분</option>
-						  <option value="110">1시간 50분</option>
-						  <option value="120">2시간</option>
+						  <option value="10분">10분</option>
+						  <option value="20분">20분</option>
+						  <option value="30분">30분</option>
+						  <option value="40분">40분</option>
+						  <option value="50분">50분</option>
+						  <option value="60분">1시간</option>
+						  <option value="1시간 10분">1시간 10분</option>
+						  <option value="1시간 20분">1시간 20분</option>
+						  <option value="1시간 30분">1시간 30분</option>
+						  <option value="1시간 40분">1시간 40분</option>
+						  <option value="1시간 50분">1시간 50분</option>
+						  <option value="2시간">2시간</option>
+						  <option value="2시간 이상">2시간 이상</option>
 						</select>
 					</div>
 					
@@ -164,16 +165,8 @@
 	
 	
 	// 재료칸 시작 --------------------------------------------------------------------------
-var originingredients = [
-	  "우동면",
-	  "쯔유",
-	  "버터",
-	  "파",
-	  "쪽파",
-	  "양파",
-	  "간장",
-	  "가나다라마바사"
-	];
+var originingredients = '${ingredientNames}'.split(",");
+console.log(originingredients);
 	
 	// 재료 입력 칸과 재료 양 입력 칸에 대한 이벤트 설정
 	var ingredientInputs = document.getElementsByClassName("ingredient-input");
