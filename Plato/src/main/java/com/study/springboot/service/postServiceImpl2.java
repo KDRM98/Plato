@@ -8,7 +8,7 @@ import com.study.springboot.dto.postDTO2;
 
 
 @Service
-public class postServiceImpl2 implements postService2 {
+public abstract class postServiceImpl2 implements postService2 {
 
 	@Autowired
 	postDAO2 DAO2;
@@ -18,6 +18,14 @@ public class postServiceImpl2 implements postService2 {
 		int result = DAO2.rough(DTO);
 		return result;
 	}
+
+	@Override
+	public postDTO2 gesipan(postDTO2 DTO) {
+		postDTO2 result = DAO2.gesipan(DTO);
+		return result;
+	}
+
+	
 	
 
 	

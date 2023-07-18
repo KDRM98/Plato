@@ -93,6 +93,40 @@ button, input, select{
 	width: 40px;
 }
 
+.circle-container .close{
+	position: absolute;
+	top: 80%;
+	left: 67%;
+	transform: translate(-50%, -50%);
+	width : 30px;
+	height: 30px;
+	border-radius: 50%;
+	cursor: pointer;
+	background-color:  red;
+/* 	z-index: 10; */
+
+}
+
+.circle-container #pfclose-btn{
+	width: 16px;
+	height: 16px;;
+	display: block;
+	margin: 7px;
+	z-index: 10;
+	filter: brightness(1000%);
+
+}
+
+.circle-container #defimg:hover {
+  filter: brightness(1000%) saturate(100%) invert(100%) contrast(1000%);
+}
+
+
+
+
+
+
+
 .profile_content .static_id{
 	text-align: center;
 	font-size: 20px;

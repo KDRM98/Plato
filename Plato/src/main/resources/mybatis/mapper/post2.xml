@@ -10,6 +10,13 @@
 		from  post
 		where userid=#{userid}
 	</select>
+	
+	<select id="gesipan" parameterType="postDTO2" resultType="postDTO2" >
+		select title, postid, CDate, views
+		from  post
+		where userid=#{userid}
+	</select>
+	
 
 
 </mapper>
