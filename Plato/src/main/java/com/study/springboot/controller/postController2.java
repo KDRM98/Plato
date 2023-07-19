@@ -80,6 +80,6 @@ public class postController2 {
 		model.addAttribute("image" ,image);
 		
 		return "viewList8";
-	}
+	} 
 
 }
