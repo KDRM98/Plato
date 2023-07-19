@@ -231,12 +231,12 @@ public class LoginController {
 	        // 추가로 필요한 로직 수행
 	    }
 	    
-	    for (int i = 0; i < instructions.length; i++) {
+	    for (int j = 0; j < instructions.length; j++) {
 	        recipeDTO rdto = new recipeDTO();
-	        int recipeorder = i+1;
+	        int recipeorder = j+1;
 	        rdto.setPostid(postid);
-	        rdto.setRecipeinfo(instructions[i]);
-	        rdto.setRecipeimg(dbImagePaths.get(i));
+	        rdto.setRecipeinfo(instructions[j]);
+	        rdto.setRecipeimg(dbImagePaths.get(j));
 	        rdto.setRecipeOrder(recipeorder);
 	        
 	        int rresult = recipeService.insertRecipe(rdto);
