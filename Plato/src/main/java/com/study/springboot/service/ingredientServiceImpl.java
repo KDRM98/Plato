@@ -37,4 +37,16 @@ public class ingredientServiceImpl implements ingredientService{
 		return DAO.selectIngredientByRecipeId(recipeId);
 	}
 
+	@Override
+	public int insertInges(ingredientDTO dto) {
+		int result = DAO.insertInges(dto);
+		return result;
+	}
+
+	@Override
+	public int selectIngIDByName(String ingredient) {
+		int result = DAO.selectIngIDByName(ingredient);
+		return result;
+	}
+
 }

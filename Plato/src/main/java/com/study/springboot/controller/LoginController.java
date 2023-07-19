@@ -3,7 +3,9 @@ package com.study.springboot.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,17 +20,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.study.springboot.dto.ingredientDTO;
+import com.study.springboot.dto.postDTO;
+import com.study.springboot.dto.recipeDTO;
 import com.study.springboot.service.ingredientService;
 import com.study.springboot.service.memberService;
+import com.study.springboot.service.postService;
+import com.study.springboot.service.recipeService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
-	memberService member;
+	private memberService member;
+	
+	@Autowired
+	private postService post;
+	
 	
 	@Autowired
     private ingredientService ingredientService;
+
+	@Autowired
+	private recipeService recipeService;
 	
 	int likeCount=33;
 	boolean isLiked = true;
@@ -58,7 +72,17 @@ public class LoginController {
 	@RequestMapping("/addrecipe")
 	public String header(HttpServletRequest request, Model model) {
 		System.out.println("/addrecipe");
+		
+		List<ingredientDTO> ingredientList = ingredientService.selectIngredientAll();
+        List<String> ingredientNames = new ArrayList<>();
+        
+        for (ingredientDTO ingredient : ingredientList) {
+            ingredientNames.add(ingredient.getIngredient());
+        }
+        
+        String ingredientNamesString = String.join(",", ingredientNames); // 리스트를 쉼표로 구분된 하나의 문자열로 변환
 
+        model.addAttribute("ingredientNames", ingredientNamesString);
 		HttpSession session = request.getSession();
 		if (session.getAttribute("userid") != null) { // 세션 값이 존재하는 경우
 
@@ -76,36 +100,44 @@ public class LoginController {
 		}
 	}
 	
-	 @PostMapping("/addcomplete")
+	@PostMapping("/addcomplete")
 	  public String addComplete(
 			  HttpServletRequest request, 
 			  Model model,
-			  @RequestParam("title-image") MultipartFile titleImage) throws FileNotFoundException {
-
-         // 상대적인 주소 classpath를 이용하는 방법
+			  @RequestParam("title-image") MultipartFile titleImage,
+		        @RequestParam("images") MultipartFile[] images) throws FileNotFoundException {
+		
+		// postid 가져오기
+		int postid = post.getpostid();
+		
+		// 작성자 id 저장및 기재
+		HttpSession session = request.getSession();
+		int userid = (int) session.getAttribute("userid");
+		System.out.println(userid);
+		
+       // 상대적인 주소 classpath를 이용하는 방법
 		 String resourcePath = ResourceUtils.getFile("classpath:static/Dongmin/title_img/").getAbsolutePath();
-		 String path = resourcePath.replace("/bin/main", "/src/main/resources");
+		 String timgpath = resourcePath.replace("/bin/main", "/src/main/resources");
+		 
+		 String iresourcePath = ResourceUtils.getFile("classpath:static/Dongmin/inst_img/").getAbsolutePath();
+		 String Instimgpath = iresourcePath.replace("/bin/main", "/src/main/resources");
 
 		
 //		String timgfilePath = "classpath:static/Dongmin/title_img/";
 		// 제목 가져오기
 	    String title = request.getParameter("title");
 	    
-	    // 작성자 가져오기
-	    String writer = request.getParameter("writer");
-	    
 	    // 난이도 가져오기
-	    int difficulty = Integer.parseInt(request.getParameter("difficulty"));
+	    int diff = Integer.parseInt(request.getParameter("difficulty"));
 	    
 	    // 소요시간 가져오기
-	    int spentTime = Integer.parseInt(request.getParameter("settime"));
-	    
-	    // 대표 사진 가져오기
-	    
-	    // 파일 업로드 처리 및 저장 로직 구현
+	    int time = Integer.parseInt(request.getParameter("settime"));
 	    
 	    // 소개글 가져오기
-	    String description = request.getParameter("description");
+	    String info = request.getParameter("desc");
+	    
+	    //유튜브링크 가져오기
+	    String ytblink = request.getParameter("ytbl");
 	    
 	    // 재료 가져오기
 	    String[] ingredients = request.getParameterValues("ingredients");
@@ -114,22 +146,42 @@ public class LoginController {
 	    // 조리 방법 가져오기
 	    String[] instructions = request.getParameterValues("instructions");
 	    
+	    // 조리과정 이미지들 리스트
+	    List<String> dbImagePaths = new ArrayList<>();
+	    String dbtimgpath = "";
 	    // 파일 업로드 처리 및 저장 로직 구현
 	    try {
 	        // 파일 저장
-	    	String fileName = titleImage.getOriginalFilename();
+	    	String tfileName = titleImage.getOriginalFilename();
 			long now = System.currentTimeMillis();
-			fileName = now +"_"+ fileName;
-			System.out.println("fileName : "+ fileName);
+			tfileName = now +"_"+ tfileName;
+			System.out.println("fileName : "+ tfileName);
 			
 			// file 객체 만들기
-			System.out.println(path +File.separator+ fileName);
-			File file = new File( path +File.separator+ fileName );
+			System.out.println(timgpath +File.separator+ tfileName);
+			File tfile = new File( timgpath +File.separator+ tfileName );
 			
 			// 그 file 객체에 덮어쓰기
-			FileUtils.writeByteArrayToFile(file, titleImage.getBytes());
-	        // DB에 파일 경로 저장 등 필요한 로직 수행
-	        String dbpath = "Dongmin/title_img" + fileName;
+			FileUtils.writeByteArrayToFile(tfile, titleImage.getBytes());
+
+			// DB에 파일 경로 저장 등 필요한 로직 수행
+			dbtimgpath = "Dongmin/title_img" + tfileName;
+			
+			
+	        for (MultipartFile image : images) {
+	        	if (image.isEmpty()) {
+	                dbImagePaths.add("");
+	                continue;
+	            }
+	            String imageName = image.getOriginalFilename();
+	            String imageFileName = System.currentTimeMillis() + "_" + imageName;
+	            File imageFile = new File(Instimgpath + File.separator + imageFileName);
+	            FileUtils.writeByteArrayToFile(imageFile, image.getBytes());
+	            String dbImagePath = "Dongmin/inst_img/" + imageFileName;
+	            dbImagePaths.add(dbImagePath);
+	        }
+	        
+			
 	      } catch (IOException e) {
 	        // 파일 저장 실패 시 예외 처리
 	        e.printStackTrace();
@@ -138,20 +190,64 @@ public class LoginController {
 	    // recipeService.addRecipe(title, writer, difficulty, spentTime, ...);
 	    
 	    // 값 콘솔에 출력
+	    System.out.println("dbImagePath: " + dbImagePaths);
+	    System.out.println("ytbl: " + ytblink);
+	    System.out.println("dbtimgpath: " + dbtimgpath);
 	    System.out.println("Title: " + title);
-	    System.out.println("Writer: " + writer);
-	    System.out.println("Difficulty: " + difficulty);
-	    System.out.println("Spent Time: " + spentTime);
-	    System.out.println("Description: " + description);
+	    System.out.println("Writer: " + userid);
+	    System.out.println("Difficulty: " + diff);
+	    System.out.println("Spent Time: " + time);
+	    System.out.println("Description: " + info);
 	    System.out.println("Ingredients: " + Arrays.toString(ingredients));
 	    System.out.println("Amounts: " + Arrays.toString(amounts));
 	    System.out.println("Instructions: " + Arrays.toString(instructions));
 	    
-	    // 추가 작업 및 리다이렉트 처리
-	    // ...
+	    
+	    // DB에 게시글(Post)등록
+	    postDTO pdto = new postDTO();
+	    pdto.setPostid(postid);
+	    pdto.setWriterId(userid);
+	    pdto.setTitle(title);
+	    pdto.setTimg(dbtimgpath);
+	    pdto.setInfo(info);
+	    pdto.setYtblink(ytblink);
+	    pdto.setTime(time);
+	    pdto.setDiff(diff);
+	    int presult = post.insertpost(pdto);
+	    System.out.println("post 결과 : "+presult);
+	    
+	    for (int i = 0; i < ingredients.length; i++) {
+	        String ingredient = ingredients[i];
+	        String amount = amounts[i];
+	        int ingid = ingredientService.selectIngIDByName(ingredient);
+	        ingredientDTO idto = new ingredientDTO();
+	        idto.setPostid(postid);
+	        idto.setIngid(ingid);
+	        idto.setIngamount(amount);
+	        
+	        int iresult = ingredientService.insertInges(idto);
+	        // result를 확인하고 필요에 따라 처리
+	        System.out.println("Inges 결과 : " + iresult);
+	        // 추가로 필요한 로직 수행
+	    }
+	    
+	    for (int i = 0; i < instructions.length; i++) {
+	        recipeDTO rdto = new recipeDTO();
+	        int recipeorder = i+1;
+	        rdto.setPostid(postid);
+	        rdto.setRecipeinfo(instructions[i]);
+	        rdto.setRecipeimg(dbImagePaths.get(i));
+	        rdto.setRecipeOrder(recipeorder);
+	        
+	        int rresult = recipeService.insertRecipe(rdto);
+	        // result를 확인하고 필요에 따라 처리
+	        System.out.println("Recipe 결과 : " + rresult);
+	        // 추가로 필요한 로직 수행
+	    }
 	    
 	    return "Dongmin/recipe";
 	  }
+	
 	
 	@PostMapping("/addingredient")
     public String addIngredient(@RequestParam("new-ingredient") String ingredientName) {

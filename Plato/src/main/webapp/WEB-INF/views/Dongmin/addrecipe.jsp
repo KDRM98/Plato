@@ -51,6 +51,7 @@
 						  <option value="100">1시간 40분</option>
 						  <option value="110">1시간 50분</option>
 						  <option value="120">2시간</option>
+						  <option value="200">2시간 이상</option>
 						</select>
 					</div>
 					
@@ -62,12 +63,12 @@
 					
 					<div class="regist" name="desc">
 						<label for="description">소개글:</label><br>
-						<textarea id="description" name="description" required></textarea>
+						<textarea id="desc" name="desc" required></textarea>
 					</div>
 					
 					<div class="regist" name="ytbl">
 						<label for="description">유튜브 링크:</label><br>
-						<textarea id="description" name="description" placeholder="https://www.youtube.com/watch?v=???"></textarea>
+						<textarea id="ytbl" name="ytbl" placeholder="https://www.youtube.com/watch?v=???"></textarea>
 					</div>
 					
 					
@@ -164,17 +165,9 @@
 	
 	
 	// 재료칸 시작 --------------------------------------------------------------------------
-var originingredients = [
-	  "우동면",
-	  "쯔유",
-	  "버터",
-	  "파",
-	  "쪽파",
-	  "양파",
-	  "간장",
-	  "가나다라마바사"
-	];
-	
+	var originingredients = '${ingredientNames}'.split(",");
+	console.log(originingredients);
+
 	// 재료 입력 칸과 재료 양 입력 칸에 대한 이벤트 설정
 	var ingredientInputs = document.getElementsByClassName("ingredient-input");
 	for (var i = 0; i < ingredientInputs.length; i++) {

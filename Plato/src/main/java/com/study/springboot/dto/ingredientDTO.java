@@ -1,8 +1,17 @@
 package com.study.springboot.dto;
 
 public class ingredientDTO {
+	private int postid;
 	private int ingid;
-	private String ingredient;
+	private String ing;
+	private String ingamount;
+	
+	public int getPostid() {
+		return postid;
+	}
+	public void setPostid(int postid) {
+		this.postid = postid;
+	}
 	
 	public int getIngid() {
 		return ingid;
@@ -11,15 +20,23 @@ public class ingredientDTO {
 		this.ingid = ingid;
 	}
 	public String getIngredient() {
-		return ingredient;
+		return ing;
 	}
 	public void setIngredient(String ingredient) {
-		this.ingredient = ingredient;
+		this.ing = ingredient;
 	}
 	
+	public String getIngamount() {
+		return ingamount;
+	}
+	public void setIngamount(String ingamount) {
+		this.ingamount = ingamount;
+	}
 	@Override
 	public String toString() {
-		return "ingredientDTO [ingid=" + ingid + ", ingredient=" + ingredient + "]";
+		return "ingredientDTO [ingid=" + ingid + ", ingredient=" + ing + ", ingamount=" + ingamount + "]";
 	}
+	
+	
 	
 }
