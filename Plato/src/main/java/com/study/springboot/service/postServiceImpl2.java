@@ -38,6 +38,22 @@ public class postServiceImpl2 implements postService2 {
 	
 	}
 
+	@Override
+	public int likeTotalCount(postDTO2 DTO) {
+		int result = DAO2.likeTotalCount(DTO);
+		return result;
+	}
+
+	@Override
+	public Map likePost(postDTO2 DTO) {
+		List list = DAO2.likePost(DTO);
+		int likeTotalCount = DAO2.likeTotalCount(DTO);
+		   Map map = new HashMap();
+		   map.put("likePost", list);
+		   map.put("likeTotalCount", likeTotalCount);
+		return map;
+	}
+
 	
 	
 

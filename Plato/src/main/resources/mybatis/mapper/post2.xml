@@ -3,7 +3,13 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.springboot.dao.postDAO2">
-
+	
+	<!-- userid의 게시물의 개수를 구하는 문 -->
+	<select id="totalCount" parameterType="postDTO2" resultType="int">
+		select count(*)
+		from  post
+		where userid=#{userid}
+	</select>
 	
 	<select id="gesipan" parameterType="postDTO2" resultType="postDTO2" >
 		select *
@@ -21,19 +27,28 @@
 	
 
 
+	<select id="likePost" parameterType="postDTO2" resultType="postDTO2" >
+		select *
+		from  ( 
+			SELECT rownum AS rnum,
+       			  p.title, p.postid, p.cdate, m.nickname
+   	 		FROM likes l
+			LEFT OUTER JOIN post p ON(l.postid = p.postid) 
+			LEFT OUTER JOIN member m ON(m.userid = p.userid) 
+			where userid=#{userid}
+        	ORDER BY l.cdate DESC
+        	)
+		WHERE rnum <![CDATA[>=]]> #{startNum}
+		  AND rnum <![CDATA[<=]]> #{endNum}
+	</select>
 
-
-	<!-- userid의 게시물의 개수를 구하는 문 -->
-	<select id="totalCount" parameterType="postDTO2" resultType="int">
+	<select id="likeTotalCount" parameterType="postDTO2" resultType="int">
 		select count(*)
-		from  post
+		from  likes
 		where userid=#{userid}
 	</select>
 	
-	<delete id="delPost" parameterType="postDTO2">
-		delete post
-		where userid=#{userid}
-	</delete>
+	
 		
 		
 
