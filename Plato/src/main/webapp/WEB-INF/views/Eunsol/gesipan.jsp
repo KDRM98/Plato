@@ -8,15 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-/* .title, .todo {
-	display: inline-block;
-	border: 1px, solid black;
-	width: 200px;
-	height: 50px;
-	vertical-align: top;
-} */
-</style>
 <!-- css -->
 <link rel="stylesheet" href="Eunsol/css/gesipan.css">
 </head>
@@ -26,8 +17,6 @@
 		
 		<div class="mypage_container1">
 			<div class="mypage_content1">
-
-
 
 				<div class="info1">
 					<img alt="프로필 이미지" src="${image}"
@@ -71,23 +60,17 @@
 							<div class="tit3">조회수</div>
 						</div>
 
-
 						<c:forEach var="item" items="${gsp}">
-
 							<div class="gsp_content1">
 								<div class="tem a1">
 									<input type="checkbox" class="chk">
 								</div>
 								<div class="tem a2">${item.postid}</div>
-
-
 								<div class="tem a3">
 									<a href="#"}>${item.title}</a>
 								</div>
-
 								<div class="tem a4">${item.cdate}</div>
 								<div class="tem a5">${item.views}</div>
-
 							</div>
 						</c:forEach>
 					</c:if>
@@ -97,8 +80,9 @@
 							style="margin: 10px auto 20px auto; color: red; text-align: center;">
 							등록된 내용이 없습니다.</div>
 					</c:if>
-
 				</div>
+				
+				
 
 				<!-- 좋아요한 글 -->
 					<div class="gesipan2">
@@ -171,12 +155,7 @@
 								end = groupCount;
 							} */
 						%>
-
-
-
 						<div class="paging">
-
-
 							<%
 							for (int i = 1; i <= lastPage; i++) {
 							%>
@@ -190,9 +169,8 @@
 							<%
 							}
 							%>
-
-
 						</div>
+						
 
 					
 					<%-- 페이징 끝 --%>
@@ -205,7 +183,7 @@
 
 
 						<div class="tab_btn1">
-							<button class="tab_del">삭제</button>
+							<button type="submit" class="tab_del">삭제</button>
 							<button class="tab_write">글쓰기</button>
 						</div>
 						

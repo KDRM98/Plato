@@ -4,12 +4,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.springboot.dao.postDAO2">
 
-	<!-- userid의 게시물의 개수를 구하는 문 -->
-	<select id="totalCount" parameterType="postDTO2" resultType="int">
-		select count(*)
-		from  post
-		where userid=#{userid}
-	</select>
 	
 	<select id="gesipan" parameterType="postDTO2" resultType="postDTO2" >
 		select *
@@ -25,6 +19,21 @@
 		  AND rnum <![CDATA[<=]]> #{endNum}
 	</select>
 	
+
+
+
+
+	<!-- userid의 게시물의 개수를 구하는 문 -->
+	<select id="totalCount" parameterType="postDTO2" resultType="int">
+		select count(*)
+		from  post
+		where userid=#{userid}
+	</select>
+	
+	<delete id="delPost" parameterType="postDTO2">
+		delete post
+		where userid=#{userid}
+	</delete>
 		
 		
 

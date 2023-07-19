@@ -15,6 +15,11 @@ public class postDTO2 {
 	private int startNum;
 	private int endNum;
 	
+
+	private String[] chk;
+	
+	
+	
 	public int getUserid() {
 		return userid;
 	}
@@ -57,6 +62,12 @@ public class postDTO2 {
 	}
 	public void setEndNum(int endNum) {
 		this.endNum = endNum;
+	}
+	public String[] getChk() {
+		return chk;
+	}
+	public void setChk(String[] chk) {
+		this.chk = chk;
 	}
 
 	

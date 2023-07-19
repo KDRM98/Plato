@@ -22,17 +22,6 @@ public class postController2 {
 	@Autowired
 	private postService2 service;
 
-	/*
-	 * @RequestMapping("/rough") public String rough(@ModelAttribute postDTO2 dto2,
-	 * Model model) { System.out.println("/rough 들어왔다");
-	 * 
-	 * dto2.setUserid(52); // userid 52번으로 지정
-	 * 
-	 * int result = service.rough(dto2); model.addAttribute("result", result);
-	 * 
-	 * System.out.println(result); return "Hyunyoung/rough"; }
-	 */
-
 	@RequestMapping("/mypage")
 	public String gesipan(HttpServletRequest req, @ModelAttribute postDTO2 dto2, Model model,
 			@RequestParam(value = "pageNum", required = false) Integer pageNum) {
@@ -80,6 +69,18 @@ public class postController2 {
 		model.addAttribute("image" ,image);
 		
 		return "viewList8";
-	} 
+	}
+	
+	
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest req, @ModelAttribute postDTO2 dto2, Model model,
+			@RequestParam(value = "pageNum", required = false) Integer pageNum) {
+		System.out.println("/delete 들어왔다");
+		HttpSession session = req.getSession();
+		/* dto2.setUserid((int) req.getAttribute("userid")); */
 
+
+		
+		return "viewList8";
+	}
 }
