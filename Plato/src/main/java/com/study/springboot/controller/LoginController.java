@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -118,8 +119,20 @@ public class LoginController {
 	    	ingamtList.add(ingamt);
 	    }
 	    
+	    for (int i = 0; i < recipeinfoList.size(); i++) {
+	        String recipeInfo = recipeinfoList.get(i);
+	        recipeInfo = recipeInfo.replace("\r\n", "<br>");
+	        recipeinfoList.set(i, recipeInfo);
+	    }
+	    
+	    info = info.replace("\r\n", "<br>");
+	    
 	    System.out.println("ingList : " + ingList);
 	    System.out.println("ingamtList : " + ingamtList);
+	    System.out.println("info : " + info);
+	    System.out.println("recipeorderList : " + recipeorderList);
+	    System.out.println("recipeinfoList : " + recipeinfoList);
+	    System.out.println("recipeimgList : " + recipeimgList);
 	    
 	    
 	    model.addAttribute("title", title);
@@ -366,11 +379,9 @@ public class LoginController {
 	    System.out.println(isLiked);
 	    System.out.println(this.isLiked);
 	    System.out.println(this.likeCount);
-	    // 처리 로직...
-	    
 	    // 업데이트된 값들을 응답으로 전달
 	    
-	    return "Dongmin/recipe?postid=79";
+	    return "redirect:";
 	}
 	
 	@RequestMapping("/main")

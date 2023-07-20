@@ -30,13 +30,13 @@
 		            	<div><img alt="clock" src="../image/clock.png"></div>
 		            	<div>${time }분</div>
 		        	</div>
-		        	<button class="like" onclick="clickLike()">
+		        	<button class="like" onclick="clickLike()"">
 				    	<div style="display: flex; align-items: center; justify-content: center;">
 				      		<img alt="heart" src="../image/heart.png">
 				      		좋아요
 				      		<span id="likeCount" style="font-size:20px; padding-left: 10px;">${likeCount }</span>
 				    	</div>
-					  </button>
+					</button>
 		        	<div class="info_icon">
 					<img alt="difficulty" src="../image/difficulty.png" style="height:30px; width:30px;">
 					<div style="display: flex; flex-direction: column; font-size: 10px;">
