@@ -23,15 +23,15 @@
 			<div>
 				<div style="width: 500px; margin: 0 auto;">
 				<span style="font-size: 40px; color: black; width:400px;">
-	           		Cod Roe Butter Udon dsafsdfsafd
+	           		${title }
 	      		</span>
 	      		</div>
-	      		<p style="color: purple; padding-top: 20px;">By 김동민</p>
+	      		<p style="color: purple; padding-top: 20px;">By ${nickname }</p>
 	      		
 		        <div class="subinfo" style="display: flex;">
 		        	<div class="info_icon">
 		            	<div><img alt="clock" src="../image/clock.png"></div>
-		            	<div>20분</div>
+		            	<div>${time }분</div>
 		        	</div>
 		        	<button class="like" onclick="clickLike()">
 				    	<div style="display: flex; align-items: center; justify-content: center;">
@@ -64,17 +64,14 @@
 	<div class="intro" style="margin-bottom: 50px; padding-top: 30px;">
 		<div class="introelement">
 			<div style="margin-top: 50px; font-size: 22px; width: 800px;">
-					요즘 일교차가 너무 커서 옷을 어떻게 입어야 할지 모르겠어요.<br>
-					따뜻한 메뉴를 먹기에 덥고, 차가운 메뉴를 먹자니 춥고!<br>
-					입맛도 돌게하고 뜨겁지도 차갑지도 않은 적당한 메뉴를 찾다가 만들어본 → <br>
-					명란버터우동!<br>
-					쫄깃쫄깃 우동 안좋아하시는 분들 없으시죠?<br>
+					${info }
 			</div>
 		</div>
 			<hr>
+
 		<div class="introelement">
 			<span class="ltitle">동영상</span><br>
-			<iframe style="margin-top: 50px;" width="800" height="450" src="https://www.youtube.com/embed/UeZ1KV-97kA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<iframe style="margin-top: 50px;" width="800" height="450" src="${ytbl }" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" allowfullscreen></iframe>
 		</div>
 			<hr>
 		<div class="introelement">
@@ -168,6 +165,7 @@
 	
 </body>
 <script>
+	
 	var likeCountElement = document.getElementById('likeCount');
 	var likeCount = parseInt(likeCountElement.textContent);
 	var isLiked = ${isLiked};
@@ -195,8 +193,7 @@
 	    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	    xhr.onreadystatechange = function() {
 	      if (xhr.readyState === XMLHttpRequest.DONE) {
-	        if (xhr.status === 200) {/* 
-	          isLiked = ${isLiked}; */
+	        if (xhr.status === 200) {
 	          if(isLiked){
 	        	  document.querySelector(".like").style.background = "lightgray";
 		  	    }
@@ -265,7 +262,7 @@
 		  window.open(plink, "_blank");
 		}
 
-	
+		
 
 </script>
 </html>

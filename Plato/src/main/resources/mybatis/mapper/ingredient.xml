@@ -15,7 +15,7 @@
     
     <insert id="insertInges" parameterType="com.study.springboot.dto.ingredientDTO">
         INSERT INTO INGES (postid, ingid, ingamt)
-        VALUES (#{postid}, #{ingid}, #{ingamount})
+        VALUES (#{postid}, #{ingid}, #{ingamt})
     </insert>
     
     <select id="selectIngIDByName" parameterType="String" resultType="int">

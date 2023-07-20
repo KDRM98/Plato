@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -84,6 +86,8 @@ public class LoginController {
 		System.out.println(time);
 		System.out.println(diff);
 		
+		
+		
 		// 조리방법 순서대로 가져와 리스트로 담기
 		List<recipeDTO> recipelist = recipeService.getRecipe(postid);
 		
@@ -101,10 +105,6 @@ public class LoginController {
 			recipeimgList.add(recipeimg);
 		}
 		
-		System.out.println("Recipe Order List: " + recipeorderList);
-	    System.out.println("Recipe Info List: " + recipeinfoList);
-	    System.out.println("Recipe Image List: " + recipeimgList);
-		
 	    // 게시글 재료정보 가져오기
 	    List<ingredientDTO> ingredientList = ingredientService.selectIngredientByRecipeId(postid);
 	    List<String> ingList = new ArrayList<>();
@@ -120,6 +120,23 @@ public class LoginController {
 	    
 	    System.out.println("ingList : " + ingList);
 	    System.out.println("ingamtList : " + ingamtList);
+	    
+	    
+	    model.addAttribute("title", title);
+		model.addAttribute("nickname", nickname);
+		model.addAttribute("mnp", mnp);
+		model.addAttribute("ytbl", ytbl);
+		model.addAttribute("info", info);
+		model.addAttribute("time", time);
+		model.addAttribute("diff", diff);
+	    
+	    model.addAttribute("recipeorderList", recipeorderList);
+	    model.addAttribute("recipeinfoList", recipeinfoList);
+	    model.addAttribute("recipeimgList", recipeimgList);
+	    
+	    model.addAttribute("ingList", ingList);
+	    model.addAttribute("ingamtList", ingamtList);
+	    
 	    
 	    model.addAttribute("likeCount", likeCount);
 	    model.addAttribute("isLiked", isLiked);
@@ -157,11 +174,11 @@ public class LoginController {
 		}
 	}
 	
-	@PostMapping("/addcomplete")
+	@RequestMapping("/addcomplete")
 	  public String addComplete(
 			  HttpServletRequest request, 
 			  Model model,
-			  @RequestParam("title-image") MultipartFile titleImage,
+			  @RequestParam("mnp") MultipartFile titleImage,
 		        @RequestParam("images") MultipartFile[] images) throws FileNotFoundException {
 		
 		// postid 가져오기
@@ -265,6 +282,10 @@ public class LoginController {
 	    System.out.println("Amounts: " + Arrays.toString(amounts));
 	    System.out.println("Instructions: " + Arrays.toString(instructions));
 	    
+	    String videoId = extractYouTubeVideoId(ytbl);
+
+        // 동영상 ID를 embed 형식으로 변환하여 모델에 담음
+        String ytblink = "https://www.youtube.com/embed/" + videoId;
 	    
 	    // DB에 게시글(Post)등록
 	    postDTO pdto = new postDTO();
@@ -273,7 +294,7 @@ public class LoginController {
 	    pdto.setTitle(title);
 	    pdto.setmnp(dbtimgpath);
 	    pdto.setInfo(info);
-	    pdto.setYtbl(ytbl);
+	    pdto.setYtbl(ytblink);
 	    pdto.setTime(time);
 	    pdto.setDiff(diff);
 	    int presult = postService.insertpost(pdto);
@@ -307,10 +328,22 @@ public class LoginController {
 	        System.out.println("Recipe 결과 : " + rresult);
 	        // 추가로 필요한 로직 수행
 	    }
-	    
-	    return "Dongmin/recipe?postid="+postid;
+	    System.out.println(postid);
+	    return "redirect:/recipe?postid=" + Integer.toString(postid);
 	  }
 	
+	
+	private String extractYouTubeVideoId(String youtubeLink) {
+        // 정규표현식을 사용하여 동영상 ID 추출
+        String videoId = null;
+        String pattern = "^(?:https?:\\/\\/)?(?:www\\.)?youtube\\.com\\/watch\\?v=([^\\s&]+)";
+        Pattern compiledPattern = Pattern.compile(pattern);
+        Matcher matcher = compiledPattern.matcher(youtubeLink);
+        if (matcher.find()) {
+            videoId = matcher.group(1);
+        }
+        return videoId;
+    }
 	
 	@PostMapping("/addingredient")
     public String addIngredient(@RequestParam("new-ingredient") String ingredientName) {
@@ -337,7 +370,7 @@ public class LoginController {
 	    
 	    // 업데이트된 값들을 응답으로 전달
 	    
-	    return "Dongmin/recipe";
+	    return "Dongmin/recipe?postid=79";
 	}
 	
 	@RequestMapping("/main")

@@ -7,7 +7,7 @@
 		insert into post
 		(postid, title, info, time, diff, userid, mnp, ytbl)
 		values
-		(#{postid}, #{title}, #{info},#{time},#{Diff},#{writerId},#{timg},#{ytblink})
+		(#{postid}, #{title}, #{info},#{time},#{Diff},#{writerId},#{mnp},#{ytbl})
      </insert>
      
      <select id="getpostid" resultType="int">

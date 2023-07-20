@@ -55,10 +55,10 @@
 						</select>
 					</div>
 					
-					<div class="regist" name="mainimg">
+					<div class="regist" name="mnp">
 						<label for="image">대표 사진 </label>
 						<div class="image-preview"></div>
-						<input type="file" id="title-image" name="title-image" accept="image/*" onchange="previewImage(event)">
+						<input type="file" id="mnp" name="mnp" accept="image/*" onchange="previewImage(event)">
 					</div>
 					
 					<div class="regist" name="desc">
