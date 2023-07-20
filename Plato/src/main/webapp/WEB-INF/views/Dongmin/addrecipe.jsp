@@ -103,7 +103,7 @@
 					  <span for="instructions">조리방법:</span><br>
 					  <div id="instructions-container">
 					    <div class="step">
-					      <textarea name="instructions" required></textarea>
+					      <textarea name="instructions" id="my-textarea" oninput="handleTextAreaInput(event)" rows="10" cols="50"></textarea>
 					      <div class="image-preview"></div>
 					      <input type="file" name="images" accept="image/*" onchange="previewImage(event)">
 					    </div>
@@ -335,6 +335,7 @@
 	
 	  var textarea = document.createElement('textarea');
 	  textarea.name = 'instructions';
+	  textarea.oninput = handleTextAreaInput; 
 	  textarea.required = true;
 	
 	  var imagePreview = document.createElement('div');
@@ -404,5 +405,19 @@
 	    imagePreview.innerHTML = '';
 	  }
 	}
+
+	  function preventEnter(event) {
+	    if (event.key === "Enter") {
+	      event.preventDefault();
+	    }
+	  }
+
+	  // 특정 textarea에 대해 이벤트 리스너 추가
+function handleTextAreaInput(event) {
+	const textarea = event.target;
+	textarea.value = textarea.value.replace(/\n/g, "<br>");
+}
+
+
 </script>
 </html>

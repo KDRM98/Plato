@@ -242,7 +242,7 @@ public class LoginController {
 			FileUtils.writeByteArrayToFile(trfile, titleImage.getBytes());
 
 			// DB에 파일 경로 저장 등 필요한 로직 수행
-			dbtimgpath = "Dongmin/title_img" + tfileName;
+			dbtimgpath = "Dongmin/title_img/" + tfileName;
 			
 			
 	        for (MultipartFile image : images) {
