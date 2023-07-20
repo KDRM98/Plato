@@ -137,7 +137,7 @@
 						//			total 과 countPerpage 모두 int라서 ceil가 적용되려면 그전 계산결과를 double로 바꿔줘야 함
 						double lastPage = Math.ceil((double) total / countPerpage);
 
-						/* 	// 페이징 그룹
+						    // 페이징 그룹
 							// 한 그룹당 보여줄 수
 							int groupCount =3;
 							// 현재 페이지
@@ -153,10 +153,31 @@
 							if(begin < 1){
 								begin = 1;
 								end = groupCount;
-							} */
+							} 
 						%>
+						
 						<div class="paging">
-							<%
+						<% if(begin > 1){%>
+						<a href="/mypage?pageNum=<%=begin-1%>"><div><</div></a>
+						<% } %>
+	
+						<%
+						for(int i=begin; i<=end; i++){	
+						%>
+						<a href="/mypage?pageNum=<%=i%>">
+						<c:set var="i" value="<%= i%>" scope="page" />
+						<c:if test="${pageNum eq i}"><div><strong><%=i%></strong></div>
+						</c:if>
+						<c:if test="${pageNum ne i}"><div><%=i%></div>
+						</c:if>
+						</a>
+						<% } %>
+						
+						<% if(end != lastPage){ %>
+						<a href="/mypage?pageNum=<%=end+1%>"> <div>> </div></a>
+						<% } %>
+						
+						<%-- 	<%
 							for (int i = 1; i <= lastPage; i++) {
 							%>
 							<a href="/mypage?pageNum=<%=i%>"> <c:set var="i"
@@ -168,7 +189,7 @@
 							</a>
 							<%
 							}
-							%>
+							%> --%>
 						</div>
 						
 

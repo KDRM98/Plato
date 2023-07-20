@@ -49,7 +49,9 @@
 	</select>
 	
 	
-		
-		
+	<delete id="likedel" parameterType="postDTO2" >
+	delete from likes
+	where likeid =#{likeid}
+	</delete>
 
 </mapper>
