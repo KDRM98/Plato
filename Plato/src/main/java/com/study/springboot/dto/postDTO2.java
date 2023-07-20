@@ -15,6 +15,9 @@ public class postDTO2 {
 	private int startNum;
 	private int endNum;
 	
+	
+	private int likeid;
+
 
 	private String[] chk;
 	
@@ -63,6 +66,14 @@ public class postDTO2 {
 	public void setEndNum(int endNum) {
 		this.endNum = endNum;
 	}
+	
+	public int getLikeid() {
+		return likeid;
+	}
+	public void setLikeid(int likeid) {
+		this.likeid = likeid;
+	}
+	
 	public String[] getChk() {
 		return chk;
 	}

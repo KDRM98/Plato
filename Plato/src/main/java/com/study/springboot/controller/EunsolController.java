@@ -115,14 +115,17 @@ public class EunsolController {
 		
 		else {
 			System.out.println("이미지 변경 있어요");
-			String path = "";
+			String path1 = "";
+			String path2 = "";
 			try {
-				path = ResourceUtils.getFile("classpath:static/image_upload/").toPath().toString();
+				path1 = ResourceUtils.getFile("classpath:static/image_upload/").toPath().toString();
+				path2 = ResourceUtils.getFile("classpath:../../../static/image_upload/").toPath().toString();
 			} catch (FileNotFoundException e) {
 
 				e.printStackTrace();
 			}
-			File dir = new File(path);
+			File dir = new File(path1);
+			File dir2 = new File(path2);
 
 			String fileName = multipartFile.getOriginalFilename();
 			long now = System.currentTimeMillis();
@@ -130,11 +133,13 @@ public class EunsolController {
 			System.out.println("filename :" + fileName);
 
 			// file 객체 만들기
-			File file = new File(path + File.separator + fileName);
+			File file = new File(path1 + File.separator + fileName);
+			File file2 = new File(path2 + File.separator + fileName);
 
 			// 그 file 객체에 쓰기
 			try {
 				FileUtils.writeByteArrayToFile(file, multipartFile.getBytes());
+				FileUtils.writeByteArrayToFile(file2, multipartFile.getBytes());
 			} catch (IOException e) {
 
 				e.printStackTrace();
