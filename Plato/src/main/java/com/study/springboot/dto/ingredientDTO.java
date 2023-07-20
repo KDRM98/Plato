@@ -4,7 +4,7 @@ public class ingredientDTO {
 	private int postid;
 	private int ingid;
 	private String ing;
-	private String ingamount;
+	private String ingamt;
 	
 	public int getPostid() {
 		return postid;
@@ -26,15 +26,15 @@ public class ingredientDTO {
 		this.ing = ingredient;
 	}
 	
-	public String getIngamount() {
-		return ingamount;
+	public String getingamt() {
+		return ingamt;
 	}
-	public void setIngamount(String ingamount) {
-		this.ingamount = ingamount;
+	public void setingamt(String ingamt) {
+		this.ingamt = ingamt;
 	}
 	@Override
 	public String toString() {
-		return "ingredientDTO [ingid=" + ingid + ", ingredient=" + ing + ", ingamount=" + ingamount + "]";
+		return "ingredientDTO [ingid=" + ingid + ", ingredient=" + ing + ", ingamt=" + ingamt + "]";
 	}
 	
 	

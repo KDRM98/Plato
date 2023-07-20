@@ -11,5 +11,5 @@ public interface ingredientService {
 	 int selectIngIDByName(String ingredient);
 	 int deleteIngredient(int ingid);
 	 List<ingredientDTO> selectIngredientAll();
-	 List<ingredientDTO> selectIngredientByRecipeId(int recipeId);
+	 List<ingredientDTO> selectIngredientByRecipeId(int postid);
 }

@@ -13,5 +13,5 @@ public interface ingredientDAO {
 	 int deleteIngredient(int ingid);
 	 int selectIngIDByName(String ingredient);
 	 List<ingredientDTO> selectIngredientAll();
-	 List<ingredientDTO> selectIngredientByRecipeId(int recipeId);
+	 List<ingredientDTO> selectIngredientByRecipeId(int postid);
 }

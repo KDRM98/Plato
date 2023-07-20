@@ -35,7 +35,7 @@ public class LoginController {
 	private memberService member;
 	
 	@Autowired
-	private postService post;
+	private postService postService;
 	
 	
 	@Autowired
@@ -61,9 +61,66 @@ public class LoginController {
 	@RequestMapping("/recipe")
 	public String recipe(
 			HttpServletRequest request,
+			@RequestParam("postid") int postid,
 			Model model
 			) {
-		System.out.println("/recipe");
+		System.out.println("/recipe"+ postid);
+		
+		// 게시글 기본정보 가져오기
+		postDTO postdto = postService.getpost(postid);
+		String title = postdto.getTitle();
+		String nickname = postdto.getNickname();
+		String mnp = postdto.getmnp();
+		String ytbl = postdto.getYtbl();
+		String info = postdto.getInfo();
+		int time = postdto.getTime();
+		int diff = postdto.getDiff();
+		
+		System.out.println(title);
+		System.out.println(nickname);
+		System.out.println(mnp);
+		System.out.println(ytbl);
+		System.out.println(info);
+		System.out.println(time);
+		System.out.println(diff);
+		
+		// 조리방법 순서대로 가져와 리스트로 담기
+		List<recipeDTO> recipelist = recipeService.getRecipe(postid);
+		
+		List<String> recipeinfoList = new ArrayList<>();
+		List<String> recipeimgList = new ArrayList<>();
+		List<Integer> recipeorderList = new ArrayList<>();
+		
+		for (recipeDTO recipe : recipelist) {
+			int recipeorder = recipe.getRecipeOrder();
+			String recipeinfo = recipe.getRecipeinfo();
+			String recipeimg = recipe.getRecipeimg();
+			
+			recipeorderList.add(recipeorder);
+			recipeinfoList.add(recipeinfo);
+			recipeimgList.add(recipeimg);
+		}
+		
+		System.out.println("Recipe Order List: " + recipeorderList);
+	    System.out.println("Recipe Info List: " + recipeinfoList);
+	    System.out.println("Recipe Image List: " + recipeimgList);
+		
+	    // 게시글 재료정보 가져오기
+	    List<ingredientDTO> ingredientList = ingredientService.selectIngredientByRecipeId(postid);
+	    List<String> ingList = new ArrayList<>();
+	    List<String> ingamtList = new ArrayList<>();
+	    
+	    for(ingredientDTO ingredient : ingredientList) {
+	    	String ing = ingredient.getIngredient();
+	    	String ingamt = ingredient.getingamt();
+	    	
+	    	ingList.add(ing);
+	    	ingamtList.add(ingamt);
+	    }
+	    
+	    System.out.println("ingList : " + ingList);
+	    System.out.println("ingamtList : " + ingamtList);
+	    
 	    model.addAttribute("likeCount", likeCount);
 	    model.addAttribute("isLiked", isLiked);
 		return "viewList101";
@@ -108,15 +165,16 @@ public class LoginController {
 		        @RequestParam("images") MultipartFile[] images) throws FileNotFoundException {
 		
 		// postid 가져오기
-		int postid = post.getpostid();
+		int postid = postService.getpostid();
 		
 		// 작성자 id 저장및 기재
 		HttpSession session = request.getSession();
 		int userid = (int) session.getAttribute("userid");
 		System.out.println(userid);
 		
-       // 상대적인 주소 classpath를 이용하는 방법
-		 String resourcePath = ResourceUtils.getFile("classpath:static/Dongmin/title_img/").getAbsolutePath();
+		// 상대적인 주소 classpath를 이용하는 방법
+		// 상대주소는 bin, 절대경로로 받아서 경로 수정한건 src/main이고 두 경로 모두에 이미지 저장
+ 		 String resourcePath = ResourceUtils.getFile("classpath:static/Dongmin/title_img/").getAbsolutePath();
 		 String timgpath = resourcePath.replace("/bin/main", "/src/main/resources");
 		 
 		 String iresourcePath = ResourceUtils.getFile("classpath:static/Dongmin/inst_img/").getAbsolutePath();
@@ -137,7 +195,7 @@ public class LoginController {
 	    String info = request.getParameter("desc");
 	    
 	    //유튜브링크 가져오기
-	    String ytblink = request.getParameter("ytbl");
+	    String ytbl = request.getParameter("ytbl");
 	    
 	    // 재료 가져오기
 	    String[] ingredients = request.getParameterValues("ingredients");
@@ -160,9 +218,11 @@ public class LoginController {
 			// file 객체 만들기
 			System.out.println(timgpath +File.separator+ tfileName);
 			File tfile = new File( timgpath +File.separator+ tfileName );
+			File trfile = new File( resourcePath +File.separator+ tfileName );
 			
 			// 그 file 객체에 덮어쓰기
 			FileUtils.writeByteArrayToFile(tfile, titleImage.getBytes());
+			FileUtils.writeByteArrayToFile(trfile, titleImage.getBytes());
 
 			// DB에 파일 경로 저장 등 필요한 로직 수행
 			dbtimgpath = "Dongmin/title_img" + tfileName;
@@ -176,7 +236,10 @@ public class LoginController {
 	            String imageName = image.getOriginalFilename();
 	            String imageFileName = System.currentTimeMillis() + "_" + imageName;
 	            File imageFile = new File(Instimgpath + File.separator + imageFileName);
+	            File rimageFile = new File(iresourcePath + File.separator + imageFileName);
+	            
 	            FileUtils.writeByteArrayToFile(imageFile, image.getBytes());
+	            FileUtils.writeByteArrayToFile(rimageFile, image.getBytes());
 	            String dbImagePath = "Dongmin/inst_img/" + imageFileName;
 	            dbImagePaths.add(dbImagePath);
 	        }
@@ -191,7 +254,7 @@ public class LoginController {
 	    
 	    // 값 콘솔에 출력
 	    System.out.println("dbImagePath: " + dbImagePaths);
-	    System.out.println("ytbl: " + ytblink);
+	    System.out.println("ytbl: " + ytbl);
 	    System.out.println("dbtimgpath: " + dbtimgpath);
 	    System.out.println("Title: " + title);
 	    System.out.println("Writer: " + userid);
@@ -208,12 +271,12 @@ public class LoginController {
 	    pdto.setPostid(postid);
 	    pdto.setWriterId(userid);
 	    pdto.setTitle(title);
-	    pdto.setTimg(dbtimgpath);
+	    pdto.setmnp(dbtimgpath);
 	    pdto.setInfo(info);
-	    pdto.setYtblink(ytblink);
+	    pdto.setYtbl(ytbl);
 	    pdto.setTime(time);
 	    pdto.setDiff(diff);
-	    int presult = post.insertpost(pdto);
+	    int presult = postService.insertpost(pdto);
 	    System.out.println("post 결과 : "+presult);
 	    
 	    for (int i = 0; i < ingredients.length; i++) {
@@ -223,7 +286,7 @@ public class LoginController {
 	        ingredientDTO idto = new ingredientDTO();
 	        idto.setPostid(postid);
 	        idto.setIngid(ingid);
-	        idto.setIngamount(amount);
+	        idto.setingamt(amount);
 	        
 	        int iresult = ingredientService.insertInges(idto);
 	        // result를 확인하고 필요에 따라 처리
@@ -245,7 +308,7 @@ public class LoginController {
 	        // 추가로 필요한 로직 수행
 	    }
 	    
-	    return "Dongmin/recipe";
+	    return "Dongmin/recipe?postid="+postid;
 	  }
 	
 	

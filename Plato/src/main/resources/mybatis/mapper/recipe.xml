@@ -9,4 +9,11 @@
 		VALUES
 		(seq_recipeid.nextval, #{recipeOrder}, #{recipeinfo}, #{recipeimg}, #{postid})
 	 </insert>
+	 
+	 <select id="getRecipe" resultType="com.study.springboot.dto.recipeDTO">
+	 	SELECT * FROM RECIPE
+		WHERE postid = #{postid}
+		ORDER BY RECIPEORDER
+	 </select>
+	 
 </mapper>

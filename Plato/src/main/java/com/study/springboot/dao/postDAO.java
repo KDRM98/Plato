@@ -10,4 +10,6 @@ public interface postDAO {
 	int getpostid();
 
 	int insertpost(postDTO dTO);
+	
+	postDTO getpost(int postid);
 }

@@ -5,15 +5,22 @@ import java.util.List;
 public class postDTO {
 	private int postid;
 	private int writerId;
+	private String nickname;
 	private String title;
-	private String timg;
+	private String mnp;
 	private String info;
-	private String ytblink;
+	private String ytbl;
 	private int time;
 	private int Diff;
 	private List<recipeDTO> instruction;
 	private List<ingredientDTO> ingredient;
 	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public int getPostid() {
 		return postid;
 	}
@@ -32,11 +39,11 @@ public class postDTO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getTimg() {
-		return timg;
+	public String getmnp() {
+		return mnp;
 	}
-	public void setTimg(String timg) {
-		this.timg = timg;
+	public void setmnp(String mnp) {
+		this.mnp = mnp;
 	}
 	public String getInfo() {
 		return info;
@@ -44,11 +51,11 @@ public class postDTO {
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	public String getYtblink() {
-		return ytblink;
+	public String getYtbl() {
+		return ytbl;
 	}
-	public void setYtblink(String ytblink) {
-		this.ytblink = ytblink;
+	public void setYtbl(String ytbl) {
+		this.ytbl = ytbl;
 	}
 	public int getTime() {
 		return time;

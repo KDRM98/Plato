@@ -1,5 +1,7 @@
 package com.study.springboot.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,13 @@ public class recipeServiceImpl implements recipeService{
 		int result = DAO.insertRecipe(dto);
 		return result;
 	}
+
+	@Override
+	public List<recipeDTO> getRecipe(int postid) {
+		List<recipeDTO> dto = DAO.getRecipe(postid);
+		return dto;
+	}
+	
+	
 
 }

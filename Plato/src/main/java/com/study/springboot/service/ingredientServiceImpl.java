@@ -33,8 +33,8 @@ public class ingredientServiceImpl implements ingredientService{
 	}
 
 	@Override
-	public List<ingredientDTO> selectIngredientByRecipeId(int recipeId) {
-		return DAO.selectIngredientByRecipeId(recipeId);
+	public List<ingredientDTO> selectIngredientByRecipeId(int postid) {
+		return DAO.selectIngredientByRecipeId(postid);
 	}
 
 	@Override
