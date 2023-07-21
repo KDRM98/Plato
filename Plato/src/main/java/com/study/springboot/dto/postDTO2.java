@@ -21,7 +21,8 @@ public class postDTO2 {
 
 	private String[] chk;
 	
-	
+	private String mnp;
+	private String nickname;
 	
 	public int getUserid() {
 		return userid;
@@ -79,6 +80,18 @@ public class postDTO2 {
 	}
 	public void setChk(String[] chk) {
 		this.chk = chk;
+	}
+	public String getMnp() {
+		return mnp;
+	}
+	public void setMnp(String mnp) {
+		this.mnp = mnp;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	

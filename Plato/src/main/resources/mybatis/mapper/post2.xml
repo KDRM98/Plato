@@ -53,5 +53,20 @@
 	delete from likes
 	where likeid =#{likeid}
 	</delete>
+	
+	<select id="mainViews" parameterType="postDTO2" resultType="postDTO2" >
+	select *
+		from  ( 
+			select rownum AS rnum, temp.*
+            from
+            (SELECT 
+       			  p.title, p.postid, p.cdate, m.nickname, p.views, p.mnp
+   	 		FROM post p
+			LEFT OUTER JOIN member m ON(m.userid = p.userid) 
+        	ORDER BY p.views DESC
+        	) temp)
+		WHERE rnum <![CDATA[>=]]> #{startNum}
+		  AND rnum <![CDATA[<=]]> #{endNum}
+	</select>
 
 </mapper>
