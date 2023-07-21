@@ -13,4 +13,6 @@ public interface postService2 {
 	
 	int likeTotalCount(postDTO2 DTO);
 	Map likePost(postDTO2 DTO);
+	
+	List<postDTO2> mainViews(postDTO2 DTO);
 }

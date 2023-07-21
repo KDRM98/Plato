@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <title>My Website</title>
-    <style>
+    <!-- css -->
+<link rel="stylesheet" href="Eunsol/css/mainpage.css">
+ <!--    <style>
         @font-face {
             font-family: 'SUITE-Regular';
             src: url('SUITE-Regular.woff2') format('woff2');
@@ -182,7 +184,7 @@
         .image-container {
             display: flex;
             padding: 10px;
-            margin-top: 100px; 
+            margin-top: 100px;
         }
 
         .image-container img {
@@ -280,7 +282,7 @@
             max-height: 75px;
             margin: 0 25px;
         }
-    </style>
+    </style> -->
 </head>
 <body>
     <div class="background">
@@ -301,32 +303,37 @@
             </button>
         </div>
     </div>
-
-    <div class="container">
+<div class="main">
+    <div class="main_container">
+    
+    <div class= "main_content">
+    <div class = "main_title">조회수 <strong>Top3</strong></div>
         <div class="big-box">
             <div class="image-container">
-                <img src="img/bread.jpg" alt="Food 1">
+                <img src="${mainViews[1].mnp}" alt="Food 1">
             </div>
             <div class="big-box-text">
-                <h3>음식 1</h3>
-                <p>고유찬</p>
+                <h3>${mainViews[0].title}</h3>
+                <p>${mainViews[0].nickname}</p>
             </div>
         </div>
         <div class="boxes">
-            <div class="box">
-                <img src="img/bread.jpg" alt="Food 2">
-                <h3>음식 2</h3>
-                <p>고유찬</p>
+            <div class="box one">
+              <div class="tab1">  <img src="${mainViews[1].mnp}" alt="Food 2"></div> 
+               <div class="tab2"> <h3>${mainViews[1].title}</h3></div> 
+               <div class="tab2"> <p>${mainViews[1].nickname}</p></div> 
             </div>
             <div class="box">
-                <img src="img/bread.jpg" alt="Food 3">
-                <h3>음식 3</h3>
-                <p>고유찬</p>
+                <div class="tab1"> <img src="${mainViews[2].mnp}" alt="Food 3"></div> 
+                <div class="tab2"> ${mainViews[2].title}</div>
+                <div class="tab3"> ${mainViews[2].nickname}</div>
             </div>
         </div>
+        
+        </div>
     </div>
-
-    <div class="slider-container">
+</div>
+<!--     <div class="slider-container">
         <div class="slider-item active">
             <div class="content">
                 <div class="month">1월</div>
@@ -435,7 +442,7 @@
             <img class="partner-logo1" src="img/coupang-bw.png" alt="Partner 1">
             <img class="partner-logo2" src="img/marketkurly-bw.png" alt="Partner 2">
         </div>
-    </div>
+    </div> -->
 
     <script>
         function openPopup() {

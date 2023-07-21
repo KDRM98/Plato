@@ -54,6 +54,12 @@ public class postServiceImpl2 implements postService2 {
 		return map;
 	}
 
+	@Override
+	public List<postDTO2> mainViews(postDTO2 DTO) {
+		List list = DAO2.mainViews(DTO);
+		return list;
+	}
+
 	
 	
 
