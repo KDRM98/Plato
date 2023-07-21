@@ -76,10 +76,15 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		int userid = (int) session.getAttribute("userid");
 		likeDTO dto = new likeDTO();
+		postDTO pdto = new postDTO();
+		pdto.setPostid(postid);
 		dto.setPostid(postid);
 		dto.setUserid(userid);
 		int postlike = likeservice.getpostliked(dto);
 		int isliked = likeservice.getisliked(dto);
+		int viewup = postService.viewup(pdto);
+		
+		System.out.println("viewup result : " + viewup);
 		
 		model.addAttribute("postlike", postlike);
 		model.addAttribute("isliked", isliked);

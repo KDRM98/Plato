@@ -30,5 +30,11 @@ public class postServiceImpl implements postService{
 		postDTO dto = DAO.getpost(postid);
 		return dto;
 	}
+
+	@Override
+	public int viewup(postDTO dto) {
+		int result = DAO.viewup(dto);
+		return result;
+	}
 	
 }

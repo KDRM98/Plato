@@ -27,9 +27,10 @@
 	      		
 		        <div class="subinfo" style="display: flex;">
 		        	<div class="info_icon">
-		            	<div><img alt="clock" src="../image/clock.png"></div>
-		            	<div>${time }분</div>
-		        	</div>
+					  <div><img alt="clock" src="../image/clock.png"></div>
+					  <div id="timeValue">${time}분</div>
+					</div>
+
 		        	<button class="like" onclick="clickLike(${postid})"">
 				    	<div style="display: flex; align-items: center; justify-content: center;">
 				      		<img alt="heart" src="../image/heart.png">
@@ -119,6 +120,15 @@
 
 </body>
 <script>
+window.onload = function() {
+	  var time = ${time};
+	  var timeElement = document.getElementById("timeValue");
+
+	  if (!isNaN(time) && time >= 200) {
+	    timeElement.innerText = '2시간 이상';
+	  }
+	};
+
 
 var recipeorderList = [
 	  <c:forEach items="${recipeorderList}" var="order" varStatus="status">

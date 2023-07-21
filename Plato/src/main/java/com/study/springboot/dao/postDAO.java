@@ -9,7 +9,9 @@ public interface postDAO {
 	
 	int getpostid();
 
-	int insertpost(postDTO dTO);
+	int insertpost(postDTO dto);
+	
+	int viewup(postDTO dto);
 	
 	postDTO getpost(int postid);
 }

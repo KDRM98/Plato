@@ -21,5 +21,10 @@
 		where postid= #{postid}
      </select>
      
+     <update id="viewup" parameterType="com.study.springboot.dto.postDTO">
+     	UPDATE post
+		SET views = views + 1
+		WHERE postid = ${postid}
+     </update>
      
 </mapper>
