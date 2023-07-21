@@ -418,6 +418,11 @@ public class LoginController {
 		System.out.println("/main");
 		return "Yuchan/mainpage";
 	}
+	@RequestMapping("/searchhtml")
+	public String searchhtml() {
+		System.out.println("/searchhtml");
+		return "Yuchan/searchhtml";
+	}
 	
 	/*
 	 * @RequestMapping("/MyPage") public String mypage() {
