@@ -413,11 +413,10 @@ public class LoginController {
 	    return map;
 	}
 	
-	@RequestMapping("/main")
-	public String main() {
-		System.out.println("/main");
-		return "Yuchan/mainpage";
-	}
+	/*
+	 * @RequestMapping("/main") public String main() { System.out.println("/main");
+	 * return "Yuchan/mainpage"; }
+	 */
 	
 	/*
 	 * @RequestMapping("/MyPage") public String mypage() {
