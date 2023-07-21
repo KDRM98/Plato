@@ -46,7 +46,7 @@ button, input, select{
 }
 
 .profile_content .title{
-	text-align: center;
+	text-align: left;
 	font-size: 25px;
 	margin-bottom:30px; 
 	

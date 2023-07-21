@@ -207,8 +207,9 @@ border-bottom: 0.5px solid #dfdfdf;}
 font-size: 12px;
 color: #e7223d;
 padding-bottom: 15px;
-height: 30px;
+height: auto;
 text-align: left;
+font-weight: bold;
 	}
 
 .popup_login .error.two {
@@ -219,6 +220,14 @@ text-align: left;
 		display: flex;
 		justify-content: space-between;
 	
+}
+
+.popup_login ul li a{
+	color: black;
+}
+
+.popup_login ul li a:hover{
+	font-weight: bold;
 }
 .popup_login .login_btn{
 	padding: 10px 0px 5px 0px;
@@ -235,3 +244,10 @@ border: none;
 	
 }
 
+.popup_login .sign_up{
+	color: black;
+}
+
+.popup_login .sign_up:hover{
+	font-weight: bold;
+}

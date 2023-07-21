@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 <title>Insert title here</title>
 <!-- css -->
 <link rel="stylesheet" href="Eunsol/css/header.css">
@@ -45,7 +48,7 @@
 							</div>
 							<div class="side_menu">
 								<ul>
-									<li><a href="#" class="find_recipe">레시피찾기</a></li>
+									<li><a href="#" class="find_recipe" >레시피찾기</a></li>
 									<li><a href="#" class="today_recipe">오늘의 인기레시피</a></li>
 									<li><a href="#" class="last_recipe">지난 인기레시피</a></li>
 								</ul>
@@ -69,7 +72,7 @@
 							</div>
 							<div class="side_menu">
 								<ul>
-									<li><a href="#" class="find_recipe">레시피찾기</a></li>
+									<li><a onclick="openPopup()" class="find_recipe">레시피찾기</a></li>
 									<li><a href="#" class="today_recipe">오늘의 인기레시피</a></li>
 									<li><a href="#" class="last_recipe">지난 인기레시피</a></li>
 									<li>&#160;</li>
@@ -112,7 +115,7 @@
 						<li><a href="/logout" class="logout">로그아웃</a></li>
 						<li><a href="/mypage">마이페이지</a></li>
 						<li><a href="/addrecipe">글쓰기</a></li>
-						<li><a id="search_glass" href="#">Search&#160;<img
+						<li><a id="search_glass" onclick="openPopup()">Search&#160;<img
 								src="/Eunsol/imges/search_glass.svg" alt="search_glass Image">
 						</a></li>
 					</c:if>
@@ -122,11 +125,11 @@
 
 
 		<div class="logo">
-			<a href="/header"><img alt="메인홈으로 가기" src="Eunsol/imges/o_logo.png" title="메인홈으로 가기"></a>
+			<a href="/main"><img alt="메인홈으로 가기" src="Eunsol/imges/o_logo.png" title="메인홈으로 가기"></a>
 		</div>
 	</header>
 	<!-- clear : both; -->
-
+	
 
 	<!-- 팝업 로그인 창 -->
 	<div class="popup_login" id="pop1">
@@ -172,6 +175,17 @@
 	</div>
 	<!-- 팝업 로그인 창 끝-->
 	<div class="dim"></div>
+	
+    <div class="popup-overlay2" id="popupOverlay2">
+        <div class="popup2">
+	<form action="/searchhtml" class="text_song2">
+            <input type="text" name="title" class="search-bar2" placeholder="레시피 찾기">
+             </form>
+            <button class="close-button2" onclick="closePopup()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
 
 	<!-- js -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -283,6 +283,42 @@
             margin: 0 25px;
         }
     </style> -->
+    
+    <style>
+    
+    .main_content .big-box .tab1{
+	height : 300px;
+	background-image: url(${mainViews[1].mnp});
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;}
+    
+    .main_content .boxes .box.one .tab1 {
+	height: 200px;
+	width: 325px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-image: url(${mainViews[1].mnp});
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+    .main_content .boxes .box.two .tab1 {
+	height: 200px;
+	width: 325px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-image: url(${mainViews[2].mnp});
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+    </style>
 </head>
 <body>
     <div class="background">
@@ -292,41 +328,47 @@
                 <i class="fas fa-search"></i>
             </button>
         </div>
-        <button class="advanced-search-button">고급 검색 &gt;</button>
+        <a href="/searchhtml" class="advanced-search-button">고급 검색 &gt;</a>
     </div>
-
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup">
-            <input type="text" class="search-bar" placeholder="레시피 찾기">
+<form action="/searchhtml" class="text_song">
+            <input type="text" name="title" class="search-bar" placeholder="레시피 찾기">
+             </form>
             <button class="close-button" onclick="closePopup()">
                 <i class="fas fa-times"></i>
             </button>
         </div>
     </div>
+  
 <div class="main">
     <div class="main_container">
     
     <div class= "main_content">
     <div class = "main_title">조회수 <strong>Top3</strong></div>
-        <div class="big-box">
-            <div class="image-container">
-                <img src="${mainViews[1].mnp}" alt="Food 1">
-            </div>
-            <div class="big-box-text">
-                <h3>${mainViews[0].title}</h3>
-                <p>${mainViews[0].nickname}</p>
-            </div>
+        <div class="big-box" data-value="${mainViews[0].postid}">
+               <div class="tab1"> <%--  <img src="${mainViews[1].mnp}" alt="Food 1"> --%></div> 
+               <div class= "bbox">
+               <div class="tab2"><strong>No.1</strong></div> 
+               <div class="tab3">${mainViews[0].title}</div> 
+               <div class="tab4"></div>
+               <div class="tab5">${mainViews[0].nickname}</div> 
+               </div>
         </div>
         <div class="boxes">
-            <div class="box one">
-              <div class="tab1">  <img src="${mainViews[1].mnp}" alt="Food 2"></div> 
-               <div class="tab2"> <h3>${mainViews[1].title}</h3></div> 
-               <div class="tab2"> <p>${mainViews[1].nickname}</p></div> 
+            <div class="box one" data-value="${mainViews[1].postid}">
+              <div class="tab1">  <%-- <img src="${mainViews[1].mnp}" alt="Food 2"> --%></div> 
+               <div class="tab2"><strong>No.2</strong></div> 
+               <div class="tab3">${mainViews[1].title}</div> 
+               <div class="tab4"></div>
+               <div class="tab5">${mainViews[1].nickname}</div> 
             </div>
-            <div class="box">
-                <div class="tab1"> <img src="${mainViews[2].mnp}" alt="Food 3"></div> 
-                <div class="tab2"> ${mainViews[2].title}</div>
-                <div class="tab3"> ${mainViews[2].nickname}</div>
+            <div class="box two" data-value="${mainViews[2].postid}">
+                <div class="tab1"> </div> 
+               	<div class="tab2"><strong>No.3</strong></div> 
+               	<div class="tab3"> ${mainViews[2].title}</div>
+               	<div class="tab4"></div>               	
+                <div class="tab5"> ${mainViews[2].nickname}</div>
             </div>
         </div>
         
@@ -474,5 +516,6 @@
             });
         }
     </script>
+    <script src="Eunsol/js/mainpage.js"></script>
 </body>
 </html>
