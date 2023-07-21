@@ -30,23 +30,27 @@
 		            	<div><img alt="clock" src="../image/clock.png"></div>
 		            	<div>${time }분</div>
 		        	</div>
-		        	<button class="like" onclick="clickLike()"">
+		        	<button class="like" onclick="clickLike(${postid})"">
 				    	<div style="display: flex; align-items: center; justify-content: center;">
 				      		<img alt="heart" src="../image/heart.png">
 				      		좋아요
-				      		<span id="likeCount" style="font-size:20px; padding-left: 10px;">${likeCount }</span>
+				      		<span id="likeCount" style="font-size:20px; padding-left: 10px;">${postlike }</span>
 				    	</div>
 					</button>
 		        	<div class="info_icon">
-					<img alt="difficulty" src="../image/difficulty.png" style="height:30px; width:30px;">
 					<div style="display: flex; flex-direction: column; font-size: 10px;">
-					  <div class="box3" style="flex: 1; font-weight: bold;">난이도</div>
+					  <div class="box3" style="flex: 1; font-size: 25px;">난이도</div>
 					  <div class="box3" style="flex: 2;">
-						  <img class="circle" alt="fullcircle" src="../image/fullcircle.png">
-						  <img class="circle" alt="fullcircle" src="../image/fullcircle.png">
-						  <img class="circle" alt="fullcircle" src="../image/fullcircle.png">
-						  <img class="circle" alt="emptycircle" src="../image/emptycircle.png">
-						  <img class="circle" alt="emptycircle" src="../image/emptycircle.png">
+						<c:forEach begin="1" end="5" var="i">
+						  <c:choose>
+						    <c:when test="${i <= diff}">
+						      <img class="circle" alt="fullcircle" src="../image/fullcircle.png">
+						    </c:when>
+						    <c:otherwise>
+						      <img class="circle" alt="emptycircle" src="../image/emptycircle.png">
+						    </c:otherwise>
+						  </c:choose>
+						</c:forEach>
 					  </div>
 					</div>
 		        	</div>
@@ -136,48 +140,45 @@ var recipeorderList = [
 	
 	var likeCountElement = document.getElementById('likeCount');
 	var likeCount = parseInt(likeCountElement.textContent);
-	var isLiked = ${isLiked};
-	if(isLiked){
+	var isliked = ${isliked};
+	var postlike = ${postlike};
+	if(${isliked} == 0){
 	    	document.querySelector(".like").style.background = "lightgray";
   	    }
   	    else{
   	    	document.querySelector(".like").style.background = "#FF5733";
   	    }
-	function clickLike() {
-		// ajax > java >  html
-		
-	    if(isLiked){
-	    	likeCount++;
-	    }else{
-	    	likeCount--;
-	    }
-		isLiked = !isLiked;
-	    var requestData = 'likeCount=' + likeCount + '&isLiked=' + isLiked;
-	    console.log(isLiked);
-
-	    // AJAX 요청 생성
-	    var xhr = new XMLHttpRequest();
-	    xhr.open('POST', '/recipeLike');
-	    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	    xhr.onreadystatechange = function() {
-	      if (xhr.readyState === XMLHttpRequest.DONE) {
-	        if (xhr.status === 200) {
-	          if(isLiked){
-	        	  document.querySelector(".like").style.background = "lightgray";
-		  	    }
-		  	    else{
-		  	    	document.querySelector(".like").style.background = "#FF5733";
-		  	    }
-	        } else {
-	        	
-	        }
+	    
+	function clickLike(postid) {
+		  // AJAX 요청 생성
+	  var xhr = new XMLHttpRequest();
+	  xhr.open('POST', '/recipeLike');
+	  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	  xhr.onreadystatechange = function() {
+	    if (xhr.readyState === XMLHttpRequest.DONE) {
+	      if (xhr.status === 200) {
+	        // JSON 데이터 파싱
+	        var responseJson = JSON.parse(xhr.responseText);
+	        var isliked = responseJson.isliked;
+	        var postlike = responseJson.postlike;
+	        console.log(isliked);
+	        console.log(postlike);	        
+	        // isliked 값에 따라 좋아요 버튼 색상 변경
+	        document.querySelector(".like").style.background = isliked == 0 ? "lightgray" : "#FF5733";
+	        // 좋아요 수 업데이트
+	        document.getElementById('likeCount').textContent = postlike;
+	      } else {
+	        // 에러 처리
 	      }
-	    };
+	    }
+	  };
 
-	    xhr.send(requestData);
-	    // 서버로 요청 전송
-	    document.getElementById("likeCount").textContent = likeCount;
+	  var requestData = 'postlike=' + postlike + '&isliked=' + isliked + "&postid=" + postid + "&userid=" + ${userid};
+	  xhr.send(requestData);
+	  // 서버로 요청 전송
+	  document.getElementById("likeCount").textContent = likeCount;
 	}
+
 	
 	
 	

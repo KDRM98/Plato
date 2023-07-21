@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,16 +19,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.study.springboot.dto.ingredientDTO;
+import com.study.springboot.dto.likeDTO;
 import com.study.springboot.dto.postDTO;
 import com.study.springboot.dto.recipeDTO;
 import com.study.springboot.service.ingredientService;
+import com.study.springboot.service.likeService;
 import com.study.springboot.service.memberService;
 import com.study.springboot.service.postService;
 import com.study.springboot.service.recipeService;
@@ -47,8 +51,9 @@ public class LoginController {
 	@Autowired
 	private recipeService recipeService;
 	
-	int likeCount=33;
-	boolean isLiked = true;
+	@Autowired
+	private likeService likeservice;
+	
 	String id = "admin";
 	String pw = "1234";
 	@RequestMapping("/test")
@@ -68,6 +73,18 @@ public class LoginController {
 			Model model
 			) {
 		System.out.println("/recipe"+ postid);
+		HttpSession session = request.getSession();
+		int userid = (int) session.getAttribute("userid");
+		likeDTO dto = new likeDTO();
+		dto.setPostid(postid);
+		dto.setUserid(userid);
+		int postlike = likeservice.getpostliked(dto);
+		int isliked = likeservice.getisliked(dto);
+		
+		model.addAttribute("postlike", postlike);
+		model.addAttribute("isliked", isliked);
+		model.addAttribute("userid", userid);
+		
 		
 		// 게시글 기본정보 가져오기
 		postDTO postdto = postService.getpost(postid);
@@ -80,6 +97,7 @@ public class LoginController {
 		int diff = postdto.getDiff();
 		
 		System.out.println(title);
+		System.out.println(userid);
 		System.out.println(nickname);
 		System.out.println(mnp);
 		System.out.println(ytbl);
@@ -142,6 +160,7 @@ public class LoginController {
 		model.addAttribute("info", info);
 		model.addAttribute("time", time);
 		model.addAttribute("diff", diff);
+		model.addAttribute("postid", postid);
 	    
 	    model.addAttribute("recipeorderList", recipeorderList);
 	    model.addAttribute("recipeinfoList", recipeinfoList);
@@ -150,9 +169,6 @@ public class LoginController {
 	    model.addAttribute("ingList", ingList);
 	    model.addAttribute("ingamtList", ingamtList);
 	    
-	    
-	    model.addAttribute("likeCount", likeCount);
-	    model.addAttribute("isLiked", isLiked);
 		return "viewList101";
 	}
 	
@@ -368,20 +384,28 @@ public class LoginController {
     }
 	
 	@RequestMapping("/recipeLike")
-	public String updateRecipe(
-	        @RequestParam(value = "likeCount") int likeCount,
-	        @RequestParam(value = "isLiked") boolean isLiked,
+	@ResponseBody
+	public Map<String, Object> updateRecipe(
+			@RequestParam(value = "postid") int postid,
+	        @RequestParam(value = "postlike") int postlike,
+	        @RequestParam(value = "isliked") int isliked,
+	        @RequestParam(value = "userid") int userid,
 	        HttpServletRequest request,
-	        Model model) {
-	    
-		this.isLiked = isLiked;
-	    this.likeCount = likeCount;
-	    System.out.println(isLiked);
-	    System.out.println(this.isLiked);
-	    System.out.println(this.likeCount);
+	        Model model
+	        ) {
+		likeDTO dto = new likeDTO();
+		dto.setUserid(userid);
+		dto.setPostid(postid);
+		int newliked = likeservice.clicklike(dto);
+		System.out.println("clicklike 결과 : " + newliked);
+		int cpostlike = likeservice.getpostliked(dto);
+		int cisliked = likeservice.getisliked(dto);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("postlike", cpostlike);
+		map.put("isliked", cisliked);
 	    // 업데이트된 값들을 응답으로 전달
 	    
-	    return "redirect:";
+	    return map;
 	}
 	
 	@RequestMapping("/main")

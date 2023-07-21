@@ -2,28 +2,32 @@ package com.study.springboot.dto;
 
 public class likeDTO {
 
+	private int likeid;
+	private int userid;
+	private int postid;
 	
-	private String info;
-	private String title;
-	private String mnp;
+	public int getLikeid() {
+		return likeid;
+	}
+	public void setLikeid(int likeid) {
+		this.likeid = likeid;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public int getPostid() {
+		return postid;
+	}
+	public void setPostid(int postid) {
+		this.postid = postid;
+	}
 	
+	@Override
+	public String toString() {
+		return "likeDTO [likeid=" + likeid + ", userid=" + userid + ", postid=" + postid + "]";
+	}
 	
-	public String getInfo() {
-		return info;
-	}
-	public void setInfo(String info) {
-		this.info = info;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getMnp() {
-		return mnp;
-	}
-	public void setMnp(String mnp) {
-		this.mnp = mnp;
-	}
 }
