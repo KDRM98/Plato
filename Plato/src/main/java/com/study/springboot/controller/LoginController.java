@@ -419,16 +419,13 @@ public class LoginController {
 		System.out.println("/searchhtml");
 		return "Yuchan/searchhtml";
 	}
-	 @RequestMapping("/main") public String main() { System.out.println("/main");
-	 return "Yuchan/mainpage"; }
-	 
 	
 	
-	  @RequestMapping("/MyPage") public String mypage() {
-	  System.out.println("/MyPage"); return "Hyunyoung/MyPage"; }
-	  
-	  @RequestMapping("/presonerPage") public String personerPage() {
-	  System.out.println("/personerPage"); return "Hyunyoung/personerPage"; }
+//	  @RequestMapping("/MyPage") public String mypage() {
+//	  System.out.println("/MyPage"); return "Hyunyoung/MyPage"; }
+//	  
+//	  @RequestMapping("/presonerPage") public String personerPage() {
+//	  System.out.println("/personerPage"); return "Hyunyoung/personerPage"; }
 	 
 
 }
