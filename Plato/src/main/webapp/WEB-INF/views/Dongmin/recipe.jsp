@@ -148,11 +148,19 @@ var recipeorderList = [
 	  </c:forEach>
 	];
 	
+	console.log(${isliked});
 	var likeCountElement = document.getElementById('likeCount');
 	var likeCount = parseInt(likeCountElement.textContent);
-	var isliked = ${isliked};
+
+	var isliked = '${isliked}';
+	if (isliked === 'null' || isliked === '') {
+	  isliked = 0;
+	}
+
+
+	console.log(isliked);
 	var postlike = ${postlike};
-	if(${isliked} == 0){
+	if(isliked == 0){
 	    	document.querySelector(".like").style.background = "lightgray";
   	    }
   	    else{
@@ -161,32 +169,38 @@ var recipeorderList = [
 	    
 	function clickLike(postid) {
 		  // AJAX 요청 생성
-	  var xhr = new XMLHttpRequest();
-	  xhr.open('POST', '/recipeLike');
-	  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	  xhr.onreadystatechange = function() {
-	    if (xhr.readyState === XMLHttpRequest.DONE) {
-	      if (xhr.status === 200) {
-	        // JSON 데이터 파싱
-	        var responseJson = JSON.parse(xhr.responseText);
-	        var isliked = responseJson.isliked;
-	        var postlike = responseJson.postlike;
-	        console.log(isliked);
-	        console.log(postlike);	        
-	        // isliked 값에 따라 좋아요 버튼 색상 변경
-	        document.querySelector(".like").style.background = isliked == 0 ? "lightgray" : "#FF5733";
-	        // 좋아요 수 업데이트
-	        document.getElementById('likeCount').textContent = postlike;
-	      } else {
-	        // 에러 처리
-	      }
-	    }
-	  };
-
-	  var requestData = 'postlike=' + postlike + '&isliked=' + isliked + "&postid=" + postid + "&userid=" + ${userid};
-	  xhr.send(requestData);
-	  // 서버로 요청 전송
-	  document.getElementById("likeCount").textContent = likeCount;
+		  if('${isliked}' === 'null' || '${isliked}' === ''){
+			  window.alert("로그인 후 이용하세요");
+		  }
+		  else{
+			  var xhr = new XMLHttpRequest();
+			  xhr.open('POST', '/recipeLike');
+			  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			  xhr.onreadystatechange = function() {
+			    if (xhr.readyState === XMLHttpRequest.DONE) {
+			      if (xhr.status === 200) {
+			        // JSON 데이터 파싱
+			        var responseJson = JSON.parse(xhr.responseText);
+			        var isliked = responseJson.isliked;
+			        var postlike = responseJson.postlike;
+			        console.log(isliked);
+			        console.log(postlike);	        
+			        // isliked 값에 따라 좋아요 버튼 색상 변경
+			        document.querySelector(".like").style.background = isliked == 0 ? "lightgray" : "#FF5733";
+			        // 좋아요 수 업데이트
+			        document.getElementById('likeCount').textContent = postlike;
+			      } else {
+			        // 에러 처리
+			    	
+			      }
+			    }
+			  };
+		
+			  var requestData = 'postlike=' + postlike + '&isliked=' + isliked + "&postid=" + postid + "&userid=" + '${userid}';
+			  xhr.send(requestData);
+			  // 서버로 요청 전송
+			  document.getElementById("likeCount").textContent = likeCount;
+		  }
 	}
 
 	

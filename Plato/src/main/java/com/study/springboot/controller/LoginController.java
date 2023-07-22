@@ -74,21 +74,28 @@ public class LoginController {
 			) {
 		System.out.println("/recipe"+ postid);
 		HttpSession session = request.getSession();
-		int userid = (int) session.getAttribute("userid");
 		likeDTO dto = new likeDTO();
 		postDTO pdto = new postDTO();
+		
+		if (session.getAttribute("userid") != null) { // 세션 값이 존재하는 경우
+			int userid = (int) session.getAttribute("userid");
+			dto.setUserid(userid);
+			model.addAttribute("userid", userid);
+			int isliked = likeservice.getisliked(dto);
+			model.addAttribute("isliked", isliked);
+		}
+		else {
+			
+		}
 		pdto.setPostid(postid);
 		dto.setPostid(postid);
-		dto.setUserid(userid);
 		int postlike = likeservice.getpostliked(dto);
-		int isliked = likeservice.getisliked(dto);
 		int viewup = postService.viewup(pdto);
 		
 		System.out.println("viewup result : " + viewup);
 		
 		model.addAttribute("postlike", postlike);
-		model.addAttribute("isliked", isliked);
-		model.addAttribute("userid", userid);
+		
 		
 		
 		// 게시글 기본정보 가져오기
@@ -102,7 +109,6 @@ public class LoginController {
 		int diff = postdto.getDiff();
 		
 		System.out.println(title);
-		System.out.println(userid);
 		System.out.println(nickname);
 		System.out.println(mnp);
 		System.out.println(ytbl);

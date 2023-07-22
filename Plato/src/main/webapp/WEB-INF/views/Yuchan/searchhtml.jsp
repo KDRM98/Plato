@@ -378,7 +378,7 @@
         title: 'Recipe 1',
         author: 'Author 1',
         image: 'https://via.placeholder.com/200x200',
-        ingredients: ['재료 1', '재료 2', '재료 3', '재료 4', '재료 5', '재료 6', '재료 7', '재료 8']
+        ingredients: ['재료 1', '재료 2', '재료 3', '재료 4', '재료 5', '재료 6', '재료 7', '재료 8', '재료 9','재료 10', '재료 11', '재료 12']
       },
       {
         title: 'Recipe 2',
