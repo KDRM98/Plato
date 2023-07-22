@@ -119,7 +119,7 @@ public class EunsolController {
 			String path2 = "";
 			try {
 				path1 = ResourceUtils.getFile("classpath:static/image_upload/").toPath().toString();
-				path2 = ResourceUtils.getFile("classpath:../../../src/main/resourcesstatic/image_upload/").toPath().toString();
+				path2 = ResourceUtils.getFile("classpath:../../../src/main/resources/static/image_upload/").toPath().toString();
 			} catch (FileNotFoundException e) {
 
 				e.printStackTrace();
