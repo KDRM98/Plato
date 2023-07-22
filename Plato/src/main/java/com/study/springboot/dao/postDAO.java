@@ -1,5 +1,7 @@
 package com.study.springboot.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.study.springboot.dto.postDTO;
@@ -14,4 +16,6 @@ public interface postDAO {
 	int viewup(postDTO dto);
 	
 	postDTO getpost(int postid);
+	
+	List<postDTO> getallpost(String title);
 }

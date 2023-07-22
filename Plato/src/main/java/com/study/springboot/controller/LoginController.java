@@ -421,8 +421,43 @@ public class LoginController {
 
 
 	@RequestMapping("/searchhtml")
-	public String searchhtml() {
-		System.out.println("/searchhtml");
+	public String searchhtml(
+			@RequestParam("title") String search,
+			Model model
+			) {
+		List<postDTO> postlist = new ArrayList<>();
+		postlist = postService.getallpost(search);
+		List<String> title = new ArrayList<>();
+		List<String> nickname = new ArrayList<>();
+		List<String> timg = new ArrayList<>();
+		List<List<String>> ing = new ArrayList<>();
+		// title, nickname, timg, ingredient 받기
+		for(postDTO dto : postlist) {
+			String dtitle = dto.getTitle();
+			String dnickname = dto.getNickname();
+			String dtimg = dto.getmnp();
+			int postid = dto.getPostid();
+			List<ingredientDTO> ingredientList = ingredientService.selectIngredientByRecipeId(postid);
+			List<String> ingList = new ArrayList<>();
+			for(ingredientDTO ingredient : ingredientList) {
+				String ding = ingredient.getIngredient();
+				ingList.add(ding);
+			}
+			title.add(dtitle);
+			nickname.add(dnickname);
+			timg.add(dtimg);
+			ing.add(ingList);
+		}
+		model.addAttribute("title", title);
+		model.addAttribute("nickname", nickname);
+		model.addAttribute("timg", timg);
+		model.addAttribute("ing", ing);
+		
+		System.out.println("title : " + title);
+		System.out.println("nickname : " + nickname);
+		System.out.println("timg : " + timg);
+		System.out.println("ing : " + ing);
+		
 		return "Yuchan/searchhtml";
 	}
 	

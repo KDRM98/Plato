@@ -27,4 +27,11 @@
 		WHERE postid = ${postid}
      </update>
      
+     <select id="getallpost" parameterType="String" resultType="com.study.springboot.dto.postDTO">
+		SELECT p.*, m.nickname
+		FROM post p
+		LEFT OUTER JOIN member m ON(m.userid = p.userid) 
+	    WHERE title LIKE '%' || #{title} || '%'
+     </select>
+     
 </mapper>

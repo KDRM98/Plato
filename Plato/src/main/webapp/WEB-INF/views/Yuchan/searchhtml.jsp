@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ page import="java.util.List, java.util.ArrayList, java.util.Map, java.util.HashMap" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +30,7 @@
     }
 
     .search-input {
-      width: 100%;
+      width: 300px;
       padding: 10px;
       border: 1px solid #ccc;
       padding-left: 40px;
@@ -203,22 +205,12 @@
       <div class="search-icon">
         <i class="fas fa-search"></i>
       </div>
-      <input id="search-input" class="search-input" type="text" placeholder="레시피 찾기...">
+      <form action="/searchhtml">
+      	<input id="search-input" name="title" class="search-input" type="text" placeholder="레시피 찾기...">
+      </form>
     </div>
   
-    <div class="search-container">
-      <div class="search-icon">
-        <i class="fas fa-plus"></i>
-      </div>
-      <input id="ingredient-include" class="search-input" type="text" placeholder="재료 추가...">
-    </div>
-  
-    <div class="search-container">
-      <div class="search-icon">
-        <i class="fas fa-minus"></i>
-      </div>
-      <input id="ingredient-exclude" class="search-input" type="text" placeholder="재료 제외...">
-    </div>
+    
   </div>
   
   <div class="tags-container" id="tags-container"></div>
@@ -241,9 +233,6 @@
   <script>
     const searchInput = document.getElementById('search-input');
     const searchIcon = document.querySelectorAll('.search-icon');
-    const ingredientIncludeInput = document.getElementById('ingredient-include');
-    const ingredientExcludeInput = document.getElementById('ingredient-exclude');
-    const tagsContainer = document.getElementById('tags-container');
     const recipesGridContainer = document.getElementById('recipes-grid');
 
     let selectedTags = [];
@@ -259,22 +248,6 @@
     });
 
     // 엔터 눌러 테그 추가하는 기능
-    ingredientIncludeInput.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter') {
-        addTag(ingredientIncludeInput.value, false);
-        ingredientIncludeInput.value = '';
-        searchRecipes();
-      }
-    });
-
-    // 제료 제거 테그 기능. 엔터 눌러 추가.
-    ingredientExcludeInput.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter') {
-        addTag(ingredientExcludeInput.value, true);
-        ingredientExcludeInput.value = '';
-        searchRecipes();
-      }
-    });
 
     // 레시피 검색 엔진
     function searchRecipes() {
@@ -340,96 +313,23 @@
     }
   }
 
-    // 테그 추가
-    function addTag(tagText, isRemoved) {
-      const tag = document.createElement('div');
-      tag.className = 'tag';
-      if (isRemoved) {
-        tag.classList.add('tag-removed');
-      }
-      tag.textContent = tagText;
 
-      const tagRemove = document.createElement('span');
-      tagRemove.className = 'tag-remove';
-      tagRemove.textContent = 'x';
-      tagRemove.addEventListener('click', function () {
-        tag.parentNode.removeChild(tag);
-        removeTag(tagText);
-        searchRecipes();
-      });
-
-      tag.appendChild(tagRemove);
-      tagsContainer.appendChild(tag);
-
-      selectedTags.push(tagText);
-    }
-
-    // 테그 제거
-    function removeTag(tagText) {
-      const index = selectedTags.indexOf(tagText);
-      if (index > -1) {
-        selectedTags.splice(index, 1);
-      }
-    }
 
     // 샘플
-    const recipesData = [
-      {
-        title: 'Recipe 1',
-        author: 'Author 1',
-        image: 'https://via.placeholder.com/200x200',
-        ingredients: ['재료 1', '재료 2', '재료 3', '재료 4', '재료 5', '재료 6', '재료 7', '재료 8', '재료 9','재료 10', '재료 11', '재료 12']
-      },
-      {
-        title: 'Recipe 2',
-        author: 'Author 2',
-        image: 'https://via.placeholder.com/200x200',
-        ingredients: ['재료 4', '재료 2', '재료 5']
-      },
-      {
-        title: 'Recipe 3',
-        author: 'Author 3',
-        image: 'https://via.placeholder.com/200x200',
-        ingredients: ['재료 6', '재료 1', '재료 7']
-      },
-      {
-        title: 'Recipe 4',
-        author: 'Author 4',
-        image: 'https://via.placeholder.com/200x200',
-        ingredients: ['재료 8', '재료 2', '재료 9']
-      },
-      {
-        title: 'Recipe 5',
-        author: 'Author 5',
-        image: 'https://via.placeholder.com/200x200',
-        ingredients: ['재료 10', '재료 11', '재료 12']
-      },
-      {
-        title: 'Recipe 6',
-        author: 'Author 6',
-        image: 'https://via.placeholder.com/200x200',
-        ingredients: ['재료 13', '재료 2', '재료 14']
-      },
-      {
-        title: 'Recipe 7',
-        author: 'Author 7',
-        image: 'https://via.placeholder.com/200x200',
-        ingredients: ['재료 15', '재료 16', '재료 2']
-      },
-      {
-        title: 'Recipe 8',
-        author: 'Author 8',
-        image: 'https://via.placeholder.com/200x200',
-        ingredients: ['재료 17', '재료 18', '재료 19']
-      },
-      {
-        title: 'Recipe 9',
-        author: 'Author 9',
-        image: 'https://via.placeholder.com/200x200',
-        ingredients: ['재료 20', '재료 2', '재료 21']
-      }
-    ];
+  var recipesData = [];
 
+  <c:forEach items="${title}" var="titleItem" varStatus="loop">
+    var recipe = {
+      title: "${titleItem}",
+      author: "${nickname[loop.index]}",
+      image: "${timg[loop.index]}",
+      ingredients: [ <c:forEach items="${ing[loop.index]}" var="ingredient" varStatus="ingLoop">
+                      "${ingredient}"${!ingLoop.last ? ', ' : ''}
+                    </c:forEach> ]
+    };
+    recipesData.push(recipe);
+  </c:forEach>
+  console.log(recipesData);
     generateRecipeCards();
 
   </script>

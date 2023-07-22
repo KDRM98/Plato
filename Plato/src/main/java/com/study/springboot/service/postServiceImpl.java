@@ -1,5 +1,7 @@
 package com.study.springboot.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,12 @@ public class postServiceImpl implements postService{
 	public int viewup(postDTO dto) {
 		int result = DAO.viewup(dto);
 		return result;
+	}
+
+	@Override
+	public List<postDTO> getallpost(String title) {
+		List<postDTO> dto = DAO.getallpost(title);
+		return dto;
 	}
 	
 }
