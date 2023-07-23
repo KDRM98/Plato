@@ -16,6 +16,7 @@
     }
 
     .recipe-grid {
+      padding-top: 30px;
       background-color: #555;
     }
     .search-bars-container {
@@ -215,18 +216,6 @@
   
   <div class="tags-container" id="tags-container"></div>
   
-  <div class="stat_box">
-    <div class="sort-select-wrapper">
-      <div class="sort-select-container">
-        <select id="sort-select">
-          <option value="latest">최신순</option>
-          <option value="likes">좋아요순</option>
-          <option value="bookmarks">북마크순</option>
-          <option value="views">조회수순</option>
-        </select>
-      </div>
-    </div>
-  </div>
 
   <div class="recipe-grid" id="recipes-grid"></div>
 
@@ -246,8 +235,6 @@
         searchRecipes();
       }
     });
-
-    // 엔터 눌러 테그 추가하는 기능
 
     // 레시피 검색 엔진
     function searchRecipes() {
@@ -304,11 +291,31 @@
 
       recipeCard.appendChild(recipeDetails);
 
+      const form = document.createElement('form');
+      form.action = 'recipe';
+      form.method = 'post';
+
+      // Create an input element to hold the postid value
+      const inputPostId = document.createElement('input');
+      inputPostId.type = 'hidden';
+      inputPostId.name = 'postid';
+      inputPostId.value = recipe.postid; // Set the value to the postid of the current recipe
+      form.appendChild(inputPostId);
+
+      // Create the "레시피 보기" button
       const quickViewButton = document.createElement('button');
       quickViewButton.className = 'quick-view-button';
-      quickViewButton.textContent = '미리 보기';
+      quickViewButton.textContent = '레시피 보기';
 
-      recipeCard.appendChild(quickViewButton);
+      // Add an event listener to the button to submit the form when clicked
+      quickViewButton.addEventListener('click', function () {
+        form.submit();
+      });
+
+      // Append the button and form to the recipe card
+      form.appendChild(quickViewButton);
+      recipeCard.appendChild(form);
+
       recipesGridContainer.appendChild(recipeCard);
     }
   }
@@ -325,7 +332,8 @@
       image: "${timg[loop.index]}",
       ingredients: [ <c:forEach items="${ing[loop.index]}" var="ingredient" varStatus="ingLoop">
                       "${ingredient}"${!ingLoop.last ? ', ' : ''}
-                    </c:forEach> ]
+                    </c:forEach> ],
+      postid: "${postid[loop.index]}"
     };
     recipesData.push(recipe);
   </c:forEach>

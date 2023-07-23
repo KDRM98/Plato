@@ -427,6 +427,7 @@ public class LoginController {
 			) {
 		List<postDTO> postlist = new ArrayList<>();
 		postlist = postService.getallpost(search);
+		List<Integer> postid = new ArrayList<>();
 		List<String> title = new ArrayList<>();
 		List<String> nickname = new ArrayList<>();
 		List<String> timg = new ArrayList<>();
@@ -436,8 +437,8 @@ public class LoginController {
 			String dtitle = dto.getTitle();
 			String dnickname = dto.getNickname();
 			String dtimg = dto.getmnp();
-			int postid = dto.getPostid();
-			List<ingredientDTO> ingredientList = ingredientService.selectIngredientByRecipeId(postid);
+			int dpostid = dto.getPostid();
+			List<ingredientDTO> ingredientList = ingredientService.selectIngredientByRecipeId(dpostid);
 			List<String> ingList = new ArrayList<>();
 			for(ingredientDTO ingredient : ingredientList) {
 				String ding = ingredient.getIngredient();
@@ -447,16 +448,19 @@ public class LoginController {
 			nickname.add(dnickname);
 			timg.add(dtimg);
 			ing.add(ingList);
+			postid.add(dpostid);
 		}
 		model.addAttribute("title", title);
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("timg", timg);
 		model.addAttribute("ing", ing);
+		model.addAttribute("postid", postid);
 		
 		System.out.println("title : " + title);
 		System.out.println("nickname : " + nickname);
 		System.out.println("timg : " + timg);
 		System.out.println("ing : " + ing);
+		System.out.println("postid : " + postid);
 		
 		return "Yuchan/searchhtml";
 	}
