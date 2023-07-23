@@ -93,27 +93,46 @@ public class postController2 {
 		dto2.setStartNum(startNum);
 		dto2.setEndNum(endNum);
 
-		req.setAttribute("pageNum", pageNum);
-		model.addAttribute("countPerpage", countPerpage);
 		
 		HttpSession session = req.getSession();
 		dto2.setUserid((int)session.getAttribute("userid"));
 		Map map = service.likePost(dto2);
 		
 		List likePost = (List) map.get("likePost");		
-		model.addAttribute("likePost", likePost);
-
-		int total = (int) map.get("totalCount");
-		req.setAttribute("total", total);
+		map.put("likePost", likePost);
+		map.put("countPerpage", countPerpage);
+		map.put("pageNum", pageNum);
+		
+	
+		
+		int total = (int) map.get("likeTotalCount");
+		map.put("total", total);
 		System.out.println("total :"+ total);
 		
-		String nickname = (String)session.getAttribute("nickname");
-		String image = (String)session.getAttribute("image");
-		//한번에 하는 방법이 있나
+		
+		double lastPage = Math.ceil((double) total / countPerpage);
 
-		model.addAttribute("nickname" ,nickname);
-		model.addAttribute("image" ,image);
-				
+	    // 페이징 그룹
+		// 한 그룹당 보여줄 수
+		int groupCount =3;
+		// 현재 페이지
+		// 현재 속한 그룹
+		double group = Math.floor((((double)pageNum-1)/ groupCount) + 1);
+		// 그룹의 시작 페이지, 끝 페이지
+		int end = (int) group*groupCount;
+		if(end > lastPage){
+			end= (int)lastPage;
+		}
+		int begin = end - (groupCount-1);
+		if(begin < 1){
+			begin = 1;
+			end = groupCount;
+		} 
+		map.put("begin", begin);
+		map.put("end", end);
+		map.put("lastPage", lastPage);
+		System.out.println("lastPage:"+ lastPage);
+		System.out.println("조회수 :" + likePost.get(0));
 		return map;
 	}
 	

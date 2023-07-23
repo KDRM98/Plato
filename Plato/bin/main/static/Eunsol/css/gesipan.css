@@ -191,6 +191,11 @@
 	text-align: left;
 	padding-left: 20px;
 	justify-content: flex-start;
+
+}
+
+.gsp_content1 .tem.a3 a{
+	color: black;
 }
 
 .gsp_content1 .tem.a4 {
@@ -260,9 +265,6 @@
 	font-weight: bold;
 }
 
-.tab3 .tab_btn2 {
-	display: none;
-}
 
 .tab_btn2 .tab_cnlike {
 	border: none;
@@ -345,6 +347,10 @@
 	text-align: left;
 	padding-left: 20px;
 	justify-content: flex-start;
+}
+
+.gsp_content2 .tem.a3 a{
+	color: black;
 }
 
 .gsp_content2 .tem.a4 {
