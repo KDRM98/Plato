@@ -23,7 +23,7 @@
 	           		${title }
 	      		</span>
 	      		</div>
-	      		<p style="color: purple; padding-top: 20px;">By ${nickname }</p>
+	      		<p style="color: purple; padding-top: 20px;">By ${nick }</p>
 	      		
 		        <div class="subinfo" style="display: flex;">
 		        	<div class="info_icon">

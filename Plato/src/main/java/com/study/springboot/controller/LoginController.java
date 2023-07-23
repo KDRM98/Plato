@@ -165,7 +165,7 @@ public class LoginController {
 	    
 	    
 	    model.addAttribute("title", title);
-		model.addAttribute("nickname", nickname);
+		model.addAttribute("nick", nickname);
 		model.addAttribute("mnp", mnp);
 		model.addAttribute("ytbl", ytbl);
 		model.addAttribute("info", info);
@@ -422,7 +422,7 @@ public class LoginController {
 			postid.add(dpostid);
 		}
 		model.addAttribute("title", title);
-		model.addAttribute("nickname", nickname);
+		model.addAttribute("nick", nickname);
 		model.addAttribute("timg", timg);
 		model.addAttribute("ing", ing);
 		model.addAttribute("postid", postid);

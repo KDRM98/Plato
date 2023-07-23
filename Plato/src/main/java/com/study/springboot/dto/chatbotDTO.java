@@ -10,7 +10,6 @@ public class chatbotDTO {
 	private String mnp;
 	private int postid;
 	
-	
 
 	public int getPostid() {
 		return postid;

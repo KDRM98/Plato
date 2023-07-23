@@ -36,6 +36,7 @@
       border: 1px solid #ccc;
       padding-left: 40px;
       margin: 15px 5px 15px;
+      background-color: white;
     }
 
     .search-icon {
@@ -133,7 +134,7 @@
 
     .recipe-image {
       width: 300px;
-      max-height: 200px;
+      height: 200px;
       object-fit: cover;
     }
 
@@ -207,7 +208,7 @@
         <i class="fas fa-search"></i>
       </div>
       <form action="/searchhtml">
-      	<input id="search-input" name="title" class="search-input" type="text" placeholder="레시피 찾기...">
+      	<input id="search-input" name="title" class="search-input" type="text" placeholder="레시피 찾기">
       </form>
     </div>
   
@@ -328,7 +329,7 @@
   <c:forEach items="${title}" var="titleItem" varStatus="loop">
     var recipe = {
       title: "${titleItem}",
-      author: "${nickname[loop.index]}",
+      author: "${nick[loop.index]}",
       image: "${timg[loop.index]}",
       ingredients: [ <c:forEach items="${ing[loop.index]}" var="ingredient" varStatus="ingLoop">
                       "${ingredient}"${!ingLoop.last ? ', ' : ''}
