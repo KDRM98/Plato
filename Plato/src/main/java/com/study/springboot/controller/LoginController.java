@@ -462,7 +462,7 @@ public class LoginController {
 		System.out.println("ing : " + ing);
 		System.out.println("postid : " + postid);
 		
-		return "Yuchan/searchhtml";
+		return "viewList102";
 	}
 	
 	
