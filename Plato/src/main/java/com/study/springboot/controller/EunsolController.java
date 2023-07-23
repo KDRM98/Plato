@@ -176,12 +176,14 @@ public class EunsolController {
 			int userid = (int) session.getAttribute("userid");
 			String nickname = (String) session.getAttribute("nickname");
 
-			session.setAttribute("welcome", "님, 맛있는 비밀의 모험을 떠나보세요!");
-			String welcome = (String) session.getAttribute("welcome");
+			/*
+			 * session.setAttribute("welcome", "님, 맛있는 비밀의 모험을 떠나보세요!"); String welcome =
+			 * (String) session.getAttribute("welcome");
+			 */
 
 			model.addAttribute("userid", userid);
 			model.addAttribute("nickname", nickname);
-			model.addAttribute("welcome", welcome);
+			/* model.addAttribute("welcome", welcome); */
 
 		}
 
@@ -279,7 +281,7 @@ public class EunsolController {
 		System.out.println("/logout");
 		HttpSession session = req.getSession();
 		session.invalidate();
-		return "Eunsol/header"; // 메인페이지로 수정
+		return "redirect:/main"; // 메인페이지로 수정
 	}
 
 	@RequestMapping("/login_check")
@@ -322,7 +324,7 @@ public class EunsolController {
 				
 				Map logincomp = new HashMap();
 				logincomp.put("nickname", nickname);
-				logincomp.put("url", "/header"); // 메인으로 나중에 수정 요망
+				logincomp.put("url", "/main"); // 메인으로 나중에 수정 요망
 				return logincomp;
 
 			} else {

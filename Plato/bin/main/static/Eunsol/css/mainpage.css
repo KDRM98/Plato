@@ -31,15 +31,15 @@ body {
 	font-weight: bold;
 	padding: 10px 20px;
 	white-space: nowrap;
-	font-size: 75px;
+	font-size: 65px;
 	z-index: 1;
-	top: 230px;
+	top: 180px;
 	color: #333;
 }
 
 .search-container {
 	position: relative;
-	padding: 20px 20px;
+	padding: 18px 20px;
 	background-color: rgba(255, 255, 255, 0.75);
 	cursor: pointer;
 	width: 600px;
@@ -58,14 +58,14 @@ body {
 .search-container .search-button i {
 	opacity: 0.5;
 	transition: opacity 0.3s ease;
-	font-size: 35px;
+	font-size: 30px;
 }
 
 .advanced-search-button {
 	position: absolute;
-	top: 480px;
+	top: 380px;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 18px;
 	background: none;
 	border: none;
 	cursor: pointer;
