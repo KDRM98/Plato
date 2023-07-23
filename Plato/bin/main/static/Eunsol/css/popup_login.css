@@ -1,0 +1,253 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+body{
+
+}
+.popup_login button, input, select{
+	border-radius: 0;
+	border: none;
+	background: 0 0;
+	outline: 0;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.popup_login {
+	position : absolute;
+	left : 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	height: 500px;
+	border-radius: 100%;
+	background-color : white;
+/* 	background-image : url("/Eunsol/imges/login_plato.png");
+	background-repeat :no-repeat;
+	background-position : 53% 50%;
+	background-size : 101%; */
+	display :none;
+	transition: all 0.5s;
+	z-index : 5;
+	box-sizing: border-box;
+}
+
+.dim {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index :1;
+	width:100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.6);
+	/* opacity: 0;	 */
+	display : none;
+	transition: all 0.5s;
+}
+
+.popup_login:target{
+	/* opacity: 1; */
+}
+.popup_login:target + .dim{
+	/* opacity: 1; */
+	 z-index: 3;
+}
+
+#popcloseicon{
+	display: none;
+}
+
+
+.popup_login .close{
+	position : absolute;
+	left : 90%;
+/* 	display : block; */
+	width : 40px;
+	height: 40px;
+	border-radius: 100%;
+/* 	text-indent : -9999em; */
+/* 	border: 1px solid pink; */
+/* 	background-image: url("/Eunsol/imges/x.svg");
+	background-size : 40%;
+	background-repeat : no-repeat;
+	background-position : 50% 50%; */
+	cursor: pointer;
+	background-color: white;
+	z-index: 10;
+
+}
+
+.popup_login #popcloseimg{
+	width: 24px;
+	height: 24px;;
+	display: block;
+	margin: 8px;
+
+}
+
+.popup_login #popcloseimg:hover {
+  filter: brightness(1000%) saturate(100%) invert(100%) contrast(1000%);
+}
+
+.popup_login .content{
+	position : absolute;
+	left : 50%;
+	top: 46%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: auto;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 10px;
+	z-index: 7;
+
+	
+}
+
+.popup_login .content img {
+	padding-bottom: 10px;
+	width: 170px;
+}
+
+
+
+.basic_info{
+	border: 1px solid  #a1a1a1;	
+}
+
+.form_item input{
+	flex: 1 1 auto;
+	box-sizing: border-box;
+	width: 270px;
+	font-size: 16px;
+	line-height: 22px;
+	color: #222
+}
+
+input::placeholder {
+  font-size: 12px;
+}
+
+.form_item::before {
+	position: absolute;
+	top: 10px;
+	left: 9px;
+	content: ''
+}
+
+
+.form_item {
+	display: flex;
+	align-items: center;
+	position: relative;
+	box-sizing: border-box;
+	max-width: 100%;
+	min-height: 50px;
+	padding: 0 10px 0 45px;
+}
+
+
+.form_item::after{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	/* border-radius: inherit; */
+	pointer-events: none;
+	content: ''
+}
+
+.form_item.user::after{
+border-bottom: 0.5px solid #dfdfdf;}
+
+.form_item.user::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -96px -296px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
+.form_item.user.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -224px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
+.form_item.pw::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -64px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
+.form_item.pw.a::before {
+	background-image: url("/Eunsol/imges/join_icon.png");
+	background-size: 340px 326px;
+	background-position: -128px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
+
+
+
+.popup_login .error{
+font-size: 12px;
+color: #e7223d;
+padding-bottom: 15px;
+height: auto;
+text-align: left;
+font-weight: bold;
+	}
+
+.popup_login .error.two {
+	display: none;
+}
+
+.popup_login ul{
+		display: flex;
+		justify-content: space-between;
+	
+}
+
+.popup_login ul li a{
+	color: black;
+}
+
+.popup_login ul li a:hover{
+	font-weight: bold;
+}
+.popup_login .login_btn{
+	padding: 10px 0px 5px 0px;
+	height: 40px;
+	width: 100%
+}
+
+.popup_login button
+{width: 100%;
+height: 100%;
+background-color:#212121;
+color: white;
+border: none;
+	
+}
+
+.popup_login .sign_up{
+	color: black;
+}
+
+.popup_login .sign_up:hover{
+	font-weight: bold;
+}

@@ -1,0 +1,170 @@
+
+@font-face {
+	font-family: 'SUITE-Regular';
+	src: url('/font/SUITE-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+body {
+	font-family: 'SUITE-Regular', sans-serif;
+/* 	font-size: 16px; */
+}
+
+* {
+
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+
+header {
+	height: 60px;
+	text-align: center;
+	background-color: white;
+	border-bottom: 1px solid  #d3d3d3;
+	/* 	border-bottom: 1px solid red; */
+}
+
+header .logo img {
+	height: 40px;
+	margin: 10px;
+}
+
+header .navigation {
+	/* float: left; */
+	position: absolute;
+	left: 0;
+	display: inline; /* a태그가 인라인 요소이기 때문에 width와 height 값 변경을 위해*/
+	width: 320px;
+	margin: 21px;
+	display: inline-flex;
+	/* text-indent: -9999em; */
+	/*글씨 사라졋*/
+/* 	background-image: url("/Eunsol/imges/three_bars.svg");
+	background-repeat: no-repeat;
+	background-size: contain; */
+	justify-content: space-between;
+}
+
+#menuicon{
+	display: none;
+}
+
+#menuimg{
+	width: 25px;
+}
+
+.custom-checkbox {
+/*   display: inline-block; */
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
+.custom-checkbox:hover img {
+  filter: brightness(1000%) saturate(100%) invert(100%) contrast(1000%);
+}
+
+header .hello_nickname{
+	font-size: 13px;
+	
+}
+
+header .hello_nickname .header_nickname{
+	color: #FF5733;
+}
+
+header #heartImg{
+	width: 12px;
+}
+
+
+
+header .user_status {
+	position: absolute;
+	right: 0;
+	/* float: right; */
+	margin: 20px 15px;
+}
+
+header .user_status ul li {
+	display: inline-block;
+	margin: 0px 10px;
+}
+
+header .user_status ul li{
+	color: #a1a1a1;
+	cursor: pointer;
+}
+
+header .user_status ul li:hover {
+	color: #212121;
+	font-weight: bold;
+}
+#search_glass:hover img {
+  filter: brightness(1000%) saturate(100%) invert(100%) contrast(1000%);
+}
+
+header .user_status ul li a {
+	display: inline-flex;
+/* 	text-align: left; */
+	width: 100%;
+	height: 21px;
+/* 	background-image: url("/Eunsol/imges/search_glass.svg");
+	background-position: 100% 50%;
+	background-repeat: no-repeat; */
+	color: black;
+}
+
+
+
+
+.popup-overlay2 {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.75);
+	z-index: 9999;
+	align-items: center;
+	justify-content: center;
+}
+
+.popup2 {
+	background-color: transparent;
+	border: transparent;
+	border-bottom: 1px solid grey;
+	padding: 10px;
+	position: relative;
+	width: 60%;
+}
+
+.popup2 input {
+	background-color: transparent;
+	border: transparent;
+	outline: none;
+	width: 100%;
+	font-size: 35px;
+}
+
+.popup2 .close-button2 {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.popup2 .close-button2 i {
+	color: grey;
+	font-size: 16px;
+}
+
+.popup2 .search-bar2::placeholder{
+	font-size: 20px;
+} 

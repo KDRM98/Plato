@@ -67,7 +67,7 @@
 								</div>
 								<div class="tem a2">${item.postid}</div>
 								<div class="tem a3">
-									<a href="#"}>${item.title}</a>
+									<a href="#"}> <a href="/recipe?postid=${item.postid}"> ${item.title}</a>
 								</div>
 								<div class="tem a4">${item.cdate}</div>
 								<div class="tem a5">${item.views}</div>

@@ -1,0 +1,8 @@
+
+  p {
+    margin: 0; /* p 태그의 위아래 마진을 0으로 설정하여 간격을 없앰 */
+    font-size: 14px; /* 글꼴 크기 조절 */
+    line-height: 1.6; /* 줄 간격 조절 */
+    font-size: 17px;
+    white-space: nowrap;
+  }

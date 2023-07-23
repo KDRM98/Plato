@@ -1,0 +1,100 @@
+.lr-container{
+	width : 1000px;
+	margin: 0 auto;
+	border : 1px solid black;
+	display: flex;
+}
+
+.l-container {
+  flex: 2;
+  margin-right: 20px;
+}
+
+.r-container {
+  flex: 1;
+}
+
+.registContainer{
+	margin-left : 100px;
+	margin-top : 50px;
+}
+
+.regist{
+	padding-top: 30px;
+	min-height: 50px;
+}
+#title{
+	font-weight: bold;
+	font-size: 30px;
+}
+.difficulty-button{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: white; 
+	font-weight:bold;
+}
+#diff-one{
+	background-color: black;
+}
+#spenttime {
+  position: relative;
+  display: inline-block;
+}
+
+#spenttime select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+}
+
+#spenttime select::-ms-expand {
+  display: none;
+}
+
+#spenttime::after {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #888;
+  pointer-events: none;
+}
+
+/* 스타일을 적용할 때 선택된 옵션 스타일 */
+#spenttime select option:checked {
+  background-color: #e0e0e0;
+}
+
+.ingredient-input{
+	height: 25px;
+	width: 200px;
+}
+
+.amount-input{
+	height: 25px;
+	width: 200px;
+}
+.addingr-container{
+	margin-top: 600px;
+	margin-left: -70px;
+}
+.new-ingredient{
+	height: 25px;
+	width: 200px;
+}
+#new-ingr-button{
+	width:50px; 
+	height: 30px; 
+	background-color: white; 
+	border-radius: 10px;
+}
