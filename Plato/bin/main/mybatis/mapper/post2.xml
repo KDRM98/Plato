@@ -6,9 +6,9 @@
 	
 	<!-- userid의 게시물의 개수를 구하는 문 -->
 	<select id="totalCount" parameterType="postDTO2" resultType="int">
-		select count(*)
-		from  post
-		where userid=#{userid}
+		SELECT count(*)
+		FROM  post
+		WHERE userid=#{userid}
 	</select>
 	
 	<!-- <select id="gesipan" parameterType="postDTO2" resultType="postDTO2" >
@@ -27,8 +27,8 @@
 	
 
 	<select id="gesipan" parameterType="postDTO2" resultType="postDTO2" >
-		select *
-		from  ( 
+		SELECT *
+		FROM  ( 
 			SELECT rownum AS rnum, temp.*
     		FROM (
         	SELECT title, postid, cdate, views
@@ -45,37 +45,38 @@
 
 
 	<select id="likePost" parameterType="postDTO2" resultType="postDTO2" >
-		select *
-		from  ( 
-			SELECT rownum AS rnum,
-       			  p.title, p.postid, p.cdate, m.nickname
-   	 		FROM likes l
-			LEFT OUTER JOIN post p ON(l.postid = p.postid) 
-			LEFT OUTER JOIN member m ON(m.userid = p.userid) 
-			where userid=#{userid}
-        	ORDER BY l.cdate DESC
-        	)
+		SELECT *
+		FROM (
+    			SELECT rownum AS rnum, temp.*
+    			FROM(
+   					 SELECT p.title, p.postid, p.cdate, m.nickname,p.views
+    				 FROM likes l
+  				     LEFT OUTER JOIN post p ON l.postid = p.postid 
+    			     LEFT OUTER JOIN member m ON m.userid = p.userid 
+   					 WHERE l.userid = #{userid}
+   					 ORDER BY l.cdate DESC) temp
+				) 
 		WHERE rnum <![CDATA[>=]]> #{startNum}
 		  AND rnum <![CDATA[<=]]> #{endNum}
 	</select>
 
 	<select id="likeTotalCount" parameterType="postDTO2" resultType="int">
-		select count(*)
-		from  likes
-		where userid=#{userid}
+		SELECT count(*)
+		FROM  likes
+		WHERE userid=#{userid}
 	</select>
 	
 	
 	<delete id="likedel" parameterType="postDTO2" >
-	delete from likes
-	where likeid =#{likeid}
+	DELETE fROM likes
+	WHERE likeid =#{likeid}
 	</delete>
 	
 	<select id="mainViews" parameterType="postDTO2" resultType="postDTO2" >
-	select *
-		from  ( 
-			select rownum AS rnum, temp.*
-            from
+	SELECT *
+		FROM  ( 
+			SELECT rownum AS rnum, temp.*
+            FROM
             (SELECT 
        			  p.title, p.postid, p.cdate, m.nickname, p.views, p.mnp
    	 		FROM post p

@@ -2,15 +2,12 @@ let at1 = document.querySelector(".at1")
 let gesipan1 = document.querySelector(".gesipan1")
 let at2 = document.querySelector(".at2")
 let gesipan2 = document.querySelector(".gesipan2")
-let tab_btn1 = document.querySelector(".tab_btn1")
-let tab_btn2 = document.querySelector(".tab_btn2")
+
 
 at1.addEventListener("click",function(){
 	
 	gesipan1.style.display ="block"
-	tab_btn1.style.display ="block"
 	gesipan2.style.display ="none"
-	tab_btn2.style.display ="none"
 	at1.style.borderBottom = "2px solid #FF5733"
 	at2.style.borderBottom = "none"
 	
@@ -19,9 +16,7 @@ at1.addEventListener("click",function(){
 at2.addEventListener("click",function(){
 	
 	gesipan1.style.display ="none"
-	tab_btn1.style.display ="none"
 	gesipan2.style.display ="block"
-	tab_btn2.style.display ="block"
 	at1.style.borderBottom = "none"
 	at2.style.borderBottom = "2px solid #FF5733"
 	
