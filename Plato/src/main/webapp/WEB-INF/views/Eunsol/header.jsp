@@ -95,7 +95,7 @@
 				<c:if test="${not empty userid}">
 					<div class="hello_nickname">
 						<img alt="heart Img" src="/Eunsol/imges/heart.svg" id="heartImg">
-						<span class="header_nickname">${nickname}</span>${welcome}
+						<span class="header_nickname">${nickname}</span>님, 맛있는 비밀의 모험을 떠나보세요!
 					</div>
 				</c:if>
 				<!-- 로그인시 닉네임 표출 끝-->

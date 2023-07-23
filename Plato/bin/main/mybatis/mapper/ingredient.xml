@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.springboot.dao.ingredientDAO">
+	 <insert id="insertIngredient" parameterType="String">
+        INSERT INTO INGLIST (ingid, ing)
+        VALUES (seq_ingid.nextval, #{ingredient})
+    </insert>
+    
+    <select id="selectIngredientAll" resultType="com.study.springboot.dto.ingredientDTO">
+        SELECT * FROM INGLIST
+        ORDER BY ingid
+    </select>
+    
+    <insert id="insertInges" parameterType="com.study.springboot.dto.ingredientDTO">
+        INSERT INTO INGES (postid, ingid, ingamt)
+        VALUES (#{postid}, #{ingid}, #{ingamt})
+    </insert>
+    
+    <select id="selectIngIDByName" parameterType="String" resultType="int">
+    	SELECT ingid FROM INGLIST
+		WHERE ing = #{ingredient}
+    </select>
+    
+    <select id="selectIngredientByRecipeId" resultType="com.study.springboot.dto.ingredientDTO">
+    	SELECT i.POSTID, il.ing, i.INGAMT 
+		FROM INGES i
+		JOIN INGLIST il ON i.ingid = il.ingid
+		WHERE i.postid = #{postid}
+    </select>
+</mapper>

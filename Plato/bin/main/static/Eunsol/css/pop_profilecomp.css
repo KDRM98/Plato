@@ -1,0 +1,105 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+body {
+	
+}
+
+.pop_profilecomp button, input, select {
+	border-radius: 0;
+	border: none;
+	background: 0 0;
+	outline: 0;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.pop_profilecomp {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 600px;
+	height: 250px;
+	background-color: white;
+	/* 	background-image : url("/Eunsol/imges/login_plato.png");
+	background-repeat :no-repeat;
+	background-position : 53% 50%;
+	background-size : 101%; */
+	display :none;
+	transition: all 0.5s;
+	z-index: 5;
+	box-sizing: border-box;
+}
+
+.dim {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	/* opacity: 0;	 */
+/* 	display: none; */
+	transition: all 0.5s;
+}
+
+.pop_profilecomp .content {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	height: auto;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 10px;
+	z-index: 7;
+}
+
+.pop_profilecomp .mdfd {
+	height : 50px;
+margin-bottom:20px;
+	font-size: 25px;
+	font-weight: bold;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profilecomp-btn .btn {
+	width: 160px;
+	height: 55px;
+	border: 1px solid #D5C8C8;
+	font-family: 'SUITE-Regular', sans-serif;
+	font-size: 16px;
+	margin: 10px 8px;
+	text-decoration: none;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.profilecomp-btn .check {
+	background-color: black;
+	margin: 0px auto;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 20px;
+	color: white;
+	border: none;
+}
+
+.profilecomp-btn .home {
+	background-color: transparent;
+	cursor: pointer;
+	margin-left: 20px;
+
+}

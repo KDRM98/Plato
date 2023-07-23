@@ -35,9 +35,13 @@ public class mainController {
 		
 		model.addAttribute("mainViews", mainViews);
 
-		String mnp = mainViews.get(0).getMnp(); 
+		String mnp = mainViews.get(2).getMnp(); 
+		String mnp1 = mainViews.get(1).getMnp(); 
+		String mnp2 = mainViews.get(0).getMnp(); 
 		int id =  mainViews.get(0).getPostid(); 
 		System.out.println(mnp);
+		System.out.println(mnp1);
+		System.out.println(mnp2);
 		System.out.println(id);
 		return "viewList9";
 	}
