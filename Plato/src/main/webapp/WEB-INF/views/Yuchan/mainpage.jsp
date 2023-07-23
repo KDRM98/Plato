@@ -288,7 +288,7 @@
     
     .main_content .big-box .tab1{
 	height : 300px;
-	background-image: url(${mainViews[1].mnp});
+	background-image: url(${mainViews[0].mnp});
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;}
