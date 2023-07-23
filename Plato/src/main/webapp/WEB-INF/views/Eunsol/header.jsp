@@ -7,9 +7,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://assets.epicurious.com/photos/54adbf0a19925f464b3bb047/4:1/w_1944,h_486,c_limit/07-Citrus.jpg" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 <title>Insert title here</title>
-<!-- https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css -->
 <!-- css -->
 <link rel="stylesheet" href="Eunsol/css/header.css">
 <link rel="stylesheet" href="Eunsol/css/popup_login.css">

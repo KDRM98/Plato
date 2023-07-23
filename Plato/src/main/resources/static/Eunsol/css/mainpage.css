@@ -17,19 +17,33 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-image: url('https://assets.epicurious.com/photos/54adbb5119925f464b3ba420/4:1/w_1944,h_486,c_limit/28-Cheese.jpg');
+	background-image: url(' https://assets.epicurious.com/photos/54adbe2019925f464b3baabf/4:1/w_1944,h_486,c_limit/16-SquashBlossoms.jpg');
+	/* https://assets.epicurious.com/photos/54adbf0a19925f464b3bb047/4:1/w_1944,h_486,c_limit/07-Citrus.jpg */
+	/* https://assets.epicurious.com/photos/54adbb5119925f464b3ba420/4:1/w_1944,h_486,c_limit/28-Cheese.jpg */
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 50vh;
 	background-color: red;
 }
 
+.search-text {
+	position: absolute;
+	font-weight: bold;
+	padding: 10px 20px;
+	white-space: nowrap;
+	font-size: 75px;
+	z-index: 1;
+	top: 230px;
+	color: #333;
+}
+
 .search-container {
 	position: relative;
-	padding: 20px 10px;
+	padding: 20px 20px;
 	background-color: rgba(255, 255, 255, 0.75);
 	cursor: pointer;
-	width: 40%;
+	width: 600px;
+	top: 30px;
 }
 
 .search-button {
@@ -44,31 +58,20 @@ body {
 .search-container .search-button i {
 	opacity: 0.5;
 	transition: opacity 0.3s ease;
-	font-size: 24px;
-}
-
-.search-text {
-	position: absolute;
-	font-weight: bold;
-	padding: 10px 20px;
-	white-space: nowrap;
-	font-size: 60px;
-	z-index: 1;
-	top: 150px;
-	color: #333;
+	font-size: 35px;
 }
 
 .advanced-search-button {
 	position: absolute;
-	top: 320px;
+	top: 480px;
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 20px;
 	background: none;
 	border: none;
 	cursor: pointer;
 	outline: none;
 	z-index: 1;
-	color: white;
+	color: #333;
 }
 
 .advanced-search-button:hover {
@@ -94,7 +97,7 @@ body {
 	border-bottom: 1px solid grey;
 	padding: 10px;
 	position: relative;
-	width: 60%;
+	width: 800px;
 }
 
 .popup input {
@@ -102,6 +105,7 @@ body {
 	border: transparent;
 	outline: none;
 	width: 100%;
+	margin-left :20px;
 	font-size: 35px;
 }
 
@@ -146,10 +150,9 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 690px;
+	width: 790px;
 	height: auto;
-
-	margin: 40px 0px 150px;
+	margin: 40px 10px 150px;
 }
 
 .main_content .main_title {
@@ -157,9 +160,8 @@ body {
 }
 
 .main_content .big-box {
-	width: 670px;
-	height : 400px;
-	
+	width: 790px;
+	height : 520px;	
 	margin: 40px 0px 40px; 
 	}
 
@@ -168,7 +170,7 @@ body {
 	
 .main_content .big-box .bbox{
 	margin: -50px auto;
-	width: 500px;
+	width: 450px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -177,7 +179,7 @@ body {
 	background-color: white;
 }
 .main_content .big-box .tab2{
-	height: 40px;
+	height: 60px;
 	font-size: 20px;
 	display: flex;
 	flex-direction: column;
@@ -226,8 +228,8 @@ body {
 	align-items: center;
 	justify-content: center;
 	/* margin: 10px; */
-	height: 370px;
-	width: 670px;
+	height: 490px;
+	width: 800px;
 	
 }
 
@@ -236,14 +238,15 @@ body {
 }
 
 .main_content .boxes .box {
-	height: 350px;
-	width: 325px;	
+	height: 430px;
+	width: 390px;	
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	border: 1px solid #D5C8C8;
 	background-color: white;
+	
 }
 
 

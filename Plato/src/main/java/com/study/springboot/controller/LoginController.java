@@ -228,29 +228,21 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		int userid = (int) session.getAttribute("userid");
 		System.out.println(userid);
-		
 		// 상대적인 주소 classpath를 이용하는 방법
 		// 상대주소는 bin, 절대경로로 받아서 경로 수정한건 src/main이고 두 경로 모두에 이미지 저장
  		 String resourcePath = ResourceUtils.getFile("classpath:static/Dongmin/title_img/").getAbsolutePath();
 		 String timgpath = resourcePath.replace("/bin/main", "/src/main/resources");
-		 
 		 String iresourcePath = ResourceUtils.getFile("classpath:static/Dongmin/inst_img/").getAbsolutePath();
 		 String Instimgpath = iresourcePath.replace("/bin/main", "/src/main/resources");
-
-		
 //		String timgfilePath = "classpath:static/Dongmin/title_img/";
 		// 제목 가져오기
 	    String title = request.getParameter("title");
-	    
 	    // 난이도 가져오기
 	    int diff = Integer.parseInt(request.getParameter("difficulty"));
-	    
 	    // 소요시간 가져오기
 	    int time = Integer.parseInt(request.getParameter("settime"));
-	    
 	    // 소개글 가져오기
 	    String info = request.getParameter("desc");
-	    
 	    //유튜브링크 가져오기
 	    String ytbl = request.getParameter("ytbl");
 	    
@@ -300,33 +292,12 @@ public class LoginController {
 	            String dbImagePath = "Dongmin/inst_img/" + imageFileName;
 	            dbImagePaths.add(dbImagePath);
 	        }
-	        
-			
 	      } catch (IOException e) {
-	        // 파일 저장 실패 시 예외 처리
 	        e.printStackTrace();
 	      }
-	    // 레시피 등록 로직 호출
-	    // recipeService.addRecipe(title, writer, difficulty, spentTime, ...);
-	    
-	    // 값 콘솔에 출력
-	    System.out.println("dbImagePath: " + dbImagePaths);
-	    System.out.println("ytbl: " + ytbl);
-	    System.out.println("dbtimgpath: " + dbtimgpath);
-	    System.out.println("Title: " + title);
-	    System.out.println("Writer: " + userid);
-	    System.out.println("Difficulty: " + diff);
-	    System.out.println("Spent Time: " + time);
-	    System.out.println("Description: " + info);
-	    System.out.println("Ingredients: " + Arrays.toString(ingredients));
-	    System.out.println("Amounts: " + Arrays.toString(amounts));
-	    System.out.println("Instructions: " + Arrays.toString(instructions));
-	    
 	    String videoId = extractYouTubeVideoId(ytbl);
-
         // 동영상 ID를 embed 형식으로 변환하여 모델에 담음
         String ytblink = "https://www.youtube.com/embed/" + videoId;
-	    
 	    // DB에 게시글(Post)등록
 	    postDTO pdto = new postDTO();
 	    pdto.setPostid(postid);
@@ -339,7 +310,6 @@ public class LoginController {
 	    pdto.setDiff(diff);
 	    int presult = postService.insertpost(pdto);
 	    System.out.println("post 결과 : "+presult);
-	    
 	    for (int i = 0; i < ingredients.length; i++) {
 	        String ingredient = ingredients[i];
 	        String amount = amounts[i];

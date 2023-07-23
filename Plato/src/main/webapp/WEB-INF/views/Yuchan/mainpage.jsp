@@ -287,15 +287,26 @@
     <style>
     
     .main_content .big-box .tab1{
-	height : 300px;
+	height : 400px;
 	background-image: url(${mainViews[0].mnp});
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: center;}
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	}
+	.big-box .tab1 .inner-border{
+	border: 3px solid white;
+	/* margin: 20px; */
+	height: 360px;
+	width: 750px;}
     
-    .main_content .boxes .box.one .tab1 {
-	height: 200px;
-	width: 325px;
+    .main_content .boxes .box.one .tab1{
+	height: 280px;
+	width: 390px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -307,8 +318,8 @@
 }
 
     .main_content .boxes .box.two .tab1 {
-	height: 200px;
-	width: 325px;
+	height: 280px;
+	width: 390px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -347,12 +358,13 @@
     <div class= "main_content">
     <div class = "main_title">조회수 <strong>Top3</strong></div>
         <div class="big-box" data-value="${mainViews[0].postid}">
-               <div class="tab1"> <%--  <img src="${mainViews[1].mnp}" alt="Food 1"> --%></div> 
+               <div class="tab1"> <%--  <img src="${mainViews[1].mnp}" alt="Food 1"> --%>
+               <div class="inner-border"></div> </div> 
                <div class= "bbox">
                <div class="tab2"><strong>No.1</strong></div> 
                <div class="tab3">${mainViews[0].title}</div> 
                <div class="tab4"></div>
-               <div class="tab5">${mainViews[0].nickname}</div> 
+               <div class="tab5">BY. ${mainViews[0].nickname}</div> 
                </div>
         </div>
         <div class="boxes">
@@ -361,14 +373,14 @@
                <div class="tab2"><strong>No.2</strong></div> 
                <div class="tab3">${mainViews[1].title}</div> 
                <div class="tab4"></div>
-               <div class="tab5">${mainViews[1].nickname}</div> 
+               <div class="tab5">BY. ${mainViews[1].nickname}</div> 
             </div>
             <div class="box two" data-value="${mainViews[2].postid}">
                 <div class="tab1"> </div> 
                	<div class="tab2"><strong>No.3</strong></div> 
                	<div class="tab3"> ${mainViews[2].title}</div>
                	<div class="tab4"></div>               	
-                <div class="tab5"> ${mainViews[2].nickname}</div>
+                <div class="tab5">BY. ${mainViews[2].nickname}</div>
             </div>
         </div>
         
