@@ -10,7 +10,7 @@ at2.addEventListener("click", function() {
 	
 	const xhr = new XMLHttpRequest();
 
-	let url = "/likepost"
+	let url = "/likepost?pageNum="
 
 	xhr.open("get", url); //select는 get으로 보이게 update는 put로 post는 insert 안보이게
 
@@ -54,7 +54,7 @@ at2.addEventListener("click", function() {
 				html += ' <a href="/likepost?pageNum=' + (result.begin - 1) + '"><div><</div></a>';
 			}
 			for (let i = result.begin; i < result.end; i++) {
-				html += ' <a href="/likepost?pageNum=' + i + '">';
+				html += ' <a href="/likepost?pageNum=' + i + '" data-value="'+i+'">';
 
 				if (result.pageNum === i) {
 					html += ' <div><strong>' + i + '</strong></div>';
@@ -65,15 +65,11 @@ at2.addEventListener("click", function() {
 				}
 			}
 			if(result.end < result.lastPage){
-
-			html += '			<a href="/likepost?pageNum='+(result.end+1)+'"> <div>> </div></a>';
+				
+			html += '			<a href="/likepost?pageNum='+(result.end+1)+'" data-value="'+(result.end+1)+'"> <div>> </div></a>';
 			
-		
 			}
 			html += '		</div>';
-
-
-
 			html += '		<div class="tab3">';
 			html += '			<div class="tab_chk">';
 			html += '				<input type="checkbox" class="all_chk"> 전체선택';
