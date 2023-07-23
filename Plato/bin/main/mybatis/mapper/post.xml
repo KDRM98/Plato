@@ -36,10 +36,6 @@
 	        WHERE title LIKE '%' || #{title} || '%'
 	        ORDER BY views DESC
 	    )
-<<<<<<< HEAD
 	    WHERE ROWNUM <![CDATA[<=]]>10
-=======
-	    WHERE ROWNUM &lt;= 10
->>>>>>> branch 'main' of https://github.com/KDRM98/Plato.git
 	</select>
 </mapper>
