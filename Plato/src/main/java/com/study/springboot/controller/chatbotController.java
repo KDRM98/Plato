@@ -16,7 +16,7 @@ import com.study.springboot.dto.chatbotDTO;
 import com.study.springboot.service.chatbotService;
 
 @Controller
-public class chatbotController2 {
+public class chatbotController {
 
 	@Autowired
 	chatbotService service;
