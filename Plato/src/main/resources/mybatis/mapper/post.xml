@@ -36,6 +36,6 @@
 	        WHERE title LIKE '%' || #{title} || '%'
 	        ORDER BY views DESC
 	    )
-	    WHERE ROWNUM &lt;= 10
+	    WHERE ROWNUM <![CDATA[<=]]>10
 	</select>
 </mapper>

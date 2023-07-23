@@ -3,35 +3,39 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.springboot.dao.postDAO">
-	 <insert id="insertpost" parameterType="com.study.springboot.dto.postDTO">
+	<insert id="insertpost" parameterType="com.study.springboot.dto.postDTO">
 		insert into post
 		(postid, title, info, time, diff, userid, mnp, ytbl)
 		values
 		(#{postid}, #{title}, #{info},#{time},#{Diff},#{writerId},#{mnp},#{ytbl})
-     </insert>
+    </insert>
      
-     <select id="getpostid" resultType="int">
+    <select id="getpostid" resultType="int">
 	     SELECT SEQ_postid.nextval FROM DUAL
-     </select>
+    </select>
      
-     <select id="getpost" parameterType="int" resultType="com.study.springboot.dto.postDTO">
+    <select id="getpost" parameterType="int" resultType="com.study.springboot.dto.postDTO">
 		SELECT p.*, m.nickname
 		FROM post p
 		LEFT OUTER JOIN member m ON(m.userid = p.userid) 
 		where postid= #{postid}
-     </select>
+    </select>
      
-     <update id="viewup" parameterType="com.study.springboot.dto.postDTO">
+    <update id="viewup" parameterType="com.study.springboot.dto.postDTO">
      	UPDATE post
 		SET views = views + 1
 		WHERE postid = ${postid}
-     </update>
+    </update>
      
-     <select id="getallpost" parameterType="String" resultType="com.study.springboot.dto.postDTO">
-		SELECT p.*, m.nickname
-		FROM post p
-		LEFT OUTER JOIN member m ON(m.userid = p.userid) 
-	    WHERE title LIKE '%' || #{title} || '%'
-     </select>
-     
+   	<select id="getallpost" parameterType="String" resultType="com.study.springboot.dto.postDTO">
+	    SELECT *
+	    FROM (
+	        SELECT p.*, m.nickname
+	        FROM post p
+	        LEFT OUTER JOIN member m ON (m.userid = p.userid) 
+	        WHERE title LIKE '%' || #{title} || '%'
+	        ORDER BY views DESC
+	    )
+	    WHERE ROWNUM <![CDATA[<=]]>10
+	</select>
 </mapper>

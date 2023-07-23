@@ -395,6 +395,8 @@
 	    reader.onload = function() {
 	      var image = document.createElement('img');
 	      image.src = reader.result;
+	      image.style.maxWidth = '500px';
+	      image.style.maxHeight = '300px';
 	      imagePreview.innerHTML = '';
 	      imagePreview.appendChild(image);
 	    }

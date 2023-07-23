@@ -408,6 +408,7 @@ public class LoginController {
 			String dnickname = dto.getNickname();
 			String dtimg = dto.getmnp();
 			int dpostid = dto.getPostid();
+			System.out.println("dpostid : " + dpostid);
 			List<ingredientDTO> ingredientList = ingredientService.selectIngredientByRecipeId(dpostid);
 			List<String> ingList = new ArrayList<>();
 			for(ingredientDTO ingredient : ingredientList) {
