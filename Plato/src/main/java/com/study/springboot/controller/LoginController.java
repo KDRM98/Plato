@@ -422,7 +422,7 @@ public class LoginController {
 
 	@RequestMapping("/searchhtml")
 	public String searchhtml(
-			@RequestParam("title") String search,
+			@RequestParam(value = "title", defaultValue = "") String search,
 			Model model
 			) {
 		List<postDTO> postlist = new ArrayList<>();
