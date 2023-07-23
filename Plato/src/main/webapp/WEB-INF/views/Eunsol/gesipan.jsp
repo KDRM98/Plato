@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="Eunsol/css/gesipan.css">
 </head>
 <body>
-<form action="mypage2">
+
 	<div class="mypage">
 
 
@@ -53,6 +53,7 @@
 				</div>
 
 				<!-- 작성글 -->
+				<form action="mypage2">
 				<div class="gesipan1">
 					<c:if test="${!empty gsp}">
 						<div class="article1">
