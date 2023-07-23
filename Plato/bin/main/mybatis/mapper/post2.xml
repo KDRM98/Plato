@@ -11,10 +11,10 @@
 		where userid=#{userid}
 	</select>
 	
-	<select id="gesipan" parameterType="postDTO2" resultType="postDTO2" >
+	<!-- <select id="gesipan" parameterType="postDTO2" resultType="postDTO2" >
 		select *
 		from  ( 
-			SELECT rownum AS rnum,
+			SELECT rownum AS rnum, 
        			  title, postid, cdate, views
    	 		FROM
         		   post 
@@ -23,8 +23,25 @@
         	)
 		WHERE rnum <![CDATA[>=]]> #{startNum}
 		  AND rnum <![CDATA[<=]]> #{endNum}
+	</select> -->
+	
+
+	<select id="gesipan" parameterType="postDTO2" resultType="postDTO2" >
+		select *
+		from  ( 
+			SELECT rownum AS rnum, temp.*
+    		FROM (
+        	SELECT title, postid, cdate, views
+        	FROM post
+       		WHERE userid = 50
+        	ORDER BY postid DESC
+    	) temp
+			)
+		WHERE rnum <![CDATA[>=]]> #{startNum}
+		  AND rnum <![CDATA[<=]]> #{endNum}
 	</select>
 	
+
 
 
 	<select id="likePost" parameterType="postDTO2" resultType="postDTO2" >
@@ -68,5 +85,9 @@
 		WHERE rnum <![CDATA[>=]]> #{startNum}
 		  AND rnum <![CDATA[<=]]> #{endNum}
 	</select>
+	
+	
+	
+	
 
 </mapper>
