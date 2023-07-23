@@ -107,7 +107,7 @@
 					<c:if test="${empty userid}">
 						<li><a href="javascript:void(0)" class="login">로그인</a></li>
 						<li><a href="/joinForm">회원가입</a></li>
-						<li><a id="search_glass" href="#">Search <img
+						<li><a id="search_glass" onclick="openPopup()">Search <img
 								src="/Eunsol/imges/search_glass.svg" alt="search_glass Image">
 						</a></li>
 					</c:if>
