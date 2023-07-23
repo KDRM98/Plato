@@ -15,4 +15,6 @@ public interface postService2 {
 	Map likePost(postDTO2 DTO);
 	
 	List<postDTO2> mainViews(postDTO2 DTO);
+
+	int chk(List list);
 }

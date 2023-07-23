@@ -88,7 +88,15 @@
 	</select>
 	
 	
-	
+	<delete id="chk" parameterType="list">
+
+
+		DELETE POST
+		WHERE postid in
+		<foreach collection="list" item="item" open="(" close = ")" separator = ",">
+			#{item} 
+		</foreach>
+	</delete>
 	
 
 </mapper>

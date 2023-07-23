@@ -60,7 +60,11 @@ public class postServiceImpl2 implements postService2 {
 		return list;
 	}
 
-	
+	@Override
+	public int chk(List list) {
+		return DAO2.chk(list);
+		
+	}
 	
 
 	

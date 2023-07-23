@@ -136,4 +136,18 @@ public class postController2 {
 		return map;
 	}
 	
+	@RequestMapping("/mypage2")
+	public String gesipan2(
+			HttpServletRequest req, 
+			@ModelAttribute postDTO2 dto2, 
+			Model model,
+			@RequestParam(value = "chk") List chk) {
+		
+		System.out.println("/mypage2 들어왔다");
+		System.out.println("chk : " +chk);
+		service.chk(chk);
+		return "redirect:/mypage";
+		
+	}
+	
 }

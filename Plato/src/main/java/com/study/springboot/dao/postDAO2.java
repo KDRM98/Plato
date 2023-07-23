@@ -17,5 +17,5 @@ public interface postDAO2 {
 	List<postDTO2> likePost(postDTO2 DTO);
 	List<postDTO2> mainViews(postDTO2 DTO);
 	
-	
+	int chk (List list);
 }
