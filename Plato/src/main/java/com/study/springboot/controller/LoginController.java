@@ -80,9 +80,11 @@ public class LoginController {
 		if (session.getAttribute("userid") != null) { // 세션 값이 존재하는 경우
 			int userid = (int) session.getAttribute("userid");
 			dto.setUserid(userid);
+			dto.setPostid(postid);
 			model.addAttribute("userid", userid);
 			int isliked = likeservice.getisliked(dto);
 			model.addAttribute("isliked", isliked);
+			System.out.println("isliked : " + isliked);
 		}
 		else {
 			

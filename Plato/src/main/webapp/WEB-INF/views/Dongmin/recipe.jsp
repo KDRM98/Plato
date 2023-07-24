@@ -160,7 +160,7 @@ var recipeorderList = [
 
 	console.log(isliked);
 	var postlike = ${postlike};
-	if(isliked == 0){
+	if(isliked == 0 || isliked == '0'){
 	    	document.querySelector(".like").style.background = "lightgray";
   	    }
   	    else{
