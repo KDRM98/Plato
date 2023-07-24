@@ -31,7 +31,7 @@ public class chatbotController {
 		
 		  Map map_action = (Map)map.get("action"); 
 		  String keyword = (String)((Map)((Map)map_action.get("detailParams")).get("keyword")).get("origin" ); 
-		  System.out.println("keyword : " + keyword);
+		  System.out.println("keyword2 : " + keyword);
 		  
 
 		  dto.setStartNum(1);

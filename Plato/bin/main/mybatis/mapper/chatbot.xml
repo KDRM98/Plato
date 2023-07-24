@@ -4,12 +4,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.springboot.dao.chatbotDAO">
 
-	<select id="infoKeyword" parameterType="chatbotDTO"
+	<select id="infoKeyword2" parameterType="chatbotDTO"
 		resultType="chatbotDTO">
 		select *
 		from(select rownum AS rnum, mnp, title, postid
 		from post
-		where info like '%' || #{info} || '%')
+		where info like '%' || #{info} || '%'
+		 ORDER BY postid 
+		)
 		WHERE rnum <![CDATA[>=]]>#{startNum}
 		AND rnum <![CDATA[<=]]>#{endNum}
 	</select>
@@ -19,6 +21,21 @@
 		select count(*)
 		from post
 		where info like '%' || #{info} || '%'
+	</select>
+
+
+<select id="infoKeyword" parameterType="chatbotDTO"
+		resultType="chatbotDTO">
+		select *
+		from(select rownum AS rnum,temp.*
+			 from (select mnp, title, postid
+			       from post
+			       where info like '%' || #{info} || '%'
+				   ORDER BY postid DESC
+				   ) temp
+		          )
+		WHERE rnum <![CDATA[>=]]>#{startNum}
+		AND rnum <![CDATA[<=]]>#{endNum}
 	</select>
 
 
