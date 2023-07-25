@@ -49,7 +49,7 @@
 		FROM (
     			SELECT rownum AS rnum, temp.*
     			FROM(
-   					 SELECT p.title, p.postid, p.cdate, m.nickname,p.views
+   					 SELECT p.title, p.postid, p.cdate, m.nickname,p.views,l.likeid
     				 FROM likes l
   				     LEFT OUTER JOIN post p ON l.postid = p.postid 
     			     LEFT OUTER JOIN member m ON m.userid = p.userid 
@@ -67,10 +67,15 @@
 	</select>
 	
 	
-	<delete id="likedel" parameterType="postDTO2" >
-	DELETE fROM likes
-	WHERE likeid =#{likeid}
+	<delete id="likesdel" parameterType="list" >
+	DELETE likes
+	WHERE likeid in
+		<foreach collection="list" item="item" open="(" close = ")" separator = ",">
+			#{item} 
+		</foreach>	
 	</delete>
+	
+	
 	
 	<select id="mainViews" parameterType="postDTO2" resultType="postDTO2" >
 	SELECT *
@@ -89,8 +94,6 @@
 	
 	
 	<delete id="chk" parameterType="list">
-
-
 		DELETE POST
 		WHERE postid in
 		<foreach collection="list" item="item" open="(" close = ")" separator = ",">

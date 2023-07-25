@@ -65,6 +65,11 @@ public class postServiceImpl2 implements postService2 {
 		return DAO2.chk(list);
 		
 	}
+
+	@Override
+	public int likesdel(List list) {
+		return  DAO2.likesdel(list);
+	}
 	
 
 	

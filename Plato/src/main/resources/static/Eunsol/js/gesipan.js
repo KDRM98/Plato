@@ -36,7 +36,7 @@ tab_write.addEventListener("click",function(){
 	
 	
 let tab_del = document.querySelector(".tab_del")
-let tab_cnlike = document.querySelector(".tab_cnlike")
+
 
 
 

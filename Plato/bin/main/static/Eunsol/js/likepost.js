@@ -8,10 +8,6 @@ let tab_btn2 = document.querySelector(".tab_btn2")*/
 
 at2.addEventListener("click", fetchLikePostData(at2));
 
-
-
-
-
 function fetchLikePostData(a) {
 	const xhr = new XMLHttpRequest();
 
@@ -45,7 +41,7 @@ function fetchLikePostData(a) {
 
 				html += '<div class="gsp_content2">';
 				html += '    <div class="tem a1">';
-				html += '        <input type="checkbox" class="chk">';
+				html += '        <input type="checkbox" class="likes_chk" name="chk" value="' + item.likeid + '">';
 				html += '    </div>';
 				html += '    <div class="tem a2">' + item.postid + '</div>';
 				html += '    <div class="tem a3">';
@@ -64,7 +60,7 @@ function fetchLikePostData(a) {
 			for (let i = result.begin; i < result.end; i++) {
 				html += '  <div class="p_btn"' + '" data-value="' + i + '">';
 				if (result.pageNum === i) {
-					html += '<strong>' + i + '</strong></div>';
+					html += '<strong class="nowPage" " data-value="' + i + '">' + i + '</strong></div>';
 				} else {
 					html += i + '</div>';
 
@@ -95,14 +91,86 @@ function fetchLikePostData(a) {
 				// 클릭 시 fetchLikePostData 함수를 호출하도록 콜백 형태로 전달
 				fetchLikePostData(p_btn);
 			});
-
 		});
 
 
+		let tab_cnlike = document.querySelector(".tab_cnlike")
+
+		tab_cnlike.addEventListener('click', function() {
+
+			/*			let likes_chk2 = document.querySelectorAll(".likes_chk:checked").forEach(function(item, idx){
+							item.value
+						})*/
+
+			let likes_chk = document.querySelectorAll(".likes_chk:checked")
+
+			let url2 = "/likesdel?"
+			if (likes_chk.length != 0) {
+				for (let i = 0; i < likes_chk.length; i++) {
+
+					if (i == likes_chk.length - 1) {
+						likes_chk[i].value
+						console.log("likes.value1 :" + likes_chk[i].value)
+						url2 += 'chk=' + likes_chk[i].value;
+					}
+					else {
+						likes_chk[i].value
+						console.log("likes.value2 :" + likes_chk[i].value)
+						url2 += 'chk=' + likes_chk[i].value + '&';
+					}
+				}
+			}
+
+			else {
+				console.log("취소할게 없는데용")
+				return
+			}
+			console.log("url2" + url2);
+
+			xhr.open("get", url2);
+
+			xhr.send();
+
+			xhr.onload = function() {
+				console.log(xhr.responseText);
+				let result = JSON.parse(xhr.responseText);
+				if (result.com) {
+					console.log("좋아요 취소가 잘됏구마이 ")
+					fetchLikePostData(a);
+
+					let likeTotalCount = result.likeTotalCount;
+					console.log("likeTotalCount :" + likeTotalCount)
+					let likecount = document.querySelector(".mypage_content1 .likecount")
+					likecount.textContent = likeTotalCount;
+				}
+				else {
+					console.log("좋아요 취소에 문제가 있어브려 ")
+				}
+			}
+		});
+
+	
+		let all_chk = document.querySelector(".all_chk");
+
+			console.log(checkboxes.length,all_chk.checked)
+		all_chk.addEventListener("click", function() {
+		let checkboxes = document.getElementsByClassName(".likes_chk");
+			console.log(checkboxes.length,all_chk.checked)
+			for (var i = 0; i < checkboxes.length; i++) {
+				checkboxes[i].checked = all_chk.checked;
+			}
+		});
+
+		for (var i = 0; i < checkboxes.length; i++) {
+			checkboxes[i].addEventListener("change", function() {
+				if (!this.checked) {
+					all_chk.checked = false;
+				}
+			});
+		}
+
 	};
 }
-
-
 
 
 

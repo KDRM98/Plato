@@ -31,7 +31,7 @@
 							작성글 <strong>${total}</strong>
 						</div>
 						<div class="lkdPost">
-							좋아요한 글 <strong>15</strong>
+							좋아요한 글 <strong class="likecount">${likeTotalCount}</strong>
 						</div>
 					</div>
 
@@ -165,7 +165,7 @@
 					</div>
 				</div>
 
-
+				</form>
 
 				<!-- 좋아요한 글 -->
 				<div class="gesipan2"></div>
@@ -206,6 +206,6 @@
         window.location.href = '/personerPage';
     } 
     </script>
-    </form>
+    
 </body>
 </html>

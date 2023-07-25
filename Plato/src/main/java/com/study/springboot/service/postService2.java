@@ -17,4 +17,6 @@ public interface postService2 {
 	List<postDTO2> mainViews(postDTO2 DTO);
 
 	int chk(List list);
+	
+	int likesdel(List list);
 }

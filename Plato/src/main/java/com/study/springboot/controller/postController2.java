@@ -1,5 +1,6 @@
 package com.study.springboot.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +61,7 @@ public class postController2 {
 
 		int total = (int) map.get("totalCount");
 		req.setAttribute("total", total);
+		model.addAttribute("likeTotalCount", service.likeTotalCount(dto2));
 		System.out.println("total :"+ total);
 		
 		String nickname = (String)session.getAttribute("nickname");
@@ -144,9 +146,33 @@ public class postController2 {
 			@RequestParam(value = "chk") List chk) {
 		
 		System.out.println("/mypage2 들어왔다");
-		System.out.println("chk : " +chk);
+		System.out.println("chk : " + chk);
 		service.chk(chk);
 		return "redirect:/mypage";
+		
+	}
+	
+	@RequestMapping("/likesdel")
+	@ResponseBody
+	public Map likesdel(
+			HttpServletRequest req, 
+			@ModelAttribute postDTO2 dto2, 
+			Model model,
+			@RequestParam(value = "chk") List chk) {
+		
+		System.out.println("/likesdel 들어왔다");
+		System.out.println("chk : " +chk);
+		int result = service.likesdel(chk);
+		System.out.println("좋아요취소 개수 :" + result);
+		Map map = new HashMap();
+		map.put("com", "완료");
+		
+		HttpSession session = req.getSession();
+		dto2.setUserid((int)session.getAttribute("userid"));
+		int likeTotalCount = service.likeTotalCount(dto2);
+		map.put("likeTotalCount", likeTotalCount);
+		System.out.println("likeTotalCount : " + likeTotalCount);
+		return map;
 		
 	}
 	
