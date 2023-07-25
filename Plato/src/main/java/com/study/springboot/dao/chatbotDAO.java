@@ -12,4 +12,10 @@ public interface chatbotDAO {
 
 	List<chatbotDTO> infoKeyword(chatbotDTO dto);
 	int countkeyword(chatbotDTO dto);
+	
+	
+	List<chatbotDTO> infoIngredient(chatbotDTO dto);
+	int countIngredient(chatbotDTO dto);
+	
+	
 }

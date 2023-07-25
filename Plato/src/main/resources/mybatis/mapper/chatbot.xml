@@ -24,7 +24,7 @@
 	</select>
 
 
-<select id="infoKeyword" parameterType="chatbotDTO"
+	<select id="infoKeyword" parameterType="chatbotDTO"
 		resultType="chatbotDTO">
 		select *
 		from(select rownum AS rnum,temp.*
@@ -37,6 +37,47 @@
 		WHERE rnum <![CDATA[>=]]>#{startNum}
 		AND rnum <![CDATA[<=]]>#{endNum}
 	</select>
+
+
+
+	<select id="infoIngredient" parameterType="chatbotDTO"
+		resultType="chatbotDTO">
+		SELECT *
+		FROM(SELECT rownum AS rnum,temp.*
+			 FROM (
+			 		SELECT title, mnp, postid
+					FROM post
+					WHERE postid in(SELECT postid
+    								FROM inges
+    								WHERE ingid =(SELECT ingid
+        										  FROM IngList
+        										  WHERE ing = #{ing})
+        							)
+        			ORDER BY postid DESC				  
+				   ) temp
+		          )
+		WHERE rnum <![CDATA[>=]]>#{startNum}
+		AND rnum <![CDATA[<=]]>#{endNum}
+	</select>
+
+
+	<select id="countIngredient" parameterType="chatbotDTO"
+		resultType="int">
+		SELECT count(*)
+		FROM post
+		WHERE postid in(SELECT postid
+    					FROM inges
+    					WHERE ingid =(SELECT ingid
+        							  FROM IngList
+        							  WHERE ing = #{ing})
+        							)
+	</select>
+
+
+
+
+
+
 
 
 </mapper>

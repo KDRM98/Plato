@@ -31,7 +31,7 @@ public class chatbotController {
 		
 		  Map map_action = (Map)map.get("action"); 
 		  String keyword = (String)((Map)((Map)map_action.get("detailParams")).get("keyword")).get("origin" ); 
-		  System.out.println("keyword2 : " + keyword);
+		  System.out.println("keyword : " + keyword);
 		  
 
 		  dto.setStartNum(1);
@@ -437,4 +437,121 @@ public class chatbotController {
 	 * }
 	 */
 
+	@RequestMapping("/platoChat2")
+	@ResponseBody
+	public String platoChat2(@RequestBody Map map,
+			@ModelAttribute chatbotDTO dto) {
+
+		System.out.println(map);
+
+		
+		  Map map_action = (Map)map.get("action"); 
+		  String ingredient = (String)((Map)((Map)map_action.get("detailParams")).get("ingredient")).get("origin" ); 
+		  System.out.println("ingredient : " + ingredient);
+		  
+
+		  dto.setStartNum(1);
+		  dto.setEndNum(3);
+		  dto.setIng(ingredient);
+		  
+		  Map mapmap = service.infoIngredient(dto);
+			
+		  List<chatbotDTO> ingResult = (List) mapmap.get("ingResult");		
+					
+
+		  String result = "{\n" +
+				  		  "  \"version\": \"2.0\",\n" +
+				  		  "  \"template\": {\n" +
+						  "    \"outputs\": [\n" ;
+
+						        
+						        
+						        
+		  int count = Math.min(ingResult.size(), 3); 
+								
+		  if (count == 0) {
+						    result +=   "      {\n" +
+									    "        \"simpleText\": {\n" +
+							            "          \"text\": \"검색결과가 없습니다ㅜㅜ\"\n" +
+							            "        }\n" +
+								        "      }\n" +							            								        
+								        "    ],\n" +
+									    "    \"quickReplies\": [\n" +
+								        "      {\n" +
+								        "        \"messageText\": \"처음으로\",\n" +
+								        "        \"action\": \"message\",\n" +
+								        "        \"label\": \"처음으로\"\n" +
+								        "      }\n" +
+								        "    ]\n" +
+								        "  }\n" +
+								        "}";								        
+								        
+
+
+//								        "  }\n" +								        
+//										"}";	
+					    
+						    
+							}else {
+								 	result +=   "      {\n" +
+									    	    "        \"carousel\": {\n" +
+									            "          \"type\": \"listCard\",\n" +
+									  	        "          \"items\": [\n" +
+									   	        "            {\n" +
+									   	        "              \"header\": {\n" +
+								    	        "            \"title\": \" " + ingredient +" 들어간 최근레시피를 소개합니다." +"\"\n" +
+								    	        "              },\n" +
+								    	        "              \"items\": [\n" ;
+								  
+								  for (int i = 0; i < count; i++) {
+									  chatbotDTO listdto = ingResult.get(i); 
+									  String title = listdto.getTitle(); 
+									  int postid = listdto.getPostid(); 
+									  String url = "http://1.222.90.55:8007/recipe?postid=" + postid; 
+									  String mnpp = listdto.getMnp(); 
+									  System.out.println("mnpp :" + mnpp);
+									  String mnp = "http://1.222.90.55:8007/" + mnpp; 
+									  
+									  result += "            {\n" +
+											  "              \"title\": \""+title+"\",\n" +			      
+											  "              \"imageUrl\": \""+ mnp +"\",\n" +
+											  "              \"link\": {\n" +
+											  "                \"web\": \""+url+"\"\n" +
+											  "              }\n" +  
+											  "            }\n" ;
+									  if (i != count-1){
+										  result += ",";
+									  }
+								  }	
+								  
+								  
+									result +=	"              ],\n" +
+												"              \"buttons\": [\n" +
+												"                {\n" +
+												"                  \"label\": \"홈페이지 방문\",\n" +
+												"                  \"action\": \"webLink\",\n" +
+										        "                  \"webLinkUrl\" : \"http://1.222.90.55:8007/main\"\n" +
+										        "                }\n" +
+										        "              ]\n" +
+										        "            }\n" +
+										        "          ]\n" +
+										        "        }\n" +
+										        "      }\n" +
+										        "    ],\n" +
+										        "    \"quickReplies\": [\n" +
+										        "      {\n" +
+										        "        \"messageText\": \"처음으로\",\n" +
+										        "        \"action\": \"message\",\n" +
+										        "        \"label\": \"처음으로\"\n" +
+										        "      }\n" +
+										        "    ]\n" +
+										        "  }\n" +
+										        "}";
+								
+							}	  
+								  					  
+		  System.out.println(result);
+		  return result;
+		 
+	}
 }

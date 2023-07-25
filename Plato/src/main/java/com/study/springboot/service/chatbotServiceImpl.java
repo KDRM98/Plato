@@ -28,6 +28,19 @@ public class chatbotServiceImpl implements chatbotService{
 
 	}
 	
+	@Override
+	public Map infoIngredient(chatbotDTO dto) {
+		List list = dao.infoIngredient(dto);
+		int totalCount = dao.countIngredient(dto);
+		   Map map = new HashMap();
+		   map.put("ingResult", list);
+		   map.put("totalCount", totalCount);
+		   
+		   return map;
+
+	}
+	
+	
 
 
 }

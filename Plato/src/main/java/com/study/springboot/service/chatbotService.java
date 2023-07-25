@@ -6,4 +6,8 @@ import com.study.springboot.dto.chatbotDTO;
 
 public interface chatbotService {
 	Map infoKeyword(chatbotDTO dto);
+	
+	Map infoIngredient(chatbotDTO dto);
+	
+	
 }

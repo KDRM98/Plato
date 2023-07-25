@@ -10,7 +10,16 @@ public class chatbotDTO {
 	private String mnp;
 	private int postid;
 	
+	private String ing;
+	
+	
 
+	public String getIng() {
+		return ing;
+	}
+	public void setIng(String ing) {
+		this.ing = ing;
+	}
 	public int getPostid() {
 		return postid;
 	}
