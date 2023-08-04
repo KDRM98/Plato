@@ -208,7 +208,7 @@ public class LoginController {
 			model.addAttribute("userid", userid);
 			model.addAttribute("nickname", nickname);
 			
-			return "Dongmin/addrecipe";
+			return "viewList103";
 		}
 		else {
 			String referer = "header"; // main으로 바꿀예정

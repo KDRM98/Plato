@@ -16,7 +16,7 @@
 				<div class="registContainer">
 					<div class="regist" id="title">		
 						<label for="title">제목 : </label>
-						<input type="text" id="title" name="title" required>
+						<input type="text" id="title" name="title" required placeholder="ex) 소고기미역국">
 					</div>
 					<div class="regist" id="writer">
 						<label for="author">작성자: </label>
@@ -24,7 +24,10 @@
 					</div>
 					
 					<div class="regist" id="difficulty">
-						<label for="image">난이도 : </label><span class="difficultynum"> 1 </span>
+						<div style="display:flex; align-items: center;">
+							<label for="image">난이도 : </label>
+							<span class="difficultynum" style="padding-left: 10px; font-size: 30px; font-weight: bold;"> 1 </span>
+						</div>
 						<input type="hidden" id="difficulty-input" name="difficulty" value="1">
 						<div id="difficulty-container">
 						    <button type="button" id="diff-one" class="difficulty-button" onclick="selectDifficulty(1)"><span class="button-number"></span></button>
@@ -35,8 +38,8 @@
 						</div>
 					</div>
 					
-					<div class="regist" id="spenttime">
-						<label for="image">소요시간</label>
+					<div class="regist" id="spenttime" style="display: flex; align-items: center;">
+						<label for="image" style="padding-right: 30px;">소요시간</label>
 						<select name="settime">
 						  <option value="">-- 시간 선택 --</option>
 						  <option value="10">10분</option>
@@ -58,17 +61,17 @@
 					<div class="regist" name="mnp">
 						<label for="image">대표 사진 </label>
 						<div class="image-preview"></div>
-						<input type="file" id="mnp" name="mnp" accept="image/*" onchange="previewImage(event)">
+						<input type="file" id="mnp" name="mnp" accept="image/*" onchange="TpreviewImage(event)" style="border:none; margin-left:-10px; background-color:white;">
 					</div>
 					
 					<div class="regist" name="desc">
-						<label for="description">소개글:</label><br>
-						<textarea id="desc" name="desc" required></textarea>
+						<label for="description">소개글</label><br>
+						<textarea id="desc" name="desc" required style="width: 400px; height: 130px;"></textarea>
 					</div>
 					
 					<div class="regist" name="ytbl">
-						<label for="description">유튜브 링크:</label><br>
-						<textarea id="ytbl" name="ytbl" placeholder="https://www.youtube.com/watch?v=???"></textarea>
+						<label for="description">유튜브 링크</label><br>
+						<textarea id="ytbl" name="ytbl" placeholder="https://www.youtube.com/watch?v=??? &#10;위 형식의 링크를 권장드립니다." style="width: 300px; height: 40px;"></textarea>
 					</div>
 					
 					
@@ -76,7 +79,7 @@
 						<div id="ingredient-container">
 							<!-- 초기 재료 섹션 (3개) -->
 							<div class="ingredient-section">
-								<span for="ingredients">재료:</span><br>
+								<label for="ingredients">재료</label><br>
 								<div class="ingredient-row">
 									<div class="custom-select">
 										<input type="text" class="ingredient-input" name="ingredients" oninput="filterIngredients(this)" placeholder="원하는 재료를 입력해 검색 후 클릭" onclick="showDropdown(this)" required>
@@ -100,7 +103,7 @@
 						<button type="button" id="add-ingredient-button" onclick="addIngredient()">추가</button>
 					</div>
 					<div class="regist" id="how">
-					  <span for="instructions">조리방법:</span><br>
+					  <label for="instructions">조리방법</label><br>
 					  <div id="instructions-container">
 					    <div class="step">
 					      <textarea name="instructions" id="my-textarea"></textarea>
@@ -112,24 +115,36 @@
 					  <button type="button" id="addstepbutton" onclick="addStep()">추가</button>
 					</div>
 					<br>
-					<button type="submit">작성 완료</button>
+					<button type="submit" style="margin-top: 30px; border: solid 1.5px black; width: 100px; height: 50px; font-size: 20px;font-weight: bold; border-radius: 10px;">작성 완료</button>
 				</div>
 			</div>
 		</form>
 	</div>
 	<div class="r-container">
-		<form action="/addingredient" method="POST" enctype="multipart/form-data">
+		<div style="">
+		<form action="/addingredient" method="POST" enctype="multipart/form-data"">
 			<div class="addingr-container">
 				<input type="text" class="new-ingredient" name="new-ingredient" placeholder="새로 추가할 재료 입력">
 				<button id="new-ingr-button">추가</button>
 			</div>
 		</form>
+		</div>
 	</div>
 </div>
 	
 		
 </body>
 <script>
+	window.addEventListener("DOMContentLoaded", function() {
+	  var lContainer = document.querySelector(".l-container");
+	  var rContainer = document.querySelector(".r-container");
+	  
+	  // l-container의 높이 가져오기
+	  var lContainerHeight = lContainer.offsetHeight;
+	  
+	  // r-container의 높이 설정
+	  rContainer.style.height = lContainerHeight + "px";
+	});
 	updateDeleteButtonState();
 	var difficultynum = document.querySelector(".difficultynum");
 	function selectDifficulty(level) {
@@ -395,8 +410,8 @@
 	    reader.onload = function() {
 	      var image = document.createElement('img');
 	      image.src = reader.result;
-	      image.style.maxWidth = '500px';
-	      image.style.maxHeight = '300px';
+	      image.style.maxWidth = '400px';
+	      image.style.maxHeight = '200px';
 	      imagePreview.innerHTML = '';
 	      imagePreview.appendChild(image);
 	    }
@@ -406,12 +421,38 @@
 	    imagePreview.innerHTML = '';
 	  }
 	}
-
-	  function preventEnter(event) {
-	    if (event.key === "Enter") {
-	      event.preventDefault();
+	function TpreviewImage(event) {
+	  
+	  var file = event.target.files[0];
+	  var imagePreview = event.target.parentNode.querySelector('.image-preview');
+	  
+	  if (file) {
+	    var reader = new FileReader();
+	    
+	    reader.onload = function() {
+	      var image = document.createElement('img');
+	      image.src = reader.result;
+	      image.style.width = '500px';
+	      image.style.height = '300px';
+	      imagePreview.innerHTML = '';
+	      imagePreview.appendChild(image);
 	    }
+	    
+	    reader.readAsDataURL(file);
+	    var newingredient = document.querySelector('.addingr-container');
+		newingredient.style.paddingTop = '1177px';
+	  } else {
+	    imagePreview.innerHTML = '';
 	  }
+	  
+	  
+	}
+
+	function preventEnter(event) {
+	  if (event.key === "Enter") {
+	    event.preventDefault();
+	  }
+	}
 
 
 

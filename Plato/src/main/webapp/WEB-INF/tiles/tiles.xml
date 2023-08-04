@@ -67,6 +67,10 @@
 		<put-attribute name="title" value="plato 레시피 페이지" />
 		<put-attribute name="main" value="/WEB-INF/views/Yuchan/searchhtml.jsp" />
 	</definition>
+	<definition name="viewList103" extends="base">
+		<put-attribute name="title" value="plato 레시피 작성 페이지" />
+		<put-attribute name="main" value="/WEB-INF/views/Dongmin/addrecipe.jsp" />
+	</definition>
 <!--  name="viewList__" 은솔 0~99  동민 100~199 유찬 200~299 현영 300~ -->
 
 </tiles-definitions>
